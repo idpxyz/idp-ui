@@ -17,12 +17,12 @@ function ThemeDemo() {
       </button>
       <div style={{ marginTop: 24, display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 8 }}>
         {[
-          { var: '--vsc-bg', label: 'Background' },
-          { var: '--vsc-sidebar', label: 'Surface' },
-          { var: '--vsc-text', label: 'Text' },
-          { var: '--ds-product-accent', label: 'Accent' },
-        ].map(({ var: v, label }) => (
-          <div key={v} style={{ padding: 16, borderRadius: 8, background: `var(${v})`, border: `1px solid ${isDark ? '#3c3c3c' : '#d1d5db'}`, fontSize: 11, color: v.includes('text') ? `var(${v})` : '#fff', textAlign: 'center' }}>
+          { var: '--vsc-bg', label: 'Background', textColor: isDark ? '#fff' : '#000' },
+          { var: '--vsc-sidebar', label: 'Surface', textColor: isDark ? '#fff' : '#000' },
+          { var: '--vsc-accent', label: 'Accent', textColor: '#fff' },
+          { var: '--vsc-border', label: 'Border', textColor: isDark ? '#fff' : '#000' },
+        ].map(({ var: v, label, textColor }) => (
+          <div key={v} style={{ padding: 16, borderRadius: 8, background: `var(${v})`, border: `1px solid ${isDark ? '#555' : '#ccc'}`, fontSize: 11, color: textColor, textAlign: 'center' }}>
             <div style={{ fontWeight: 600 }}>{label}</div>
             <div style={{ opacity: 0.7, marginTop: 4 }}>{v}</div>
           </div>
