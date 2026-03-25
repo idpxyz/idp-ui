@@ -8,8 +8,9 @@ import {
   IconClock, IconHistory, IconDatabase, IconFolder, IconBookmark,
 } from './system';
 import {
-  IconShipment, IconPackage, IconReturn, IconLayers, IconBilling,
-  IconAutomation, IconMessage, IconFileText, IconCatalog, IconShield,
+  IconShipment, IconPackage, IconReturn, IconBilling,
+  IconAutomation, IconCatalog, IconOrder, IconWarehouse,
+  IconActivity, IconChart,
 } from './domain';
 import {
   IconSuccess, IconError, IconWarning, IconInfo, IconPending, IconLoading,
@@ -67,16 +68,16 @@ export const SystemIcons: StoryObj = {
 export const DomainIcons: StoryObj = {
   render: () => (
     <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, color: '#ccc' }}>
+      <IconCell Icon={IconOrder} name="Order" />
       <IconCell Icon={IconShipment} name="Shipment" />
       <IconCell Icon={IconPackage} name="Package" />
       <IconCell Icon={IconReturn} name="Return" />
-      <IconCell Icon={IconLayers} name="Layers" />
       <IconCell Icon={IconBilling} name="Billing" />
       <IconCell Icon={IconAutomation} name="Automation" />
-      <IconCell Icon={IconMessage} name="Message" />
-      <IconCell Icon={IconFileText} name="FileText" />
       <IconCell Icon={IconCatalog} name="Catalog" />
-      <IconCell Icon={IconShield} name="Shield" />
+      <IconCell Icon={IconWarehouse} name="Warehouse" />
+      <IconCell Icon={IconActivity} name="Activity" />
+      <IconCell Icon={IconChart} name="Chart" />
     </div>
   ),
 };
