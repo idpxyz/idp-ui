@@ -51,8 +51,14 @@ function Stepper({ steps, currentStep, className, orientation = 'horizontal' }: 
             </div>
           );
         })}
-        {/* Connecting line drawn behind circles */}
-        <div className="absolute top-[18px] left-0 right-0 flex items-center px-[calc(50%/var(--steps))]" style={{ '--steps': steps.length } as React.CSSProperties}>
+        {/* Connecting line drawn behind circles, clipped to circle centers */}
+        <div
+          className="absolute top-[18px] flex items-center"
+          style={{
+            left: `${50 / steps.length}%`,
+            right: `${50 / steps.length}%`,
+          }}
+        >
           {steps.slice(0, -1).map((_, i) => (
             <div key={i} className={cn(
               'flex-1 h-0.5 rounded-full',
