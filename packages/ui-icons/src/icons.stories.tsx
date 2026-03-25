@@ -18,6 +18,11 @@ import {
   IconVendor, IconSupplier, IconSupplyNetwork, IconEDI,
   IconWorkflow, IconProcurement, IconCompliance, IconQualityControl,
   IconMilestone, IconDemandForecast, IconLayers,
+  IconPackageOpen, IconPackageDamaged, IconReceiveGoods, IconDispatchGoods,
+  IconPutaway, IconPickup, IconReplenishment, IconCycleCount,
+  IconStockAdjustment, IconRacking, IconBinLocation,
+  IconConsolidation, IconStockLookup, IconLabelPrint,
+  IconCrossDock, IconStaging, IconDamagedGoods,
 } from './domain';
 import {
   IconSuccess, IconError, IconWarning, IconInfo, IconPending, IconLoading,
@@ -115,6 +120,26 @@ export const DomainIcons: StoryObj = {
         <IconCell Icon={IconCompliance} name="Compliance" />
         <IconCell Icon={IconQualityControl} name="QC" />
         <IconCell Icon={IconEDI} name="EDI" />
+      </div>
+      <h4 style={{ fontSize: 12, color: '#858585', marginBottom: 8 }}>Warehouse Operations</h4>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, color: '#ccc', marginBottom: 16 }}>
+        <IconCell Icon={IconReceiveGoods} name="Receive" />
+        <IconCell Icon={IconDispatchGoods} name="Dispatch" />
+        <IconCell Icon={IconPutaway} name="Putaway" />
+        <IconCell Icon={IconPickup} name="Pickup" />
+        <IconCell Icon={IconReplenishment} name="Replenish" />
+        <IconCell Icon={IconCycleCount} name="CycleCount" />
+        <IconCell Icon={IconStockAdjustment} name="StockAdj" />
+        <IconCell Icon={IconRacking} name="Racking" />
+        <IconCell Icon={IconBinLocation} name="BinLoc" />
+        <IconCell Icon={IconConsolidation} name="Consolidate" />
+        <IconCell Icon={IconStockLookup} name="StockSearch" />
+        <IconCell Icon={IconLabelPrint} name="LabelPrint" />
+        <IconCell Icon={IconCrossDock} name="CrossDock" />
+        <IconCell Icon={IconStaging} name="Staging" />
+        <IconCell Icon={IconPackageOpen} name="Open" />
+        <IconCell Icon={IconPackageDamaged} name="Damaged" />
+        <IconCell Icon={IconDamagedGoods} name="DmgGoods" />
       </div>
       <h4 style={{ fontSize: 12, color: '#858585', marginBottom: 8 }}>Operations</h4>
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, color: '#ccc' }}>
