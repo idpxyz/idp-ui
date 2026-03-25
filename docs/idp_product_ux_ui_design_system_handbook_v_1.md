@@ -108,6 +108,7 @@ IDP 产品设计应遵循以下总哲学：
 
 ## 3.3 Studio / Designer / Configurator 类
 例如：
+- **Canonicalization Studio**（LOMS 模块，IDP 产品族）：入站归一化 / mapping workbench，混合式 pipeline 编排与字段映射配置
 - PHI Studio
 - RuleMesh Studio
 - Template Designer
@@ -846,6 +847,26 @@ Main Canvas / Editor Area
 Right Inspector / Properties Panel
 Bottom Output / Validation / Preview Panel
 ```
+
+### 16.1.1 Top Bar 归属信息规范（必选）
+
+所有 Studio / Workbench / Console 的 Top Bar 或 Page Header 左侧**必须**展示产品归属信息，格式为：
+
+```text
+{产品} / IDP · {模块名称}
+```
+
+示例：
+- `LOMS / IDP · Canonicalization Studio`
+- `LOMS / IDP · Exception Workbench`
+- `Prism / IDP · Execution Monitor`
+- `RuleMesh / IDP · PolicyOps Console`
+
+- **产品**：所属 IDP 产品（LOMS / Prism / Gatekeeper / RuleMesh / LedgerMesh / PHI 等）
+- **IDP**：统一品牌标识
+- **模块名称**：当前页面/工作台的业务名称
+
+实现建议：归属信息使用 `text-muted-foreground` 或等效弱化样式，模块名称使用主色；中间用 `·` 分隔。
 
 ## 16.2 Studio 中的左右面板规则
 - 左侧：资源、图层、模板、组件、节点

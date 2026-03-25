@@ -1,0 +1,52 @@
+export const foundation = {
+  space: {
+    0: '0px',
+    1: '4px',
+    2: '8px',
+    3: '12px',
+    4: '16px',
+    5: '20px',
+    6: '24px',
+    8: '32px',
+    10: '40px',
+    12: '48px',
+    16: '64px',
+  },
+  radius: {
+    none: '0px',
+    sm: '4px',
+    md: '6px',
+    lg: '8px',
+    xl: '12px',
+    '2xl': '16px',
+    full: '9999px',
+  },
+  borderWidth: {
+    none: '0px',
+    hairline: '0.5px',
+    sm: '1px',
+    md: '2px',
+  },
+  motion: {
+    duration: {
+      fast: '120ms',
+      normal: '180ms',
+      slow: '240ms',
+      xslow: '320ms',
+    },
+    easing: {
+      standard: 'cubic-bezier(0.2, 0, 0, 1)',
+      decelerate: 'cubic-bezier(0, 0, 0, 1)',
+      accelerate: 'cubic-bezier(0.3, 0, 1, 1)',
+      emphasized: 'cubic-bezier(0.2, 0, 0, 1.2)',
+    },
+  },
+  shadow: {
+    none: 'none',
+    xs: '0 1px 2px rgba(0,0,0,0.18)',
+    sm: '0 2px 6px rgba(0,0,0,0.2)',
+    md: '0 6px 18px rgba(0,0,0,0.24)',
+    lg: '0 10px 24px rgba(0,0,0,0.28)',
+    xl: '0 14px 30px rgba(0,0,0,0.32)',
+  },
+} as const;

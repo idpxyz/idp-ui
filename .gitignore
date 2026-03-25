@@ -1,4 +1,42 @@
+# Dependencies
 node_modules/
+
+# Build output
 dist/
-.vite/
 *.tsbuildinfo
+
+# Vite
+.vite/
+
+# Editor & OS
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+.idea/
+*.iml
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+
+# Env
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# Test & coverage
+coverage/
+.nyc_output/
+
+# Turbo
+.turbo/
+
+# Misc
+*.tgz
+dist-tarballs/
