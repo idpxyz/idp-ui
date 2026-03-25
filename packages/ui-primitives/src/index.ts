@@ -28,3 +28,6 @@ export { Tag, tagVariants } from './tag';
 export { Alert, alertVariants } from './alert';
 export { Timeline, type TimelineItem } from './timeline';
 export { Stepper, type Step } from './stepper';
+export { DataGrid, type Column } from './data-grid';
+export { Toaster, useToast, type Toast, type ToastVariant } from './toast';
+export { NavMenu, type NavItem } from './nav-menu';
