@@ -49,7 +49,7 @@ const DialogContent = React.forwardRef<
     <div
       ref={ref}
       className={cn(
-        'relative w-full bg-vscode-sidebar border border-vscode-border rounded-lg shadow-2xl animate-in zoom-in-95',
+        'relative w-full bg-vscode-sidebar border border-vscode-border rounded-xl shadow-2xl animate-in zoom-in-95',
         sizeMap[size],
         className
       )}

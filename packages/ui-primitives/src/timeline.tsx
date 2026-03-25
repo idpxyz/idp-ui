@@ -18,33 +18,47 @@ interface TimelineProps {
 }
 
 const dotColors = {
-  default: 'bg-vscode-textMuted',
-  success: 'bg-green-500',
-  warning: 'bg-yellow-500',
-  error: 'bg-red-500',
+  default: 'bg-vscode-textMuted ring-vscode-textMuted/20',
+  success: 'bg-green-500 ring-green-500/20',
+  warning: 'bg-yellow-500 ring-yellow-500/20',
+  error: 'bg-red-500 ring-red-500/20',
+};
+
+const lineColors = {
+  default: 'bg-vscode-border',
+  success: 'bg-green-500/40',
+  warning: 'bg-yellow-500/40',
+  error: 'bg-red-500/40',
 };
 
 function Timeline({ items, className }: TimelineProps) {
   return (
     <div className={cn('relative', className)}>
       {items.map((item, i) => (
-        <div key={item.id} className="flex gap-3 pb-6 last:pb-0">
-          <div className="flex flex-col items-center">
+        <div key={item.id} className="flex gap-4 group">
+          <div className="flex flex-col items-center pt-1">
             {item.icon ? (
-              <div className="shrink-0 w-6 h-6 flex items-center justify-center rounded-full bg-vscode-hover text-vscode-textMuted">
+              <div className={cn(
+                'shrink-0 w-8 h-8 flex items-center justify-center rounded-full ring-4',
+                dotColors[item.variant || 'default']
+              )}>
                 {item.icon}
               </div>
             ) : (
-              <div className={cn('shrink-0 w-2.5 h-2.5 rounded-full mt-1.5', dotColors[item.variant || 'default'])} />
+              <div className={cn('shrink-0 w-3.5 h-3.5 rounded-full ring-4', dotColors[item.variant || 'default'])} />
             )}
             {i < items.length - 1 && (
-              <div className="w-px flex-1 bg-vscode-border mt-1" />
+              <div className={cn('w-0.5 flex-1 mt-2 mb-0 rounded-full', lineColors[item.variant || 'default'])} />
             )}
           </div>
-          <div className="flex-1 min-w-0 pt-0.5">
-            <div className="text-[12px] font-medium text-vscode-textBright">{item.title}</div>
-            {item.description && <div className="text-[11px] text-vscode-textMuted mt-0.5">{item.description}</div>}
-            {item.timestamp && <div className="text-[10px] text-vscode-textMuted mt-1">{item.timestamp}</div>}
+          <div className="flex-1 min-w-0 pb-8 last:pb-0">
+            <div className="bg-vscode-sidebar/50 border border-vscode-border/50 rounded-lg px-4 py-3 group-hover:border-vscode-accent/30 transition-colors">
+              <div className="flex items-center justify-between">
+                <div className="text-[13px] font-semibold text-vscode-textBright">{item.title}</div>
+                {item.timestamp && <div className="text-[11px] text-vscode-textMuted">{item.timestamp}</div>}
+              </div>
+              {item.description && <div className="text-[12px] text-vscode-textMuted mt-1">{item.description}</div>}
+            </div>
           </div>
         </div>
       ))}

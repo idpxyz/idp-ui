@@ -26,14 +26,14 @@ function Progress({ value, max = 100, size = 'md', variant = 'default', showLabe
   return (
     <div className={cn('w-full', className)}>
       <div
-        className={cn('w-full bg-vscode-border rounded-full overflow-hidden', heightMap[size])}
+        className={cn('w-full bg-vscode-border/50 rounded-full overflow-hidden', heightMap[size])}
         role="progressbar"
         aria-valuenow={value}
         aria-valuemin={0}
         aria-valuemax={max}
       >
         <div
-          className={cn('h-full rounded-full transition-all duration-300', colorMap[variant])}
+          className={cn('h-full rounded-full transition-all duration-500 ease-out', colorMap[variant])}
           style={{ width: `${pct}%` }}
         />
       </div>

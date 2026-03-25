@@ -6,7 +6,7 @@ import { cn } from '@idpxyz/ui-utils';
 import { X } from 'lucide-react';
 
 const tagVariants = cva(
-  'inline-flex items-center gap-1 rounded-full text-[11px] font-medium transition-colors',
+  'inline-flex items-center gap-1 rounded-full text-[11px] font-medium transition-all hover:shadow-sm',
   {
     variants: {
       variant: {

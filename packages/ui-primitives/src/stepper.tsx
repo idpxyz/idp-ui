@@ -29,9 +29,9 @@ function Stepper({ steps, currentStep, className, orientation = 'horizontal' }: 
           <React.Fragment key={step.id}>
             <div className={cn('flex items-center gap-2', isVertical && 'flex-col items-start')}>
               <div className={cn(
-                'shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-[11px] font-semibold border-2 transition-colors',
-                status === 'complete' && 'bg-vscode-accent border-vscode-accent text-white',
-                status === 'current' && 'border-vscode-accent text-vscode-accent bg-transparent',
+                'shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-[12px] font-bold border-2 transition-all shadow-sm',
+                status === 'complete' && 'bg-vscode-accent border-vscode-accent text-white shadow-vscode-accent/20',
+                status === 'current' && 'border-vscode-accent text-vscode-accent bg-vscode-accent/10 ring-4 ring-vscode-accent/10',
                 status === 'upcoming' && 'border-vscode-border text-vscode-textMuted bg-transparent',
               )}>
                 {status === 'complete' ? <Check size={14} /> : i + 1}

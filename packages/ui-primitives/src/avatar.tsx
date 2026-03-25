@@ -5,7 +5,7 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@idpxyz/ui-utils';
 
 const avatarVariants = cva(
-  'relative inline-flex items-center justify-center rounded-full overflow-hidden shrink-0 bg-vscode-hover text-vscode-textMuted font-medium',
+  'relative inline-flex items-center justify-center rounded-full overflow-hidden shrink-0 bg-vscode-accent/15 text-vscode-accent font-semibold ring-2 ring-vscode-border/30',
   {
     variants: {
       size: {

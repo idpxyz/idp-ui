@@ -6,14 +6,14 @@ import { cn } from '@idpxyz/ui-utils';
 import { AlertCircle, CheckCircle2, Info, AlertTriangle, X } from 'lucide-react';
 
 const alertVariants = cva(
-  'flex items-start gap-3 px-4 py-3 rounded-md border text-[12px]',
+  'flex items-start gap-3 px-4 py-3.5 rounded-lg border text-[13px] shadow-sm',
   {
     variants: {
       variant: {
-        info: 'bg-blue-500/10 border-blue-500/30 text-blue-300',
-        success: 'bg-green-500/10 border-green-500/30 text-green-300',
-        warning: 'bg-yellow-500/10 border-yellow-500/30 text-yellow-300',
-        error: 'bg-red-500/10 border-red-500/30 text-red-300',
+        info: 'bg-blue-500/8 border-blue-500/25 text-blue-300',
+        success: 'bg-green-500/8 border-green-500/25 text-green-300',
+        warning: 'bg-yellow-500/8 border-yellow-500/25 text-yellow-300',
+        error: 'bg-red-500/8 border-red-500/25 text-red-300',
       },
     },
     defaultVariants: { variant: 'info' },
