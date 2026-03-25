@@ -105,4 +105,15 @@ export {
   DollarSign as IconDollar,
   Hash as IconHash,
   Phone as IconPhone,
+
+  // Editing actions
+  Undo2 as IconUndo,
+  Redo2 as IconRedo,
+  ZoomIn as IconZoomIn,
+  ZoomOut as IconZoomOut,
+  Maximize as IconFullscreen,
+  Minimize as IconExitFullscreen,
+  Share2 as IconShare,
+  Printer as IconPrint,
+  BellRing as IconNotification,
 } from 'lucide-react';
