@@ -5,8 +5,8 @@ const meta: Meta = { title: 'Primitives/Stepper' };
 export default meta;
 
 const steps = [
-  { id: 'draft', label: 'Draft', description: 'Create integration', timestamp: '10:00 AM' },
-  { id: 'review', label: 'Review', description: 'Submit for approval', timestamp: '10:15 AM' },
+  { id: 'draft', label: 'Draft', description: 'Create integration', timestamp: '2026-03-20 10:00' },
+  { id: 'review', label: 'Review', description: 'Submit for approval', timestamp: '2026-03-21 10:15' },
   { id: 'approve', label: 'Approve', description: 'Manager approval' },
   { id: 'publish', label: 'Publish', description: 'Deploy to production' },
 ];
