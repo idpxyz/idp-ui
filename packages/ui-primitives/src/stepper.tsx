@@ -24,35 +24,20 @@ function Stepper({ steps, currentStep, className, orientation = 'horizontal' }: 
 
   return (
     <nav aria-label="Progress" className={cn('w-full', className)}>
-      <div className="flex">
+      <div className="relative flex items-start justify-between">
         {steps.map((step, i) => {
           const status = i < currentStep ? 'complete' : i === currentStep ? 'current' : 'upcoming';
-          const isLast = i === steps.length - 1;
           return (
-            <div key={step.id} className={cn('flex flex-col items-center', isLast ? '' : 'flex-1')}>
-              <div className="flex items-center w-full">
-                {i > 0 && (
-                  <div className={cn(
-                    'flex-1 h-0.5 rounded-full',
-                    i <= currentStep ? 'bg-vscode-accent' : 'bg-vscode-border',
-                  )} />
-                )}
-                <div className={cn(
-                  'shrink-0 w-9 h-9 rounded-full flex items-center justify-center text-[13px] font-bold border-2 transition-all',
-                  status === 'complete' && 'bg-vscode-accent border-vscode-accent text-white',
-                  status === 'current' && 'border-vscode-accent text-vscode-accent bg-vscode-accent/10 ring-4 ring-vscode-accent/10',
-                  status === 'upcoming' && 'border-vscode-border text-vscode-textMuted bg-transparent',
-                )}>
-                  {status === 'complete' ? <Check size={16} strokeWidth={3} /> : i + 1}
-                </div>
-                {!isLast && (
-                  <div className={cn(
-                    'flex-1 h-0.5 rounded-full',
-                    i < currentStep ? 'bg-vscode-accent' : 'bg-vscode-border',
-                  )} />
-                )}
+            <div key={step.id} className="flex flex-col items-center z-10" style={{ width: `${100 / steps.length}%` }}>
+              <div className={cn(
+                'shrink-0 w-9 h-9 rounded-full flex items-center justify-center text-[13px] font-bold border-2 transition-all bg-vscode-bg',
+                status === 'complete' && 'bg-vscode-accent border-vscode-accent text-white',
+                status === 'current' && 'border-vscode-accent text-vscode-accent bg-vscode-accent/10 ring-4 ring-vscode-accent/10',
+                status === 'upcoming' && 'border-vscode-border text-vscode-textMuted',
+              )}>
+                {status === 'complete' ? <Check size={16} strokeWidth={3} /> : i + 1}
               </div>
-              <div className="text-center mt-2 px-1">
+              <div className="text-center mt-2.5">
                 <div className={cn(
                   'text-[12px] font-semibold',
                   status === 'complete' || status === 'current' ? 'text-vscode-textBright' : 'text-vscode-textMuted',
@@ -66,6 +51,15 @@ function Stepper({ steps, currentStep, className, orientation = 'horizontal' }: 
             </div>
           );
         })}
+        {/* Connecting line drawn behind circles */}
+        <div className="absolute top-[18px] left-0 right-0 flex items-center px-[calc(50%/var(--steps))]" style={{ '--steps': steps.length } as React.CSSProperties}>
+          {steps.slice(0, -1).map((_, i) => (
+            <div key={i} className={cn(
+              'flex-1 h-0.5 rounded-full',
+              i < currentStep ? 'bg-vscode-accent' : 'bg-vscode-border',
+            )} />
+          ))}
+        </div>
       </div>
     </nav>
   );
