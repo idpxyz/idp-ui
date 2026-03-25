@@ -1,17 +1,19 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import {
   IconDashboard, IconSearch, IconSettings, IconMenu, IconMaximize, IconMinimize,
-  IconClose, IconPlus, IconEdit, IconDelete, IconCopy, IconSave, IconRefresh,
-  IconFilter, IconSort, IconArrowUp, IconArrowDown, IconArrowRight, IconArrowLeft,
-  IconChevronRight, IconChevronDown, IconCheck, IconX, IconInfo, IconWarning,
-  IconActivity, IconEye, IconBell, IconUser, IconLock, IconUnlock,
+  IconClose, IconPlus, IconEdit, IconTrash, IconCopy, IconSave, IconRefresh,
+  IconFilter, IconSortAsc, IconArrowRight, IconArrowLeft,
+  IconChevronRight, IconChevronDown, IconCheck,
+  IconEye, IconBell, IconUser, IconLock, IconStar, IconTag,
+  IconClock, IconHistory, IconDatabase, IconFolder, IconBookmark,
 } from './system';
 import {
   IconShipment, IconPackage, IconReturn, IconLayers, IconBilling,
   IconAutomation, IconMessage, IconFileText, IconCatalog, IconShield,
 } from './domain';
 import {
-  IconSuccess, IconError, IconClock, IconPlay, IconPause,
+  IconSuccess, IconError, IconWarning, IconInfo, IconPending, IconLoading,
+  IconBlocked, IconCritical, IconActive, IconPaused,
 } from './status';
 
 const meta: Meta = { title: 'Icons/Gallery' };
@@ -36,28 +38,28 @@ export const SystemIcons: StoryObj = {
       <IconCell Icon={IconClose} name="Close" />
       <IconCell Icon={IconPlus} name="Plus" />
       <IconCell Icon={IconEdit} name="Edit" />
-      <IconCell Icon={IconDelete} name="Delete" />
+      <IconCell Icon={IconTrash} name="Trash" />
       <IconCell Icon={IconCopy} name="Copy" />
       <IconCell Icon={IconSave} name="Save" />
       <IconCell Icon={IconRefresh} name="Refresh" />
       <IconCell Icon={IconFilter} name="Filter" />
-      <IconCell Icon={IconSort} name="Sort" />
-      <IconCell Icon={IconArrowUp} name="ArrowUp" />
-      <IconCell Icon={IconArrowDown} name="ArrowDown" />
+      <IconCell Icon={IconSortAsc} name="SortAsc" />
       <IconCell Icon={IconArrowRight} name="ArrowRight" />
       <IconCell Icon={IconArrowLeft} name="ArrowLeft" />
       <IconCell Icon={IconChevronRight} name="ChevronRight" />
       <IconCell Icon={IconChevronDown} name="ChevronDown" />
       <IconCell Icon={IconCheck} name="Check" />
-      <IconCell Icon={IconX} name="X" />
-      <IconCell Icon={IconInfo} name="Info" />
-      <IconCell Icon={IconWarning} name="Warning" />
-      <IconCell Icon={IconActivity} name="Activity" />
       <IconCell Icon={IconEye} name="Eye" />
       <IconCell Icon={IconBell} name="Bell" />
       <IconCell Icon={IconUser} name="User" />
       <IconCell Icon={IconLock} name="Lock" />
-      <IconCell Icon={IconUnlock} name="Unlock" />
+      <IconCell Icon={IconStar} name="Star" />
+      <IconCell Icon={IconTag} name="Tag" />
+      <IconCell Icon={IconClock} name="Clock" />
+      <IconCell Icon={IconHistory} name="History" />
+      <IconCell Icon={IconDatabase} name="Database" />
+      <IconCell Icon={IconFolder} name="Folder" />
+      <IconCell Icon={IconBookmark} name="Bookmark" />
     </div>
   ),
 };
@@ -84,9 +86,14 @@ export const StatusIcons: StoryObj = {
     <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, color: '#ccc' }}>
       <IconCell Icon={IconSuccess} name="Success" />
       <IconCell Icon={IconError} name="Error" />
-      <IconCell Icon={IconClock} name="Clock" />
-      <IconCell Icon={IconPlay} name="Play" />
-      <IconCell Icon={IconPause} name="Pause" />
+      <IconCell Icon={IconWarning} name="Warning" />
+      <IconCell Icon={IconInfo} name="Info" />
+      <IconCell Icon={IconPending} name="Pending" />
+      <IconCell Icon={IconLoading} name="Loading" />
+      <IconCell Icon={IconBlocked} name="Blocked" />
+      <IconCell Icon={IconCritical} name="Critical" />
+      <IconCell Icon={IconActive} name="Active" />
+      <IconCell Icon={IconPaused} name="Paused" />
     </div>
   ),
 };
