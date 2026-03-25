@@ -8,6 +8,7 @@ interface Step {
   id: string;
   label: string;
   description?: string;
+  timestamp?: string;
 }
 
 interface StepperProps {
@@ -46,6 +47,9 @@ function Stepper({ steps, currentStep, className, orientation = 'horizontal' }: 
                 </div>
                 {step.description && (
                   <div className="text-[10px] text-vscode-textMuted mt-0.5">{step.description}</div>
+                )}
+                {step.timestamp && (
+                  <div className="text-[10px] text-vscode-accent mt-1">{step.timestamp}</div>
                 )}
               </div>
             </div>
@@ -103,6 +107,9 @@ function VerticalStepper({ steps, currentStep, className }: { steps: Step[]; cur
               </div>
               {step.description && (
                 <div className="text-[11px] text-vscode-textMuted mt-0.5">{step.description}</div>
+              )}
+              {step.timestamp && (
+                <div className="text-[10px] text-vscode-accent mt-1">{step.timestamp}</div>
               )}
             </div>
           </div>
