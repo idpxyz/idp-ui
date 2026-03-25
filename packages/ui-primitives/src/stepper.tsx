@@ -18,44 +18,96 @@ interface StepperProps {
 }
 
 function Stepper({ steps, currentStep, className, orientation = 'horizontal' }: StepperProps) {
-  const isVertical = orientation === 'vertical';
+  if (orientation === 'vertical') {
+    return <VerticalStepper steps={steps} currentStep={currentStep} className={className} />;
+  }
 
   return (
-    <nav aria-label="Progress" className={cn(isVertical ? 'flex flex-col gap-0' : 'flex items-center gap-0', className)}>
-      {steps.map((step, i) => {
-        const status = i < currentStep ? 'complete' : i === currentStep ? 'current' : 'upcoming';
-
-        return (
-          <React.Fragment key={step.id}>
-            <div className={cn('flex items-center gap-2', isVertical && 'flex-col items-start')}>
-              <div className={cn(
-                'shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-[12px] font-bold border-2 transition-all shadow-sm',
-                status === 'complete' && 'bg-vscode-accent border-vscode-accent text-white shadow-vscode-accent/20',
-                status === 'current' && 'border-vscode-accent text-vscode-accent bg-vscode-accent/10 ring-4 ring-vscode-accent/10',
-                status === 'upcoming' && 'border-vscode-border text-vscode-textMuted bg-transparent',
-              )}>
-                {status === 'complete' ? <Check size={14} /> : i + 1}
-              </div>
-              <div className={isVertical ? 'ml-0 mt-1 mb-4' : ''}>
+    <nav aria-label="Progress" className={cn('w-full', className)}>
+      <div className="flex items-center">
+        {steps.map((step, i) => {
+          const status = i < currentStep ? 'complete' : i === currentStep ? 'current' : 'upcoming';
+          return (
+            <React.Fragment key={step.id}>
+              <div className="flex flex-col items-center">
                 <div className={cn(
-                  'text-[12px] font-medium',
+                  'shrink-0 w-9 h-9 rounded-full flex items-center justify-center text-[13px] font-bold border-2 transition-all',
+                  status === 'complete' && 'bg-vscode-accent border-vscode-accent text-white',
+                  status === 'current' && 'border-vscode-accent text-vscode-accent bg-vscode-accent/10 ring-4 ring-vscode-accent/10',
+                  status === 'upcoming' && 'border-vscode-border text-vscode-textMuted bg-transparent',
+                )}>
+                  {status === 'complete' ? <Check size={16} strokeWidth={3} /> : i + 1}
+                </div>
+              </div>
+              {i < steps.length - 1 && (
+                <div className={cn(
+                  'flex-1 h-0.5 mx-1 rounded-full transition-colors',
+                  i < currentStep ? 'bg-vscode-accent' : 'bg-vscode-border',
+                )} />
+              )}
+            </React.Fragment>
+          );
+        })}
+      </div>
+      <div className="flex mt-3">
+        {steps.map((step, i) => {
+          const status = i < currentStep ? 'complete' : i === currentStep ? 'current' : 'upcoming';
+          return (
+            <React.Fragment key={step.id + '-label'}>
+              <div className="flex flex-col items-center text-center" style={{ width: `${100 / steps.length}%` }}>
+                <div className={cn(
+                  'text-[12px] font-semibold',
                   status === 'complete' || status === 'current' ? 'text-vscode-textBright' : 'text-vscode-textMuted',
                 )}>
                   {step.label}
                 </div>
                 {step.description && (
-                  <div className="text-[10px] text-vscode-textMuted">{step.description}</div>
+                  <div className="text-[11px] text-vscode-textMuted mt-0.5">{step.description}</div>
                 )}
               </div>
-            </div>
-            {i < steps.length - 1 && (
+            </React.Fragment>
+          );
+        })}
+      </div>
+    </nav>
+  );
+}
+
+function VerticalStepper({ steps, currentStep, className }: { steps: Step[]; currentStep: number; className?: string }) {
+  return (
+    <nav aria-label="Progress" className={cn('', className)}>
+      {steps.map((step, i) => {
+        const status = i < currentStep ? 'complete' : i === currentStep ? 'current' : 'upcoming';
+        return (
+          <div key={step.id} className="flex gap-4">
+            <div className="flex flex-col items-center">
               <div className={cn(
-                'transition-colors',
-                isVertical ? 'w-px h-6 ml-3.5 bg-vscode-border' : 'flex-1 h-px mx-2 bg-vscode-border',
-                i < currentStep && (isVertical ? 'bg-vscode-accent' : 'bg-vscode-accent'),
-              )} />
-            )}
-          </React.Fragment>
+                'shrink-0 w-9 h-9 rounded-full flex items-center justify-center text-[13px] font-bold border-2 transition-all',
+                status === 'complete' && 'bg-vscode-accent border-vscode-accent text-white',
+                status === 'current' && 'border-vscode-accent text-vscode-accent bg-vscode-accent/10 ring-4 ring-vscode-accent/10',
+                status === 'upcoming' && 'border-vscode-border text-vscode-textMuted bg-transparent',
+              )}>
+                {status === 'complete' ? <Check size={16} strokeWidth={3} /> : i + 1}
+              </div>
+              {i < steps.length - 1 && (
+                <div className={cn(
+                  'w-0.5 flex-1 my-1 rounded-full min-h-[24px]',
+                  i < currentStep ? 'bg-vscode-accent' : 'bg-vscode-border',
+                )} />
+              )}
+            </div>
+            <div className="pt-1.5 pb-6">
+              <div className={cn(
+                'text-[13px] font-semibold',
+                status === 'complete' || status === 'current' ? 'text-vscode-textBright' : 'text-vscode-textMuted',
+              )}>
+                {step.label}
+              </div>
+              {step.description && (
+                <div className="text-[11px] text-vscode-textMuted mt-0.5">{step.description}</div>
+              )}
+            </div>
+          </div>
         );
       })}
     </nav>
