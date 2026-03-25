@@ -23,6 +23,12 @@ import {
   IconStockAdjustment, IconRacking, IconBinLocation,
   IconConsolidation, IconStockLookup, IconLabelPrint,
   IconCrossDock, IconStaging, IconDamagedGoods,
+  IconWavePlanning, IconZoneManagement, IconDockManagement,
+  IconLaborManagement, IconTaskAssignment, IconKitting, IconVAS,
+  IconQualityInspection, IconHoldStatus, IconReverseLogistics,
+  IconSerialNumber, IconLotTracking, IconExpiryManagement,
+  IconHazmat, IconColdChain, IconMultiChannel, IconDropShip,
+  IconBackorder, IconInventoryCount, IconWarehouseKPI, IconWarehouseLayout,
 } from './domain';
 import {
   IconSuccess, IconError, IconWarning, IconInfo, IconPending, IconLoading,
@@ -140,6 +146,30 @@ export const DomainIcons: StoryObj = {
         <IconCell Icon={IconPackageOpen} name="Open" />
         <IconCell Icon={IconPackageDamaged} name="Damaged" />
         <IconCell Icon={IconDamagedGoods} name="DmgGoods" />
+      </div>
+      <h4 style={{ fontSize: 12, color: '#858585', marginBottom: 8 }}>WMS Advanced</h4>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, color: '#ccc', marginBottom: 16 }}>
+        <IconCell Icon={IconWavePlanning} name="Wave" />
+        <IconCell Icon={IconZoneManagement} name="Zone" />
+        <IconCell Icon={IconDockManagement} name="Dock" />
+        <IconCell Icon={IconLaborManagement} name="Labor" />
+        <IconCell Icon={IconTaskAssignment} name="Task" />
+        <IconCell Icon={IconKitting} name="Kitting" />
+        <IconCell Icon={IconVAS} name="VAS" />
+        <IconCell Icon={IconQualityInspection} name="QCInspect" />
+        <IconCell Icon={IconHoldStatus} name="Hold" />
+        <IconCell Icon={IconReverseLogistics} name="Reverse" />
+        <IconCell Icon={IconSerialNumber} name="Serial#" />
+        <IconCell Icon={IconLotTracking} name="Lot" />
+        <IconCell Icon={IconExpiryManagement} name="Expiry" />
+        <IconCell Icon={IconHazmat} name="Hazmat" />
+        <IconCell Icon={IconColdChain} name="ColdChain" />
+        <IconCell Icon={IconMultiChannel} name="MultiCH" />
+        <IconCell Icon={IconDropShip} name="DropShip" />
+        <IconCell Icon={IconBackorder} name="Backorder" />
+        <IconCell Icon={IconInventoryCount} name="InvCount" />
+        <IconCell Icon={IconWarehouseKPI} name="WMS KPI" />
+        <IconCell Icon={IconWarehouseLayout} name="Layout" />
       </div>
       <h4 style={{ fontSize: 12, color: '#858585', marginBottom: 8 }}>Operations</h4>
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, color: '#ccc' }}>
