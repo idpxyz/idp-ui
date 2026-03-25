@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
-import { EditorGroup, type EditorGroupData } from './EditorGroup';
+import EditorGroup, { type EditorGroupData } from './EditorGroup';
 
 const meta: Meta = { title: 'Workspace/EditorGroup' };
 export default meta;
