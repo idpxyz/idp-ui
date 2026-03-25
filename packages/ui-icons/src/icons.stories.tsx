@@ -12,6 +12,12 @@ import {
   IconShipment, IconPackage, IconReturn, IconBilling,
   IconAutomation, IconCatalog, IconOrder, IconWarehouse,
   IconActivity, IconChart,
+  IconContainer, IconVessel, IconAirFreight, IconPort, IconFactory,
+  IconDistributionCenter, IconWeight, IconTemperature,
+  IconBillOfLading, IconInvoice, IconPickingList, IconPackingList,
+  IconVendor, IconSupplier, IconSupplyNetwork, IconEDI,
+  IconWorkflow, IconProcurement, IconCompliance, IconQualityControl,
+  IconMilestone, IconDemandForecast, IconLayers,
 } from './domain';
 import {
   IconSuccess, IconError, IconWarning, IconInfo, IconPending, IconLoading,
@@ -68,17 +74,55 @@ export const SystemIcons: StoryObj = {
 
 export const DomainIcons: StoryObj = {
   render: () => (
-    <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, color: '#ccc' }}>
-      <IconCell Icon={IconOrder} name="Order" />
-      <IconCell Icon={IconShipment} name="Shipment" />
-      <IconCell Icon={IconPackage} name="Package" />
-      <IconCell Icon={IconReturn} name="Return" />
-      <IconCell Icon={IconBilling} name="Billing" />
-      <IconCell Icon={IconAutomation} name="Automation" />
-      <IconCell Icon={IconCatalog} name="Catalog" />
-      <IconCell Icon={IconWarehouse} name="Warehouse" />
-      <IconCell Icon={IconActivity} name="Activity" />
-      <IconCell Icon={IconChart} name="Chart" />
+    <div>
+      <h4 style={{ fontSize: 12, color: '#858585', marginBottom: 8 }}>Commerce</h4>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, color: '#ccc', marginBottom: 16 }}>
+        <IconCell Icon={IconOrder} name="Order" />
+        <IconCell Icon={IconPackage} name="Package" />
+        <IconCell Icon={IconReturn} name="Return" />
+        <IconCell Icon={IconBilling} name="Billing" />
+        <IconCell Icon={IconCatalog} name="Catalog" />
+        <IconCell Icon={IconInvoice} name="Invoice" />
+      </div>
+      <h4 style={{ fontSize: 12, color: '#858585', marginBottom: 8 }}>Logistics</h4>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, color: '#ccc', marginBottom: 16 }}>
+        <IconCell Icon={IconShipment} name="Shipment" />
+        <IconCell Icon={IconContainer} name="Container" />
+        <IconCell Icon={IconVessel} name="Vessel" />
+        <IconCell Icon={IconAirFreight} name="AirFreight" />
+        <IconCell Icon={IconPort} name="Port" />
+        <IconCell Icon={IconWeight} name="Weight" />
+        <IconCell Icon={IconTemperature} name="Temperature" />
+        <IconCell Icon={IconMilestone} name="Milestone" />
+      </div>
+      <h4 style={{ fontSize: 12, color: '#858585', marginBottom: 8 }}>Supply Chain</h4>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, color: '#ccc', marginBottom: 16 }}>
+        <IconCell Icon={IconFactory} name="Factory" />
+        <IconCell Icon={IconWarehouse} name="Warehouse" />
+        <IconCell Icon={IconDistributionCenter} name="DistCenter" />
+        <IconCell Icon={IconSupplier} name="Supplier" />
+        <IconCell Icon={IconVendor} name="Vendor" />
+        <IconCell Icon={IconSupplyNetwork} name="Network" />
+        <IconCell Icon={IconProcurement} name="Procurement" />
+        <IconCell Icon={IconDemandForecast} name="Forecast" />
+        <IconCell Icon={IconLayers} name="Layers" />
+      </div>
+      <h4 style={{ fontSize: 12, color: '#858585', marginBottom: 8 }}>Documents & Compliance</h4>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, color: '#ccc', marginBottom: 16 }}>
+        <IconCell Icon={IconBillOfLading} name="BillOfLading" />
+        <IconCell Icon={IconPickingList} name="PickingList" />
+        <IconCell Icon={IconPackingList} name="PackingList" />
+        <IconCell Icon={IconCompliance} name="Compliance" />
+        <IconCell Icon={IconQualityControl} name="QC" />
+        <IconCell Icon={IconEDI} name="EDI" />
+      </div>
+      <h4 style={{ fontSize: 12, color: '#858585', marginBottom: 8 }}>Operations</h4>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, color: '#ccc' }}>
+        <IconCell Icon={IconActivity} name="Activity" />
+        <IconCell Icon={IconAutomation} name="Automation" />
+        <IconCell Icon={IconWorkflow} name="Workflow" />
+        <IconCell Icon={IconChart} name="Chart" />
+      </div>
     </div>
   ),
 };
