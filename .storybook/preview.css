@@ -1,0 +1,48 @@
+@import "tailwindcss";
+
+:root {
+  --ds-bg-canvas-default: #1e1e1e;
+  --ds-bg-canvas-subtle: #252526;
+  --ds-bg-surface-default: #2d2d2d;
+  --ds-bg-surface-elevated: #333333;
+  --ds-border-default: #3c3c3c;
+  --ds-border-subtle: #323232;
+  --ds-border-strong: #4a4a4a;
+  --ds-text-primary: #cccccc;
+  --ds-text-secondary: #a9a9a9;
+  --ds-text-tertiary: #858585;
+  --ds-text-on-accent: #ffffff;
+  --ds-text-inverse: #000000;
+  --ds-text-link: #228be6;
+  --ds-text-link-hover: #82beff;
+  --ds-product-accent: #228be6;
+  --ds-focus-ring: #228be6;
+
+  --color-vscode-bg: #1e1e1e;
+  --color-vscode-sidebar: #252526;
+  --color-vscode-editor: #1e1e1e;
+  --color-vscode-tab: #2d2d2d;
+  --color-vscode-tabActive: #1e1e1e;
+  --color-vscode-titleBar: #3c3c3c;
+  --color-vscode-statusBar: #007acc;
+  --color-vscode-activityBar: #333333;
+  --color-vscode-border: #3c3c3c;
+  --color-vscode-tabBorder: #252526;
+  --color-vscode-text: #cccccc;
+  --color-vscode-textMuted: #858585;
+  --color-vscode-textBright: #ffffff;
+  --color-vscode-breadcrumb: #a9a9a9;
+  --color-vscode-accent: #228be6;
+  --color-vscode-hover: rgba(255, 255, 255, 0.06);
+  --color-vscode-activeItem: rgba(255, 255, 255, 0.12);
+  --color-vscode-input: #3c3c3c;
+
+  color-scheme: dark;
+}
+
+body {
+  background-color: var(--color-vscode-bg);
+  color: var(--color-vscode-text);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 13px;
+}
