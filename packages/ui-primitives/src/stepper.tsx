@@ -33,8 +33,8 @@ function Stepper({ steps, currentStep, className, orientation = 'horizontal' }: 
               <div className={cn(
                 'shrink-0 w-9 h-9 rounded-full flex items-center justify-center text-[13px] font-bold border-2 transition-all bg-vscode-bg',
                 status === 'complete' && 'bg-vscode-accent border-vscode-accent text-white',
-                status === 'current' && 'border-vscode-accent text-vscode-accent bg-[#1e1e1e] ring-4 ring-vscode-accent/10',
-                status === 'upcoming' && 'border-vscode-border text-vscode-textMuted bg-[#1e1e1e]',
+                status === 'current' && 'border-vscode-accent text-vscode-accent bg-vscode-bg ring-4 ring-vscode-accent/10',
+                status === 'upcoming' && 'border-vscode-border text-vscode-textMuted bg-vscode-bg',
               )}>
                 {status === 'complete' ? <Check size={16} strokeWidth={3} /> : i + 1}
               </div>

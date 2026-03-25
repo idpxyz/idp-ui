@@ -57,6 +57,70 @@ importers:
         specifier: ^4.1.1
         version: 4.1.1(jsdom@29.0.1)(vite@6.4.1(jiti@2.6.1)(lightningcss@1.32.0))
 
+  apps/demo-web:
+    dependencies:
+      '@idpxyz/ui-patterns':
+        specifier: workspace:*
+        version: link:../../packages/ui-patterns
+      '@idpxyz/ui-primitives':
+        specifier: workspace:*
+        version: link:../../packages/ui-primitives
+      '@idpxyz/ui-theme-runtime':
+        specifier: workspace:*
+        version: link:../../packages/ui-theme-runtime
+      '@idpxyz/ui-tokens':
+        specifier: workspace:*
+        version: link:../../packages/ui-tokens
+      '@idpxyz/ui-utils':
+        specifier: workspace:*
+        version: link:../../packages/ui-utils
+      '@idpxyz/ui-workspace':
+        specifier: workspace:*
+        version: link:../../packages/ui-workspace
+      class-variance-authority:
+        specifier: ^0.7.1
+        version: 0.7.1
+      clsx:
+        specifier: ^2.1.1
+        version: 2.1.1
+      lucide-react:
+        specifier: ^0.468.0
+        version: 0.468.0(react@19.2.4)
+      react:
+        specifier: ^19.0.0
+        version: 19.2.4
+      react-dom:
+        specifier: ^19.0.0
+        version: 19.2.4(react@19.2.4)
+      tailwind-merge:
+        specifier: ^2.6.0
+        version: 2.6.1
+    devDependencies:
+      '@types/react':
+        specifier: ^19.0.0
+        version: 19.2.14
+      '@types/react-dom':
+        specifier: ^19.0.0
+        version: 19.2.3(@types/react@19.2.14)
+      '@vitejs/plugin-react':
+        specifier: ^4.3.4
+        version: 4.7.0(vite@6.4.1(jiti@2.6.1)(lightningcss@1.32.0))
+      autoprefixer:
+        specifier: ^10.4.20
+        version: 10.4.27(postcss@8.5.8)
+      postcss:
+        specifier: ^8.4.49
+        version: 8.5.8
+      tailwindcss:
+        specifier: ^3.4.17
+        version: 3.4.19
+      typescript:
+        specifier: ~5.6.2
+        version: 5.6.3
+      vite:
+        specifier: ^6.0.5
+        version: 6.4.1(jiti@2.6.1)(lightningcss@1.32.0)
+
   apps/loms-web:
     dependencies:
       '@idpxyz/ui-patterns':

@@ -22,7 +22,7 @@ export const FullFeature: StoryObj = {
         { key: 'integration', header: 'Integration', sortable: true },
         {
           key: 'status', header: 'Status', sortable: true,
-          render: (v) => <Badge variant={v === 'success' ? 'success' : v === 'failed' ? 'destructive' : 'default'}>{String(v)}</Badge>,
+          render: (v) => <Badge variant={v === 'success' ? 'success' : v === 'failed' ? 'danger' : 'default'}>{String(v)}</Badge>,
         },
         { key: 'origin', header: 'Origin', sortable: true },
         { key: 'duration', header: 'Duration', sortable: true, render: (v) => `${v}ms` },

@@ -15,6 +15,7 @@ import {
   ShoppingCart,
 } from 'lucide-react';
 import { Button } from '@idpxyz/ui-primitives';
+import { ShellColumnEdgeTitle } from './ShellColumnEdge';
 
 export interface RecentObject {
   id: string;
@@ -55,8 +56,9 @@ export default function TitleBar({
     <div className="h-[32px] bg-vscode-titleBar border-b border-vscode-border flex items-center justify-between select-none shrink-0 text-[13px] relative">
       {/* Left — app menu (logistics shell style) */}
       <div className="flex items-center h-full min-w-0">
-        <div className="w-[52px] shrink-0 flex items-center justify-center border-r border-vscode-border/60">
+        <div className="w-[52px] shrink-0 flex items-center justify-center h-full relative">
           <PanelLeft size={16} className="text-vscode-textMuted" />
+          <ShellColumnEdgeTitle />
         </div>
         <div className="flex items-center gap-0 h-full text-vscode-text">
           {mainMenuItems.map((item) => (

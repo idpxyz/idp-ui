@@ -7,7 +7,7 @@ export default meta;
 
 export const Basic: StoryObj = {
   render: () => (
-    <div style={{ width: 240, background: '#252526', padding: 8, borderRadius: 8 }}>
+    <div className="w-[240px] rounded-lg bg-vscode-sidebar p-2">
       <NavMenu
         activeId="integrations"
         items={[

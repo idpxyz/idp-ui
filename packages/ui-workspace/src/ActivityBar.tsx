@@ -11,6 +11,7 @@ import {
 } from 'lucide-react';
 import { useTheme } from '@idpxyz/ui-theme-runtime';
 import { Button } from '@idpxyz/ui-primitives';
+import { ShellColumnEdgeFlex } from './ShellColumnEdge';
 
 interface ActivityBarProps {
   activeItem: string;
@@ -34,48 +35,51 @@ export default function ActivityBar({ activeItem, onItemClick }: ActivityBarProp
   const { theme, toggleTheme } = useTheme();
 
   return (
-    <div className="w-[52px] bg-vscode-activityBar border-r border-vscode-border/90 flex flex-col justify-between items-center py-1.5 select-none shrink-0">
-      <div className="flex flex-col items-center w-full gap-0.5">
-        {topItems.map((item) => (
-          <Button
-            key={item.id}
-            onClick={() => onItemClick(item.id)}
-            variant="ghost"
-            size="icon"
-            className={`w-full h-11 rounded-none relative group
+    <div className="w-[52px] bg-vscode-activityBar flex flex-row shrink-0 select-none self-stretch py-1.5">
+      <div className="flex flex-1 flex-col min-w-0 justify-between items-center">
+        <div className="flex flex-col items-center w-full gap-0.5">
+          {topItems.map((item) => (
+            <Button
+              key={item.id}
+              onClick={() => onItemClick(item.id)}
+              variant="ghost"
+              size="icon"
+              className={`w-full h-11 rounded-none relative group
               ${activeItem === item.id
-                ? 'text-vscode-textBright border-l-[3px] border-vscode-textBright bg-black/15'
+                ? 'text-vscode-textBright border-l-[3px] border-vscode-accent bg-black/15'
                 : 'text-vscode-textMuted hover:text-vscode-textBright border-l-[3px] border-transparent'
               }`}
-            title={item.label}
-          >
-            <item.icon size={22} strokeWidth={1.6} />
-          </Button>
-        ))}
-      </div>
-      <div className="flex flex-col items-center w-full gap-0.5 mt-2">
-        <Button
-          onClick={toggleTheme}
-          variant="ghost"
-          size="icon"
-          className="w-full h-11 rounded-none text-vscode-textMuted hover:text-vscode-textBright border-l-[3px] border-transparent"
-          title={theme === 'dark' ? 'Switch to Light Theme' : 'Switch to Dark Theme'}
-        >
-          {theme === 'dark' ? <Sun size={22} strokeWidth={1.6} /> : <Moon size={22} strokeWidth={1.6} />}
-        </Button>
-        {bottomItems.map((item) => (
+              title={item.label}
+            >
+              <item.icon size={22} strokeWidth={1.6} />
+            </Button>
+          ))}
+        </div>
+        <div className="flex flex-col items-center w-full gap-0.5 mt-2">
           <Button
-            key={item.id}
-            onClick={() => onItemClick(item.id)}
+            onClick={toggleTheme}
             variant="ghost"
             size="icon"
             className="w-full h-11 rounded-none text-vscode-textMuted hover:text-vscode-textBright border-l-[3px] border-transparent"
-            title={item.label}
+            title={theme === 'dark' ? 'Switch to Light Theme' : 'Switch to Dark Theme'}
           >
-            <item.icon size={22} strokeWidth={1.6} />
+            {theme === 'dark' ? <Sun size={22} strokeWidth={1.6} /> : <Moon size={22} strokeWidth={1.6} />}
           </Button>
-        ))}
+          {bottomItems.map((item) => (
+            <Button
+              key={item.id}
+              onClick={() => onItemClick(item.id)}
+              variant="ghost"
+              size="icon"
+              className="w-full h-11 rounded-none text-vscode-textMuted hover:text-vscode-textBright border-l-[3px] border-transparent"
+              title={item.label}
+            >
+              <item.icon size={22} strokeWidth={1.6} />
+            </Button>
+          ))}
+        </div>
       </div>
+      <ShellColumnEdgeFlex />
     </div>
   );
 }

@@ -1,0 +1,202 @@
+import { useCallback, useState } from 'react';
+import { LayoutDashboard } from 'lucide-react';
+import type { ProductKey } from '@idpxyz/ui-tokens';
+import {
+  TitleBar,
+  ActivityBar,
+  Sidebar,
+  EditorGroup,
+  StatusBar,
+  CommandPalette,
+  useResize,
+  type EditorGroupData,
+  type NavigationSection,
+} from '@idpxyz/ui-workspace';
+import { ThemeProvider, ToastProvider } from '@idpxyz/ui-theme-runtime';
+
+const PRODUCT = '__PRODUCT_KEY__' as ProductKey;
+
+const navigationSections: NavigationSection[] = [
+  { title: 'Start', items: [{ id: 'welcome', label: 'Welcome', icon: 'home' }] },
+];
+
+const sidebarIconMap = {
+  home: LayoutDashboard,
+};
+
+/**
+ * Generated scaffold — see `idp-ui/docs/workbench-shell.md`.
+ * Add `useWorkspaceState`, routing, and replace panel placeholders with real UI (see loms-web / myshop-web).
+ */
+export default function App() {
+  const [commandPaletteOpen, setCommandPaletteOpen] = useState(false);
+  const [activeActivity, setActiveActivity] = useState('explorer');
+  const [sidebarVisible, setSidebarVisible] = useState(true);
+  const [rightSidebarVisible, setRightSidebarVisible] = useState(false);
+  const [bottomPanelVisible, setBottomPanelVisible] = useState(false);
+
+  const [group, setGroup] = useState<EditorGroupData>({
+    id: 'main',
+    tabs: [{ id: 'welcome', name: 'Welcome' }],
+    activeTab: 'welcome',
+  });
+
+  const sidebarResize = useResize({
+    direction: 'horizontal',
+    initialSize: 240,
+    minSize: 170,
+    maxSize: 500,
+  });
+
+  const bottomPanelResize = useResize({
+    direction: 'vertical',
+    initialSize: 200,
+    minSize: 80,
+    maxSize: 500,
+    reverse: true,
+  });
+
+  const rightSidebarResize = useResize({
+    direction: 'horizontal',
+    initialSize: 280,
+    minSize: 170,
+    maxSize: 500,
+    reverse: true,
+  });
+
+  const handleActivityClick = (item: string) => {
+    if (item === activeActivity) setSidebarVisible((v) => !v);
+    else {
+      setActiveActivity(item);
+      setSidebarVisible(true);
+    }
+  };
+
+  const handleFileClick = useCallback((navId: string) => {
+    setGroup((g: EditorGroupData) => {
+      if (g.tabs.some((t) => t.id === navId)) {
+        return { ...g, activeTab: navId };
+      }
+      return {
+        ...g,
+        tabs: [...g.tabs, { id: navId, name: navId }],
+        activeTab: navId,
+      };
+    });
+  }, []);
+
+  return (
+    <ThemeProvider product={PRODUCT}>
+      <ToastProvider>
+        <div className="h-screen w-screen flex flex-col overflow-hidden bg-vscode-bg">
+          <TitleBar
+            rightSidebarVisible={rightSidebarVisible}
+            onToggleRightSidebar={() => setRightSidebarVisible((v) => !v)}
+            bottomPanelVisible={bottomPanelVisible}
+            onToggleBottomPanel={() => setBottomPanelVisible((v) => !v)}
+            onOpenCommandPalette={() => setCommandPaletteOpen(true)}
+          />
+
+          <div className="flex flex-1 overflow-hidden">
+            <ActivityBar activeItem={activeActivity} onItemClick={handleActivityClick} />
+
+            {sidebarVisible && (
+              <>
+                <Sidebar
+                  width={sidebarResize.size}
+                  onFileClick={handleFileClick}
+                  activeFile={group.activeTab}
+                  navigationSections={navigationSections}
+                  iconMap={sidebarIconMap}
+                />
+                <div className="resize-handle-h" onMouseDown={sidebarResize.handleMouseDown} />
+              </>
+            )}
+
+            <div className="flex-1 flex flex-col overflow-hidden min-w-0 min-h-0">
+              <div className="flex-1 flex flex-col overflow-hidden min-h-0">
+                <EditorGroup
+                  group={group}
+                  isActive={true}
+                  showSplitButtons={false}
+                  onActivate={() => {}}
+                  onTabClick={(tabId: string) => setGroup((g: EditorGroupData) => ({ ...g, activeTab: tabId }))}
+                  onTabClose={(tabId: string) =>
+                    setGroup((g: EditorGroupData) => {
+                      const next = g.tabs.filter((t) => t.id !== tabId);
+                      if (next.length === 0) return g;
+                      return {
+                        ...g,
+                        tabs: next,
+                        activeTab: g.activeTab === tabId ? next[next.length - 1]!.id : g.activeTab,
+                      };
+                    })
+                  }
+                  onTabPin={() => {}}
+                  onCloseOthers={() => {}}
+                  onCloseToRight={() => {}}
+                  onCloseAll={() => {}}
+                  onReopenClosed={() => {}}
+                  onTabReorder={() => {}}
+                  onSplitRight={() => {}}
+                  onSplitDown={() => {}}
+                  renderContent={(tabId: string) => (
+                    <div className="flex-1 flex flex-col items-center justify-center bg-vscode-editor text-vscode-textMuted gap-2 p-6">
+                      <p className="text-[15px] text-vscode-textBright font-medium">__APP_TITLE__</p>
+                      <p className="text-[13px] text-center max-w-md">
+                        Tab: <code className="text-vscode-accent">{tabId}</code> — replace this area with your{' '}
+                        <code className="text-vscode-accent">PageRouter</code> and data.
+                      </p>
+                    </div>
+                  )}
+                  emptyStateContent={
+                    <div className="flex-1 flex items-center justify-center bg-vscode-editor text-vscode-textMuted">
+                      No tabs
+                    </div>
+                  }
+                />
+              </div>
+
+              {bottomPanelVisible && (
+                <>
+                  <div className="resize-handle-v shrink-0" onMouseDown={bottomPanelResize.handleMouseDown} />
+                  <div
+                    className="shrink-0 flex flex-col border-t border-vscode-border bg-vscode-editor text-vscode-textMuted overflow-hidden"
+                    style={{ height: bottomPanelResize.size }}
+                  >
+                    <div className="h-9 px-3 flex items-center border-b border-vscode-border text-[11px] uppercase tracking-wide text-vscode-textMuted shrink-0">
+                      Bottom panel
+                    </div>
+                    <div className="flex-1 min-h-0 px-3 py-2 text-[13px]">
+                      Placeholder — swap for terminal, logs, or a custom panel component.
+                    </div>
+                  </div>
+                </>
+              )}
+            </div>
+
+            {rightSidebarVisible && (
+              <>
+                <div className="resize-handle-h shrink-0" onMouseDown={rightSidebarResize.handleMouseDown} />
+                <aside
+                  className="shrink-0 flex flex-col border-l border-vscode-border bg-vscode-sidebar text-vscode-text overflow-hidden"
+                  style={{ width: rightSidebarResize.size }}
+                >
+                  <div className="h-9 px-3 flex items-center border-b border-vscode-border text-[11px] uppercase tracking-wide text-vscode-textMuted shrink-0">
+                    Secondary sidebar
+                  </div>
+                  <div className="flex-1 min-h-0 px-3 py-2 text-[13px] text-vscode-textMuted">
+                    Placeholder — swap for inspector, outline, or context details.
+                  </div>
+                </aside>
+              </>
+            )}
+          </div>
+
+          <StatusBar />
+          <CommandPalette open={commandPaletteOpen} onClose={() => setCommandPaletteOpen(false)} actions={[]} />
+        </div>
+      </ToastProvider>
+    </ThemeProvider>
+  );
+}

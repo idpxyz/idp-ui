@@ -84,7 +84,7 @@ function NavItemRow({
 
 export default function Sidebar({ width, onFileClick, activeFile, navigationSections, iconMap }: SidebarProps) {
   return (
-    <div className="bg-vscode-sidebar flex flex-col select-none shrink-0 overflow-hidden border-r border-vscode-border/80" style={{ width }}>
+    <div className="bg-vscode-sidebar flex flex-col select-none shrink-0 overflow-hidden" style={{ width }}>
       {/* Navigation sections — logistics-style grouped nav (MY WORK, OVERVIEW, …) */}
       <div className="flex-1 overflow-y-auto overflow-x-hidden pt-1 pb-2">
         {navigationSections.map((section, sectionIndex) => (

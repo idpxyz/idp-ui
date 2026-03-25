@@ -20,7 +20,8 @@
     "test": "vitest run --config packages/ui-primitives/vitest.config.ts",
     "test:watch": "vitest --config packages/ui-primitives/vitest.config.ts",
     "storybook": "storybook dev -p 6006",
-    "build:storybook": "storybook build -o storybook-static"
+    "build:storybook": "storybook build -o storybook-static",
+    "create-app": "node scripts/create-app.mjs"
   },
   "devDependencies": {
     "@storybook/addon-essentials": "^8.6.14",
