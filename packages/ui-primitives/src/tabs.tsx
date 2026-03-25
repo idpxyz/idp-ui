@@ -50,10 +50,12 @@ TabsList.displayName = 'TabsList';
 
 interface TabsTriggerProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   value: string;
+  closable?: boolean;
+  onClose?: (value: string) => void;
 }
 
 const TabsTrigger = React.forwardRef<HTMLButtonElement, TabsTriggerProps>(
-  ({ className, value, ...props }, ref) => {
+  ({ className, value, closable, onClose, children, ...props }, ref) => {
     const ctx = useTabsContext();
     const isActive = ctx.value === value;
     return (
@@ -65,13 +67,28 @@ const TabsTrigger = React.forwardRef<HTMLButtonElement, TabsTriggerProps>(
         data-state={isActive ? 'active' : 'inactive'}
         onClick={() => ctx.onValueChange(value)}
         className={cn(
-          'relative inline-flex h-full items-center justify-center px-4 text-[13px] font-medium transition-colors',
+          'group relative inline-flex h-full items-center justify-center gap-1.5 px-4 text-[13px] font-medium transition-colors',
           'text-vscode-textMuted hover:text-vscode-text focus-visible:outline-none',
           isActive && 'text-vscode-textBright after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:bg-vscode-accent after:rounded-full',
           className
         )}
         {...props}
-      />
+      >
+        {children}
+        {closable && (
+          <span
+            role="button"
+            aria-label={`Close ${value}`}
+            onClick={(e) => { e.stopPropagation(); onClose?.(value); }}
+            className="ml-1 p-0.5 rounded hover:bg-vscode-hover opacity-0 group-hover:opacity-100 transition-opacity"
+          >
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <line x1="3" y1="3" x2="9" y2="9" />
+              <line x1="9" y1="3" x2="3" y2="9" />
+            </svg>
+          </span>
+        )}
+      </button>
     );
   }
 );
