@@ -1,24 +1,24 @@
 @import "tailwindcss";
 
 @theme {
-  --color-vscode-bg: #1e1e1e;
-  --color-vscode-sidebar: #252526;
-  --color-vscode-editor: #1e1e1e;
-  --color-vscode-tab: #2d2d2d;
-  --color-vscode-tabActive: #1e1e1e;
-  --color-vscode-titleBar: #3c3c3c;
-  --color-vscode-statusBar: #007acc;
-  --color-vscode-activityBar: #333333;
-  --color-vscode-border: #3c3c3c;
-  --color-vscode-tabBorder: #252526;
-  --color-vscode-text: #cccccc;
-  --color-vscode-textMuted: #858585;
-  --color-vscode-textBright: #ffffff;
-  --color-vscode-breadcrumb: #a9a9a9;
-  --color-vscode-accent: #228be6;
-  --color-vscode-hover: rgba(255, 255, 255, 0.06);
-  --color-vscode-activeItem: rgba(255, 255, 255, 0.12);
-  --color-vscode-input: #3c3c3c;
+  --color-vscode-bg: var(--vsc-bg, #1e1e1e);
+  --color-vscode-sidebar: var(--vsc-sidebar, #252526);
+  --color-vscode-editor: var(--vsc-editor, #1e1e1e);
+  --color-vscode-tab: var(--vsc-tab, #2d2d2d);
+  --color-vscode-tabActive: var(--vsc-tabActive, #1e1e1e);
+  --color-vscode-titleBar: var(--vsc-titleBar, #3c3c3c);
+  --color-vscode-statusBar: var(--vsc-statusBar, #007acc);
+  --color-vscode-activityBar: var(--vsc-activityBar, #333333);
+  --color-vscode-border: var(--vsc-border, #3c3c3c);
+  --color-vscode-tabBorder: var(--vsc-tabBorder, #252526);
+  --color-vscode-text: var(--vsc-text, #cccccc);
+  --color-vscode-textMuted: var(--vsc-textMuted, #858585);
+  --color-vscode-textBright: var(--vsc-textBright, #ffffff);
+  --color-vscode-breadcrumb: var(--vsc-breadcrumb, #a9a9a9);
+  --color-vscode-accent: var(--vsc-accent, #228be6);
+  --color-vscode-hover: var(--vsc-hover, rgba(255, 255, 255, 0.06));
+  --color-vscode-activeItem: var(--vsc-activeItem, rgba(255, 255, 255, 0.12));
+  --color-vscode-input: var(--vsc-input, #3c3c3c);
 }
 
 :root {
@@ -34,8 +34,8 @@
 }
 
 body {
-  background-color: #1e1e1e;
-  color: #cccccc;
+  background-color: var(--vsc-bg, #1e1e1e);
+  color: var(--vsc-text, #cccccc);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   font-size: 13px;
 }
