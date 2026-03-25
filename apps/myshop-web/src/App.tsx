@@ -181,7 +181,7 @@ export default function App() {
                         <EditorGroup
                           group={group}
                           isActive={group.id === ws.activeGroupId}
-                          showSplitButtons={true}
+                          showSplitButtons={ws.groups.length < 2}
                           onActivate={() => ws.setActiveGroupId(group.id)}
                           onTabClick={(tabId) => ws.handleTabClick(group.id, tabId)}
                           onTabClose={(tabId) => ws.handleTabClose(group.id, tabId)}

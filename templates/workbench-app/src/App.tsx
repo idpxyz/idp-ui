@@ -9,6 +9,7 @@ import {
   StatusBar,
   CommandPalette,
   useResize,
+  useEditorGroupTabState,
   type EditorGroupData,
   type NavigationSection,
 } from '@idpxyz/ui-workspace';
@@ -35,7 +36,17 @@ export default function App() {
   const [rightSidebarVisible, setRightSidebarVisible] = useState(false);
   const [bottomPanelVisible, setBottomPanelVisible] = useState(false);
 
-  const [group, setGroup] = useState<EditorGroupData>({
+  const {
+    group,
+    setGroup,
+    onTabClose,
+    onTabPin,
+    onCloseOthers,
+    onCloseToRight,
+    onCloseAll,
+    onTabReorder,
+    onReopenClosed,
+  } = useEditorGroupTabState({
     id: 'main',
     tabs: [{ id: 'welcome', name: 'Welcome' }],
     activeTab: 'welcome',
@@ -121,23 +132,13 @@ export default function App() {
                   showSplitButtons={false}
                   onActivate={() => {}}
                   onTabClick={(tabId: string) => setGroup((g: EditorGroupData) => ({ ...g, activeTab: tabId }))}
-                  onTabClose={(tabId: string) =>
-                    setGroup((g: EditorGroupData) => {
-                      const next = g.tabs.filter((t) => t.id !== tabId);
-                      if (next.length === 0) return g;
-                      return {
-                        ...g,
-                        tabs: next,
-                        activeTab: g.activeTab === tabId ? next[next.length - 1]!.id : g.activeTab,
-                      };
-                    })
-                  }
-                  onTabPin={() => {}}
-                  onCloseOthers={() => {}}
-                  onCloseToRight={() => {}}
-                  onCloseAll={() => {}}
-                  onReopenClosed={() => {}}
-                  onTabReorder={() => {}}
+                  onTabClose={onTabClose}
+                  onTabPin={onTabPin}
+                  onCloseOthers={onCloseOthers}
+                  onCloseToRight={onCloseToRight}
+                  onCloseAll={onCloseAll}
+                  onReopenClosed={onReopenClosed}
+                  onTabReorder={onTabReorder}
                   onSplitRight={() => {}}
                   onSplitDown={() => {}}
                   renderContent={(tabId: string) => (

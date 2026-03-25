@@ -1,12 +1,17 @@
 #!/usr/bin/env node
 /**
- * Scaffolds a new Vite + React workbench app under apps/<name> from templates/workbench-app.
+ * Scaffolds a new Vite + React workbench app under apps/<name>.
  *
  * Usage (from idp-ui root):
- *   node scripts/create-app.mjs <app-dir-name> [--product loms] [--port 5175]
+ *   node scripts/create-app.mjs <app-dir-name> [--product loms] [--port 5175] [--deps workspace|registry] [--ui-version x.y.z]
  *
- * Example:
+ * Examples:
  *   node scripts/create-app.mjs acme-web --product prism --port 5180
+ *   node scripts/create-app.mjs acme-web --deps registry
+ *   node scripts/create-app.mjs acme-web --deps registry --ui-version 0.1.4
+ *
+ * --deps workspace (default): templates/workbench-app — @idpxyz/* as workspace:*
+ * --deps registry: templates/workbench-app-registry — @idpxyz/* as ^x.y.z from packages/ui-workspace (or --ui-version)
  */
 
 import fs from 'fs';
@@ -16,7 +21,6 @@ import { execSync } from 'child_process';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, '..');
-const TEMPLATE = path.join(ROOT, 'templates', 'workbench-app');
 
 const VALID_PRODUCTS = new Set([
   'loms',
@@ -29,8 +33,14 @@ const VALID_PRODUCTS = new Set([
   'sagapai',
 ]);
 
+function readWorkspaceUiVersion() {
+  const p = path.join(ROOT, 'packages', 'ui-workspace', 'package.json');
+  const raw = fs.readFileSync(p, 'utf8');
+  return JSON.parse(raw).version;
+}
+
 function parseArgs(argv) {
-  const out = { name: null, port: 5175, product: 'loms' };
+  const out = { name: null, port: 5175, product: 'loms', deps: 'workspace', uiVersion: null };
   const args = argv.slice(2);
   for (let i = 0; i < args.length; i++) {
     const a = args[i];
@@ -42,6 +52,19 @@ function parseArgs(argv) {
       }
     } else if (a === '--product') {
       out.product = args[++i];
+    } else if (a === '--deps') {
+      const v = args[++i];
+      if (v !== 'workspace' && v !== 'registry') {
+        console.error('--deps must be workspace or registry');
+        process.exit(1);
+      }
+      out.deps = v;
+    } else if (a === '--ui-version') {
+      out.uiVersion = args[++i];
+      if (!out.uiVersion || !/^\d+\.\d+\.\d+$/.test(out.uiVersion)) {
+        console.error('--ui-version must be semver x.y.z');
+        process.exit(1);
+      }
     } else if (!a.startsWith('-') && !out.name) {
       out.name = a;
     }
@@ -93,7 +116,7 @@ function walkReplaceFiles(dir, map) {
 }
 
 function main() {
-  const { name, port, product } = parseArgs(process.argv);
+  const { name, port, product, deps, uiVersion } = parseArgs(process.argv);
   validateName(name);
 
   if (!VALID_PRODUCTS.has(product)) {
@@ -101,7 +124,10 @@ function main() {
     process.exit(1);
   }
 
+  const templateDir = deps === 'registry' ? 'workbench-app-registry' : 'workbench-app';
+  const TEMPLATE = path.join(ROOT, 'templates', templateDir);
   const target = path.join(ROOT, 'apps', name);
+
   if (fs.existsSync(target)) {
     console.error(`Target already exists: ${target}`);
     process.exit(1);
@@ -114,6 +140,9 @@ function main() {
 
   const packageName = `@idpxyz/${name}`;
   const appTitle = `${toDisplayTitle(name)} Workbench`;
+  const ver = uiVersion ?? readWorkspaceUiVersion();
+  const uiPkgRange = `^${ver}`;
+
   const map = {
     __PACKAGE_NAME__: packageName,
     __APP_DIR__: name,
@@ -121,6 +150,7 @@ function main() {
     __PRODUCT_KEY__: product,
     __DEV_PORT__: String(port),
     __STORYBOOK_TITLE__: toStorybookTitle(name),
+    __UI_PKG_RANGE__: uiPkgRange,
   };
 
   fs.cpSync(TEMPLATE, target, { recursive: true });
@@ -130,9 +160,17 @@ function main() {
   console.log(`  package: ${packageName}`);
   console.log(`  product: ${product}`);
   console.log(`  dev port: ${port}`);
+  console.log(`  template: ${templateDir}`);
+  console.log(`  deps: ${deps === 'registry' ? `registry (${uiPkgRange} @idpxyz/*)` : 'workspace (workspace:*)'}`);
   console.log('');
+
   console.log('Next: pnpm install');
   console.log(`Then:  pnpm --filter ${packageName} dev`);
+  if (deps === 'registry') {
+    console.log('');
+    console.log('Registry template: ensure GitHub Packages auth in ~/.npmrc (//npm.pkg.github.com/:_authToken=…).');
+    console.log('See apps/' + name + '/README.md');
+  }
 
   if (process.env.CREATE_APP_SKIP_INSTALL === '1') {
     return;

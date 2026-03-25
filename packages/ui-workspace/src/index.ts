@@ -6,3 +6,4 @@ export { default as CommandPalette, type CommandPaletteAction } from './CommandP
 export { default as EditorGroup, type Tab, type EditorGroupData, type EditorGroupProps } from './EditorGroup';
 export { useResize } from './hooks/useResize';
 export { useSplitResize } from './hooks/useSplitResize';
+export { useEditorGroupTabState } from './hooks/useEditorGroupTabState';

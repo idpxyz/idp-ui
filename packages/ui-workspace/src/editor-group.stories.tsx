@@ -1,13 +1,23 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { useState } from 'react';
-import EditorGroup, { type EditorGroupData } from './EditorGroup';
+import EditorGroup from './EditorGroup';
+import { useEditorGroupTabState } from './hooks/useEditorGroupTabState';
 
 const meta: Meta = { title: 'Workspace/EditorGroup' };
 export default meta;
 
 export const Basic: StoryObj = {
   render: function EditorGroupDemo() {
-    const [group, setGroup] = useState<EditorGroupData>({
+    const {
+      group,
+      setGroup,
+      onTabClose,
+      onTabPin,
+      onCloseOthers,
+      onCloseToRight,
+      onCloseAll,
+      onTabReorder,
+      onReopenClosed,
+    } = useEditorGroupTabState({
       id: 'main',
       tabs: [
         { id: 'contracts', name: 'Contracts' },
@@ -24,14 +34,14 @@ export const Basic: StoryObj = {
           isActive={true}
           showSplitButtons={false}
           onActivate={() => {}}
-          onTabClick={(tabId) => setGroup(g => ({ ...g, activeTab: tabId }))}
-          onTabClose={(tabId) => setGroup(g => ({ ...g, tabs: g.tabs.filter(t => t.id !== tabId) }))}
-          onTabPin={() => {}}
-          onCloseOthers={() => {}}
-          onCloseToRight={() => {}}
-          onCloseAll={() => {}}
-          onReopenClosed={() => {}}
-          onTabReorder={() => {}}
+          onTabClick={(tabId) => setGroup((g) => ({ ...g, activeTab: tabId }))}
+          onTabClose={onTabClose}
+          onTabPin={onTabPin}
+          onCloseOthers={onCloseOthers}
+          onCloseToRight={onCloseToRight}
+          onCloseAll={onCloseAll}
+          onReopenClosed={onReopenClosed}
+          onTabReorder={onTabReorder}
           onSplitRight={() => {}}
           onSplitDown={() => {}}
           renderContent={(tabId) => (

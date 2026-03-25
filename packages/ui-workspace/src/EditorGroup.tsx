@@ -29,6 +29,7 @@ export interface EditorGroupData {
 export interface EditorGroupProps {
   group: EditorGroupData;
   isActive: boolean;
+  /** Show split-editor toolbar (↔ / ⋯). Hide when already split, e.g. `groups.length < 2`. */
   showSplitButtons: boolean;
   onActivate: () => void;
   onTabClick: (tabId: string) => void;
@@ -157,7 +158,7 @@ export default function EditorGroup({
               <div
                 key={tab.id}
                 data-tab-id={tab.id}
-                className={`group flex items-center h-[35px] px-3 cursor-pointer text-[13px] border-r border-vscode-tabBorder shrink-0 relative
+                className={`group flex items-center h-[35px] min-w-0 px-3 cursor-pointer text-[13px] border-r border-vscode-tabBorder shrink-0 relative
                   ${isOverflowing ? 'max-w-[160px]' : ''}
                   ${group.activeTab === tab.id
                     ? 'bg-vscode-tabActive text-vscode-textBright border-t-2 border-t-vscode-accent'
@@ -199,7 +200,7 @@ export default function EditorGroup({
                 {tab.pinned && (
                   <span className="text-vscode-accent text-[10px] mr-1 shrink-0" title="Pinned">{'\u25CF'}</span>
                 )}
-                <span className="truncate mr-2">
+                <span className="min-w-0 flex-1 truncate whitespace-nowrap mr-2">
                   {tab.name}
                   {tab.subtitle && (
                     <span className={`text-[10px] ml-1 ${group.activeTab === tab.id ? 'text-vscode-text' : 'text-vscode-textMuted'}`}>
@@ -301,26 +302,30 @@ export default function EditorGroup({
                 {menuOpen && (
                   <>
                     <div className="fixed inset-0 z-40" onClick={() => setMenuOpen(false)} />
-                    <div className="absolute right-0 top-full mt-1 z-50 bg-vscode-sidebar border border-vscode-border rounded shadow-lg py-1 min-w-[200px]">
+                    <div className="absolute right-0 top-full mt-1 z-50 bg-vscode-sidebar border border-vscode-border rounded shadow-lg py-1 min-w-[min(100vw-24px,280px)]">
                       <Button
                         onClick={(e) => { e.stopPropagation(); onSplitRight(); setMenuOpen(false); }}
                         variant="ghost"
                         size="sm"
-                        className="w-full h-auto justify-start rounded-none px-3 py-1.5 text-[12px]"
+                        className="flex w-full flex-nowrap items-center gap-2 h-auto justify-start rounded-none px-3 py-1.5 text-[12px] whitespace-nowrap"
                       >
-                        <SplitSquareHorizontal size={14} />
-                        Split Editor Right
-                        <span className="ml-auto text-vscode-textMuted text-[11px]">Ctrl+\</span>
+                        <SplitSquareHorizontal size={14} className="shrink-0" />
+                        <span className="min-w-0 flex-1 text-left">Split Editor Right</span>
+                        <span className="shrink-0 text-vscode-textMuted text-[11px] tabular-nums">
+                          {'Ctrl+\\'}
+                        </span>
                       </Button>
                       <Button
                         onClick={(e) => { e.stopPropagation(); onSplitDown(); setMenuOpen(false); }}
                         variant="ghost"
                         size="sm"
-                        className="w-full h-auto justify-start rounded-none px-3 py-1.5 text-[12px]"
+                        className="flex w-full flex-nowrap items-center gap-2 h-auto justify-start rounded-none px-3 py-1.5 text-[12px] whitespace-nowrap"
                       >
-                        <FlipVertical2 size={14} />
-                        Split Editor Down
-                        <span className="ml-auto text-vscode-textMuted text-[11px]">Ctrl+K Ctrl+\</span>
+                        <FlipVertical2 size={14} className="shrink-0" />
+                        <span className="min-w-0 flex-1 text-left">Split Editor Down</span>
+                        <span className="shrink-0 text-vscode-textMuted text-[11px] whitespace-nowrap tabular-nums">
+                          {'Ctrl+K\u00A0Ctrl+\\'}
+                        </span>
                       </Button>
                     </div>
                   </>
@@ -348,10 +353,12 @@ export default function EditorGroup({
                 onClick={() => { onTabClose(ctxMenu.tabId); setCtxMenu(null); }}
                 variant="ghost"
                 size="sm"
-                className="w-full h-auto justify-start rounded-none px-3 py-1.5 text-[12px] hover:bg-vscode-accent hover:text-white"
+                className="group flex w-full h-auto justify-start rounded-none px-3 py-1.5 text-[12px] hover:bg-vscode-accent hover:text-white"
               >
                 Close
-                <span className="text-vscode-textMuted text-[11px]">Ctrl+F4</span>
+                <span className="ml-auto shrink-0 pl-2 text-[11px] text-vscode-textMuted group-hover:text-white/90">
+                  Ctrl+F4
+                </span>
               </Button>
               <Button
                 onClick={() => { onCloseOthers(ctxMenu.tabId); setCtxMenu(null); }}
@@ -375,10 +382,12 @@ export default function EditorGroup({
                 onClick={() => { onCloseAll(); setCtxMenu(null); }}
                 variant="ghost"
                 size="sm"
-                className="w-full h-auto justify-start rounded-none px-3 py-1.5 text-[12px] hover:bg-vscode-accent hover:text-white"
+                className="group flex w-full h-auto justify-start rounded-none px-3 py-1.5 text-[12px] hover:bg-vscode-accent hover:text-white"
               >
                 Close All
-                <span className="text-vscode-textMuted text-[11px]">Ctrl+K W</span>
+                <span className="ml-auto shrink-0 pl-2 text-[11px] text-vscode-textMuted group-hover:text-white/90">
+                  Ctrl+K W
+                </span>
               </Button>
               <div className="h-px bg-vscode-border my-1" />
               <Button
@@ -393,20 +402,24 @@ export default function EditorGroup({
                 onClick={() => { onReopenClosed(); setCtxMenu(null); }}
                 variant="ghost"
                 size="sm"
-                className="w-full h-auto justify-start rounded-none px-3 py-1.5 text-[12px] hover:bg-vscode-accent hover:text-white"
+                className="group flex w-full h-auto justify-start rounded-none px-3 py-1.5 text-[12px] hover:bg-vscode-accent hover:text-white"
               >
                 Reopen Closed Tab
-                <span className="text-vscode-textMuted text-[11px]">Ctrl+Shift+T</span>
+                <span className="ml-auto shrink-0 pl-2 text-[11px] text-vscode-textMuted group-hover:text-white/90">
+                  Ctrl+Shift+T
+                </span>
               </Button>
               <div className="h-px bg-vscode-border my-1" />
               <Button
                 onClick={() => { navigator.clipboard.writeText(ctxMenu.tabId); setCtxMenu(null); }}
                 variant="ghost"
                 size="sm"
-                className="w-full h-auto justify-start rounded-none px-3 py-1.5 text-[12px] hover:bg-vscode-accent hover:text-white"
+                className="group flex w-full h-auto justify-start rounded-none px-3 py-1.5 text-[12px] hover:bg-vscode-accent hover:text-white"
               >
                 Copy Tab ID
-                <span className="text-vscode-textMuted text-[11px]">Shift+Alt+C</span>
+                <span className="ml-auto shrink-0 pl-2 text-[11px] text-vscode-textMuted group-hover:text-white/90">
+                  Shift+Alt+C
+                </span>
               </Button>
             </div>
           </>

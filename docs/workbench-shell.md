@@ -33,17 +33,24 @@
 - `apps/loms-web/src/App.tsx` + `apps/loms-web/src/hooks/useWorkspaceState.ts`
 - `apps/myshop-web/src/App.tsx` + `apps/myshop-web/src/hooks/useWorkspaceState.ts`
 
+## 编辑器标签（`EditorGroup`）
+
+右键菜单与 **拖拽排序** 依赖父组件传入的回调：`onTabReorder`、`onCloseOthers`、`onCloseToRight`、`onCloseAll`、`onTabPin`、`onReopenClosed` 等。若传入空函数，交互不会更新状态。脚手架可使用 **`useEditorGroupTabState`**（`@idpxyz/ui-workspace`）管理本地 `EditorGroupData` 与上述回调；完整产品可改用 `useWorkspaceState` 等多组/持久化方案。
+
 ## 脚手架（新应用）
 
 在 **`idp-ui` 仓库根目录**执行：
 
 ```bash
-pnpm create-app <app-dir-name> [--product loms] [--port 5175]
+pnpm create-app <app-dir-name> [--product loms] [--port 5175] [--deps workspace|registry] [--ui-version x.y.z]
 ```
 
 示例：`pnpm create-app acme-web --product prism --port 5180`
 
-- 从 **`templates/workbench-app`** 生成 `apps/<name>/`，并替换占位符（包名、`ThemeProvider` 的 `product`、端口、标题等）。模板已包含 **底部面板 / 右侧栏** 的占位布局与 `useResize` 拖拽，标题栏按钮可开箱切换；业务内容在 App 内替换占位即可。
+- **`--deps workspace`（默认）**：从 **`templates/workbench-app`** 生成，`@idpxyz/*` 使用 **`workspace:*`**，与仓库内 `packages/*` 联调。
+- **`--deps registry`**：从 **`templates/workbench-app-registry`** 生成，`@idpxyz/*` 使用 **`^x.y.z`**（默认取生成时 **`packages/ui-workspace` 的 `version`**，可用 `--ui-version` 覆盖），从 **GitHub Packages** 安装；适合模拟独立仓库消费者，需在 `~/.npmrc` 配置 `//npm.pkg.github.com/:_authToken`。生成应用内含 **`link-workspace-packages=false`**，即使在 monorepo 的 `apps/` 下也会向 registry 解析（与独立项目一致）。
+
+两种模板均包含 **底部面板 / 右侧栏** 占位与 `useResize`；业务内容在 App 内替换即可。
 - 生成后会在根目录执行 **`pnpm install`**（若失败请手动执行）。
 - 开发：`pnpm --filter @idpxyz/<app-dir-name> dev`
 

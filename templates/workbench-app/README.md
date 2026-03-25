@@ -1,6 +1,8 @@
 # __APP_DIR__
 
-Generated with `pnpm create-app` from `templates/workbench-app`.
+Generated with `pnpm create-app` (default `--deps workspace`) from `templates/workbench-app`.
+
+For **GitHub Packages** semver deps instead of `workspace:*`, generate with `pnpm create-app <name> --deps registry` — see `templates/workbench-app-registry`.
 
 ## Dev
 
