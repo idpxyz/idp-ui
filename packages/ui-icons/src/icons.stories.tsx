@@ -22,7 +22,7 @@ import {
   IconPutaway, IconPickup, IconReplenishment, IconCycleCount,
   IconStockAdjustment, IconRacking, IconBinLocation,
   IconConsolidation, IconStockLookup, IconLabelPrint,
-  IconCrossDock, IconStaging, IconDamagedGoods,
+  IconCrossDock, IconStaging, IconDamagedGoods, IconInventory, IconBox, IconScan, IconBarcode,
   IconWavePlanning, IconZoneManagement, IconDockManagement,
   IconLaborManagement, IconTaskAssignment, IconKitting, IconVAS,
   IconQualityInspection, IconHoldStatus, IconReverseLogistics,
@@ -105,6 +105,21 @@ export const DomainIcons: StoryObj = {
         <IconCell Icon={IconWeight} name="Weight" />
         <IconCell Icon={IconTemperature} name="Temperature" />
         <IconCell Icon={IconMilestone} name="Milestone" />
+      </div>
+      <h4 style={{ fontSize: 12, color: '#858585', marginBottom: 8 }}>Inventory Management</h4>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, color: '#ccc', marginBottom: 16 }}>
+        <IconCell Icon={IconInventory} name="Inventory" />
+        <IconCell Icon={IconBox} name="Box" />
+        <IconCell Icon={IconScan} name="Scan" />
+        <IconCell Icon={IconBarcode} name="Barcode" />
+        <IconCell Icon={IconPackageCheck} name="PkgCheck" />
+        <IconCell Icon={IconCycleCount} name="CycleCount" />
+        <IconCell Icon={IconStockAdjustment} name="StockAdj" />
+        <IconCell Icon={IconStockLookup} name="Lookup" />
+        <IconCell Icon={IconLotTracking} name="Lot" />
+        <IconCell Icon={IconSerialNumber} name="Serial#" />
+        <IconCell Icon={IconExpiryManagement} name="Expiry" />
+        <IconCell Icon={IconInventoryCount} name="InvCount" />
       </div>
       <h4 style={{ fontSize: 12, color: '#858585', marginBottom: 8 }}>Supply Chain</h4>
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, color: '#ccc', marginBottom: 16 }}>
