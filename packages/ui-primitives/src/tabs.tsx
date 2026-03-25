@@ -1,16 +1,22 @@
 import * as React from 'react';
 import { cn } from '@idpxyz/ui-utils';
 
-/* ── Tabs Root ── */
-interface TabsProps extends React.HTMLAttributes<HTMLDivElement> {
-  value: string;
-  onValueChange: (value: string) => void;
+interface TabsProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'defaultValue'> {
+  value?: string;
+  defaultValue?: string;
+  onValueChange?: (value: string) => void;
 }
 
-function Tabs({ value, onValueChange, className, children, ...props }: TabsProps) {
-  const ctx = React.useMemo(() => ({ value, onValueChange }), [value, onValueChange]);
+function Tabs({ value: controlledValue, defaultValue, onValueChange, className, children, ...props }: TabsProps) {
+  const [internalValue, setInternalValue] = React.useState(defaultValue ?? '');
+  const value = controlledValue ?? internalValue;
+  const handleChange = React.useCallback((v: string) => {
+    if (controlledValue === undefined) setInternalValue(v);
+    onValueChange?.(v);
+  }, [controlledValue, onValueChange]);
+
   return (
-    <TabsContext.Provider value={ctx}>
+    <TabsContext.Provider value={{ value, onValueChange: handleChange }}>
       <div className={cn('flex flex-col', className)} {...props}>
         {children}
       </div>
@@ -27,14 +33,13 @@ function useTabsContext() {
   return React.useContext(TabsContext);
 }
 
-/* ── Tab List ── */
 const TabsList = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
   ({ className, ...props }, ref) => (
     <div
       ref={ref}
       role="tablist"
       className={cn(
-        'inline-flex h-[34px] items-center gap-0 border-b border-vscode-border',
+        'inline-flex h-[36px] items-center gap-0 border-b border-vscode-border',
         className
       )}
       {...props}
@@ -43,7 +48,6 @@ const TabsList = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivEl
 );
 TabsList.displayName = 'TabsList';
 
-/* ── Tab Trigger ── */
 interface TabsTriggerProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   value: string;
 }
@@ -61,9 +65,9 @@ const TabsTrigger = React.forwardRef<HTMLButtonElement, TabsTriggerProps>(
         data-state={isActive ? 'active' : 'inactive'}
         onClick={() => ctx.onValueChange(value)}
         className={cn(
-          'relative inline-flex h-full items-center justify-center px-3 text-[12px] transition-colors',
+          'relative inline-flex h-full items-center justify-center px-4 text-[13px] font-medium transition-colors',
           'text-vscode-textMuted hover:text-vscode-text focus-visible:outline-none',
-          isActive && 'text-vscode-text after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:bg-vscode-accent',
+          isActive && 'text-vscode-textBright after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:bg-vscode-accent after:rounded-full',
           className
         )}
         {...props}
@@ -73,7 +77,6 @@ const TabsTrigger = React.forwardRef<HTMLButtonElement, TabsTriggerProps>(
 );
 TabsTrigger.displayName = 'TabsTrigger';
 
-/* ── Tab Content ── */
 interface TabsContentProps extends React.HTMLAttributes<HTMLDivElement> {
   value: string;
 }
