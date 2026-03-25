@@ -37,6 +37,10 @@ import {
 import {
   IconSuccess, IconError, IconWarning, IconInfo, IconPending, IconLoading,
   IconBlocked, IconCritical, IconActive, IconPaused,
+  IconDraft, IconSubmitted, IconApproved, IconRejected, IconPublished,
+  IconArchived, IconRetrying, IconExpired, IconCompleted, IconCancelled,
+  IconOnHold, IconInProgress, IconEscalated, IconVerified,
+  IconConnected, IconOffline,
 } from './status';
 
 const meta: Meta = { title: 'Icons/Gallery' };
@@ -221,17 +225,39 @@ export const DomainIcons: StoryObj = {
 
 export const StatusIcons: StoryObj = {
   render: () => (
-    <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, color: '#ccc' }}>
-      <IconCell Icon={IconSuccess} name="Success" />
-      <IconCell Icon={IconError} name="Error" />
-      <IconCell Icon={IconWarning} name="Warning" />
-      <IconCell Icon={IconInfo} name="Info" />
-      <IconCell Icon={IconPending} name="Pending" />
-      <IconCell Icon={IconLoading} name="Loading" />
-      <IconCell Icon={IconBlocked} name="Blocked" />
-      <IconCell Icon={IconCritical} name="Critical" />
-      <IconCell Icon={IconActive} name="Active" />
-      <IconCell Icon={IconPaused} name="Paused" />
+    <div>
+      <h4 style={{ fontSize: 12, color: '#858585', marginBottom: 8 }}>System Status</h4>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, color: '#ccc', marginBottom: 16 }}>
+        <IconCell Icon={IconSuccess} name="Success" />
+        <IconCell Icon={IconError} name="Error" />
+        <IconCell Icon={IconWarning} name="Warning" />
+        <IconCell Icon={IconInfo} name="Info" />
+        <IconCell Icon={IconPending} name="Pending" />
+        <IconCell Icon={IconLoading} name="Loading" />
+        <IconCell Icon={IconBlocked} name="Blocked" />
+        <IconCell Icon={IconCritical} name="Critical" />
+        <IconCell Icon={IconActive} name="Active" />
+        <IconCell Icon={IconPaused} name="Paused" />
+        <IconCell Icon={IconConnected} name="Connected" />
+        <IconCell Icon={IconOffline} name="Offline" />
+      </div>
+      <h4 style={{ fontSize: 12, color: '#858585', marginBottom: 8 }}>Business Lifecycle</h4>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, color: '#ccc' }}>
+        <IconCell Icon={IconDraft} name="Draft" />
+        <IconCell Icon={IconSubmitted} name="Submitted" />
+        <IconCell Icon={IconApproved} name="Approved" />
+        <IconCell Icon={IconRejected} name="Rejected" />
+        <IconCell Icon={IconInProgress} name="InProgress" />
+        <IconCell Icon={IconOnHold} name="OnHold" />
+        <IconCell Icon={IconCompleted} name="Completed" />
+        <IconCell Icon={IconPublished} name="Published" />
+        <IconCell Icon={IconArchived} name="Archived" />
+        <IconCell Icon={IconCancelled} name="Cancelled" />
+        <IconCell Icon={IconExpired} name="Expired" />
+        <IconCell Icon={IconRetrying} name="Retrying" />
+        <IconCell Icon={IconEscalated} name="Escalated" />
+        <IconCell Icon={IconVerified} name="Verified" />
+      </div>
     </div>
   ),
 };
