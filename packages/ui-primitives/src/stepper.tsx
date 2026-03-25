@@ -24,12 +24,19 @@ function Stepper({ steps, currentStep, className, orientation = 'horizontal' }: 
 
   return (
     <nav aria-label="Progress" className={cn('w-full', className)}>
-      <div className="flex items-center">
+      <div className="flex">
         {steps.map((step, i) => {
           const status = i < currentStep ? 'complete' : i === currentStep ? 'current' : 'upcoming';
+          const isLast = i === steps.length - 1;
           return (
-            <React.Fragment key={step.id}>
-              <div className="flex flex-col items-center">
+            <div key={step.id} className={cn('flex flex-col items-center', isLast ? '' : 'flex-1')}>
+              <div className="flex items-center w-full">
+                {i > 0 && (
+                  <div className={cn(
+                    'flex-1 h-0.5 rounded-full',
+                    i <= currentStep ? 'bg-vscode-accent' : 'bg-vscode-border',
+                  )} />
+                )}
                 <div className={cn(
                   'shrink-0 w-9 h-9 rounded-full flex items-center justify-center text-[13px] font-bold border-2 transition-all',
                   status === 'complete' && 'bg-vscode-accent border-vscode-accent text-white',
@@ -38,23 +45,14 @@ function Stepper({ steps, currentStep, className, orientation = 'horizontal' }: 
                 )}>
                   {status === 'complete' ? <Check size={16} strokeWidth={3} /> : i + 1}
                 </div>
+                {!isLast && (
+                  <div className={cn(
+                    'flex-1 h-0.5 rounded-full',
+                    i < currentStep ? 'bg-vscode-accent' : 'bg-vscode-border',
+                  )} />
+                )}
               </div>
-              {i < steps.length - 1 && (
-                <div className={cn(
-                  'flex-1 h-0.5 mx-1 rounded-full transition-colors',
-                  i < currentStep ? 'bg-vscode-accent' : 'bg-vscode-border',
-                )} />
-              )}
-            </React.Fragment>
-          );
-        })}
-      </div>
-      <div className="flex mt-3">
-        {steps.map((step, i) => {
-          const status = i < currentStep ? 'complete' : i === currentStep ? 'current' : 'upcoming';
-          return (
-            <React.Fragment key={step.id + '-label'}>
-              <div className="flex flex-col items-center text-center" style={{ width: `${100 / steps.length}%` }}>
+              <div className="text-center mt-2 px-1">
                 <div className={cn(
                   'text-[12px] font-semibold',
                   status === 'complete' || status === 'current' ? 'text-vscode-textBright' : 'text-vscode-textMuted',
@@ -62,10 +60,10 @@ function Stepper({ steps, currentStep, className, orientation = 'horizontal' }: 
                   {step.label}
                 </div>
                 {step.description && (
-                  <div className="text-[11px] text-vscode-textMuted mt-0.5">{step.description}</div>
+                  <div className="text-[10px] text-vscode-textMuted mt-0.5">{step.description}</div>
                 )}
               </div>
-            </React.Fragment>
+            </div>
           );
         })}
       </div>
