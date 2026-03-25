@@ -23,3 +23,8 @@ export { Breadcrumb, type BreadcrumbItem } from './breadcrumb';
 export { Pagination } from './pagination';
 export { FormField, Label, FormDescription, FormError, Textarea } from './form';
 export { Progress, Spinner } from './progress';
+export { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter, StatCard } from './card';
+export { Tag, tagVariants } from './tag';
+export { Alert, alertVariants } from './alert';
+export { Timeline, type TimelineItem } from './timeline';
+export { Stepper, type Step } from './stepper';
