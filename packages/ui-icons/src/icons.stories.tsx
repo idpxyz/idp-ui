@@ -24,6 +24,9 @@ import {
   IconConsolidation, IconStockLookup, IconLabelPrint,
   IconCrossDock, IconStaging, IconDamagedGoods,
   IconInventory, IconBox, IconScan, IconBarcode, IconPackageCheck,
+  IconLedger, IconWallet, IconBank, IconSettlement, IconReconciliation,
+  IconCharge, IconPayout, IconDiscount, IconCoins, IconFinancialReport,
+  IconAuditCheck, IconIncentive, IconVariance, IconDebitCredit, IconPaymentVerified,
   IconWavePlanning, IconZoneManagement, IconDockManagement,
   IconLaborManagement, IconTaskAssignment, IconKitting, IconVAS,
   IconQualityInspection, IconHoldStatus, IconReverseLogistics,
@@ -186,6 +189,24 @@ export const DomainIcons: StoryObj = {
         <IconCell Icon={IconInventoryCount} name="InvCount" />
         <IconCell Icon={IconWarehouseKPI} name="WMS KPI" />
         <IconCell Icon={IconWarehouseLayout} name="Layout" />
+      </div>
+      <h4 style={{ fontSize: 12, color: '#858585', marginBottom: 8 }}>Ledger & Settlement</h4>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, color: '#ccc', marginBottom: 16 }}>
+        <IconCell Icon={IconLedger} name="Ledger" />
+        <IconCell Icon={IconWallet} name="Wallet" />
+        <IconCell Icon={IconBank} name="Bank" />
+        <IconCell Icon={IconSettlement} name="Settlement" />
+        <IconCell Icon={IconReconciliation} name="Reconcile" />
+        <IconCell Icon={IconCharge} name="Charge" />
+        <IconCell Icon={IconPayout} name="Payout" />
+        <IconCell Icon={IconDiscount} name="Discount" />
+        <IconCell Icon={IconCoins} name="Coins" />
+        <IconCell Icon={IconFinancialReport} name="FinReport" />
+        <IconCell Icon={IconAuditCheck} name="AuditCheck" />
+        <IconCell Icon={IconIncentive} name="Incentive" />
+        <IconCell Icon={IconVariance} name="Variance" />
+        <IconCell Icon={IconDebitCredit} name="Debit/Credit" />
+        <IconCell Icon={IconPaymentVerified} name="PayVerified" />
       </div>
       <h4 style={{ fontSize: 12, color: '#858585', marginBottom: 8 }}>Operations</h4>
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, color: '#ccc' }}>
