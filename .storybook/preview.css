@@ -1,5 +1,26 @@
 @import "tailwindcss";
 
+@theme {
+  --color-vscode-bg: #1e1e1e;
+  --color-vscode-sidebar: #252526;
+  --color-vscode-editor: #1e1e1e;
+  --color-vscode-tab: #2d2d2d;
+  --color-vscode-tabActive: #1e1e1e;
+  --color-vscode-titleBar: #3c3c3c;
+  --color-vscode-statusBar: #007acc;
+  --color-vscode-activityBar: #333333;
+  --color-vscode-border: #3c3c3c;
+  --color-vscode-tabBorder: #252526;
+  --color-vscode-text: #cccccc;
+  --color-vscode-textMuted: #858585;
+  --color-vscode-textBright: #ffffff;
+  --color-vscode-breadcrumb: #a9a9a9;
+  --color-vscode-accent: #228be6;
+  --color-vscode-hover: rgba(255, 255, 255, 0.06);
+  --color-vscode-activeItem: rgba(255, 255, 255, 0.12);
+  --color-vscode-input: #3c3c3c;
+}
+
 :root {
   --ds-bg-canvas-default: #1e1e1e;
   --ds-bg-canvas-subtle: #252526;
