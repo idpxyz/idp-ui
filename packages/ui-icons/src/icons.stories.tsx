@@ -7,6 +7,8 @@ import {
   IconChevronRight, IconChevronDown, IconCheck,
   IconEye, IconBell, IconUser, IconLock, IconStar, IconTag,
   IconClock, IconHistory, IconDatabase, IconFolder, IconBookmark,
+  IconUndo, IconRedo, IconZoomIn, IconZoomOut, IconFullscreen,
+  IconShare, IconPrint, IconNotification,
 } from './system';
 import {
   IconShipment, IconPackage, IconReturn, IconBilling,
@@ -86,8 +88,16 @@ export const SystemIcons: StoryObj = {
       <IconCell Icon={IconHistory} name="History" />
       <IconCell Icon={IconDatabase} name="Database" />
       <IconCell Icon={IconFolder} name="Folder" />
-      <IconCell Icon={IconBookmark} name="Bookmark" />
-    </div>
+        <IconCell Icon={IconBookmark} name="Bookmark" />
+        <IconCell Icon={IconUndo} name="Undo" />
+        <IconCell Icon={IconRedo} name="Redo" />
+        <IconCell Icon={IconZoomIn} name="ZoomIn" />
+        <IconCell Icon={IconZoomOut} name="ZoomOut" />
+        <IconCell Icon={IconFullscreen} name="Fullscreen" />
+        <IconCell Icon={IconShare} name="Share" />
+        <IconCell Icon={IconPrint} name="Print" />
+        <IconCell Icon={IconNotification} name="Notification" />
+      </div>
   ),
 };
 
