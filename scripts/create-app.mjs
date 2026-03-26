@@ -3,15 +3,19 @@
  * Scaffolds a new Vite + React workbench app under apps/<name>.
  *
  * Usage (from idp-ui root):
- *   node scripts/create-app.mjs <app-dir-name> [--product loms] [--port 5175] [--deps workspace|registry] [--ui-version x.y.z]
+ *   node scripts/create-app.mjs <app-dir-name> [--product loms] [--port 5175] [--deps workspace|registry] [--ui-version x.y.z] [--out-dir <parent-dir>]
  *
  * Examples:
  *   node scripts/create-app.mjs acme-web --product prism --port 5180
  *   node scripts/create-app.mjs acme-web --deps registry
  *   node scripts/create-app.mjs acme-web --deps registry --ui-version 0.1.4
+ *   node scripts/create-app.mjs acme-web --deps registry --out-dir /path/to/repo/apps
  *
  * --deps workspace (default): templates/workbench-app — @idpxyz/* as workspace:*
  * --deps registry: templates/workbench-app-registry — @idpxyz/* as ^x.y.z from packages/ui-workspace (or --ui-version)
+ *
+ * --out-dir: parent folder for the app (default: <idp-ui>/apps). Creates <parent>/<app-dir-name>.
+ *   With --deps workspace, --out-dir must resolve to <idp-ui>/apps (pnpm workspace apps/*).
  */
 
 import fs from 'fs';
@@ -33,6 +37,14 @@ const VALID_PRODUCTS = new Set([
   'sagapai',
 ]);
 
+function normalizePath(p) {
+  return path.resolve(p);
+}
+
+function isSameDirectory(a, b) {
+  return normalizePath(a) === normalizePath(b);
+}
+
 function readWorkspaceUiVersion() {
   const p = path.join(ROOT, 'packages', 'ui-workspace', 'package.json');
   const raw = fs.readFileSync(p, 'utf8');
@@ -40,11 +52,17 @@ function readWorkspaceUiVersion() {
 }
 
 function parseArgs(argv) {
-  const out = { name: null, port: 5175, product: 'loms', deps: 'workspace', uiVersion: null };
+  const out = { name: null, port: 5175, product: 'loms', deps: 'workspace', uiVersion: null, outDir: null };
   const args = argv.slice(2);
   for (let i = 0; i < args.length; i++) {
     const a = args[i];
-    if (a === '--port') {
+    if (a === '--out-dir') {
+      out.outDir = args[++i];
+      if (!out.outDir) {
+        console.error('--out-dir requires a path');
+        process.exit(1);
+      }
+    } else if (a === '--port') {
       out.port = Number(args[++i]);
       if (!Number.isFinite(out.port) || out.port < 1) {
         console.error('Invalid --port');
@@ -116,7 +134,7 @@ function walkReplaceFiles(dir, map) {
 }
 
 function main() {
-  const { name, port, product, deps, uiVersion } = parseArgs(process.argv);
+  const { name, port, product, deps, uiVersion, outDir: outDirOpt } = parseArgs(process.argv);
   validateName(name);
 
   if (!VALID_PRODUCTS.has(product)) {
@@ -126,7 +144,17 @@ function main() {
 
   const templateDir = deps === 'registry' ? 'workbench-app-registry' : 'workbench-app';
   const TEMPLATE = path.join(ROOT, 'templates', templateDir);
-  const target = path.join(ROOT, 'apps', name);
+  const defaultAppsParent = path.join(ROOT, 'apps');
+  const outDirParent = outDirOpt ? path.resolve(process.cwd(), outDirOpt) : defaultAppsParent;
+
+  if (deps === 'workspace' && !isSameDirectory(outDirParent, defaultAppsParent)) {
+    console.error(
+      '--deps workspace only supports apps under the idp-ui monorepo apps/ folder. Omit --out-dir or set it to <idp-ui>/apps. Use --deps registry for other --out-dir.',
+    );
+    process.exit(1);
+  }
+
+  const target = path.join(outDirParent, name);
 
   if (fs.existsSync(target)) {
     console.error(`Target already exists: ${target}`);
@@ -137,6 +165,8 @@ function main() {
     console.error(`Template missing: ${TEMPLATE}`);
     process.exit(1);
   }
+
+  fs.mkdirSync(outDirParent, { recursive: true });
 
   const packageName = `@idpxyz/${name}`;
   const appTitle = `${toDisplayTitle(name)} Workbench`;
@@ -164,21 +194,36 @@ function main() {
   console.log(`  deps: ${deps === 'registry' ? `registry (${uiPkgRange} @idpxyz/*)` : 'workspace (workspace:*)'}`);
   console.log('');
 
-  console.log('Next: pnpm install');
-  console.log(`Then:  pnpm --filter ${packageName} dev`);
+  const installInMonorepoRoot = isSameDirectory(outDirParent, defaultAppsParent);
+
+  if (installInMonorepoRoot) {
+    console.log('Next: pnpm install (idp-ui root)');
+    console.log(`Then:  pnpm --filter ${packageName} dev`);
+  } else {
+    console.log(`Next: cd ${target} && pnpm install`);
+    console.log(`Then:  pnpm dev`);
+  }
   if (deps === 'registry') {
     console.log('');
     console.log('Registry template: ensure GitHub Packages auth in ~/.npmrc (//npm.pkg.github.com/:_authToken=…).');
-    console.log('See apps/' + name + '/README.md');
+    console.log(`See ${path.join(target, 'README.md')}`);
   }
 
   if (process.env.CREATE_APP_SKIP_INSTALL === '1') {
     return;
   }
   try {
-    execSync('pnpm install --no-frozen-lockfile', { cwd: ROOT, stdio: 'inherit' });
+    if (installInMonorepoRoot) {
+      execSync('pnpm install --no-frozen-lockfile', { cwd: ROOT, stdio: 'inherit' });
+    } else {
+      execSync('pnpm install', { cwd: target, stdio: 'inherit' });
+    }
   } catch {
-    console.warn('pnpm install failed or pnpm not available — run: pnpm install --no-frozen-lockfile');
+    if (installInMonorepoRoot) {
+      console.warn('pnpm install failed or pnpm not available — run: pnpm install --no-frozen-lockfile');
+    } else {
+      console.warn(`pnpm install failed or pnpm not available — run: cd ${target} && pnpm install`);
+    }
   }
 }
 

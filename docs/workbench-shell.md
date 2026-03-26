@@ -42,16 +42,21 @@
 在 **`idp-ui` 仓库根目录**执行：
 
 ```bash
-pnpm create-app <app-dir-name> [--product loms] [--port 5175] [--deps workspace|registry] [--ui-version x.y.z]
+pnpm create-app <app-dir-name> [--product loms] [--port 5175] [--deps workspace|registry] [--ui-version x.y.z] [--out-dir <parent-dir>]
 ```
 
 示例：`pnpm create-app acme-web --product prism --port 5180`
 
-- **`--deps workspace`（默认）**：从 **`templates/workbench-app`** 生成，`@idpxyz/*` 使用 **`workspace:*`**，与仓库内 `packages/*` 联调。
+生成目录为 **`<parent-dir>/<app-dir-name>`**。省略 **`--out-dir`** 时 `<parent-dir>` 为 **`idp-ui/apps`**（与过去行为一致）。
+
+示例（例如在 `idp-bip` 下落地新应用，须使用 registry 依赖）：  
+`pnpm create-app acme-web --deps registry --out-dir /workspace/idp/idp-bip/apps`
+
+- **`--deps workspace`（默认）**：从 **`templates/workbench-app`** 生成，`@idpxyz/*` 使用 **`workspace:*`**，与仓库内 `packages/*` 联调。**必须与默认输出一致**（只能落在 **`idp-ui/apps`**）；若需其它路径请用 **`--deps registry`**。
 - **`--deps registry`**：从 **`templates/workbench-app-registry`** 生成，`@idpxyz/*` 使用 **`^x.y.z`**（默认取生成时 **`packages/ui-workspace` 的 `version`**，可用 `--ui-version` 覆盖），从 **GitHub Packages** 安装；适合模拟独立仓库消费者，需在 `~/.npmrc` 配置 `//npm.pkg.github.com/:_authToken`。生成应用内含 **`link-workspace-packages=false`**，即使在 monorepo 的 `apps/` 下也会向 registry 解析（与独立项目一致）。
 
 两种模板均包含 **底部面板 / 右侧栏** 占位与 `useResize`；业务内容在 App 内替换即可。
-- 生成后会在根目录执行 **`pnpm install`**（若失败请手动执行）。
-- 开发：`pnpm --filter @idpxyz/<app-dir-name> dev`
+- 生成后：若输出在 **`idp-ui/apps`**，会在 **`idp-ui` 根目录**执行 **`pnpm install`**；否则在**新应用目录**内执行 **`pnpm install`**（若失败请按终端提示手动执行）。
+- 开发：应用在 **`idp-ui/apps`** 内时用 **`pnpm --filter @idpxyz/<app-dir-name> dev`**；否则在新应用目录执行 **`pnpm dev`**。
 
 `--product` 须为 `packages/ui-tokens` 中已有 `ProductKey`（如 `loms`、`oms`、`prism` 等）。
