@@ -15,7 +15,7 @@ import { ThemeProvider, ToastProvider } from '@idpxyz/ui-theme-runtime';
 import { OrdersOverviewPage } from './pages/OrdersOverviewPage';
 import { InventoryAlertsPage } from './pages/InventoryAlertsPage';
 import { FulfillmentQueuePage } from './pages/FulfillmentQueuePage';
-import { tabTitles } from './mock/oms';
+import { tabTitles, mockFulfillmentQueue, mockOrders, mockStockAlerts } from './mock/oms';
 import { useOmsWorkbenchState } from './hooks/useOmsWorkbenchState';
 
 const PRODUCT = 'oms' as ProductKey;
