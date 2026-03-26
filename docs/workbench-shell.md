@@ -53,7 +53,7 @@ pnpm create-app <app-dir-name> [--product loms] [--port 5175] [--deps workspace|
 `pnpm create-app acme-web --deps registry --out-dir /workspace/idp/idp-bip/apps`
 
 - **`--deps workspace`（默认）**：从 **`templates/workbench-app`** 生成，`@idpxyz/*` 使用 **`workspace:*`**，与仓库内 `packages/*` 联调。**必须与默认输出一致**（只能落在 **`idp-ui/apps`**）；若需其它路径请用 **`--deps registry`**。
-- **`--deps registry`**：从 **`templates/workbench-app-registry`** 生成，`@idpxyz/*` 使用 **`^x.y.z`**（默认取生成时 **`packages/ui-workspace` 的 `version`**，可用 `--ui-version` 覆盖），从 **GitHub Packages** 安装；适合模拟独立仓库消费者，需在 `~/.npmrc` 配置 `//npm.pkg.github.com/:_authToken`。生成应用内含 **`link-workspace-packages=false`**，即使在 monorepo 的 `apps/` 下也会向 registry 解析（与独立项目一致）。
+- **`--deps registry`**：从 **`templates/workbench-app-registry`** 生成，`@idpxyz/*` 使用 **`^x.y.z`**。**未传 `--ui-version`** 时，脚本会尝试用 **`pnpm view` / `npm view @idpxyz/ui-workspace version`** 读取 **registry 上的最新版本**（遵守 `~/.npmrc` 里对 `@idpxyz` 作用域的配置与鉴权）；若查询失败（离线、未登录等），则 **回退** 为本地 **`packages/ui-workspace` 的 `version`**。需要固定版本时用 **`--ui-version x.y.z`**。离线或 CI 想跳过联网查询可设环境变量 **`CREATE_APP_USE_LOCAL_UI_VERSION=1`**。从 **GitHub Packages** 安装时仍需在 `~/.npmrc` 配置 `//npm.pkg.github.com/:_authToken`。生成应用内含 **`link-workspace-packages=false`**，即使在 monorepo 的 `apps/` 下也会向 registry 解析（与独立项目一致）。
 
 两种模板均包含 **底部面板 / 右侧栏** 占位与 `useResize`；业务内容在 App 内替换即可。
 - 生成后：若输出在 **`idp-ui/apps`**，会在 **`idp-ui` 根目录**执行 **`pnpm install`**；否则在**新应用目录**内执行 **`pnpm install`**（若失败请按终端提示手动执行）。

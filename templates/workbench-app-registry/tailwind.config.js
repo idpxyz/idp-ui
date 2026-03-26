@@ -3,7 +3,11 @@ export default {
   content: [
     './index.html',
     './src/**/*.{js,ts,jsx,tsx}',
+    /** Monorepo (idp-ui/apps/…): source packages */
     '../../packages/*/src/**/*.{js,ts,jsx,tsx}',
+    /** Registry / external install: published @idpxyz sources under node_modules */
+    './node_modules/@idpxyz/*/src/**/*.{js,ts,jsx,tsx}',
+    './node_modules/@idpxyz/*/dist/**/*.{js,mjs,cjs}',
   ],
   theme: {
     extend: {

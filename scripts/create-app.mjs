@@ -12,7 +12,9 @@
  *   node scripts/create-app.mjs acme-web --deps registry --out-dir /path/to/repo/apps
  *
  * --deps workspace (default): templates/workbench-app — @idpxyz/* as workspace:*
- * --deps registry: templates/workbench-app-registry — @idpxyz/* as ^x.y.z from packages/ui-workspace (or --ui-version)
+ * --deps registry: templates/workbench-app-registry — @idpxyz/* as ^x.y.z (latest from registry if no --ui-version; fallback: local packages/ui-workspace)
+ *
+ * CI / offline: CREATE_APP_USE_LOCAL_UI_VERSION=1 skips registry lookup and uses local packages/ui-workspace version.
  *
  * --out-dir: parent folder for the app (default: <idp-ui>/apps). Creates <parent>/<app-dir-name>.
  *   With --deps workspace, --out-dir must resolve to <idp-ui>/apps (pnpm workspace apps/*).
@@ -21,7 +23,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { execSync } from 'child_process';
+import { execSync, execFileSync } from 'child_process';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, '..');
@@ -49,6 +51,49 @@ function readWorkspaceUiVersion() {
   const p = path.join(ROOT, 'packages', 'ui-workspace', 'package.json');
   const raw = fs.readFileSync(p, 'utf8');
   return JSON.parse(raw).version;
+}
+
+/** Latest published version per registry (honours ~/.npmrc scope registry / auth). */
+function tryGetLatestRegistryVersion() {
+  const run = (cmd, args) => {
+    try {
+      return execFileSync(cmd, args, {
+        encoding: 'utf8',
+        stdio: ['ignore', 'pipe', 'ignore'],
+        cwd: ROOT,
+      }).trim();
+    } catch {
+      return null;
+    }
+  };
+  for (const args of [
+    ['pnpm', ['view', '@idpxyz/ui-workspace', 'version']],
+    ['npm', ['view', '@idpxyz/ui-workspace', 'version']],
+  ]) {
+    const out = run(args[0], args[1]);
+    if (out && /^\d+\.\d+\.\d+(-[0-9A-Za-z.-]+)?$/.test(out)) {
+      return out.replace(/-.*/, '');
+    }
+  }
+  return null;
+}
+
+function resolveRegistryUiVersion(uiVersion) {
+  if (uiVersion) {
+    return { ver: uiVersion, source: '--ui-version' };
+  }
+  if (process.env.CREATE_APP_USE_LOCAL_UI_VERSION === '1') {
+    return { ver: readWorkspaceUiVersion(), source: 'local monorepo (CREATE_APP_USE_LOCAL_UI_VERSION=1)' };
+  }
+  const latest = tryGetLatestRegistryVersion();
+  if (latest) {
+    return { ver: latest, source: 'registry latest' };
+  }
+  const fallback = readWorkspaceUiVersion();
+  console.warn(
+    'create-app: could not query latest @idpxyz/ui-workspace from registry (network or auth?); using local packages/ui-workspace version.',
+  );
+  return { ver: fallback, source: 'local monorepo (fallback)' };
 }
 
 function parseArgs(argv) {
@@ -170,7 +215,8 @@ function main() {
 
   const packageName = `@idpxyz/${name}`;
   const appTitle = `${toDisplayTitle(name)} Workbench`;
-  const ver = uiVersion ?? readWorkspaceUiVersion();
+  const { ver, source: uiVersionSource } =
+    deps === 'registry' ? resolveRegistryUiVersion(uiVersion) : { ver: readWorkspaceUiVersion(), source: 'local monorepo' };
   const uiPkgRange = `^${ver}`;
 
   const map = {
@@ -191,7 +237,7 @@ function main() {
   console.log(`  product: ${product}`);
   console.log(`  dev port: ${port}`);
   console.log(`  template: ${templateDir}`);
-  console.log(`  deps: ${deps === 'registry' ? `registry (${uiPkgRange} @idpxyz/*)` : 'workspace (workspace:*)'}`);
+  console.log(`  deps: ${deps === 'registry' ? `registry (${uiPkgRange} @idpxyz/*, ${uiVersionSource})` : 'workspace (workspace:*)'}`);
   console.log('');
 
   const installInMonorepoRoot = isSameDirectory(outDirParent, defaultAppsParent);
