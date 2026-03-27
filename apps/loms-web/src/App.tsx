@@ -150,6 +150,7 @@ export default function App() {
                       onCloseAll={() => ws.closeAll(group.id)}
                       onReopenClosed={() => ws.reopenClosed(group.id)}
                       onTabReorder={(from, to) => ws.reorderTab(group.id, from, to)}
+                      onTabMoveBetweenGroups={ws.moveTabBetweenGroups}
                       onSplitRight={() => ws.split('horizontal')}
                       onSplitDown={() => ws.split('vertical')}
                       tabIconMap={lomsTabIconMap}

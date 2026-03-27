@@ -7,7 +7,7 @@ import { cn } from '@idpxyz/ui-utils';
 type TabsProps = React.ComponentPropsWithoutRef<typeof TabsPrimitive.Root>;
 
 function Tabs({ className, ...props }: TabsProps) {
-  return <TabsPrimitive.Root className={cn('flex flex-col', className)} {...props} />;
+  return <TabsPrimitive.Root className={cn('flex flex-col gap-3', className)} {...props} />;
 }
 
 const TabsList = React.forwardRef<
@@ -17,7 +17,7 @@ const TabsList = React.forwardRef<
   <TabsPrimitive.List
     ref={ref}
     className={cn(
-      'inline-flex h-[36px] items-center gap-0 border-b border-idpxyz-border',
+      'flex w-full min-w-0 h-[36px] items-center gap-0 border-b border-idpxyz-border',
       className
     )}
     {...props}

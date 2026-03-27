@@ -1,0 +1,127 @@
+{
+  "common": {
+    "loading": "加载中…",
+    "retry": "重试"
+  },
+  "api": {
+    "loadError": "无法加载数据，请检查网络或 API 配置。"
+  },
+  "nav": {
+    "sectionParcel": "小包",
+    "welcome": "欢迎",
+    "products": "产品",
+    "zones": "分区"
+  },
+  "tabs": {
+    "welcome": "欢迎",
+    "productCatalog": "产品目录",
+    "zones": "分区主数据",
+    "unknownPage": "该标签未绑定页面"
+  },
+  "breadcrumb": {
+    "parcel": "小包",
+    "welcome": "欢迎",
+    "products": "产品",
+    "zones": "分区"
+  },
+  "app": {
+    "language": "语言",
+    "emptyTabs": "无标签页",
+    "bottomPanelTitle": "活动 / 日志",
+    "bottomPanelBody": "模拟数据 — 无实时 API。可在此接入试算/运单流。",
+    "inspectorTitle": "检查器"
+  },
+  "welcome": {
+    "title": "国际小包产品目录",
+    "intro": "本工作台使用与 0327-03-product.md 对齐的 mock 数据 — 产品、版本、分区与履约通道。目录不含价格（价卡 / Quote）。",
+    "cardProductsTitle": "可售产品",
+    "cardProductsDesc": "浏览线路、限制与承运映射",
+    "cardProductsCta": "打开目录",
+    "cardZonesTitle": "分区主数据",
+    "cardZonesDesc": "Schema + 分区，用于可达性与计费",
+    "cardZonesCta": "打开分区",
+    "hint": "使用标题栏分屏对比两个产品定义；右侧边栏可查看当前产品页的摘要。"
+  },
+  "catalog": {
+    "title": "产品目录",
+    "subtitle": "国际可售线路 — 仅 mock 数据",
+    "lineCount": "{{count}} 条",
+    "searchPlaceholder": "搜索编码或名称…",
+    "kind": "类型",
+    "kindAll": "全部类型",
+    "statusAll": "全部状态",
+    "colCode": "编码",
+    "colName": "名称",
+    "colKind": "种类",
+    "colStatus": "状态",
+    "colVer": "版本",
+    "colEffective": "生效",
+    "exportMock": "导出（模拟）",
+    "empty": "没有符合筛选的产品"
+  },
+  "productStatus": {
+    "active": "启用",
+    "draft": "草稿",
+    "sunset": "下线中",
+    "deprecated": "已废弃"
+  },
+  "detail": {
+    "notFound": "Mock 目录中无此产品",
+    "unknownId": "未知产品 id",
+    "effective": "生效",
+    "commercial": "商业信息",
+    "channels": "渠道",
+    "versionStatus": "版本状态",
+    "otherLocaleLabel": "其他语言",
+    "tabs": {
+      "overview": "概览",
+      "physical": "物理限制",
+      "reach": "始发与可达",
+      "fulfillment": "履约"
+    },
+    "physicalTableTitle": "product_version_physical_limit",
+    "weightG": "重量 (g)",
+    "lwhMm": "长×宽×高 (mm)",
+    "maxDimSum": "max_dim_sum_mm",
+    "pieceMax": "piece_count_max",
+    "dimensionsRequired": "dimensions_required",
+    "yes": "是",
+    "no": "否",
+    "origins": "始发",
+    "colCountry": "国家",
+    "colWarehouse": "仓库",
+    "colNote": "备注",
+    "zoneDest": "分区可达 (0327 §3.7.3)",
+    "colZoneId": "zone_id",
+    "colCode": "编码",
+    "colPolicy": "策略",
+    "destExceptions": "目的例外（国家/行政区）",
+    "colMatch": "匹配",
+    "fulfillmentTitle": "product_version_fulfillment",
+    "colPri": "优先级",
+    "colNetwork": "末端网络",
+    "colCarrierProduct": "carrier_product_code",
+    "colAdapter": "适配器",
+    "colBooking": "订舱",
+    "colOn": "启用"
+  },
+  "zones": {
+    "title": "分区主数据",
+    "subtitle": "体系 {{code}} — 产品与价卡共用同一套分区 ID（0327-04）",
+    "schemaStatus": "{{id}} · 状态 {{status}}",
+    "zonesHeading": "分区",
+    "countryMapHeading": "演示用 国家 → 默认分区",
+    "colCode": "编码",
+    "colName": "名称",
+    "colId": "id",
+    "colStatus": "状态",
+    "colCountry": "国家",
+    "colZoneId": "zone_id",
+    "colZoneCode": "分区编码"
+  },
+  "inspector": {
+    "empty": "打开 <strong>产品详情</strong> 标签页，在此查看版本、限制与履约通道。",
+    "weight": "重量 (g)",
+    "lanes": "履约通道"
+  }
+}

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { ChevronRight, ChevronDown, Layers } from 'lucide-react';
+import { runWorkspaceNavigationGuard, type WorkspaceNavigationGuard } from './navigationGuard';
 
 export interface NavItem {
   id: string;
@@ -20,6 +21,8 @@ interface SidebarProps {
   activeFile: string;
   navigationSections: NavigationSection[];
   iconMap: Record<string, React.ElementType>;
+  /** Optional guard before activating a sidebar nav item (same contract as EditorGroup `beforeNavigation`). */
+  beforeNavigation?: WorkspaceNavigationGuard;
 }
 
 function NavItemRow({
@@ -28,12 +31,14 @@ function NavItemRow({
   activeFile,
   onFileClick,
   iconMap,
+  beforeNavigation,
 }: {
   item: NavItem;
   depth: number;
   activeFile: string;
   onFileClick: (name: string) => void;
   iconMap: Record<string, React.ElementType>;
+  beforeNavigation?: WorkspaceNavigationGuard;
 }) {
   const [expanded, setExpanded] = useState(false);
   const hasChildren = !!item.children?.length;
@@ -51,7 +56,13 @@ function NavItemRow({
         style={{ paddingLeft }}
         onClick={() => {
           if (hasChildren) setExpanded(!expanded);
-          else onFileClick(item.id);
+          else {
+            void runWorkspaceNavigationGuard(
+              beforeNavigation,
+              { kind: 'sidebarNav', navId: item.id },
+              () => onFileClick(item.id),
+            );
+          }
         }}
       >
         {hasChildren ? (
@@ -74,7 +85,15 @@ function NavItemRow({
       {hasChildren && expanded && (
         <div>
           {item.children!.map((child) => (
-            <NavItemRow key={child.id} item={child} depth={depth + 1} activeFile={activeFile} onFileClick={onFileClick} iconMap={iconMap} />
+            <NavItemRow
+              key={child.id}
+              item={child}
+              depth={depth + 1}
+              activeFile={activeFile}
+              onFileClick={onFileClick}
+              iconMap={iconMap}
+              beforeNavigation={beforeNavigation}
+            />
           ))}
         </div>
       )}
@@ -82,7 +101,7 @@ function NavItemRow({
   );
 }
 
-export default function Sidebar({ width, onFileClick, activeFile, navigationSections, iconMap }: SidebarProps) {
+export default function Sidebar({ width, onFileClick, activeFile, navigationSections, iconMap, beforeNavigation }: SidebarProps) {
   return (
     <div className="bg-idpxyz-sidebar flex flex-col select-none shrink-0 overflow-hidden" style={{ width }}>
       {/* Navigation sections — logistics-style grouped nav (MY WORK, OVERVIEW, …) */}
@@ -102,6 +121,7 @@ export default function Sidebar({ width, onFileClick, activeFile, navigationSect
                 activeFile={activeFile}
                 onFileClick={onFileClick}
                 iconMap={iconMap}
+                beforeNavigation={beforeNavigation}
               />
             ))}
           </div>

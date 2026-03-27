@@ -1,0 +1,127 @@
+{
+  "common": {
+    "loading": "Loading…",
+    "retry": "Retry"
+  },
+  "api": {
+    "loadError": "Could not load data. Check the network or API configuration."
+  },
+  "nav": {
+    "sectionParcel": "Parcel",
+    "welcome": "Welcome",
+    "products": "Products",
+    "zones": "Zones"
+  },
+  "tabs": {
+    "welcome": "Welcome",
+    "productCatalog": "Product catalog",
+    "zones": "Zone master data",
+    "unknownPage": "No page bound to this tab id"
+  },
+  "breadcrumb": {
+    "parcel": "Parcel",
+    "welcome": "Welcome",
+    "products": "Products",
+    "zones": "Zones"
+  },
+  "app": {
+    "language": "Language",
+    "emptyTabs": "No tabs",
+    "bottomPanelTitle": "Activity / logs",
+    "bottomPanelBody": "Mock — no live API. Connect quote/shipment streams here.",
+    "inspectorTitle": "Inspector"
+  },
+  "welcome": {
+    "title": "International parcel catalog",
+    "intro": "This workbench uses mock data aligned with 0327-03-product.md — products, versions, zones, and fulfillment lanes. No prices in-catalog (RatePlan / Quote).",
+    "cardProductsTitle": "Sellable products",
+    "cardProductsDesc": "Browse lines, limits, and carrier mapping",
+    "cardProductsCta": "Open catalog",
+    "cardZonesTitle": "Zone master",
+    "cardZonesDesc": "Schema + zones for eligibility & pricing",
+    "cardZonesCta": "Open zones",
+    "hint": "Use split editor (title bar) to compare two product definitions side-by-side. Right sidebar shows a quick summary for the active product tab."
+  },
+  "catalog": {
+    "title": "Product catalog",
+    "subtitle": "Sellable international lines — mock data only",
+    "lineCount": "{{count}} lines",
+    "searchPlaceholder": "Search code or name…",
+    "kind": "Kind",
+    "kindAll": "All kinds",
+    "statusAll": "All status",
+    "colCode": "Code",
+    "colName": "Name",
+    "colKind": "Kind",
+    "colStatus": "Status",
+    "colVer": "Ver",
+    "colEffective": "Effective",
+    "exportMock": "Export (mock)",
+    "empty": "No products match filters"
+  },
+  "productStatus": {
+    "active": "active",
+    "draft": "draft",
+    "sunset": "sunset",
+    "deprecated": "deprecated"
+  },
+  "detail": {
+    "notFound": "Product not found in mock catalog",
+    "unknownId": "Unknown product id",
+    "effective": "effective",
+    "commercial": "Commercial",
+    "channels": "Channels",
+    "versionStatus": "Version status",
+    "otherLocaleLabel": "Other locale",
+    "tabs": {
+      "overview": "Overview",
+      "physical": "Physical limits",
+      "reach": "Origins & reach",
+      "fulfillment": "Fulfillment"
+    },
+    "physicalTableTitle": "product_version_physical_limit",
+    "weightG": "Weight (g)",
+    "lwhMm": "L × W × H (mm)",
+    "maxDimSum": "max_dim_sum_mm",
+    "pieceMax": "piece_count_max",
+    "dimensionsRequired": "dimensions_required",
+    "yes": "yes",
+    "no": "no",
+    "origins": "Origins",
+    "colCountry": "Country",
+    "colWarehouse": "Warehouse",
+    "colNote": "Note",
+    "zoneDest": "Zone destinations (0327 §3.7.3)",
+    "colZoneId": "zone_id",
+    "colCode": "Code",
+    "colPolicy": "Policy",
+    "destExceptions": "Destination exceptions (country / subdivision)",
+    "colMatch": "Match",
+    "fulfillmentTitle": "product_version_fulfillment",
+    "colPri": "Pri",
+    "colNetwork": "Network",
+    "colCarrierProduct": "carrier_product_code",
+    "colAdapter": "Adapter",
+    "colBooking": "Booking",
+    "colOn": "On"
+  },
+  "zones": {
+    "title": "Zone master data",
+    "subtitle": "Schema {{code}} — same IDs for product reach & rate cards (0327-04)",
+    "schemaStatus": "{{id}} · status {{status}}",
+    "zonesHeading": "Zones",
+    "countryMapHeading": "Demo country → zone defaults",
+    "colCode": "Code",
+    "colName": "Name",
+    "colId": "id",
+    "colStatus": "Status",
+    "colCountry": "Country",
+    "colZoneId": "zone_id",
+    "colZoneCode": "Zone code"
+  },
+  "inspector": {
+    "empty": "Open a <strong>product detail</strong> tab to see version, limits, and fulfillment lanes here.",
+    "weight": "Weight (g)",
+    "lanes": "Fulfillment lanes"
+  }
+}

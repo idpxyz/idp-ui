@@ -75,6 +75,14 @@ export function useWorkspaceState() {
     splitResizeV.setRatio(initial.splitRatioVertical);
   }, []);
 
+  /** After closing a split pane, `activeGroupId` may still point at a removed group — fix so sidebar / openNavTab work. */
+  useEffect(() => {
+    setActiveGroupId((current) => {
+      if (groups.some((g) => g.id === current)) return current;
+      return groups[0]?.id ?? current;
+    });
+  }, [groups]);
+
   const activeSplitResize = splitDirection === 'vertical' ? splitResizeV : splitResizeH;
   const activeGroup = groups.find(g => g.id === activeGroupId) || groups[0];
   const activeTabData = activeGroup?.tabs.find(t => t.id === activeGroup.activeTab);
@@ -101,8 +109,9 @@ export function useWorkspaceState() {
 
   const openNavTab = useCallback((navId: string, tabName: string) => {
     setGroups(prev => {
-      const gIdx = prev.findIndex(g => g.id === activeGroupId);
-      if (gIdx === -1) return prev;
+      if (prev.length === 0) return prev;
+      let gIdx = prev.findIndex(g => g.id === activeGroupId);
+      if (gIdx === -1) gIdx = 0;
       const group = prev[gIdx];
       if (group.tabs.find(t => t.id === navId)) {
         const updated = [...prev];
@@ -183,6 +192,44 @@ export function useWorkspaceState() {
     }));
   }, []);
 
+  const moveTabBetweenGroups = useCallback((fromGroupId: string, tabId: string, toGroupId: string, toIndex: number) => {
+    if (fromGroupId === toGroupId) return;
+    setGroups(prev => {
+      const fromG = prev.find(g => g.id === fromGroupId);
+      const toG = prev.find(g => g.id === toGroupId);
+      if (!fromG || !toG) return prev;
+      const ti = fromG.tabs.findIndex(t => t.id === tabId);
+      if (ti === -1) return prev;
+      if (toG.tabs.some(t => t.id === tabId)) return prev;
+
+      const tab = fromG.tabs[ti];
+      const newFromTabs = fromG.tabs.filter(t => t.id !== tabId);
+      let fromActive = fromG.activeTab;
+      if (fromG.activeTab === tabId) {
+        fromActive = newFromTabs[newFromTabs.length - 1]?.id ?? '';
+      }
+
+      const insertAt = Math.min(Math.max(0, toIndex), toG.tabs.length);
+      const newToTabs = [...toG.tabs];
+      newToTabs.splice(insertAt, 0, tab);
+
+      const updated = prev.map(g => {
+        if (g.id === fromGroupId) return { ...g, tabs: newFromTabs, activeTab: fromActive };
+        if (g.id === toGroupId) return { ...g, tabs: newToTabs, activeTab: tabId };
+        return g;
+      });
+
+      const nonEmpty = updated.filter(g => g.tabs.length > 0);
+      if (nonEmpty.length === 0) return [updated[0]];
+      if (nonEmpty.length === 1 && updated.length > 1) {
+        setSplitDirection('none');
+        return nonEmpty;
+      }
+      return updated;
+    });
+    setActiveGroupId(toGroupId);
+  }, []);
+
   const reopenClosed = useCallback((groupId: string) => {
     setClosedTabs(prev => {
       if (prev.length === 0) return prev;
@@ -230,7 +277,7 @@ export function useWorkspaceState() {
     bottomPanelMaximized, toggleMaximizeBottomPanel,
     sidebarResize, rightSidebarResize, bottomPanelResize, activeSplitResize,
     openTab, openNavTab, clickTab, closeTab, pinTab,
-    closeOthers, closeToRight, closeAll, reorderTab, reopenClosed, split,
+    closeOthers, closeToRight, closeAll, reorderTab, moveTabBetweenGroups, reopenClosed, split,
     setActiveGroupId,
   };
 }

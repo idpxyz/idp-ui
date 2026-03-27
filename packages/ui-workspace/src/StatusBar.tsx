@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import {
   AlertCircle,
   AlertTriangle,
@@ -14,9 +15,11 @@ import { Button } from '@idpxyz/ui-primitives';
 
 interface StatusBarProps {
   commandFeedback?: string | null;
+  /** App chrome (e.g. language) — placed at the far right, after status actions */
+  trailingSlot?: ReactNode;
 }
 
-export default function StatusBar({ commandFeedback }: StatusBarProps) {
+export default function StatusBar({ commandFeedback, trailingSlot }: StatusBarProps) {
   const { density, toggleDensity } = useDensity();
   return (
     <div className="h-[22px] bg-idpxyz-statusBar flex items-center justify-between px-2 text-white text-[12px] select-none shrink-0">
@@ -66,6 +69,7 @@ export default function StatusBar({ commandFeedback }: StatusBarProps) {
           <span>Ops Controller</span>
         </div>
         <Bell size={12} className="cursor-pointer hover:bg-idpxyz-statusHover rounded-sm" />
+        {trailingSlot}
       </div>
     </div>
   );

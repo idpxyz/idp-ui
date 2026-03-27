@@ -1,0 +1,68 @@
+# =============================================================================
+# LOMS — 末端派送网络 / SCAC / 接入方 carrier id（单一真相源，随业务扩展）
+# =============================================================================
+# 用途：
+#   - `product_version_fulfillment.network_carrier_code`
+#   - `carrier_submission.network_carrier_code`
+#   - 对账、报表、与接入方 API 请求体中的「选网」字段对齐
+#
+# 规范引用：0327-10-carrier-integration.md §1.1、0327-03 §3.7.1
+#
+# 约定：
+#   - `network_carrier_code`：本仓库 **稳定大写** 枚举（实现可校验）
+#   - `scac`：北美常用 2–4 字母标准承运人码；**对账/EDI 以业务核实为准**，可空
+#   - `integration_providers[].carrier_id_map`：某接入方 API 内 **内部 id → network_carrier_code**
+#
+# 变更流程：改 YAML → 迁移/配置同步 → 再改 0327 文档（若语义变更）
+# =============================================================================
+
+schema_version: "1.0"
+description: "末端网络与接入方映射；示例行可删改，以生产配置为准"
+
+# ---------------------------------------------------------------------------
+# 末端派送网络（品牌 / 网络层，≠ 接入方 adapter）
+# ---------------------------------------------------------------------------
+networks:
+  - network_carrier_code: "FEDEX"
+    display_name: "FedEx"
+    scac: "FDXE"
+    notes: "示例 SCAC；账单/EDI 以承运商与合同为准"
+
+  - network_carrier_code: "UPS"
+    display_name: "UPS"
+    scac: "UPGF"
+    notes: "UPGF 为常见 SCAC 之一；存在多 SCAC 时按业务拆分多行或子类型"
+
+  - network_carrier_code: "USPS"
+    display_name: "USPS"
+    scac: "USPS"
+    notes: "邮政；SCAC 以实际对账字段为准"
+
+  - network_carrier_code: "DHL_EXPRESS"
+    display_name: "DHL Express"
+    scac: "DHLE"
+    notes: "与 DHL eCommerce 等区分时拆行或加子码"
+
+# ---------------------------------------------------------------------------
+# 接入方（聚合商/代理）内部「选网」映射 — 按环境复制多份或分文件亦可
+# ---------------------------------------------------------------------------
+integration_providers:
+  # 示例：请替换为真实 adapter_code 与接入方文档枚举
+  - adapter_code: "EXAMPLE_AGGREGATOR"
+    display_name: "示例聚合平台"
+    integration_kind: aggregator
+    carrier_id_map:
+      - provider_carrier_id: "fedex"
+        network_carrier_code: "FEDEX"
+        notes: "接入方 API 请求体 / 询价参数中的 carrier 取值"
+      - provider_carrier_id: "ups"
+        network_carrier_code: "UPS"
+      - provider_carrier_id: "usps"
+        network_carrier_code: "USPS"
+
+  - adapter_code: "EXAMPLE_REGIONAL_AGENT"
+    display_name: "示例区域代理"
+    integration_kind: regional_agent
+    carrier_id_map:
+      - provider_carrier_id: "FX_GROUND"
+        network_carrier_code: "FEDEX"

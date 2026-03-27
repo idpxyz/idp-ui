@@ -10,6 +10,11 @@ import {
   ChevronDown,
 } from 'lucide-react';
 import { Button } from '@idpxyz/ui-primitives';
+import {
+  runWorkspaceNavigationGuard,
+  type WorkspaceNavigationGuard,
+  type WorkspaceNavigationIntent,
+} from './navigationGuard';
 
 export interface Tab {
   id: string;
@@ -50,6 +55,36 @@ export interface EditorGroupProps {
   renderContent: (tabId: string) => React.ReactNode;
   /** Fallback when no tab is active */
   emptyStateContent?: React.ReactNode;
+  /**
+   * Optional guard before tab bar actions (click, close, context menu bulk close).
+   * Return `false` or a Promise resolving to `false` to cancel (e.g. unsaved edits).
+   */
+  beforeNavigation?: WorkspaceNavigationGuard;
+  /**
+   * When `true`, keep every open tab’s content mounted and hide inactive panels (e.g. `hidden`).
+   * When `false` (default), only the active tab’s content is mounted — switching tabs unmounts the previous page.
+   */
+  preserveInactiveTabContent?: boolean;
+  /**
+   * Move a tab from another editor group (split). Omit to only allow reorder within the same group.
+   * `toIndex` is the insert index in the target group’s tab list (0 … tabs.length).
+   */
+  onTabMoveBetweenGroups?: (fromGroupId: string, tabId: string, toGroupId: string, toIndex: number) => void;
+}
+
+/** MIME type for tab drag payload (also used by hosts that need to read the payload). */
+export const WORKSPACE_TAB_DRAG_MIME = 'application/x-idp-workspace-tab';
+
+export function parseWorkspaceTabDragPayload(dt: DataTransfer): { fromGroupId: string; tabId: string; fromIndex: number } | null {
+  try {
+    const raw = dt.getData(WORKSPACE_TAB_DRAG_MIME);
+    if (!raw) return null;
+    const p = JSON.parse(raw) as { fromGroupId?: string; tabId?: string; fromIndex?: number };
+    if (typeof p.fromGroupId === 'string' && typeof p.tabId === 'string' && typeof p.fromIndex === 'number') return p as { fromGroupId: string; tabId: string; fromIndex: number };
+  } catch {
+    /* ignore */
+  }
+  return null;
 }
 
 const defaultGetTabRiskDot = (tab: Tab): string | null => {
@@ -78,6 +113,9 @@ export default function EditorGroup({
   getTabRiskDot = defaultGetTabRiskDot,
   renderContent,
   emptyStateContent,
+  beforeNavigation,
+  preserveInactiveTabContent = false,
+  onTabMoveBetweenGroups,
 }: EditorGroupProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [tabListOpen, setTabListOpen] = useState(false);
@@ -88,6 +126,29 @@ export default function EditorGroup({
   const dragSrcIdx = useRef<number | null>(null);
   const tabsRef = useRef<HTMLDivElement>(null);
   const activeTabData = group.tabs.find((t) => t.id === group.activeTab);
+
+  const runNav = (intent: WorkspaceNavigationIntent, action: () => void) => {
+    void runWorkspaceNavigationGuard(beforeNavigation, intent, action);
+  };
+
+  const handleTabDropAt = useCallback(
+    (e: React.DragEvent, toIdx: number) => {
+      e.preventDefault();
+      e.stopPropagation();
+      setDragOverIdx(null);
+      dragSrcIdx.current = null;
+      const payload = parseWorkspaceTabDragPayload(e.dataTransfer);
+      if (!payload) return;
+      if (payload.fromGroupId === group.id) {
+        if (payload.fromIndex !== toIdx) onTabReorder(payload.fromIndex, toIdx);
+        return;
+      }
+      if (onTabMoveBetweenGroups) {
+        onTabMoveBetweenGroups(payload.fromGroupId, payload.tabId, group.id, toIdx);
+      }
+    },
+    [group.id, onTabReorder, onTabMoveBetweenGroups],
+  );
 
   const getTabIcon = (id: string) => {
     const Icon = tabIconMap[id] || Layers;
@@ -168,8 +229,13 @@ export default function EditorGroup({
                 `}
                 draggable
                 onDragStart={(e) => {
-                  dragSrcIdx.current = group.tabs.indexOf(tab);
+                  const idx = group.tabs.indexOf(tab);
+                  dragSrcIdx.current = idx;
                   e.dataTransfer.effectAllowed = 'move';
+                  e.dataTransfer.setData(
+                    WORKSPACE_TAB_DRAG_MIME,
+                    JSON.stringify({ fromGroupId: group.id, tabId: tab.id, fromIndex: idx }),
+                  );
                   e.dataTransfer.setData('text/plain', tab.id);
                 }}
                 onDragOver={(e) => {
@@ -179,17 +245,20 @@ export default function EditorGroup({
                   if (idx !== dragSrcIdx.current) setDragOverIdx(idx);
                 }}
                 onDragLeave={() => setDragOverIdx(null)}
-                onDrop={(e) => {
-                  e.preventDefault();
-                  setDragOverIdx(null);
-                  const toIdx = group.tabs.indexOf(tab);
-                  if (dragSrcIdx.current !== null && dragSrcIdx.current !== toIdx) {
-                    onTabReorder(dragSrcIdx.current, toIdx);
-                  }
-                  dragSrcIdx.current = null;
-                }}
+                onDrop={(e) => handleTabDropAt(e, group.tabs.indexOf(tab))}
                 onDragEnd={() => { dragSrcIdx.current = null; setDragOverIdx(null); }}
-                onClick={(e) => { e.stopPropagation(); onTabClick(tab.id); }}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  runNav(
+                    {
+                      kind: 'tabClick',
+                      groupId: group.id,
+                      fromTabId: group.activeTab,
+                      toTabId: tab.id,
+                    },
+                    () => onTabClick(tab.id),
+                  );
+                }}
                 onContextMenu={(e) => { e.preventDefault(); e.stopPropagation(); setCtxMenu({ x: e.clientX, y: e.clientY, tabId: tab.id }); }}
               >
                 {(() => {
@@ -214,7 +283,7 @@ export default function EditorGroup({
                 <Button
                   onClick={(e) => {
                     e.stopPropagation();
-                    onTabClose(tab.id);
+                    runNav({ kind: 'tabClose', groupId: group.id, tabId: tab.id }, () => onTabClose(tab.id));
                   }}
                   variant="ghost"
                   size="icon"
@@ -226,6 +295,21 @@ export default function EditorGroup({
                 </Button>
               </div>
             ))}
+            {group.tabs.length > 0 && (
+              <div
+                className={`flex-1 min-w-[20px] h-[35px] shrink-0 self-end ${
+                  dragOverIdx === group.tabs.length ? 'ring-1 ring-idpxyz-accent/60' : ''
+                }`}
+                aria-hidden
+                onDragOver={(e) => {
+                  e.preventDefault();
+                  e.dataTransfer.dropEffect = 'move';
+                  setDragOverIdx(group.tabs.length);
+                }}
+                onDragLeave={() => setDragOverIdx(null)}
+                onDrop={(e) => handleTabDropAt(e, group.tabs.length)}
+              />
+            )}
           </div>
 
           {/* Scroll right button */}
@@ -262,7 +346,21 @@ export default function EditorGroup({
                         key={tab.id}
                         variant="ghost"
                         size="sm"
-                        onClick={(e) => { e.stopPropagation(); onTabClick(tab.id); setTabListOpen(false); }}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          runNav(
+                            {
+                              kind: 'tabClick',
+                              groupId: group.id,
+                              fromTabId: group.activeTab,
+                              toTabId: tab.id,
+                            },
+                            () => {
+                              onTabClick(tab.id);
+                              setTabListOpen(false);
+                            },
+                          );
+                        }}
                         className={`w-full h-auto justify-start rounded-none px-3 py-1.5 text-[12px] ${
                           group.activeTab === tab.id ? 'text-idpxyz-accent font-medium' : 'text-idpxyz-text'
                         }`}
@@ -350,7 +448,12 @@ export default function EditorGroup({
               style={{ left: ctxMenu.x, top: ctxMenu.y }}
             >
               <Button
-                onClick={() => { onTabClose(ctxMenu.tabId); setCtxMenu(null); }}
+                onClick={() => {
+                  runNav({ kind: 'tabClose', groupId: group.id, tabId: ctxMenu.tabId }, () => {
+                    onTabClose(ctxMenu.tabId);
+                    setCtxMenu(null);
+                  });
+                }}
                 variant="ghost"
                 size="sm"
                 className="group flex w-full h-auto justify-start rounded-none px-3 py-1.5 text-[12px] hover:bg-idpxyz-accent hover:text-white"
@@ -361,7 +464,15 @@ export default function EditorGroup({
                 </span>
               </Button>
               <Button
-                onClick={() => { onCloseOthers(ctxMenu.tabId); setCtxMenu(null); }}
+                onClick={() => {
+                  runNav(
+                    { kind: 'closeOthers', groupId: group.id, keepTabId: ctxMenu.tabId },
+                    () => {
+                      onCloseOthers(ctxMenu.tabId);
+                      setCtxMenu(null);
+                    },
+                  );
+                }}
                 disabled={!hasOtherTabs}
                 variant="ghost"
                 size="sm"
@@ -370,7 +481,15 @@ export default function EditorGroup({
                 Close Others
               </Button>
               <Button
-                onClick={() => { onCloseToRight(ctxMenu.tabId); setCtxMenu(null); }}
+                onClick={() => {
+                  runNav(
+                    { kind: 'closeToRight', groupId: group.id, anchorTabId: ctxMenu.tabId },
+                    () => {
+                      onCloseToRight(ctxMenu.tabId);
+                      setCtxMenu(null);
+                    },
+                  );
+                }}
                 disabled={!hasTabsToRight}
                 variant="ghost"
                 size="sm"
@@ -379,7 +498,12 @@ export default function EditorGroup({
                 Close to the Right
               </Button>
               <Button
-                onClick={() => { onCloseAll(); setCtxMenu(null); }}
+                onClick={() => {
+                  runNav({ kind: 'closeAll', groupId: group.id }, () => {
+                    onCloseAll();
+                    setCtxMenu(null);
+                  });
+                }}
                 variant="ghost"
                 size="sm"
                 className="group flex w-full h-auto justify-start rounded-none px-3 py-1.5 text-[12px] hover:bg-idpxyz-accent hover:text-white"
@@ -427,8 +551,36 @@ export default function EditorGroup({
       })()}
 
       {/* Page content */}
-      {activeTabData ? (
-        renderContent(activeTabData.id)
+      {group.tabs.length > 0 ? (
+        preserveInactiveTabContent ? (
+          <div className="flex-1 flex flex-col min-h-0 overflow-hidden relative">
+            {group.tabs.map((tab) => (
+              <div
+                key={tab.id}
+                className={
+                  tab.id === group.activeTab
+                    ? 'flex flex-1 flex-col min-h-0 overflow-auto'
+                    : 'hidden'
+                }
+                aria-hidden={tab.id !== group.activeTab}
+                data-tab-panel={tab.id}
+              >
+                {renderContent(tab.id)}
+              </div>
+            ))}
+          </div>
+        ) : activeTabData ? (
+          renderContent(activeTabData.id)
+        ) : (
+          emptyStateContent || (
+            <div className="flex-1 flex items-center justify-center bg-idpxyz-editor text-idpxyz-textMuted">
+              <div className="text-center">
+                <p className="text-[20px] mb-2">Operations Workbench</p>
+                <p className="text-[13px]">Select a module from the navigation panel</p>
+              </div>
+            </div>
+          )
+        )
       ) : (
         emptyStateContent || (
           <div className="flex-1 flex items-center justify-center bg-idpxyz-editor text-idpxyz-textMuted">
