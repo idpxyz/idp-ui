@@ -2,7 +2,7 @@
 
 ## 1. 目标
 
-本手册用于把当前 `vscode-*` 视觉变量体系平滑迁移到统一的 IDP Token 体系，且不破坏现有 UI。
+本手册用于把当前 `idpxyz-*` 视觉变量体系平滑迁移到统一的 IDP Token 体系，且不破坏现有 UI。
 
 当前已落地文件：
 
@@ -43,12 +43,12 @@
 
 ### 3.2 兼容桥变量
 
-现有 Tailwind 主题仍消费 `--vsc-*`，通过 `applyThemeTokens` 映射：
+现有 Tailwind 主题仍消费 `--idpxyz-*`，通过 `applyThemeTokens` 映射：
 
-- `--vsc-bg <- --ds-bg-canvas-default`
-- `--vsc-text <- --ds-text-primary`
-- `--vsc-border <- --ds-border-default`
-- `--vsc-accent <- --ds-product-accent`
+- `--idpxyz-bg <- --ds-bg-canvas-default`
+- `--idpxyz-text <- --ds-text-primary`
+- `--idpxyz-border <- --ds-border-default`
+- `--idpxyz-accent <- --ds-product-accent`
 
 这样可“先引入 token，再分批替换组件”。
 
@@ -59,14 +59,14 @@
 1. 新建全量 token 定义：`src/design-system/tokens/coreTokens.ts`
 2. 新建 runtime 主题应用器：`src/design-system/theme/applyThemeTokens.ts`
 3. 在 `ThemeContext` 注入 token 应用
-4. 建立 `--ds-* -> --vsc-*` 兼容桥，确保现有页面零中断
+4. 建立 `--ds-* -> --idpxyz-*` 兼容桥，确保现有页面零中断
 5. 完成文档侧命名和结构收敛（不再按 P 阶段命名）
 
 ## 5. 持续治理动作（非分阶段）
 
 1. Tailwind config 逐步改为直接消费 `--ds-*`
 2. 页面硬编码颜色持续清零
-3. `--vsc-*` 兼容桥在稳定后下线
+3. `--idpxyz-*` 兼容桥在稳定后下线
 4. Figma 与代码 token 命名保持单一事实来源
 
 ---
@@ -89,7 +89,7 @@
 
 ### 风险 A：视觉回归
 
-- 控制：保留 `--vsc-*` 兼容层一段时间，先“等价映射”再“语义升级”
+- 控制：保留 `--idpxyz-*` 兼容层一段时间，先“等价映射”再“语义升级”
 
 ### 风险 B：组件绕过 token
 

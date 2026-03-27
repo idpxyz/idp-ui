@@ -30,7 +30,7 @@ const rulesData: RuleItem[] = [
 const statusConfig: Record<RuleStatus, { label: string; cls: string }> = {
   active: { label: '生效中', cls: 'text-green-400 bg-green-400/10' },
   paused: { label: '已暂停', cls: 'text-yellow-400 bg-yellow-400/10' },
-  draft: { label: '草稿', cls: 'text-vscode-textMuted bg-vscode-hover' },
+  draft: { label: '草稿', cls: 'text-idpxyz-textMuted bg-idpxyz-hover' },
 };
 
 const categoryConfig: Record<RuleCategory, { label: string; icon: React.ElementType }> = {
@@ -144,35 +144,35 @@ export default function RulesManagement() {
   };
 
   return (
-    <div className="flex-1 flex flex-col overflow-hidden bg-vscode-editor min-w-0">
-      <div className="flex items-center justify-between px-5 py-2.5 border-b border-vscode-border shrink-0">
+    <div className="flex-1 flex flex-col overflow-hidden bg-idpxyz-editor min-w-0">
+      <div className="flex items-center justify-between px-5 py-2.5 border-b border-idpxyz-border shrink-0">
         <div className="flex items-center gap-3">
-          <IconCatalog size={16} className="text-vscode-accent" />
-          <h1 className="text-[14px] font-semibold text-vscode-textBright">规则策略</h1>
-          <span className="text-[11px] text-vscode-textMuted">{activeCount} 条生效规则</span>
+          <IconCatalog size={16} className="text-idpxyz-accent" />
+          <h1 className="text-[14px] font-semibold text-idpxyz-textBright">规则策略</h1>
+          <span className="text-[11px] text-idpxyz-textMuted">{activeCount} 条生效规则</span>
         </div>
         <div className="flex items-center gap-1.5">
           <Button variant="default" size="sm" onClick={openCreateModal}><IconPlus size={12} /> 新建规则</Button>
         </div>
       </div>
 
-      <div className="flex items-center gap-2 px-5 py-2 border-b border-vscode-border shrink-0">
-        <div className="flex items-center bg-vscode-inputBg rounded px-2 h-[26px] border border-vscode-border flex-1 max-w-[360px]">
-          <IconSearch size={11} className="text-vscode-textMuted mr-1.5 shrink-0" />
+      <div className="flex items-center gap-2 px-5 py-2 border-b border-idpxyz-border shrink-0">
+        <div className="flex items-center bg-idpxyz-inputBg rounded px-2 h-[26px] border border-idpxyz-border flex-1 max-w-[360px]">
+          <IconSearch size={11} className="text-idpxyz-textMuted mr-1.5 shrink-0" />
           <input
             value={q}
             onChange={(e) => setQ(e.target.value)}
             placeholder="搜索规则名称、ID、条件..."
-            className="bg-transparent border-none outline-none text-[11px] text-vscode-text w-full placeholder:text-vscode-textMuted"
+            className="bg-transparent border-none outline-none text-[11px] text-idpxyz-text w-full placeholder:text-idpxyz-textMuted"
           />
         </div>
-        <select value={status} onChange={(e) => setStatus(e.target.value as 'all' | RuleStatus)} className="bg-vscode-inputBg border border-vscode-border rounded px-2 py-0.5 text-[10px] text-vscode-text outline-none">
+        <select value={status} onChange={(e) => setStatus(e.target.value as 'all' | RuleStatus)} className="bg-idpxyz-inputBg border border-idpxyz-border rounded px-2 py-0.5 text-[10px] text-idpxyz-text outline-none">
           <option value="all">全部状态</option>
           <option value="active">生效中</option>
           <option value="paused">已暂停</option>
           <option value="draft">草稿</option>
         </select>
-        <button onClick={() => setSortDir(d => d === 'asc' ? 'desc' : 'asc')} className="inline-flex items-center gap-1 px-2 py-1 rounded text-[10px] text-vscode-textMuted hover:bg-vscode-hover">
+        <button onClick={() => setSortDir(d => d === 'asc' ? 'desc' : 'asc')} className="inline-flex items-center gap-1 px-2 py-1 rounded text-[10px] text-idpxyz-textMuted hover:bg-idpxyz-hover">
           <IconArrowUpDown size={10} /> 排序: {sortBy}
         </button>
       </div>
@@ -180,15 +180,15 @@ export default function RulesManagement() {
       <div className="flex-1 overflow-auto">
         <table className="w-full text-[11px] border-collapse">
           <thead className="sticky top-0 z-10">
-            <tr className="bg-vscode-sidebar text-vscode-textMuted">
-              <th className="text-left px-5 py-2 font-medium border-b border-vscode-border">规则</th>
-              <th className="text-left px-2 py-2 font-medium border-b border-vscode-border">分类</th>
-              <th className="text-left px-2 py-2 font-medium border-b border-vscode-border">状态</th>
-              <th className="text-right px-2 py-2 font-medium border-b border-vscode-border">优先级</th>
-              <th className="text-right px-2 py-2 font-medium border-b border-vscode-border">24h命中</th>
-              <th className="text-left px-2 py-2 font-medium border-b border-vscode-border">负责人</th>
-              <th className="text-left px-2 py-2 font-medium border-b border-vscode-border">更新时间</th>
-              <th className="text-right px-3 py-2 font-medium border-b border-vscode-border">操作</th>
+            <tr className="bg-idpxyz-sidebar text-idpxyz-textMuted">
+              <th className="text-left px-5 py-2 font-medium border-b border-idpxyz-border">规则</th>
+              <th className="text-left px-2 py-2 font-medium border-b border-idpxyz-border">分类</th>
+              <th className="text-left px-2 py-2 font-medium border-b border-idpxyz-border">状态</th>
+              <th className="text-right px-2 py-2 font-medium border-b border-idpxyz-border">优先级</th>
+              <th className="text-right px-2 py-2 font-medium border-b border-idpxyz-border">24h命中</th>
+              <th className="text-left px-2 py-2 font-medium border-b border-idpxyz-border">负责人</th>
+              <th className="text-left px-2 py-2 font-medium border-b border-idpxyz-border">更新时间</th>
+              <th className="text-right px-3 py-2 font-medium border-b border-idpxyz-border">操作</th>
             </tr>
           </thead>
           <tbody>
@@ -198,17 +198,17 @@ export default function RulesManagement() {
               const CatIcon = cat.icon;
               const sel = r.id === selectedId;
               return (
-                <tr key={r.id} onClick={() => setSelectedId(r.id)} className={`cursor-pointer border-b border-vscode-border ${sel ? 'bg-vscode-accent/8' : 'hover:bg-vscode-hover'}`}>
+                <tr key={r.id} onClick={() => setSelectedId(r.id)} className={`cursor-pointer border-b border-idpxyz-border ${sel ? 'bg-idpxyz-accent/8' : 'hover:bg-idpxyz-hover'}`}>
                   <td className="px-5 py-2.5">
-                    <div className="text-vscode-textBright font-medium">{r.name}</div>
-                    <div className="text-[10px] text-vscode-textMuted mt-0.5">{r.id} · {r.condition}</div>
+                    <div className="text-idpxyz-textBright font-medium">{r.name}</div>
+                    <div className="text-[10px] text-idpxyz-textMuted mt-0.5">{r.id} · {r.condition}</div>
                   </td>
                   <td className="px-2 py-2.5"><span className="inline-flex items-center gap-1"><CatIcon size={10} /> {cat.label}</span></td>
                   <td className="px-2 py-2.5"><Badge text={st.label} cls={st.cls} /></td>
                   <td className="px-2 py-2.5 text-right">{r.priority}</td>
-                  <td className="px-2 py-2.5 text-right text-vscode-textBright font-medium">{r.hitCount24h.toLocaleString()}</td>
+                  <td className="px-2 py-2.5 text-right text-idpxyz-textBright font-medium">{r.hitCount24h.toLocaleString()}</td>
                   <td className="px-2 py-2.5">{r.owner}</td>
-                  <td className="px-2 py-2.5 text-vscode-textMuted">{r.updatedAt}</td>
+                  <td className="px-2 py-2.5 text-idpxyz-textMuted">{r.updatedAt}</td>
                   <td className="px-3 py-2.5">
                     <div className="flex items-center justify-end gap-1.5">
                       <Button
@@ -237,35 +237,35 @@ export default function RulesManagement() {
       </div>
 
       {selected && (
-        <div className="px-5 py-2 border-t border-vscode-border bg-vscode-sidebar text-[11px]">
-          <span className="text-vscode-textMuted">动作:</span>
-          <span className="ml-2 text-vscode-text">{selected.action}</span>
-          <span className="ml-3 text-vscode-textMuted">| 条件:</span>
-          <span className="ml-2 text-vscode-text">{selected.condition}</span>
+        <div className="px-5 py-2 border-t border-idpxyz-border bg-idpxyz-sidebar text-[11px]">
+          <span className="text-idpxyz-textMuted">动作:</span>
+          <span className="ml-2 text-idpxyz-text">{selected.action}</span>
+          <span className="ml-3 text-idpxyz-textMuted">| 条件:</span>
+          <span className="ml-2 text-idpxyz-text">{selected.condition}</span>
         </div>
       )}
 
       {modalOpen && (
         <div className="absolute inset-0 bg-black/45 flex items-center justify-center z-40">
-          <div className="w-[640px] max-w-[92vw] rounded border border-vscode-border bg-vscode-panelBg shadow-xl">
-            <div className="flex items-center justify-between px-4 h-[40px] border-b border-vscode-border">
-              <span className="text-[13px] text-vscode-textBright font-medium">{editingId ? '编辑规则' : '新建规则'}</span>
-              <button onClick={() => setModalOpen(false)} className="text-vscode-textMuted hover:text-vscode-text">
+          <div className="w-[640px] max-w-[92vw] rounded border border-idpxyz-border bg-idpxyz-panelBg shadow-xl">
+            <div className="flex items-center justify-between px-4 h-[40px] border-b border-idpxyz-border">
+              <span className="text-[13px] text-idpxyz-textBright font-medium">{editingId ? '编辑规则' : '新建规则'}</span>
+              <button onClick={() => setModalOpen(false)} className="text-idpxyz-textMuted hover:text-idpxyz-text">
                 <IconClose size={14} />
               </button>
             </div>
             <div className="p-4 grid grid-cols-2 gap-3 text-[11px]">
               <label className="flex flex-col gap-1">
-                <span className="text-vscode-textMuted">规则名称</span>
-                <input value={form.name} onChange={(e) => setForm(f => ({ ...f, name: e.target.value }))} className="bg-vscode-inputBg border border-vscode-border rounded px-2 py-1.5 outline-none text-vscode-text" />
+                <span className="text-idpxyz-textMuted">规则名称</span>
+                <input value={form.name} onChange={(e) => setForm(f => ({ ...f, name: e.target.value }))} className="bg-idpxyz-inputBg border border-idpxyz-border rounded px-2 py-1.5 outline-none text-idpxyz-text" />
               </label>
               <label className="flex flex-col gap-1">
-                <span className="text-vscode-textMuted">负责人</span>
-                <input value={form.owner} onChange={(e) => setForm(f => ({ ...f, owner: e.target.value }))} className="bg-vscode-inputBg border border-vscode-border rounded px-2 py-1.5 outline-none text-vscode-text" />
+                <span className="text-idpxyz-textMuted">负责人</span>
+                <input value={form.owner} onChange={(e) => setForm(f => ({ ...f, owner: e.target.value }))} className="bg-idpxyz-inputBg border border-idpxyz-border rounded px-2 py-1.5 outline-none text-idpxyz-text" />
               </label>
               <label className="flex flex-col gap-1">
-                <span className="text-vscode-textMuted">分类</span>
-                <select value={form.category} onChange={(e) => setForm(f => ({ ...f, category: e.target.value as RuleCategory }))} className="bg-vscode-inputBg border border-vscode-border rounded px-2 py-1.5 outline-none text-vscode-text">
+                <span className="text-idpxyz-textMuted">分类</span>
+                <select value={form.category} onChange={(e) => setForm(f => ({ ...f, category: e.target.value as RuleCategory }))} className="bg-idpxyz-inputBg border border-idpxyz-border rounded px-2 py-1.5 outline-none text-idpxyz-text">
                   <option value="risk">风控</option>
                   <option value="fulfillment">履约</option>
                   <option value="payment">支付</option>
@@ -273,27 +273,27 @@ export default function RulesManagement() {
                 </select>
               </label>
               <label className="flex flex-col gap-1">
-                <span className="text-vscode-textMuted">状态</span>
-                <select value={form.status} onChange={(e) => setForm(f => ({ ...f, status: e.target.value as RuleStatus }))} className="bg-vscode-inputBg border border-vscode-border rounded px-2 py-1.5 outline-none text-vscode-text">
+                <span className="text-idpxyz-textMuted">状态</span>
+                <select value={form.status} onChange={(e) => setForm(f => ({ ...f, status: e.target.value as RuleStatus }))} className="bg-idpxyz-inputBg border border-idpxyz-border rounded px-2 py-1.5 outline-none text-idpxyz-text">
                   <option value="active">生效中</option>
                   <option value="paused">已暂停</option>
                   <option value="draft">草稿</option>
                 </select>
               </label>
               <label className="flex flex-col gap-1 col-span-2">
-                <span className="text-vscode-textMuted">优先级</span>
-                <input type="number" value={form.priority} onChange={(e) => setForm(f => ({ ...f, priority: Number(e.target.value) || 0 }))} className="bg-vscode-inputBg border border-vscode-border rounded px-2 py-1.5 outline-none text-vscode-text" />
+                <span className="text-idpxyz-textMuted">优先级</span>
+                <input type="number" value={form.priority} onChange={(e) => setForm(f => ({ ...f, priority: Number(e.target.value) || 0 }))} className="bg-idpxyz-inputBg border border-idpxyz-border rounded px-2 py-1.5 outline-none text-idpxyz-text" />
               </label>
               <label className="flex flex-col gap-1 col-span-2">
-                <span className="text-vscode-textMuted">触发条件</span>
-                <input value={form.condition} onChange={(e) => setForm(f => ({ ...f, condition: e.target.value }))} className="bg-vscode-inputBg border border-vscode-border rounded px-2 py-1.5 outline-none text-vscode-text" />
+                <span className="text-idpxyz-textMuted">触发条件</span>
+                <input value={form.condition} onChange={(e) => setForm(f => ({ ...f, condition: e.target.value }))} className="bg-idpxyz-inputBg border border-idpxyz-border rounded px-2 py-1.5 outline-none text-idpxyz-text" />
               </label>
               <label className="flex flex-col gap-1 col-span-2">
-                <span className="text-vscode-textMuted">执行动作</span>
-                <input value={form.action} onChange={(e) => setForm(f => ({ ...f, action: e.target.value }))} className="bg-vscode-inputBg border border-vscode-border rounded px-2 py-1.5 outline-none text-vscode-text" />
+                <span className="text-idpxyz-textMuted">执行动作</span>
+                <input value={form.action} onChange={(e) => setForm(f => ({ ...f, action: e.target.value }))} className="bg-idpxyz-inputBg border border-idpxyz-border rounded px-2 py-1.5 outline-none text-idpxyz-text" />
               </label>
             </div>
-            <div className="flex items-center justify-end gap-2 px-4 h-[46px] border-t border-vscode-border">
+            <div className="flex items-center justify-end gap-2 px-4 h-[46px] border-t border-idpxyz-border">
               <Button variant="ghost" size="sm" onClick={() => setModalOpen(false)}>取消</Button>
               <Button variant="default" size="sm" onClick={saveRule}>{editingId ? '保存修改' : '创建规则'}</Button>
             </div>

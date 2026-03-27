@@ -65,9 +65,9 @@ interface RightSidebarProps {
 function Section({ title, defaultExpanded = false, children }: { title: string; defaultExpanded?: boolean; children: React.ReactNode }) {
   const [expanded, setExpanded] = useState(defaultExpanded);
   return (
-    <div className="border-b border-vscode-border">
+    <div className="border-b border-idpxyz-border">
       <div
-        className="flex items-center h-[22px] px-2 text-[11px] uppercase font-bold tracking-wide cursor-pointer hover:bg-vscode-hover"
+        className="flex items-center h-[22px] px-2 text-[11px] uppercase font-bold tracking-wide cursor-pointer hover:bg-idpxyz-hover"
         onClick={() => setExpanded(!expanded)}
       >
         {expanded ? <IconChevronDown size={14} className="mr-1" /> : <IconChevronRight size={14} className="mr-1" />}
@@ -85,9 +85,9 @@ function StatusBadge({ label, color, bgColor }: { label: string; color: string; 
 function DetailRow({ icon: Icon, label, value }: { icon: React.ElementType; label: string; value: string | React.ReactNode }) {
   return (
     <div className="flex items-start gap-1.5 px-3 py-1 text-[11px]">
-      <Icon size={12} className="text-vscode-textMuted shrink-0 mt-0.5" />
-      <span className="text-vscode-textMuted shrink-0 w-[60px]">{label}</span>
-      <span className="text-vscode-text flex-1 text-right truncate">{value}</span>
+      <Icon size={12} className="text-idpxyz-textMuted shrink-0 mt-0.5" />
+      <span className="text-idpxyz-textMuted shrink-0 w-[60px]">{label}</span>
+      <span className="text-idpxyz-text flex-1 text-right truncate">{value}</span>
     </div>
   );
 }
@@ -95,12 +95,12 @@ function DetailRow({ icon: Icon, label, value }: { icon: React.ElementType; labe
 export default function RightSidebar({ width, selectedObject }: RightSidebarProps) {
   if (!selectedObject) {
     return (
-      <div className="bg-vscode-sidebar flex flex-col select-none shrink-0 overflow-hidden" style={{ width }}>
-        <div className="flex items-center justify-between px-3 h-[35px] text-[11px] uppercase tracking-wider text-vscode-breadcrumb shrink-0">
+      <div className="bg-idpxyz-sidebar flex flex-col select-none shrink-0 overflow-hidden" style={{ width }}>
+        <div className="flex items-center justify-between px-3 h-[35px] text-[11px] uppercase tracking-wider text-idpxyz-breadcrumb shrink-0">
           <span>检查器</span>
-          <IconMoreH size={16} className="text-vscode-textMuted cursor-pointer" />
+          <IconMoreH size={16} className="text-idpxyz-textMuted cursor-pointer" />
         </div>
-        <div className="flex-1 flex items-center justify-center text-[12px] text-vscode-textMuted px-4 text-center">
+        <div className="flex-1 flex items-center justify-center text-[12px] text-idpxyz-textMuted px-4 text-center">
           选择一个对象以查看详情
         </div>
       </div>
@@ -108,10 +108,10 @@ export default function RightSidebar({ width, selectedObject }: RightSidebarProp
   }
 
   return (
-    <div className="bg-vscode-sidebar flex flex-col select-none shrink-0 overflow-hidden" style={{ width }}>
-      <div className="flex items-center justify-between px-3 h-[35px] text-[11px] uppercase tracking-wider text-vscode-breadcrumb shrink-0">
+    <div className="bg-idpxyz-sidebar flex flex-col select-none shrink-0 overflow-hidden" style={{ width }}>
+      <div className="flex items-center justify-between px-3 h-[35px] text-[11px] uppercase tracking-wider text-idpxyz-breadcrumb shrink-0">
         <span>检查器</span>
-        <IconMoreH size={16} className="text-vscode-textMuted cursor-pointer" />
+        <IconMoreH size={16} className="text-idpxyz-textMuted cursor-pointer" />
       </div>
       <div className="flex-1 overflow-y-auto">
         {selectedObject.kind === 'order' && <OrderInspector order={selectedObject.payload} />}
@@ -142,23 +142,23 @@ function OrderInspector({ order }: { order: Order }) {
   return (
     <>
       {/* Header */}
-      <div className="px-3 py-2 border-b border-vscode-border">
+      <div className="px-3 py-2 border-b border-idpxyz-border">
         <div className="flex items-center gap-2 mb-1">
-          <IconOrder size={13} className="text-vscode-accent" />
-          <span className="text-[12px] text-vscode-accent font-medium">{order.id}</span>
+          <IconOrder size={13} className="text-idpxyz-accent" />
+          <span className="text-[12px] text-idpxyz-accent font-medium">{order.id}</span>
         </div>
-        <div className="text-[11px] text-vscode-textMuted">{order.customerName} · {order.channel}</div>
+        <div className="text-[11px] text-idpxyz-textMuted">{order.customerName} · {order.channel}</div>
       </div>
 
       <Section title="状态概览" defaultExpanded={true}>
         <div className="px-3 space-y-1.5 text-[11px]">
-          <div className="flex justify-between items-center"><span className="text-vscode-textMuted">订单</span><StatusBadge {...os} /></div>
-          <div className="flex justify-between items-center"><span className="text-vscode-textMuted">支付</span><StatusBadge {...ps} /></div>
-          <div className="flex justify-between items-center"><span className="text-vscode-textMuted">履约</span><StatusBadge {...fs} /></div>
-          <div className="flex justify-between items-center"><span className="text-vscode-textMuted">风险</span><StatusBadge {...rl} /></div>
+          <div className="flex justify-between items-center"><span className="text-idpxyz-textMuted">订单</span><StatusBadge {...os} /></div>
+          <div className="flex justify-between items-center"><span className="text-idpxyz-textMuted">支付</span><StatusBadge {...ps} /></div>
+          <div className="flex justify-between items-center"><span className="text-idpxyz-textMuted">履约</span><StatusBadge {...fs} /></div>
+          <div className="flex justify-between items-center"><span className="text-idpxyz-textMuted">风险</span><StatusBadge {...rl} /></div>
           <div className="flex justify-between items-center">
-            <span className="text-vscode-textMuted">SLA</span>
-            <span className={`font-mono text-[10px] ${order.slaHoursRemaining < 0 ? 'text-red-400' : order.slaHoursRemaining <= 6 ? 'text-yellow-400' : 'text-vscode-text'}`}>
+            <span className="text-idpxyz-textMuted">SLA</span>
+            <span className={`font-mono text-[10px] ${order.slaHoursRemaining < 0 ? 'text-red-400' : order.slaHoursRemaining <= 6 ? 'text-yellow-400' : 'text-idpxyz-text'}`}>
               {order.slaHoursRemaining > 0 ? `剩余 ${order.slaHoursRemaining}小时` : order.slaHoursRemaining < 0 ? `超期 ${Math.abs(order.slaHoursRemaining)}小时` : '-'}
             </span>
           </div>
@@ -175,7 +175,7 @@ function OrderInspector({ order }: { order: Order }) {
         <DetailRow icon={IconClock} label="创建" value={order.createdAt} />
         {order.tags.length > 0 && (
           <div className="px-3 py-1 flex items-center gap-1 flex-wrap">
-            {order.tags.map(t => <span key={t} className="text-[9px] px-1.5 py-0.5 rounded bg-vscode-hover text-vscode-textMuted">{t}</span>)}
+            {order.tags.map(t => <span key={t} className="text-[9px] px-1.5 py-0.5 rounded bg-idpxyz-hover text-idpxyz-textMuted">{t}</span>)}
           </div>
         )}
       </Section>
@@ -200,8 +200,8 @@ function OrderInspector({ order }: { order: Order }) {
               return (
                 <div key={exc.id} className="flex items-center gap-1.5 text-[11px] py-0.5">
                   <IconWarning size={11} style={{ color: sev.color }} />
-                  <span className="text-vscode-accent">{exc.id}</span>
-                  <span className="text-vscode-text flex-1 truncate">{exceptionTypeConfig[exc.type].label}</span>
+                  <span className="text-idpxyz-accent">{exc.id}</span>
+                  <span className="text-idpxyz-text flex-1 truncate">{exceptionTypeConfig[exc.type].label}</span>
                 </div>
               );
             })}
@@ -211,20 +211,20 @@ function OrderInspector({ order }: { order: Order }) {
 
       <Section title="关联对象">
         <div className="px-3 space-y-1 text-[11px]">
-          <div className="flex items-center gap-1.5 px-1 py-0.5 rounded hover:bg-vscode-hover cursor-pointer">
-            <IconUser size={11} className="text-vscode-textMuted" />
-            <span className="text-vscode-textMuted">客户</span>
-            <span className="text-vscode-accent ml-auto">{order.customerName}</span>
+          <div className="flex items-center gap-1.5 px-1 py-0.5 rounded hover:bg-idpxyz-hover cursor-pointer">
+            <IconUser size={11} className="text-idpxyz-textMuted" />
+            <span className="text-idpxyz-textMuted">客户</span>
+            <span className="text-idpxyz-accent ml-auto">{order.customerName}</span>
           </div>
-          <div className="flex items-center gap-1.5 px-1 py-0.5 rounded hover:bg-vscode-hover cursor-pointer">
-            <IconLocation size={11} className="text-vscode-textMuted" />
-            <span className="text-vscode-textMuted">仓库</span>
-            <span className="text-vscode-accent ml-auto">{order.warehouse}</span>
+          <div className="flex items-center gap-1.5 px-1 py-0.5 rounded hover:bg-idpxyz-hover cursor-pointer">
+            <IconLocation size={11} className="text-idpxyz-textMuted" />
+            <span className="text-idpxyz-textMuted">仓库</span>
+            <span className="text-idpxyz-accent ml-auto">{order.warehouse}</span>
           </div>
-          <div className="flex items-center gap-1.5 px-1 py-0.5 rounded hover:bg-vscode-hover cursor-pointer">
-            <IconTag size={11} className="text-vscode-textMuted" />
-            <span className="text-vscode-textMuted">店铺</span>
-            <span className="text-vscode-accent ml-auto">{order.store}</span>
+          <div className="flex items-center gap-1.5 px-1 py-0.5 rounded hover:bg-idpxyz-hover cursor-pointer">
+            <IconTag size={11} className="text-idpxyz-textMuted" />
+            <span className="text-idpxyz-textMuted">店铺</span>
+            <span className="text-idpxyz-accent ml-auto">{order.store}</span>
           </div>
         </div>
       </Section>
@@ -293,32 +293,32 @@ function ExceptionInspector({ exception }: { exception: OMSException }) {
 
   return (
     <>
-      <div className="px-3 py-2 border-b border-vscode-border">
+      <div className="px-3 py-2 border-b border-idpxyz-border">
         <div className="flex items-center gap-2 mb-1">
           <IconWarning size={13} className="text-red-400" />
-          <span className="text-[12px] text-vscode-accent font-medium">{exception.id}</span>
+          <span className="text-[12px] text-idpxyz-accent font-medium">{exception.id}</span>
           <StatusBadge {...sev} />
         </div>
-        <div className="text-[11px] text-vscode-textMuted">{exception.orderId} · {exception.customerName}</div>
+        <div className="text-[11px] text-idpxyz-textMuted">{exception.orderId} · {exception.customerName}</div>
       </div>
 
       <Section title="异常信息" defaultExpanded={true}>
         <div className="px-3 space-y-1.5 text-[11px]">
-          <div className="flex justify-between"><span className="text-vscode-textMuted">类型</span><StatusBadge {...tp} /></div>
-          <div className="flex justify-between"><span className="text-vscode-textMuted">严重度</span><StatusBadge {...sev} /></div>
-          <div className="flex justify-between"><span className="text-vscode-textMuted">金额</span><span className="text-vscode-textBright font-medium">${exception.amount.toLocaleString()}</span></div>
+          <div className="flex justify-between"><span className="text-idpxyz-textMuted">类型</span><StatusBadge {...tp} /></div>
+          <div className="flex justify-between"><span className="text-idpxyz-textMuted">严重度</span><StatusBadge {...sev} /></div>
+          <div className="flex justify-between"><span className="text-idpxyz-textMuted">金额</span><span className="text-idpxyz-textBright font-medium">${exception.amount.toLocaleString()}</span></div>
           <div className="flex justify-between">
-            <span className="text-vscode-textMuted">SLA</span>
-            <span className={exception.slaHoursRemaining < 0 ? 'text-red-400 font-medium' : 'text-vscode-text'}>
+            <span className="text-idpxyz-textMuted">SLA</span>
+            <span className={exception.slaHoursRemaining < 0 ? 'text-red-400 font-medium' : 'text-idpxyz-text'}>
               {exception.slaHoursRemaining > 0 ? `剩余 ${exception.slaHoursRemaining}小时` : `超期 ${Math.abs(exception.slaHoursRemaining)}小时`}
             </span>
           </div>
-          <div className="flex justify-between"><span className="text-vscode-textMuted">负责人</span><span className="text-vscode-text">{exception.assignedTo || '未分配'}</span></div>
+          <div className="flex justify-between"><span className="text-idpxyz-textMuted">负责人</span><span className="text-idpxyz-text">{exception.assignedTo || '未分配'}</span></div>
         </div>
       </Section>
 
       <Section title="描述" defaultExpanded={true}>
-        <div className="px-3 text-[11px] text-vscode-text leading-relaxed">{exception.description}</div>
+        <div className="px-3 text-[11px] text-idpxyz-text leading-relaxed">{exception.description}</div>
       </Section>
 
       <Section title="快捷操作" defaultExpanded={true}>
@@ -348,19 +348,19 @@ function ExceptionInspector({ exception }: { exception: OMSException }) {
 function PromotionInspector({ promotion }: { promotion: Promotion }) {
   return (
     <>
-      <div className="px-3 py-2 border-b border-vscode-border">
+      <div className="px-3 py-2 border-b border-idpxyz-border">
         <div className="flex items-center gap-2 mb-1">
-          <IconTag size={13} className="text-vscode-accent" />
-          <span className="text-[12px] text-vscode-accent font-medium">{promotion.id}</span>
+          <IconTag size={13} className="text-idpxyz-accent" />
+          <span className="text-[12px] text-idpxyz-accent font-medium">{promotion.id}</span>
         </div>
-        <div className="text-[11px] text-vscode-text">{promotion.name}</div>
+        <div className="text-[11px] text-idpxyz-text">{promotion.name}</div>
       </div>
       <Section title="状态概览" defaultExpanded={true}>
         <div className="px-3 space-y-1.5 text-[11px]">
-          <div className="flex justify-between items-center"><span className="text-vscode-textMuted">类型</span><StatusBadge {...promotionTypeConfig[promotion.type]} /></div>
-          <div className="flex justify-between items-center"><span className="text-vscode-textMuted">状态</span><StatusBadge {...promotionStatusConfig[promotion.status]} /></div>
-          <div className="flex justify-between"><span className="text-vscode-textMuted">可叠加</span><span className="text-vscode-text">{promotion.stackable ? '是' : '否'}</span></div>
-          <div className="flex justify-between"><span className="text-vscode-textMuted">优先级</span><span className="text-vscode-text">{promotion.priority}</span></div>
+          <div className="flex justify-between items-center"><span className="text-idpxyz-textMuted">类型</span><StatusBadge {...promotionTypeConfig[promotion.type]} /></div>
+          <div className="flex justify-between items-center"><span className="text-idpxyz-textMuted">状态</span><StatusBadge {...promotionStatusConfig[promotion.status]} /></div>
+          <div className="flex justify-between"><span className="text-idpxyz-textMuted">可叠加</span><span className="text-idpxyz-text">{promotion.stackable ? '是' : '否'}</span></div>
+          <div className="flex justify-between"><span className="text-idpxyz-textMuted">优先级</span><span className="text-idpxyz-text">{promotion.priority}</span></div>
         </div>
       </Section>
       <Section title="活动信息" defaultExpanded={true}>
@@ -377,19 +377,19 @@ function PromotionInspector({ promotion }: { promotion: Promotion }) {
 function CouponInspector({ coupon }: { coupon: Coupon }) {
   return (
     <>
-      <div className="px-3 py-2 border-b border-vscode-border">
+      <div className="px-3 py-2 border-b border-idpxyz-border">
         <div className="flex items-center gap-2 mb-1">
-          <IconTag size={13} className="text-vscode-accent" />
-          <span className="text-[12px] text-vscode-accent font-medium">{coupon.code}</span>
+          <IconTag size={13} className="text-idpxyz-accent" />
+          <span className="text-[12px] text-idpxyz-accent font-medium">{coupon.code}</span>
         </div>
-        <div className="text-[11px] text-vscode-text">{coupon.name}</div>
+        <div className="text-[11px] text-idpxyz-text">{coupon.name}</div>
       </div>
       <Section title="状态概览" defaultExpanded={true}>
         <div className="px-3 space-y-1.5 text-[11px]">
-          <div className="flex justify-between items-center"><span className="text-vscode-textMuted">类型</span><StatusBadge {...couponTypeConfig[coupon.type]} /></div>
-          <div className="flex justify-between items-center"><span className="text-vscode-textMuted">状态</span><StatusBadge {...couponStatusConfig[coupon.status]} /></div>
-          <div className="flex justify-between"><span className="text-vscode-textMuted">新客专享</span><span className="text-vscode-text">{coupon.newUserOnly ? '是' : '否'}</span></div>
-          <div className="flex justify-between"><span className="text-vscode-textMuted">可叠加</span><span className="text-vscode-text">{coupon.stackable ? '是' : '否'}</span></div>
+          <div className="flex justify-between items-center"><span className="text-idpxyz-textMuted">类型</span><StatusBadge {...couponTypeConfig[coupon.type]} /></div>
+          <div className="flex justify-between items-center"><span className="text-idpxyz-textMuted">状态</span><StatusBadge {...couponStatusConfig[coupon.status]} /></div>
+          <div className="flex justify-between"><span className="text-idpxyz-textMuted">新客专享</span><span className="text-idpxyz-text">{coupon.newUserOnly ? '是' : '否'}</span></div>
+          <div className="flex justify-between"><span className="text-idpxyz-textMuted">可叠加</span><span className="text-idpxyz-text">{coupon.stackable ? '是' : '否'}</span></div>
         </div>
       </Section>
       <Section title="券信息" defaultExpanded={true}>
@@ -416,21 +416,21 @@ function CustomerInspector({ customer }: { customer: Customer }) {
 
   return (
     <>
-      <div className="px-3 py-2 border-b border-vscode-border">
+      <div className="px-3 py-2 border-b border-idpxyz-border">
         <div className="flex items-center gap-2 mb-1">
           <span className="text-[18px]">{customer.avatar}</span>
-          <span className="text-[12px] text-vscode-textBright font-medium">{customer.name}</span>
+          <span className="text-[12px] text-idpxyz-textBright font-medium">{customer.name}</span>
           <StatusBadge {...ts} />
         </div>
-        <div className="text-[10px] text-vscode-textMuted">{customer.id} · {customer.email}</div>
+        <div className="text-[10px] text-idpxyz-textMuted">{customer.id} · {customer.email}</div>
       </div>
 
       <Section title="状态概览" defaultExpanded={true}>
         <div className="px-3 space-y-1.5 text-[11px]">
-          <div className="flex justify-between items-center"><span className="text-vscode-textMuted">状态</span><StatusBadge {...ss} /></div>
-          <div className="flex justify-between items-center"><span className="text-vscode-textMuted">等级</span><StatusBadge {...ts} /></div>
-          <div className="flex justify-between items-center"><span className="text-vscode-textMuted">RFM分群</span><StatusBadge {...rs} /></div>
-          <div className="flex justify-between"><span className="text-vscode-textMuted">积分</span><span className="text-vscode-textBright font-medium">{customer.loyaltyPoints.toLocaleString()}</span></div>
+          <div className="flex justify-between items-center"><span className="text-idpxyz-textMuted">状态</span><StatusBadge {...ss} /></div>
+          <div className="flex justify-between items-center"><span className="text-idpxyz-textMuted">等级</span><StatusBadge {...ts} /></div>
+          <div className="flex justify-between items-center"><span className="text-idpxyz-textMuted">RFM分群</span><StatusBadge {...rs} /></div>
+          <div className="flex justify-between"><span className="text-idpxyz-textMuted">积分</span><span className="text-idpxyz-textBright font-medium">{customer.loyaltyPoints.toLocaleString()}</span></div>
         </div>
       </Section>
 
@@ -453,14 +453,14 @@ function CustomerInspector({ customer }: { customer: Customer }) {
       {customer.tags.length > 0 && (
         <Section title="标签" defaultExpanded={true}>
           <div className="px-3 flex gap-1 flex-wrap">
-            {customer.tags.map(t => <span key={t} className="text-[9px] px-1.5 py-0.5 rounded bg-vscode-hover text-vscode-textMuted">{t}</span>)}
+            {customer.tags.map(t => <span key={t} className="text-[9px] px-1.5 py-0.5 rounded bg-idpxyz-hover text-idpxyz-textMuted">{t}</span>)}
           </div>
         </Section>
       )}
 
       {customer.notes && (
         <Section title="备注" defaultExpanded={false}>
-          <div className="px-3 text-[11px] text-vscode-text leading-relaxed">{customer.notes}</div>
+          <div className="px-3 text-[11px] text-idpxyz-text leading-relaxed">{customer.notes}</div>
         </Section>
       )}
 
@@ -529,12 +529,12 @@ function CustomerInspector({ customer }: { customer: Customer }) {
 function ProductInspector({ product }: { product: SPU }) {
   return (
     <>
-      <div className="px-3 py-2 border-b border-vscode-border">
+      <div className="px-3 py-2 border-b border-idpxyz-border">
         <div className="flex items-center gap-2 mb-1">
-          <IconPackage size={13} className="text-vscode-accent" />
-          <span className="text-[12px] text-vscode-accent font-medium">{product.id}</span>
+          <IconPackage size={13} className="text-idpxyz-accent" />
+          <span className="text-[12px] text-idpxyz-accent font-medium">{product.id}</span>
         </div>
-        <div className="text-[11px] text-vscode-text">{product.name}</div>
+        <div className="text-[11px] text-idpxyz-text">{product.name}</div>
       </div>
       <Section title="商品信息" defaultExpanded={true}>
         <DetailRow icon={IconTag} label="品牌" value={product.brand} />
@@ -555,13 +555,13 @@ function POSTransactionInspector({ txn }: { txn: POSTransaction }) {
 
   return (
     <>
-      <div className="px-3 py-2 border-b border-vscode-border">
+      <div className="px-3 py-2 border-b border-idpxyz-border">
         <div className="flex items-center gap-2 mb-1">
-          <IconReceipt size={13} className="text-vscode-accent" />
-          <span className="text-[12px] text-vscode-accent font-medium font-mono">{txn.id}</span>
+          <IconReceipt size={13} className="text-idpxyz-accent" />
+          <span className="text-[12px] text-idpxyz-accent font-medium font-mono">{txn.id}</span>
           <span className="inline-block px-2 py-0.5 rounded text-[10px] font-medium" style={{ color: ts.color, backgroundColor: ts.bgColor }}>{ts.label}</span>
         </div>
-        <div className="text-[11px] text-vscode-textMuted">{txn.storeName} · {txn.cashierName} · {txn.createdAt}</div>
+        <div className="text-[11px] text-idpxyz-textMuted">{txn.storeName} · {txn.cashierName} · {txn.createdAt}</div>
       </div>
 
       <Section title="商品明细" defaultExpanded={true}>
@@ -570,10 +570,10 @@ function POSTransactionInspector({ txn }: { txn: POSTransaction }) {
             <div key={i} className="flex items-center gap-2 text-[11px]">
               <span className="text-[16px]">{item.image}</span>
               <div className="flex-1 min-w-0">
-                <div className="text-vscode-textBright truncate">{item.name}</div>
-                <div className="text-[10px] text-vscode-textMuted">{item.skuName} · ${item.price} x{item.qty}</div>
+                <div className="text-idpxyz-textBright truncate">{item.name}</div>
+                <div className="text-[10px] text-idpxyz-textMuted">{item.skuName} · ${item.price} x{item.qty}</div>
               </div>
-              <span className="text-vscode-textBright font-medium shrink-0">${(item.price * item.qty).toFixed(2)}</span>
+              <span className="text-idpxyz-textBright font-medium shrink-0">${(item.price * item.qty).toFixed(2)}</span>
             </div>
           ))}
         </div>
@@ -581,15 +581,15 @@ function POSTransactionInspector({ txn }: { txn: POSTransaction }) {
 
       <Section title="支付信息" defaultExpanded={true}>
         <div className="px-3 space-y-1.5 text-[11px]">
-          <div className="flex justify-between"><span className="text-vscode-textMuted">小计</span><span className="text-vscode-text">${txn.subtotal.toFixed(2)}</span></div>
-          {txn.discount > 0 && <div className="flex justify-between"><span className="text-vscode-textMuted">优惠</span><span className="text-green-400">-${txn.discount.toFixed(2)}</span></div>}
-          <div className="flex justify-between"><span className="text-vscode-textMuted">税费</span><span className="text-vscode-text">${txn.tax.toFixed(2)}</span></div>
-          <div className="flex justify-between font-bold text-[12px]"><span className="text-vscode-textBright">合计</span><span className="text-vscode-accent">${txn.total.toFixed(2)}</span></div>
-          <div className="flex justify-between items-center"><span className="text-vscode-textMuted">支付方式</span><span className="inline-block px-2 py-0.5 rounded text-[10px] font-medium" style={{ color: pm.color, backgroundColor: pm.bgColor }}>{pm.label}</span></div>
-          {txn.paymentRef && <div className="flex justify-between"><span className="text-vscode-textMuted">流水号</span><span className="text-[10px] font-mono text-vscode-text">{txn.paymentRef}</span></div>}
+          <div className="flex justify-between"><span className="text-idpxyz-textMuted">小计</span><span className="text-idpxyz-text">${txn.subtotal.toFixed(2)}</span></div>
+          {txn.discount > 0 && <div className="flex justify-between"><span className="text-idpxyz-textMuted">优惠</span><span className="text-green-400">-${txn.discount.toFixed(2)}</span></div>}
+          <div className="flex justify-between"><span className="text-idpxyz-textMuted">税费</span><span className="text-idpxyz-text">${txn.tax.toFixed(2)}</span></div>
+          <div className="flex justify-between font-bold text-[12px]"><span className="text-idpxyz-textBright">合计</span><span className="text-idpxyz-accent">${txn.total.toFixed(2)}</span></div>
+          <div className="flex justify-between items-center"><span className="text-idpxyz-textMuted">支付方式</span><span className="inline-block px-2 py-0.5 rounded text-[10px] font-medium" style={{ color: pm.color, backgroundColor: pm.bgColor }}>{pm.label}</span></div>
+          {txn.paymentRef && <div className="flex justify-between"><span className="text-idpxyz-textMuted">流水号</span><span className="text-[10px] font-mono text-idpxyz-text">{txn.paymentRef}</span></div>}
           {txn.paymentMethod === 'cash' && <>
-            <div className="flex justify-between"><span className="text-vscode-textMuted">收取</span><span>${txn.cashReceived.toFixed(2)}</span></div>
-            <div className="flex justify-between"><span className="text-vscode-textMuted">找零</span><span className="text-yellow-400">${txn.changeGiven.toFixed(2)}</span></div>
+            <div className="flex justify-between"><span className="text-idpxyz-textMuted">收取</span><span>${txn.cashReceived.toFixed(2)}</span></div>
+            <div className="flex justify-between"><span className="text-idpxyz-textMuted">找零</span><span className="text-yellow-400">${txn.changeGiven.toFixed(2)}</span></div>
           </>}
         </div>
       </Section>
@@ -604,7 +604,7 @@ function POSTransactionInspector({ txn }: { txn: POSTransaction }) {
 
       {txn.note && (
         <Section title="备注" defaultExpanded={false}>
-          <div className="px-3 text-[11px] text-vscode-text leading-relaxed">{txn.note}</div>
+          <div className="px-3 text-[11px] text-idpxyz-text leading-relaxed">{txn.note}</div>
         </Section>
       )}
 

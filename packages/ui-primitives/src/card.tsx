@@ -5,21 +5,21 @@ import { cn } from '@idpxyz/ui-utils';
 
 const Card = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
   ({ className, ...props }, ref) => (
-    <div ref={ref} className={cn('bg-vscode-sidebar border border-vscode-border rounded-lg shadow-sm hover:shadow-md transition-shadow', className)} {...props} />
+    <div ref={ref} className={cn('bg-idpxyz-sidebar border border-idpxyz-border rounded-lg shadow-sm hover:shadow-md transition-shadow', className)} {...props} />
   )
 );
 Card.displayName = 'Card';
 
 function CardHeader({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
-  return <div className={cn('px-4 py-3 border-b border-vscode-border', className)} {...props} />;
+  return <div className={cn('px-4 py-3 border-b border-idpxyz-border', className)} {...props} />;
 }
 
 function CardTitle({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) {
-  return <h3 className={cn('text-sm font-semibold text-vscode-textBright', className)} {...props} />;
+  return <h3 className={cn('text-sm font-semibold text-idpxyz-textBright', className)} {...props} />;
 }
 
 function CardDescription({ className, ...props }: React.HTMLAttributes<HTMLParagraphElement>) {
-  return <p className={cn('text-[11px] text-vscode-textMuted mt-0.5', className)} {...props} />;
+  return <p className={cn('text-[11px] text-idpxyz-textMuted mt-0.5', className)} {...props} />;
 }
 
 function CardContent({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
@@ -27,7 +27,7 @@ function CardContent({ className, ...props }: React.HTMLAttributes<HTMLDivElemen
 }
 
 function CardFooter({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
-  return <div className={cn('flex items-center justify-end gap-2 px-4 py-3 border-t border-vscode-border', className)} {...props} />;
+  return <div className={cn('flex items-center justify-end gap-2 px-4 py-3 border-t border-idpxyz-border', className)} {...props} />;
 }
 
 interface StatCardProps {
@@ -41,13 +41,13 @@ interface StatCardProps {
 
 function StatCard({ label, value, description, trend, icon, className }: StatCardProps) {
   return (
-    <Card className={cn('p-5 hover:border-vscode-accent/30', className)}>
+    <Card className={cn('p-5 hover:border-idpxyz-accent/30', className)}>
       <div className="flex items-start gap-4">
-        {icon && <div className="p-2.5 rounded-xl bg-vscode-accent/10 text-vscode-accent shrink-0">{icon}</div>}
+        {icon && <div className="p-2.5 rounded-xl bg-idpxyz-accent/10 text-idpxyz-accent shrink-0">{icon}</div>}
         <div className="flex-1 min-w-0">
-          <div className="text-[11px] text-vscode-textMuted font-medium uppercase tracking-wider">{label}</div>
-          <div className="text-2xl font-bold text-vscode-textBright mt-1">{value}</div>
-          {description && <div className="text-[12px] text-vscode-textMuted mt-1.5">{description}</div>}
+          <div className="text-[11px] text-idpxyz-textMuted font-medium uppercase tracking-wider">{label}</div>
+          <div className="text-2xl font-bold text-idpxyz-textBright mt-1">{value}</div>
+          {description && <div className="text-[12px] text-idpxyz-textMuted mt-1.5">{description}</div>}
           {trend && (
             <div className={cn(
               'inline-flex items-center gap-1 text-[11px] mt-2 font-semibold px-2 py-0.5 rounded-full',

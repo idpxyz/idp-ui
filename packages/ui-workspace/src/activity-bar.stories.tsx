@@ -21,10 +21,10 @@ export const Basic: StoryObj<typeof ActivityBar> = {
   render: function ActivityBarDemo() {
     const [active, setActive] = useState('explorer');
     return (
-      <div className="flex h-[420px] rounded-md border border-vscode-border overflow-hidden">
+      <div className="flex h-[420px] rounded-md border border-idpxyz-border overflow-hidden">
         <ActivityBar activeItem={active} onItemClick={setActive} />
-        <div className="flex flex-1 items-center justify-center bg-vscode-bg text-vscode-textMuted text-[13px]">
-          Active: <span className="text-vscode-text ml-1">{active}</span>
+        <div className="flex flex-1 items-center justify-center bg-idpxyz-bg text-idpxyz-textMuted text-[13px]">
+          Active: <span className="text-idpxyz-text ml-1">{active}</span>
         </div>
       </div>
     );

@@ -21,19 +21,19 @@ function Breadcrumb({ items, className, separator }: BreadcrumbProps) {
     <nav aria-label="Breadcrumb" className={cn('flex items-center gap-1 text-[12px]', className)}>
       {items.map((item, i) => (
         <React.Fragment key={i}>
-          {i > 0 && (separator || <ChevronRight size={12} className="text-vscode-textMuted shrink-0" />)}
+          {i > 0 && (separator || <ChevronRight size={12} className="text-idpxyz-textMuted shrink-0" />)}
           {i === items.length - 1 ? (
-            <span className="text-vscode-textBright font-medium" aria-current="page">{item.label}</span>
+            <span className="text-idpxyz-textBright font-medium" aria-current="page">{item.label}</span>
           ) : item.onClick ? (
-            <button onClick={item.onClick} className="text-vscode-textMuted hover:text-vscode-text transition-colors">
+            <button onClick={item.onClick} className="text-idpxyz-textMuted hover:text-idpxyz-text transition-colors">
               {item.label}
             </button>
           ) : item.href ? (
-            <a href={item.href} className="text-vscode-textMuted hover:text-vscode-text transition-colors">
+            <a href={item.href} className="text-idpxyz-textMuted hover:text-idpxyz-text transition-colors">
               {item.label}
             </a>
           ) : (
-            <span className="text-vscode-textMuted">{item.label}</span>
+            <span className="text-idpxyz-textMuted">{item.label}</span>
           )}
         </React.Fragment>
       ))}

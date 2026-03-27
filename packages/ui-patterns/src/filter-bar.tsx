@@ -13,7 +13,7 @@ function FilterBar({ bordered = true, className, children, ...props }: FilterBar
     <div
       className={cn(
         'flex items-center gap-2 px-4 py-1.5',
-        bordered && 'border-b border-vscode-border',
+        bordered && 'border-b border-idpxyz-border',
         className
       )}
       {...props}
@@ -33,13 +33,13 @@ const FilterSearch = React.forwardRef<HTMLInputElement, FilterSearchProps>(
     const hasValue = value !== undefined && value !== '';
     return (
       <div className="relative flex-1">
-        <Search size={12} className="absolute left-2 top-1/2 -translate-y-1/2 text-vscode-textMuted" />
+        <Search size={12} className="absolute left-2 top-1/2 -translate-y-1/2 text-idpxyz-textMuted" />
         <input
           ref={ref}
           type="text"
           value={value}
           className={cn(
-            'h-6 w-full rounded border border-vscode-border bg-vscode-inputBg pl-7 pr-6 text-[11px] text-vscode-text placeholder:text-vscode-textMuted outline-none focus-visible:ring-1 focus-visible:ring-[var(--ds-focus-ring)]',
+            'h-6 w-full rounded border border-idpxyz-border bg-idpxyz-inputBg pl-7 pr-6 text-[11px] text-idpxyz-text placeholder:text-idpxyz-textMuted outline-none focus-visible:ring-1 focus-visible:ring-[var(--ds-focus-ring)]',
             className
           )}
           {...props}
@@ -48,7 +48,7 @@ const FilterSearch = React.forwardRef<HTMLInputElement, FilterSearchProps>(
           <button
             type="button"
             onClick={onClear}
-            className="absolute right-1.5 top-1/2 -translate-y-1/2 rounded p-0.5 text-vscode-textMuted hover:text-vscode-text"
+            className="absolute right-1.5 top-1/2 -translate-y-1/2 rounded p-0.5 text-idpxyz-textMuted hover:text-idpxyz-text"
           >
             <X size={10} />
           </button>
@@ -81,8 +81,8 @@ function FilterChip({ active, onRemove, className, children, ...props }: FilterC
       className={cn(
         'inline-flex h-5 items-center gap-1 rounded-full px-2 text-[10px] transition-colors',
         active
-          ? 'bg-vscode-accent/20 text-vscode-accent'
-          : 'bg-vscode-hover text-vscode-textMuted hover:text-vscode-text',
+          ? 'bg-idpxyz-accent/20 text-idpxyz-accent'
+          : 'bg-idpxyz-hover text-idpxyz-textMuted hover:text-idpxyz-text',
         className
       )}
       {...props}

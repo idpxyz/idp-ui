@@ -41,16 +41,16 @@ function ToastItem({ toast, onDismiss }: { toast: Toast; onDismiss: (id: string)
   return (
     <div className={cn(
       'flex items-start gap-3 px-4 py-3 rounded-lg border shadow-lg min-w-[300px] max-w-[420px]',
-      'bg-vscode-sidebar text-vscode-text animate-in slide-in-from-right',
+      'bg-idpxyz-sidebar text-idpxyz-text animate-in slide-in-from-right',
       colorMap[toast.variant]
     )}>
       <Icon size={16} className="shrink-0 mt-0.5" />
       <div className="flex-1 min-w-0">
         <div className="text-[12px] font-semibold">{toast.title}</div>
-        {toast.description && <div className="text-[11px] text-vscode-textMuted mt-0.5">{toast.description}</div>}
+        {toast.description && <div className="text-[11px] text-idpxyz-textMuted mt-0.5">{toast.description}</div>}
       </div>
-      <button onClick={() => onDismiss(toast.id)} className="shrink-0 p-0.5 rounded hover:bg-vscode-hover" aria-label="Dismiss">
-        <X size={14} className="text-vscode-textMuted" />
+      <button onClick={() => onDismiss(toast.id)} className="shrink-0 p-0.5 rounded hover:bg-idpxyz-hover" aria-label="Dismiss">
+        <X size={14} className="text-idpxyz-textMuted" />
       </button>
     </div>
   );

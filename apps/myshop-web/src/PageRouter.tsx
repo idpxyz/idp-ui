@@ -202,12 +202,12 @@ export default function PageRouter({ tabId, onSelectObject, onOpenTab, isPOSFocu
       );
     default:
       return (
-        <div className="flex-1 flex items-center justify-center bg-vscode-editor text-vscode-textMuted">
+        <div className="flex-1 flex items-center justify-center bg-idpxyz-editor text-idpxyz-textMuted">
           <div className="text-center">
             <div className="text-[32px] mb-3 opacity-20">
               {(() => { const Icon = omsTabIconMap[tabId] || IconLayers; return <Icon size={48} className="mx-auto" />; })()}
             </div>
-            <p className="text-[16px] mb-1 text-vscode-text">{omsTabNameMap[tabId] || tabId}</p>
+            <p className="text-[16px] mb-1 text-idpxyz-text">{omsTabNameMap[tabId] || tabId}</p>
             <p className="text-[12px]">此模块正在开发中</p>
           </div>
         </div>

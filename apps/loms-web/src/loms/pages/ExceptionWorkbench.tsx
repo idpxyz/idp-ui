@@ -63,12 +63,12 @@ export default function ExceptionWorkbench({ onSelectException, onOpenObject }: 
   const owners = [...new Set(exceptions.map((e) => e.owner))];
 
   return (
-    <div className="flex-1 flex flex-col overflow-hidden bg-vscode-editor">
+    <div className="flex-1 flex flex-col overflow-hidden bg-idpxyz-editor">
       {/* Header */}
-      <div className="flex items-center justify-between h-[36px] px-4 border-b border-vscode-border shrink-0 bg-vscode-sidebar select-none">
+      <div className="flex items-center justify-between h-[36px] px-4 border-b border-idpxyz-border shrink-0 bg-idpxyz-sidebar select-none">
         <div className="flex items-center gap-3">
-          <span className="text-[13px] text-vscode-textBright font-semibold">Exception Workbench</span>
-          <span className="text-[11px] text-vscode-textMuted">All Queues</span>
+          <span className="text-[13px] text-idpxyz-textBright font-semibold">Exception Workbench</span>
+          <span className="text-[11px] text-idpxyz-textMuted">All Queues</span>
         </div>
         <div className="flex items-center gap-2">
           <Button variant="secondary" size="sm">
@@ -81,41 +81,41 @@ export default function ExceptionWorkbench({ onSelectException, onOpenObject }: 
       </div>
 
       {/* Filter Bar */}
-      <div className="flex items-center gap-2 px-4 py-2 border-b border-vscode-border shrink-0">
-        <div className="flex items-center bg-vscode-inputBg rounded px-2 h-[26px] w-[220px]">
-          <Search size={12} className="text-vscode-textMuted mr-1.5 shrink-0" />
+      <div className="flex items-center gap-2 px-4 py-2 border-b border-idpxyz-border shrink-0">
+        <div className="flex items-center bg-idpxyz-inputBg rounded px-2 h-[26px] w-[220px]">
+          <Search size={12} className="text-idpxyz-textMuted mr-1.5 shrink-0" />
           <input
             type="text"
             placeholder="Search cases..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="bg-transparent border-none outline-none text-[11px] text-vscode-text w-full placeholder:text-vscode-textMuted"
+            className="bg-transparent border-none outline-none text-[11px] text-idpxyz-text w-full placeholder:text-idpxyz-textMuted"
           />
         </div>
-        <select value={severityFilter} onChange={(e) => setSeverityFilter(e.target.value)} className="bg-vscode-inputBg text-vscode-text text-[11px] h-[26px] px-1.5 rounded border border-vscode-border outline-none cursor-pointer">
+        <select value={severityFilter} onChange={(e) => setSeverityFilter(e.target.value)} className="bg-idpxyz-inputBg text-idpxyz-text text-[11px] h-[26px] px-1.5 rounded border border-idpxyz-border outline-none cursor-pointer">
           <option value="all">All Severity</option>
           {Object.entries(exceptionSeverityConfig).map(([key, cfg]) => (
             <option key={key} value={key}>{cfg.label}</option>
           ))}
         </select>
-        <select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)} className="bg-vscode-inputBg text-vscode-text text-[11px] h-[26px] px-1.5 rounded border border-vscode-border outline-none cursor-pointer">
+        <select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)} className="bg-idpxyz-inputBg text-idpxyz-text text-[11px] h-[26px] px-1.5 rounded border border-idpxyz-border outline-none cursor-pointer">
           <option value="all">All Status</option>
           <option value="open">Open</option>
           <option value="investigating">Investigating</option>
           <option value="resolved">Resolved</option>
         </select>
-        <select value={ownerFilter} onChange={(e) => setOwnerFilter(e.target.value)} className="bg-vscode-inputBg text-vscode-text text-[11px] h-[26px] px-1.5 rounded border border-vscode-border outline-none cursor-pointer">
+        <select value={ownerFilter} onChange={(e) => setOwnerFilter(e.target.value)} className="bg-idpxyz-inputBg text-idpxyz-text text-[11px] h-[26px] px-1.5 rounded border border-idpxyz-border outline-none cursor-pointer">
           <option value="all">All Owners</option>
           <option value="unassigned">Unassigned</option>
           <option value="assigned">Assigned</option>
         </select>
-        <select value={reasonFilter} onChange={(e) => setReasonFilter(e.target.value)} className="bg-vscode-inputBg text-vscode-text text-[11px] h-[26px] px-1.5 rounded border border-vscode-border outline-none cursor-pointer">
+        <select value={reasonFilter} onChange={(e) => setReasonFilter(e.target.value)} className="bg-idpxyz-inputBg text-idpxyz-text text-[11px] h-[26px] px-1.5 rounded border border-idpxyz-border outline-none cursor-pointer">
           <option value="all">All Reasons</option>
           {[...new Set(exceptions.map((e) => e.reason))].map((r) => (
             <option key={r} value={r}>{r}</option>
           ))}
         </select>
-        <select value={dueWindowFilter} onChange={(e) => setDueWindowFilter(e.target.value)} className="bg-vscode-inputBg text-vscode-text text-[11px] h-[26px] px-1.5 rounded border border-vscode-border outline-none cursor-pointer">
+        <select value={dueWindowFilter} onChange={(e) => setDueWindowFilter(e.target.value)} className="bg-idpxyz-inputBg text-idpxyz-text text-[11px] h-[26px] px-1.5 rounded border border-idpxyz-border outline-none cursor-pointer">
           <option value="all">All Due</option>
           <option value="overdue">Overdue</option>
           <option value="2h">Due &lt; 2h</option>
@@ -125,8 +125,8 @@ export default function ExceptionWorkbench({ onSelectException, onOpenObject }: 
         {/* Bulk actions */}
         {selectedIds.size > 0 && (
           <>
-            <div className="w-px h-4 bg-vscode-border mx-1" />
-            <span className="text-[11px] text-vscode-accent font-medium">{selectedIds.size} selected</span>
+            <div className="w-px h-4 bg-idpxyz-border mx-1" />
+            <span className="text-[11px] text-idpxyz-accent font-medium">{selectedIds.size} selected</span>
             {[
               { icon: UserPlus, label: 'Assign' },
               { icon: RefreshCw, label: 'Resync' },
@@ -148,7 +148,7 @@ export default function ExceptionWorkbench({ onSelectException, onOpenObject }: 
           ].map((s) => (
             <div key={s.label} className="flex items-center gap-0.5">
               <span className={`font-bold ${s.color}`}>{s.value}</span>
-              <span className="text-vscode-textMuted">{s.label}</span>
+              <span className="text-idpxyz-textMuted">{s.label}</span>
             </div>
           ))}
         </div>
@@ -157,20 +157,20 @@ export default function ExceptionWorkbench({ onSelectException, onOpenObject }: 
       {/* 3-column split: Queue + Investigation + Action */}
       <div className="flex-1 flex overflow-hidden">
         {/* Left: Case Queue */}
-        <div className="w-[360px] shrink-0 flex flex-col border-r border-vscode-border overflow-hidden">
-          <div className="flex items-center gap-2 px-3 py-1.5 border-b border-vscode-border shrink-0">
-            <span className="text-[10px] text-vscode-textMuted uppercase tracking-wider font-semibold">Queue</span>
-            <span className="text-[10px] text-vscode-textMuted ml-auto">{filtered.length} cases</span>
+        <div className="w-[360px] shrink-0 flex flex-col border-r border-idpxyz-border overflow-hidden">
+          <div className="flex items-center gap-2 px-3 py-1.5 border-b border-idpxyz-border shrink-0">
+            <span className="text-[10px] text-idpxyz-textMuted uppercase tracking-wider font-semibold">Queue</span>
+            <span className="text-[10px] text-idpxyz-textMuted ml-auto">{filtered.length} cases</span>
           </div>
-          <div className="flex items-center gap-2 px-3 py-1 border-b border-vscode-border shrink-0">
-            <span className="text-[10px] text-vscode-textMuted">Sort:</span>
-            <select value={sortBy} onChange={(e) => setSortBy(e.target.value as 'sla' | 'severity' | 'age')} className="bg-vscode-inputBg text-vscode-text text-[10px] h-[20px] px-1 rounded border border-vscode-border outline-none cursor-pointer">
+          <div className="flex items-center gap-2 px-3 py-1 border-b border-idpxyz-border shrink-0">
+            <span className="text-[10px] text-idpxyz-textMuted">Sort:</span>
+            <select value={sortBy} onChange={(e) => setSortBy(e.target.value as 'sla' | 'severity' | 'age')} className="bg-idpxyz-inputBg text-idpxyz-text text-[10px] h-[20px] px-1 rounded border border-idpxyz-border outline-none cursor-pointer">
               <option value="sla">SLA â–?</option>
               <option value="severity">Severity</option>
               <option value="age">Age</option>
             </select>
-            <span className="text-[10px] text-vscode-textMuted ml-1">Group:</span>
-            <select value={groupBy} onChange={(e) => setGroupBy(e.target.value as 'none' | 'reason' | 'severity' | 'owner')} className="bg-vscode-inputBg text-vscode-text text-[10px] h-[20px] px-1 rounded border border-vscode-border outline-none cursor-pointer">
+            <span className="text-[10px] text-idpxyz-textMuted ml-1">Group:</span>
+            <select value={groupBy} onChange={(e) => setGroupBy(e.target.value as 'none' | 'reason' | 'severity' | 'owner')} className="bg-idpxyz-inputBg text-idpxyz-text text-[10px] h-[20px] px-1 rounded border border-idpxyz-border outline-none cursor-pointer">
               <option value="none">None</option>
               <option value="reason">Reason</option>
               <option value="severity">Severity</option>
@@ -185,8 +185,8 @@ export default function ExceptionWorkbench({ onSelectException, onOpenObject }: 
                 <div
                   key={exc.id}
                   onClick={() => handleSelect(exc)}
-                  className={`px-3 ${density === 'compact' ? 'py-1.5' : 'py-3'} border-b border-vscode-border cursor-pointer transition-colors ${
-                    selectedId === exc.id ? 'bg-vscode-activeItem' : 'hover:bg-vscode-hover'
+                  className={`px-3 ${density === 'compact' ? 'py-1.5' : 'py-3'} border-b border-idpxyz-border cursor-pointer transition-colors ${
+                    selectedId === exc.id ? 'bg-idpxyz-activeItem' : 'hover:bg-idpxyz-hover'
                   }`}
                 >
                   <div className="flex items-center gap-2 mb-1">
@@ -195,7 +195,7 @@ export default function ExceptionWorkbench({ onSelectException, onOpenObject }: 
                       checked={selectedIds.has(exc.id)}
                       onChange={(e) => { e.stopPropagation(); toggleSelect(exc.id); }}
                       onClick={(e) => e.stopPropagation()}
-                      className="accent-vscode-accent"
+                      className="accent-idpxyz-accent"
                     />
                     <span
                       className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-bold uppercase"
@@ -204,11 +204,11 @@ export default function ExceptionWorkbench({ onSelectException, onOpenObject }: 
                       <AlertTriangle size={10} />
                       {sev.label}
                     </span>
-                    <span className="text-[11px] text-vscode-accent font-medium">{exc.id}</span>
-                    <span className="text-[10px] text-vscode-textMuted ml-auto">{exc.age}</span>
+                    <span className="text-[11px] text-idpxyz-accent font-medium">{exc.id}</span>
+                    <span className="text-[10px] text-idpxyz-textMuted ml-auto">{exc.age}</span>
                   </div>
-                  <div className="text-[12px] text-vscode-text truncate mb-1">{exc.reason}</div>
-                  <div className="flex items-center gap-3 text-[11px] text-vscode-textMuted">
+                  <div className="text-[12px] text-idpxyz-text truncate mb-1">{exc.reason}</div>
+                  <div className="flex items-center gap-3 text-[11px] text-idpxyz-textMuted">
                     <span>{exc.objectType}: {exc.objectId}</span>
                     <span className="flex items-center gap-0.5">
                       <User size={10} />
@@ -231,52 +231,52 @@ export default function ExceptionWorkbench({ onSelectException, onOpenObject }: 
             <div className="flex-1 overflow-y-auto p-4">
               {/* Case Summary */}
               <div className="flex items-center gap-2 mb-3">
-                <span className="text-[16px] font-bold text-vscode-textBright">{selected.id}</span>
+                <span className="text-[16px] font-bold text-idpxyz-textBright">{selected.id}</span>
                 <span
                   className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-bold uppercase"
                   style={{ color: exceptionSeverityConfig[selected.severity].color, backgroundColor: exceptionSeverityConfig[selected.severity].bgColor }}
                 >
                   {exceptionSeverityConfig[selected.severity].label}
                 </span>
-                <span className="px-2 py-0.5 rounded text-[11px] bg-vscode-hover text-vscode-text capitalize">{selected.status}</span>
+                <span className="px-2 py-0.5 rounded text-[11px] bg-idpxyz-hover text-idpxyz-text capitalize">{selected.status}</span>
               </div>
-              <div className="text-[13px] text-vscode-text mb-4">{selected.reason}</div>
+              <div className="text-[13px] text-idpxyz-text mb-4">{selected.reason}</div>
 
               {/* Description */}
               <div className="mb-4">
-                <h4 className="text-[10px] uppercase tracking-wider text-vscode-textMuted font-semibold mb-1.5">Symptom / Description</h4>
-                <p className="text-[12px] text-vscode-text leading-relaxed bg-vscode-sidebar rounded p-3 border border-vscode-border">{selected.description}</p>
+                <h4 className="text-[10px] uppercase tracking-wider text-idpxyz-textMuted font-semibold mb-1.5">Symptom / Description</h4>
+                <p className="text-[12px] text-idpxyz-text leading-relaxed bg-idpxyz-sidebar rounded p-3 border border-idpxyz-border">{selected.description}</p>
               </div>
 
               {/* Linked Facts */}
               <div className="mb-4">
-                <h4 className="text-[10px] uppercase tracking-wider text-vscode-textMuted font-semibold mb-1.5">Linked Facts</h4>
+                <h4 className="text-[10px] uppercase tracking-wider text-idpxyz-textMuted font-semibold mb-1.5">Linked Facts</h4>
                 <div className="grid grid-cols-2 gap-2 text-[11px]">
-                  <div className="bg-vscode-sidebar rounded p-2 border border-vscode-border">
-                    <span className="text-vscode-textMuted">Object</span>
-                    <Button variant="ghost" size="sm" className="p-0 h-auto text-vscode-accent hover:underline" onClick={() => onOpenObject?.(selected.objectId)}>
+                  <div className="bg-idpxyz-sidebar rounded p-2 border border-idpxyz-border">
+                    <span className="text-idpxyz-textMuted">Object</span>
+                    <Button variant="ghost" size="sm" className="p-0 h-auto text-idpxyz-accent hover:underline" onClick={() => onOpenObject?.(selected.objectId)}>
                       {selected.objectType}: {selected.objectId} <ArrowRight size={10} className="inline" />
                     </Button>
                   </div>
-                  <div className="bg-vscode-sidebar rounded p-2 border border-vscode-border">
-                    <span className="text-vscode-textMuted">Owner</span>
-                    <div className="flex items-center gap-1 mt-0.5 text-vscode-text"><User size={11} /> {selected.owner}</div>
+                  <div className="bg-idpxyz-sidebar rounded p-2 border border-idpxyz-border">
+                    <span className="text-idpxyz-textMuted">Owner</span>
+                    <div className="flex items-center gap-1 mt-0.5 text-idpxyz-text"><User size={11} /> {selected.owner}</div>
                   </div>
-                  <div className="bg-vscode-sidebar rounded p-2 border border-vscode-border">
-                    <span className="text-vscode-textMuted">SLA Due</span>
-                    <div className="text-vscode-text mt-0.5">{selected.slaDue}</div>
+                  <div className="bg-idpxyz-sidebar rounded p-2 border border-idpxyz-border">
+                    <span className="text-idpxyz-textMuted">SLA Due</span>
+                    <div className="text-idpxyz-text mt-0.5">{selected.slaDue}</div>
                   </div>
-                  <div className="bg-vscode-sidebar rounded p-2 border border-vscode-border">
-                    <span className="text-vscode-textMuted">Age</span>
-                    <div className="text-vscode-text mt-0.5">{selected.age}</div>
+                  <div className="bg-idpxyz-sidebar rounded p-2 border border-idpxyz-border">
+                    <span className="text-idpxyz-textMuted">Age</span>
+                    <div className="text-idpxyz-text mt-0.5">{selected.age}</div>
                   </div>
                 </div>
               </div>
 
               {/* Timeline */}
               <div className="mb-4">
-                <h4 className="text-[10px] uppercase tracking-wider text-vscode-textMuted font-semibold mb-1.5">Case Timeline</h4>
-                <div className="space-y-2 pl-3 border-l-2 border-vscode-border">
+                <h4 className="text-[10px] uppercase tracking-wider text-idpxyz-textMuted font-semibold mb-1.5">Case Timeline</h4>
+                <div className="space-y-2 pl-3 border-l-2 border-idpxyz-border">
                   {[
                     { time: 'Now', event: `Status: ${selected.status}`, type: 'status' },
                     { time: selected.age + ' ago', event: 'Case created', type: 'create' },
@@ -284,9 +284,9 @@ export default function ExceptionWorkbench({ onSelectException, onOpenObject }: 
                     ...(selected.owner !== 'Unassigned' ? [{ time: '30m later', event: `Assigned to ${selected.owner}`, type: 'assign' }] : []),
                   ].map((t, i) => (
                     <div key={i} className="flex items-start gap-2 text-[11px]">
-                      <span className="w-1.5 h-1.5 rounded-full bg-vscode-textMuted mt-1.5 shrink-0" />
-                      <span className="text-vscode-textMuted w-[70px] shrink-0">{t.time}</span>
-                      <span className="text-vscode-text">{t.event}</span>
+                      <span className="w-1.5 h-1.5 rounded-full bg-idpxyz-textMuted mt-1.5 shrink-0" />
+                      <span className="text-idpxyz-textMuted w-[70px] shrink-0">{t.time}</span>
+                      <span className="text-idpxyz-text">{t.event}</span>
                     </div>
                   ))}
                 </div>
@@ -294,15 +294,15 @@ export default function ExceptionWorkbench({ onSelectException, onOpenObject }: 
 
               {/* Root Cause Hints */}
               <div className="mb-4">
-                <h4 className="text-[10px] uppercase tracking-wider text-vscode-textMuted font-semibold mb-1.5">Root Cause Hints</h4>
+                <h4 className="text-[10px] uppercase tracking-wider text-idpxyz-textMuted font-semibold mb-1.5">Root Cause Hints</h4>
                 <div className="flex items-start gap-2 bg-blue-500/10 rounded p-3 text-[12px] border border-blue-500/20">
                   <CheckCircle size={14} className="text-blue-400 shrink-0 mt-0.5" />
-                  <span className="text-vscode-text">{selected.recommendedAction}</span>
+                  <span className="text-idpxyz-text">{selected.recommendedAction}</span>
                 </div>
               </div>
             </div>
           ) : (
-            <div className="flex-1 flex items-center justify-center text-vscode-textMuted text-[12px]">
+            <div className="flex-1 flex items-center justify-center text-idpxyz-textMuted text-[12px]">
               Select a case from the queue to investigate
             </div>
           )}
@@ -310,10 +310,10 @@ export default function ExceptionWorkbench({ onSelectException, onOpenObject }: 
 
         {/* Right: Action Panel */}
         {selected && (
-          <div className="w-[200px] shrink-0 border-l border-vscode-border overflow-y-auto bg-vscode-sidebar">
+          <div className="w-[200px] shrink-0 border-l border-idpxyz-border overflow-y-auto bg-idpxyz-sidebar">
             {/* Ownership */}
-            <div className="p-3 border-b border-vscode-border">
-              <h4 className="text-[10px] uppercase tracking-wider text-vscode-textMuted font-semibold mb-2">Ownership</h4>
+            <div className="p-3 border-b border-idpxyz-border">
+              <h4 className="text-[10px] uppercase tracking-wider text-idpxyz-textMuted font-semibold mb-2">Ownership</h4>
               <div className="space-y-1">
                 {[
                   { icon: UserPlus, label: 'Assign to me' },
@@ -321,15 +321,15 @@ export default function ExceptionWorkbench({ onSelectException, onOpenObject }: 
                   { icon: ArrowRight, label: 'Transfer queue' },
                 ].map((a) => (
                   <Button key={a.label} variant="ghost" size="sm" className="w-full justify-start">
-                    <a.icon size={12} className="text-vscode-textMuted shrink-0" /> {a.label}
+                    <a.icon size={12} className="text-idpxyz-textMuted shrink-0" /> {a.label}
                   </Button>
                 ))}
               </div>
             </div>
 
             {/* Recovery */}
-            <div className="p-3 border-b border-vscode-border">
-              <h4 className="text-[10px] uppercase tracking-wider text-vscode-textMuted font-semibold mb-2">Recovery</h4>
+            <div className="p-3 border-b border-idpxyz-border">
+              <h4 className="text-[10px] uppercase tracking-wider text-idpxyz-textMuted font-semibold mb-2">Recovery</h4>
               <div className="space-y-1">
                 {[
                   { icon: RefreshCw, label: 'Re-sync tracking' },
@@ -338,15 +338,15 @@ export default function ExceptionWorkbench({ onSelectException, onOpenObject }: 
                   { icon: PenLine, label: 'Create manual leg' },
                 ].map((a) => (
                   <Button key={a.label} variant="ghost" size="sm" className="w-full justify-start">
-                    <a.icon size={12} className="text-vscode-textMuted shrink-0" /> {a.label}
+                    <a.icon size={12} className="text-idpxyz-textMuted shrink-0" /> {a.label}
                   </Button>
                 ))}
               </div>
             </div>
 
             {/* Escalation */}
-            <div className="p-3 border-b border-vscode-border">
-              <h4 className="text-[10px] uppercase tracking-wider text-vscode-textMuted font-semibold mb-2">Escalation</h4>
+            <div className="p-3 border-b border-idpxyz-border">
+              <h4 className="text-[10px] uppercase tracking-wider text-idpxyz-textMuted font-semibold mb-2">Escalation</h4>
               <div className="space-y-1">
                 {[
                   { icon: ArrowUpRight, label: 'Escalate to carrier' },
@@ -354,7 +354,7 @@ export default function ExceptionWorkbench({ onSelectException, onOpenObject }: 
                   { icon: MessageSquare, label: 'Notify stakeholder' },
                 ].map((a) => (
                   <Button key={a.label} variant="ghost" size="sm" className="w-full justify-start">
-                    <a.icon size={12} className="text-vscode-textMuted shrink-0" /> {a.label}
+                    <a.icon size={12} className="text-idpxyz-textMuted shrink-0" /> {a.label}
                   </Button>
                 ))}
               </div>
@@ -362,7 +362,7 @@ export default function ExceptionWorkbench({ onSelectException, onOpenObject }: 
 
             {/* Resolution */}
             <div className="p-3">
-              <h4 className="text-[10px] uppercase tracking-wider text-vscode-textMuted font-semibold mb-2">Resolution</h4>
+              <h4 className="text-[10px] uppercase tracking-wider text-idpxyz-textMuted font-semibold mb-2">Resolution</h4>
               <div className="space-y-1">
                 {[
                   { icon: CheckCircle, label: 'Mark resolved', color: 'text-green-400' },
@@ -371,7 +371,7 @@ export default function ExceptionWorkbench({ onSelectException, onOpenObject }: 
                   { icon: PenLine, label: 'Add resolution note' },
                 ].map((a) => (
                   <Button key={a.label} variant="ghost" size="sm" className={`w-full justify-start ${a.color || ''}`}>
-                    <a.icon size={12} className={`shrink-0 ${a.color ? '' : 'text-vscode-textMuted'}`} /> {a.label}
+                    <a.icon size={12} className={`shrink-0 ${a.color ? '' : 'text-idpxyz-textMuted'}`} /> {a.label}
                   </Button>
                 ))}
               </div>

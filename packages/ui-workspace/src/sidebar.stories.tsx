@@ -64,7 +64,7 @@ export const Basic: StoryObj<typeof Sidebar> = {
   render: function SidebarDemo() {
     const [active, setActive] = useState('order');
     return (
-      <div className="flex h-[420px] rounded-md border border-vscode-border overflow-hidden">
+      <div className="flex h-[420px] rounded-md border border-idpxyz-border overflow-hidden">
         <Sidebar
           width={260}
           activeFile={active}
@@ -72,8 +72,8 @@ export const Basic: StoryObj<typeof Sidebar> = {
           navigationSections={navigationSections}
           iconMap={iconMap}
         />
-        <div className="flex flex-1 items-center justify-center bg-vscode-bg text-vscode-textMuted text-[13px]">
-          Active: <span className="text-vscode-text ml-1">{active}</span>
+        <div className="flex flex-1 items-center justify-center bg-idpxyz-bg text-idpxyz-textMuted text-[13px]">
+          Active: <span className="text-idpxyz-text ml-1">{active}</span>
         </div>
       </div>
     );

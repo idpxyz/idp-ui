@@ -49,23 +49,23 @@ export default function CarrierOps({ onOpenTab }: CarrierOpsProps) {
   ];
 
   return (
-    <div className="flex-1 flex flex-col overflow-hidden bg-vscode-editor">
-      <div className="flex items-center h-[22px] px-3 text-[12px] text-vscode-breadcrumb bg-vscode-editor border-b border-vscode-border shrink-0 select-none">
-        <span className="hover:text-vscode-textBright cursor-pointer">Operations</span>
-        <ChevronRight size={14} className="mx-0.5 text-vscode-textMuted" />
-        <span className="text-vscode-text">Carrier Ops</span>
+    <div className="flex-1 flex flex-col overflow-hidden bg-idpxyz-editor">
+      <div className="flex items-center h-[22px] px-3 text-[12px] text-idpxyz-breadcrumb bg-idpxyz-editor border-b border-idpxyz-border shrink-0 select-none">
+        <span className="hover:text-idpxyz-textBright cursor-pointer">Operations</span>
+        <ChevronRight size={14} className="mx-0.5 text-idpxyz-textMuted" />
+        <span className="text-idpxyz-text">Carrier Ops</span>
       </div>
 
       {/* Tabs */}
-      <div className="flex items-center h-[32px] border-b border-vscode-border shrink-0 px-2">
+      <div className="flex items-center h-[32px] border-b border-idpxyz-border shrink-0 px-2">
         {tabs.map((tab) => (
           <Button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
             variant="ghost"
             size="sm"
-            className={`h-full rounded-none px-3 text-[11px] border-b-2 border-r border-vscode-border/50 last:border-r-0 ${
-              activeTab === tab.id ? 'text-vscode-text border-b-vscode-accent' : 'text-vscode-textMuted border-transparent hover:text-vscode-text'
+            className={`h-full rounded-none px-3 text-[11px] border-b-2 border-r border-idpxyz-border/50 last:border-r-0 ${
+              activeTab === tab.id ? 'text-idpxyz-text border-b-idpxyz-accent' : 'text-idpxyz-textMuted border-transparent hover:text-idpxyz-text'
             }`}
           >
             {tab.label}
@@ -79,22 +79,22 @@ export default function CarrierOps({ onOpenTab }: CarrierOpsProps) {
       <div className="flex-1 overflow-auto p-4">
         {activeTab === 'status' && (
           <table className="w-full text-[12px] border-collapse">
-            <thead className="sticky top-0 bg-vscode-sidebar z-10">
-              <tr className="text-vscode-textMuted text-left">
-                <th className="px-3 py-2 font-medium border-b border-vscode-border">Carrier</th>
-                <th className="px-3 py-2 font-medium border-b border-vscode-border">Endpoint</th>
-                <th className="px-3 py-2 font-medium border-b border-vscode-border text-center">Status</th>
-                <th className="px-3 py-2 font-medium border-b border-vscode-border">Last Call</th>
-                <th className="px-3 py-2 font-medium border-b border-vscode-border">Success Rate</th>
-                <th className="px-3 py-2 font-medium border-b border-vscode-border">Avg Latency</th>
+            <thead className="sticky top-0 bg-idpxyz-sidebar z-10">
+              <tr className="text-idpxyz-textMuted text-left">
+                <th className="px-3 py-2 font-medium border-b border-idpxyz-border">Carrier</th>
+                <th className="px-3 py-2 font-medium border-b border-idpxyz-border">Endpoint</th>
+                <th className="px-3 py-2 font-medium border-b border-idpxyz-border text-center">Status</th>
+                <th className="px-3 py-2 font-medium border-b border-idpxyz-border">Last Call</th>
+                <th className="px-3 py-2 font-medium border-b border-idpxyz-border">Success Rate</th>
+                <th className="px-3 py-2 font-medium border-b border-idpxyz-border">Avg Latency</th>
               </tr>
             </thead>
             <tbody>
               {carrierIntegrations.map((ci, i) => (
-                <tr key={i} className="hover:bg-vscode-hover">
-                  <td className="px-3 py-2 border-b border-vscode-border text-vscode-text font-medium">{ci.carrier}</td>
-                  <td className="px-3 py-2 border-b border-vscode-border text-vscode-text">{ci.endpoint}</td>
-                  <td className="px-3 py-2 border-b border-vscode-border text-center">
+                <tr key={i} className="hover:bg-idpxyz-hover">
+                  <td className="px-3 py-2 border-b border-idpxyz-border text-idpxyz-text font-medium">{ci.carrier}</td>
+                  <td className="px-3 py-2 border-b border-idpxyz-border text-idpxyz-text">{ci.endpoint}</td>
+                  <td className="px-3 py-2 border-b border-idpxyz-border text-center">
                     <span className={`inline-flex items-center gap-1 text-[10px] px-2 py-0.5 rounded font-medium ${
                       ci.status === 'online' ? 'bg-green-500/20 text-green-400' :
                       ci.status === 'degraded' ? 'bg-yellow-500/20 text-yellow-400' :
@@ -104,9 +104,9 @@ export default function CarrierOps({ onOpenTab }: CarrierOpsProps) {
                       {ci.status}
                     </span>
                   </td>
-                  <td className="px-3 py-2 border-b border-vscode-border text-vscode-textMuted">{ci.lastCall}</td>
-                  <td className="px-3 py-2 border-b border-vscode-border text-vscode-text">{ci.successRate}</td>
-                  <td className="px-3 py-2 border-b border-vscode-border text-vscode-text font-mono">{ci.avgLatency}</td>
+                  <td className="px-3 py-2 border-b border-idpxyz-border text-idpxyz-textMuted">{ci.lastCall}</td>
+                  <td className="px-3 py-2 border-b border-idpxyz-border text-idpxyz-text">{ci.successRate}</td>
+                  <td className="px-3 py-2 border-b border-idpxyz-border text-idpxyz-text font-mono">{ci.avgLatency}</td>
                 </tr>
               ))}
             </tbody>
@@ -116,17 +116,17 @@ export default function CarrierOps({ onOpenTab }: CarrierOpsProps) {
         {activeTab === 'retries' && (
           <div className="space-y-2">
             {retryQueue.map((r) => (
-              <div key={r.id} className={`bg-vscode-sidebar rounded p-3 border ${r.status === 'exhausted' ? 'border-red-500/30' : 'border-vscode-border'}`}>
+              <div key={r.id} className={`bg-idpxyz-sidebar rounded p-3 border ${r.status === 'exhausted' ? 'border-red-500/30' : 'border-idpxyz-border'}`}>
                 <div className="flex items-center gap-2 mb-1.5">
-                  <span className="text-[12px] text-vscode-accent font-medium">{r.id}</span>
-                  <span className="text-[10px] px-1.5 py-0.5 rounded bg-vscode-hover text-vscode-textMuted font-medium">{r.carrier}</span>
-                  <span className="text-[12px] text-vscode-text">{r.operation}</span>
+                  <span className="text-[12px] text-idpxyz-accent font-medium">{r.id}</span>
+                  <span className="text-[10px] px-1.5 py-0.5 rounded bg-idpxyz-hover text-idpxyz-textMuted font-medium">{r.carrier}</span>
+                  <span className="text-[12px] text-idpxyz-text">{r.operation}</span>
                   <span className={`ml-auto text-[10px] px-1.5 py-0.5 rounded font-medium ${
                     r.status === 'pending' ? 'bg-yellow-500/20 text-yellow-400' : 'bg-red-500/20 text-red-400'
                   }`}>{r.status}</span>
                 </div>
-                <div className="flex items-center gap-4 text-[11px] text-vscode-textMuted">
-                  <span className="flex items-center gap-1 cursor-pointer text-vscode-accent hover:underline" onClick={() => onOpenTab?.(`shipment-detail-${r.shipment}`, `Shipment ${r.shipment}`)}>{r.shipment}</span>
+                <div className="flex items-center gap-4 text-[11px] text-idpxyz-textMuted">
+                  <span className="flex items-center gap-1 cursor-pointer text-idpxyz-accent hover:underline" onClick={() => onOpenTab?.(`shipment-detail-${r.shipment}`, `Shipment ${r.shipment}`)}>{r.shipment}</span>
                   <span>Attempts: {r.attempts}/{r.maxAttempts}</span>
                   <span className="flex items-center gap-1"><Clock size={10} /> Last: {r.lastAttempt}</span>
                   {r.nextRetry !== '-' && <span className="flex items-center gap-1"><RefreshCw size={10} /> Next: {r.nextRetry}</span>}
@@ -148,23 +148,23 @@ export default function CarrierOps({ onOpenTab }: CarrierOpsProps) {
         {activeTab === 'incidents' && (
           <div className="space-y-2">
             {incidents.map((inc) => (
-              <div key={inc.id} className={`bg-vscode-sidebar rounded p-3 border ${
+              <div key={inc.id} className={`bg-idpxyz-sidebar rounded p-3 border ${
                 inc.status === 'active'
                   ? inc.severity === 'critical' ? 'border-red-500/30' : 'border-yellow-500/30'
-                  : 'border-vscode-border'
+                  : 'border-idpxyz-border'
               }`}>
                 <div className="flex items-center gap-2 mb-1">
                   <span className={`w-2 h-2 rounded-full shrink-0 ${
                     inc.severity === 'critical' ? 'bg-red-500' : inc.severity === 'warning' ? 'bg-yellow-500' : 'bg-blue-500'
                   }`} />
-                  <span className="text-[12px] text-vscode-accent font-medium">{inc.id}</span>
-                  <span className="text-[10px] px-1.5 py-0.5 rounded bg-vscode-hover text-vscode-textMuted font-medium">{inc.carrier}</span>
-                  <span className="text-[12px] text-vscode-textBright font-medium">{inc.title}</span>
+                  <span className="text-[12px] text-idpxyz-accent font-medium">{inc.id}</span>
+                  <span className="text-[10px] px-1.5 py-0.5 rounded bg-idpxyz-hover text-idpxyz-textMuted font-medium">{inc.carrier}</span>
+                  <span className="text-[12px] text-idpxyz-textBright font-medium">{inc.title}</span>
                   <span className={`ml-auto text-[10px] px-1.5 py-0.5 rounded font-medium ${
                     inc.status === 'active' ? 'bg-red-500/20 text-red-400' : 'bg-green-500/20 text-green-400'
                   }`}>{inc.status}</span>
                 </div>
-                <div className="flex items-center gap-4 text-[11px] text-vscode-textMuted">
+                <div className="flex items-center gap-4 text-[11px] text-idpxyz-textMuted">
                   <span>Started: {inc.started}</span>
                   <span>Duration: {inc.duration}</span>
                   <span>Affected shipments: {inc.affected}</span>

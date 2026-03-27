@@ -3,14 +3,14 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@idpxyz/ui-utils';
 
 const buttonVariants = cva(
-  'inline-flex items-center justify-center gap-1.5 rounded text-[12px] transition-colors disabled:pointer-events-none disabled:opacity-40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ds-focus-ring)] focus-visible:ring-offset-1',
+  'inline-flex items-center justify-center gap-1.5 rounded text-[12px] transition-colors disabled:pointer-events-none disabled:opacity-40 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-idpxyz-accent/35 focus-visible:ring-offset-0',
   {
     variants: {
       variant: {
-        default: 'bg-vscode-accent/20 text-vscode-accent hover:bg-vscode-accent/30',
-        secondary: 'bg-vscode-hover text-vscode-textMuted hover:text-vscode-text',
-        ghost: 'text-vscode-textMuted hover:bg-vscode-hover hover:text-vscode-text',
-        outline: 'border border-vscode-border bg-transparent text-vscode-textMuted hover:bg-vscode-hover hover:text-vscode-text',
+        default: 'bg-idpxyz-accent/20 text-idpxyz-accent hover:bg-idpxyz-accent/30',
+        secondary: 'bg-idpxyz-hover text-idpxyz-textMuted hover:text-idpxyz-text',
+        ghost: 'text-idpxyz-textMuted hover:bg-idpxyz-hover hover:text-idpxyz-text',
+        outline: 'border border-idpxyz-border bg-transparent text-idpxyz-textMuted hover:bg-idpxyz-hover hover:text-idpxyz-text',
         danger: 'bg-red-500/20 text-red-400 hover:bg-red-500/30',
       },
       size: {

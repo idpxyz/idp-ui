@@ -47,10 +47,10 @@ function renderOmsPage(tabId: string) {
       return <FulfillmentQueuePage />;
     default:
       return (
-        <div className="flex-1 flex flex-col items-center justify-center bg-vscode-editor text-vscode-textMuted gap-2 p-6">
-          <p className="text-[15px] text-vscode-textBright font-medium">Oms Demo Web Workbench</p>
+        <div className="flex-1 flex flex-col items-center justify-center bg-idpxyz-editor text-idpxyz-textMuted gap-2 p-6">
+          <p className="text-[15px] text-idpxyz-textBright font-medium">Oms Demo Web Workbench</p>
           <p className="text-[13px]">
-            未知页面 <code className="text-vscode-accent">{tabId}</code>
+            未知页面 <code className="text-idpxyz-accent">{tabId}</code>
           </p>
         </div>
       );
@@ -179,7 +179,7 @@ export default function App() {
   return (
     <ThemeProvider product={PRODUCT}>
       <ToastProvider>
-        <div className="h-screen w-screen flex flex-col overflow-hidden bg-vscode-bg">
+        <div className="h-screen w-screen flex flex-col overflow-hidden bg-idpxyz-bg">
           <TitleBar
             rightSidebarVisible={rightSidebarVisible}
             onToggleRightSidebar={() => setRightSidebarVisible((v) => !v)}
@@ -256,7 +256,7 @@ export default function App() {
                           onSplitDown={() => split('vertical')}
                           renderContent={(tabId) => renderOmsPage(tabId)}
                           emptyStateContent={
-                            <div className="flex-1 flex items-center justify-center bg-vscode-editor text-vscode-textMuted">
+                            <div className="flex-1 flex items-center justify-center bg-idpxyz-editor text-idpxyz-textMuted">
                               No tabs
                             </div>
                           }
@@ -271,10 +271,10 @@ export default function App() {
                 <>
                   <div className="resize-handle-v shrink-0" onMouseDown={bottomPanelResize.handleMouseDown} />
                   <div
-                    className="shrink-0 flex flex-col border-t border-vscode-border bg-vscode-editor text-vscode-textMuted overflow-hidden"
+                    className="shrink-0 flex flex-col border-t border-idpxyz-border bg-idpxyz-editor text-idpxyz-textMuted overflow-hidden"
                     style={{ height: bottomPanelResize.size }}
                   >
-                    <div className="h-9 px-3 flex items-center border-b border-vscode-border text-[11px] uppercase tracking-wide text-vscode-textMuted shrink-0">
+                    <div className="h-9 px-3 flex items-center border-b border-idpxyz-border text-[11px] uppercase tracking-wide text-idpxyz-textMuted shrink-0">
                       Bottom panel
                     </div>
                     <div className="flex-1 min-h-0 px-3 py-2 text-[13px]">
@@ -289,16 +289,16 @@ export default function App() {
               <>
                 <div className="resize-handle-h shrink-0" onMouseDown={rightSidebarResize.handleMouseDown} />
                 <aside
-                  className="shrink-0 flex flex-col border-l border-vscode-border bg-vscode-sidebar text-vscode-text overflow-hidden"
+                  className="shrink-0 flex flex-col border-l border-idpxyz-border bg-idpxyz-sidebar text-idpxyz-text overflow-hidden"
                   style={{ width: rightSidebarResize.size }}
                 >
-                  <div className="h-9 px-3 flex items-center border-b border-vscode-border text-[11px] uppercase tracking-wide text-vscode-textMuted shrink-0">
+                  <div className="h-9 px-3 flex items-center border-b border-idpxyz-border text-[11px] uppercase tracking-wide text-idpxyz-textMuted shrink-0">
                     Secondary sidebar
                   </div>
-                  <div className="flex-1 min-h-0 px-3 py-2 text-[13px] text-vscode-textMuted space-y-2">
+                  <div className="flex-1 min-h-0 px-3 py-2 text-[13px] text-idpxyz-textMuted space-y-2">
                     <p>
                       当前页：
-                      <span className="text-vscode-text">
+                      <span className="text-idpxyz-text">
                         {tabTitles[activeGroup.activeTab] ?? activeGroup.activeTab}
                       </span>
                     </p>

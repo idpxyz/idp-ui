@@ -1,8 +1,9 @@
 'use client';
 
 import * as React from 'react';
-import { cn } from '@idpxyz/ui-utils';
+import * as DialogPrimitive from '@radix-ui/react-dialog';
 import { X } from 'lucide-react';
+import { cn } from '@idpxyz/ui-utils';
 
 interface DrawerProps {
   open: boolean;
@@ -12,42 +13,38 @@ interface DrawerProps {
 }
 
 function Drawer({ open, onOpenChange, side = 'right', children }: DrawerProps) {
-  React.useEffect(() => {
-    if (open) {
-      document.body.style.overflow = 'hidden';
-      return () => { document.body.style.overflow = ''; };
-    }
-  }, [open]);
-
-  if (!open) return null;
-
-  const slideClass = side === 'right'
-    ? 'right-0 animate-in slide-in-from-right'
-    : 'left-0 animate-in slide-in-from-left';
-
   return (
-    <div className="fixed inset-0 z-50" role="dialog" aria-modal="true">
-      <div
-        className="fixed inset-0 bg-black/40"
-        onClick={() => onOpenChange(false)}
-        aria-hidden="true"
-      />
-      <div className={cn('fixed top-0 bottom-0 w-96 max-w-[85vw] bg-vscode-sidebar border-l border-vscode-border shadow-xl flex flex-col', slideClass)}>
-        {children}
-      </div>
-    </div>
+    <DialogPrimitive.Root open={open} onOpenChange={onOpenChange}>
+      <DialogPrimitive.Portal>
+        <DialogPrimitive.Overlay
+          className={cn(
+            'fixed inset-0 z-50 bg-black/40',
+            'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0'
+          )}
+        />
+        <DialogPrimitive.Content
+          className={cn(
+            'fixed z-50 flex flex-col bg-idpxyz-sidebar border-idpxyz-border shadow-xl outline-none focus:outline-none',
+            'data-[state=open]:animate-in data-[state=closed]:animate-out',
+            side === 'right'
+              ? 'right-0 top-0 h-full w-96 max-w-[85vw] border-l data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right'
+              : 'left-0 top-0 h-full w-96 max-w-[85vw] border-r data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left'
+          )}
+        >
+          {children}
+        </DialogPrimitive.Content>
+      </DialogPrimitive.Portal>
+    </DialogPrimitive.Root>
   );
 }
 
-function DrawerHeader({ className, children, onClose, ...props }: React.HTMLAttributes<HTMLDivElement> & { onClose?: () => void }) {
+function DrawerHeader({ className, children, ...props }: React.HTMLAttributes<HTMLDivElement>) {
   return (
-    <div className={cn('flex items-center justify-between px-4 py-3 border-b border-vscode-border shrink-0', className)} {...props}>
+    <div className={cn('flex items-center justify-between px-4 py-3 border-b border-idpxyz-border shrink-0', className)} {...props}>
       <div className="flex-1">{children}</div>
-      {onClose && (
-        <button onClick={onClose} className="p-1 rounded hover:bg-vscode-hover text-vscode-textMuted" aria-label="Close">
-          <X size={16} />
-        </button>
-      )}
+      <DialogPrimitive.Close className="p-1 rounded hover:bg-idpxyz-hover text-idpxyz-textMuted" aria-label="Close">
+        <X size={16} />
+      </DialogPrimitive.Close>
     </div>
   );
 }
@@ -57,7 +54,7 @@ function DrawerBody({ className, ...props }: React.HTMLAttributes<HTMLDivElement
 }
 
 function DrawerFooter({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
-  return <div className={cn('flex items-center justify-end gap-2 px-4 py-3 border-t border-vscode-border shrink-0', className)} {...props} />;
+  return <div className={cn('flex items-center justify-end gap-2 px-4 py-3 border-t border-idpxyz-border shrink-0', className)} {...props} />;
 }
 
 export { Drawer, DrawerHeader, DrawerBody, DrawerFooter };

@@ -17,7 +17,7 @@ function Progress({ value, max = 100, size = 'md', variant = 'default', showLabe
   const pct = Math.min(100, Math.max(0, (value / max) * 100));
   const heightMap = { sm: 'h-1', md: 'h-2', lg: 'h-3' };
   const colorMap = {
-    default: 'bg-vscode-accent',
+    default: 'bg-idpxyz-accent',
     success: 'bg-green-500',
     warning: 'bg-yellow-500',
     error: 'bg-red-500',
@@ -26,7 +26,7 @@ function Progress({ value, max = 100, size = 'md', variant = 'default', showLabe
   return (
     <div className={cn('w-full', className)}>
       <div
-        className={cn('w-full bg-vscode-border/50 rounded-full overflow-hidden', heightMap[size])}
+        className={cn('w-full bg-idpxyz-border/50 rounded-full overflow-hidden', heightMap[size])}
         role="progressbar"
         aria-valuenow={value}
         aria-valuemin={0}
@@ -38,7 +38,7 @@ function Progress({ value, max = 100, size = 'md', variant = 'default', showLabe
         />
       </div>
       {showLabel && (
-        <div className="mt-1 text-[11px] text-vscode-textMuted text-right">{Math.round(pct)}%</div>
+        <div className="mt-1 text-[11px] text-idpxyz-textMuted text-right">{Math.round(pct)}%</div>
       )}
     </div>
   );
@@ -51,7 +51,7 @@ interface SpinnerProps {
 
 function Spinner({ size = 'md', className }: SpinnerProps) {
   const sizeMap = { sm: 'w-4 h-4', md: 'w-6 h-6', lg: 'w-8 h-8' };
-  return <Loader2 className={cn('animate-spin text-vscode-textMuted', sizeMap[size], className)} />;
+  return <Loader2 className={cn('animate-spin text-idpxyz-textMuted', sizeMap[size], className)} />;
 }
 
 export { Progress, Spinner };

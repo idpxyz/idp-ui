@@ -12,17 +12,17 @@ function ThemeDemo() {
   const { theme, toggleTheme } = useTheme();
   const isDark = theme === 'dark';
   const swatches: { varName: `--${string}`; label: string; labelOnAccent?: boolean }[] = [
-    { varName: '--vsc-bg', label: 'Background' },
-    { varName: '--vsc-sidebar', label: 'Surface' },
-    { varName: '--vsc-accent', label: 'Accent', labelOnAccent: true },
-    { varName: '--vsc-border', label: 'Border' },
+    { varName: '--idpxyz-bg', label: 'Background' },
+    { varName: '--idpxyz-sidebar', label: 'Surface' },
+    { varName: '--idpxyz-accent', label: 'Accent', labelOnAccent: true },
+    { varName: '--idpxyz-border', label: 'Border' },
   ];
   return (
     <div
       style={{
         padding: 24,
-        background: 'var(--vsc-bg)',
-        color: 'var(--vsc-text)',
+        background: 'var(--idpxyz-bg)',
+        color: 'var(--idpxyz-text)',
         borderRadius: 8,
         minHeight: 200,
       }}
@@ -36,9 +36,9 @@ function ThemeDemo() {
         style={{
           padding: '8px 20px',
           borderRadius: 6,
-          border: '1px solid var(--vsc-border)',
-          background: 'var(--vsc-sidebar)',
-          color: 'var(--vsc-text)',
+          border: '1px solid var(--idpxyz-border)',
+          background: 'var(--idpxyz-sidebar)',
+          color: 'var(--idpxyz-text)',
           cursor: 'pointer',
           fontSize: 13,
           fontWeight: 600,
@@ -54,9 +54,9 @@ function ThemeDemo() {
               padding: 16,
               borderRadius: 8,
               background: `var(${varName})`,
-              border: '1px solid var(--vsc-border)',
+              border: '1px solid var(--idpxyz-border)',
               fontSize: 11,
-              color: labelOnAccent ? '#ffffff' : 'var(--vsc-text)',
+              color: labelOnAccent ? '#ffffff' : 'var(--idpxyz-text)',
               textAlign: 'center',
             }}
           >

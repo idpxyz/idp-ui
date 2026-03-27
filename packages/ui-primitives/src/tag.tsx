@@ -10,12 +10,12 @@ const tagVariants = cva(
   {
     variants: {
       variant: {
-        default: 'bg-vscode-hover text-vscode-text',
-        primary: 'bg-vscode-accent/20 text-vscode-accent',
+        default: 'bg-idpxyz-hover text-idpxyz-text',
+        primary: 'bg-idpxyz-accent/20 text-idpxyz-accent',
         success: 'bg-green-500/15 text-green-400',
         warning: 'bg-yellow-500/15 text-yellow-400',
         error: 'bg-red-500/15 text-red-400',
-        outline: 'border border-vscode-border text-vscode-textMuted',
+        outline: 'border border-idpxyz-border text-idpxyz-textMuted',
       },
       size: {
         sm: 'h-5 px-1.5 text-[10px]',

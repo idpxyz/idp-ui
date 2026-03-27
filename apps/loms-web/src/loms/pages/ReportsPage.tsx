@@ -58,13 +58,13 @@ export default function ReportsPage({ onOpenTab }: ReportsPageProps) {
   const currentMetrics = activeTab === 'sla' ? slaMetrics : operationalMetrics;
 
   return (
-    <div className="flex-1 flex flex-col overflow-hidden bg-vscode-editor">
-      <div className="flex items-center justify-between h-[36px] px-4 border-b border-vscode-border shrink-0 bg-vscode-sidebar select-none">
+    <div className="flex-1 flex flex-col overflow-hidden bg-idpxyz-editor">
+      <div className="flex items-center justify-between h-[36px] px-4 border-b border-idpxyz-border shrink-0 bg-idpxyz-sidebar select-none">
         <div className="flex items-center gap-3">
-          <span className="text-[13px] text-vscode-textBright font-semibold">Reports & Analytics</span>
+          <span className="text-[13px] text-idpxyz-textBright font-semibold">Reports & Analytics</span>
         </div>
         <div className="flex items-center gap-2">
-          <select value={dateRange} onChange={(e) => setDateRange(e.target.value)} className="bg-vscode-inputBg text-vscode-text text-[11px] h-[26px] px-2 rounded border border-vscode-border outline-none cursor-pointer">
+          <select value={dateRange} onChange={(e) => setDateRange(e.target.value)} className="bg-idpxyz-inputBg text-idpxyz-text text-[11px] h-[26px] px-2 rounded border border-idpxyz-border outline-none cursor-pointer">
             <option value="1d">Today</option>
             <option value="7d">Last 7 Days</option>
             <option value="30d">Last 30 Days</option>
@@ -76,15 +76,15 @@ export default function ReportsPage({ onOpenTab }: ReportsPageProps) {
         </div>
       </div>
 
-      <div className="flex items-center h-[32px] border-b border-vscode-border shrink-0 px-2 bg-vscode-editor">
+      <div className="flex items-center h-[32px] border-b border-idpxyz-border shrink-0 px-2 bg-idpxyz-editor">
         {tabs.map((tab) => (
           <Button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
             variant="ghost"
             size="sm"
-            className={`h-full rounded-none px-3 text-[11px] border-b-2 border-r border-vscode-border/50 last:border-r-0 ${
-              activeTab === tab.id ? 'text-vscode-text border-b-vscode-accent' : 'text-vscode-textMuted border-transparent hover:text-vscode-text'
+            className={`h-full rounded-none px-3 text-[11px] border-b-2 border-r border-idpxyz-border/50 last:border-r-0 ${
+              activeTab === tab.id ? 'text-idpxyz-text border-b-idpxyz-accent' : 'text-idpxyz-textMuted border-transparent hover:text-idpxyz-text'
             }`}
           >
             {tab.label}
@@ -96,13 +96,13 @@ export default function ReportsPage({ onOpenTab }: ReportsPageProps) {
         {/* Metric Cards */}
         <div className={`grid gap-3 mb-4 ${currentMetrics.length > 4 ? 'grid-cols-3 lg:grid-cols-6' : 'grid-cols-2 lg:grid-cols-4'}`}>
           {currentMetrics.map((m) => (
-            <div key={m.label} className="bg-vscode-sidebar rounded-lg p-3 border border-vscode-border">
-              <div className="text-[10px] text-vscode-textMuted mb-1">{m.label}</div>
+            <div key={m.label} className="bg-idpxyz-sidebar rounded-lg p-3 border border-idpxyz-border">
+              <div className="text-[10px] text-idpxyz-textMuted mb-1">{m.label}</div>
               <div className={`text-[20px] font-bold ${m.color}`}>{m.value}</div>
               <div className="flex items-center gap-1 mt-1 text-[10px]">
                 {m.trend === 'up' ? <ArrowUpRight size={10} /> : <ArrowDownRight size={10} />}
                 <span className={m.color}>{m.change}</span>
-                <span className="text-vscode-textMuted">vs prev period</span>
+                <span className="text-idpxyz-textMuted">vs prev period</span>
               </div>
             </div>
           ))}
@@ -110,38 +110,38 @@ export default function ReportsPage({ onOpenTab }: ReportsPageProps) {
 
         {/* Tab-specific content */}
         {(activeTab === 'carrier' || activeTab === 'cost') && (
-          <div className="bg-vscode-sidebar rounded-lg p-4 border border-vscode-border">
-            <h3 className="text-[12px] font-semibold text-vscode-textBright mb-3 flex items-center gap-2">
-              <BarChart3 size={14} className="text-vscode-textMuted" />
+          <div className="bg-idpxyz-sidebar rounded-lg p-4 border border-idpxyz-border">
+            <h3 className="text-[12px] font-semibold text-idpxyz-textBright mb-3 flex items-center gap-2">
+              <BarChart3 size={14} className="text-idpxyz-textMuted" />
               {activeTab === 'carrier' ? 'Carrier Performance Ranking' : 'Cost by Carrier'}
             </h3>
             <table className="w-full text-[12px] border-collapse">
               <thead>
-                <tr className="text-vscode-textMuted text-left">
-                  <th className="px-3 py-1.5 font-medium border-b border-vscode-border">Carrier</th>
-                  <th className="px-3 py-1.5 font-medium border-b border-vscode-border text-center">On-Time %</th>
-                  <th className="px-3 py-1.5 font-medium border-b border-vscode-border text-center">Volume</th>
-                  <th className="px-3 py-1.5 font-medium border-b border-vscode-border text-center">Avg Time</th>
-                  <th className="px-3 py-1.5 font-medium border-b border-vscode-border text-center">Avg Cost</th>
-                  <th className="px-3 py-1.5 font-medium border-b border-vscode-border">Score</th>
+                <tr className="text-idpxyz-textMuted text-left">
+                  <th className="px-3 py-1.5 font-medium border-b border-idpxyz-border">Carrier</th>
+                  <th className="px-3 py-1.5 font-medium border-b border-idpxyz-border text-center">On-Time %</th>
+                  <th className="px-3 py-1.5 font-medium border-b border-idpxyz-border text-center">Volume</th>
+                  <th className="px-3 py-1.5 font-medium border-b border-idpxyz-border text-center">Avg Time</th>
+                  <th className="px-3 py-1.5 font-medium border-b border-idpxyz-border text-center">Avg Cost</th>
+                  <th className="px-3 py-1.5 font-medium border-b border-idpxyz-border">Score</th>
                 </tr>
               </thead>
               <tbody>
                 {carrierRanking.map((c) => (
-                  <tr key={c.carrier} className="hover:bg-vscode-hover cursor-pointer" onClick={() => onOpenTab?.('carrier-ops', 'Carrier Ops')}>
-                    <td className="px-3 py-2 border-b border-vscode-border text-vscode-text font-medium">{c.carrier}</td>
-                    <td className="px-3 py-2 border-b border-vscode-border text-center">
+                  <tr key={c.carrier} className="hover:bg-idpxyz-hover cursor-pointer" onClick={() => onOpenTab?.('carrier-ops', 'Carrier Ops')}>
+                    <td className="px-3 py-2 border-b border-idpxyz-border text-idpxyz-text font-medium">{c.carrier}</td>
+                    <td className="px-3 py-2 border-b border-idpxyz-border text-center">
                       <span className={parseFloat(c.onTime) >= 93 ? 'text-green-400' : parseFloat(c.onTime) >= 90 ? 'text-yellow-400' : 'text-red-400'}>{c.onTime}</span>
                     </td>
-                    <td className="px-3 py-2 border-b border-vscode-border text-center text-vscode-text">{c.volume}</td>
-                    <td className="px-3 py-2 border-b border-vscode-border text-center text-vscode-textMuted">{c.avgTime}</td>
-                    <td className="px-3 py-2 border-b border-vscode-border text-center text-vscode-text">{c.cost}</td>
-                    <td className="px-3 py-2 border-b border-vscode-border">
+                    <td className="px-3 py-2 border-b border-idpxyz-border text-center text-idpxyz-text">{c.volume}</td>
+                    <td className="px-3 py-2 border-b border-idpxyz-border text-center text-idpxyz-textMuted">{c.avgTime}</td>
+                    <td className="px-3 py-2 border-b border-idpxyz-border text-center text-idpxyz-text">{c.cost}</td>
+                    <td className="px-3 py-2 border-b border-idpxyz-border">
                       <div className="flex items-center gap-2">
-                        <div className="w-16 h-1.5 bg-vscode-border rounded-full overflow-hidden">
+                        <div className="w-16 h-1.5 bg-idpxyz-border rounded-full overflow-hidden">
                           <div className={`h-full rounded-full ${c.score >= 90 ? 'bg-green-400' : c.score >= 85 ? 'bg-yellow-400' : 'bg-orange-400'}`} style={{ width: `${c.score}%` }} />
                         </div>
-                        <span className="text-vscode-textMuted text-[10px]">{c.score}</span>
+                        <span className="text-idpxyz-textMuted text-[10px]">{c.score}</span>
                       </div>
                     </td>
                   </tr>
@@ -153,9 +153,9 @@ export default function ReportsPage({ onOpenTab }: ReportsPageProps) {
 
         {(activeTab === 'operational' || activeTab === 'sla') && (
           <div className="grid grid-cols-2 gap-4">
-            <div className="bg-vscode-sidebar rounded-lg p-4 border border-vscode-border">
-              <h3 className="text-[12px] font-semibold text-vscode-textBright mb-3 flex items-center gap-2">
-                <TrendingUp size={14} className="text-vscode-textMuted" />
+            <div className="bg-idpxyz-sidebar rounded-lg p-4 border border-idpxyz-border">
+              <h3 className="text-[12px] font-semibold text-idpxyz-textBright mb-3 flex items-center gap-2">
+                <TrendingUp size={14} className="text-idpxyz-textMuted" />
                 {activeTab === 'operational' ? 'Shipment Volume Trend' : 'SLA Compliance Trend'}
               </h3>
               <div className="space-y-2">
@@ -164,20 +164,20 @@ export default function ReportsPage({ onOpenTab }: ReportsPageProps) {
                   const max = activeTab === 'operational' ? 55 : 100;
                   return (
                     <div key={day} className="flex items-center gap-2 text-[11px]">
-                      <span className="w-8 text-vscode-textMuted">{day}</span>
-                      <div className="flex-1 h-2 bg-vscode-border rounded-full overflow-hidden">
+                      <span className="w-8 text-idpxyz-textMuted">{day}</span>
+                      <div className="flex-1 h-2 bg-idpxyz-border rounded-full overflow-hidden">
                         <div className="h-full bg-blue-400 rounded-full" style={{ width: `${(value / max) * 100}%` }} />
                       </div>
-                      <span className="w-8 text-right text-vscode-text">{value}{activeTab === 'sla' ? '%' : ''}</span>
+                      <span className="w-8 text-right text-idpxyz-text">{value}{activeTab === 'sla' ? '%' : ''}</span>
                     </div>
                   );
                 })}
               </div>
             </div>
 
-            <div className="bg-vscode-sidebar rounded-lg p-4 border border-vscode-border">
-              <h3 className="text-[12px] font-semibold text-vscode-textBright mb-3 flex items-center gap-2">
-                <PieChart size={14} className="text-vscode-textMuted" />
+            <div className="bg-idpxyz-sidebar rounded-lg p-4 border border-idpxyz-border">
+              <h3 className="text-[12px] font-semibold text-idpxyz-textBright mb-3 flex items-center gap-2">
+                <PieChart size={14} className="text-idpxyz-textMuted" />
                 {activeTab === 'operational' ? 'Exception Distribution' : 'Breach by Reason'}
               </h3>
               <div className="space-y-2">
@@ -200,10 +200,10 @@ export default function ReportsPage({ onOpenTab }: ReportsPageProps) {
                 ).map((item) => (
                   <div key={item.label}>
                     <div className="flex justify-between text-[11px] mb-0.5">
-                      <span className="text-vscode-text">{item.label}</span>
-                      <span className="text-vscode-textMuted">{item.pct}%</span>
+                      <span className="text-idpxyz-text">{item.label}</span>
+                      <span className="text-idpxyz-textMuted">{item.pct}%</span>
                     </div>
-                    <div className="h-1.5 bg-vscode-border rounded-full overflow-hidden">
+                    <div className="h-1.5 bg-idpxyz-border rounded-full overflow-hidden">
                       <div className={`h-full ${item.color} rounded-full`} style={{ width: `${item.pct}%` }} />
                     </div>
                   </div>

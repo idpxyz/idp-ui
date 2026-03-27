@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
   IconChart,
   IconWarning,
@@ -10,7 +11,14 @@ import {
   IconRefresh,
   IconSecurityAlert,
 } from '@idpxyz/ui-icons';
-import { Button, Select, SelectOption } from '@idpxyz/ui-primitives';
+import {
+  Button,
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@idpxyz/ui-primitives';
 import { PageHeader, PageHeaderContent, PageHeaderTitle, PageHeaderActions } from '@idpxyz/ui-patterns';
 import {
   dashboardMetrics,
@@ -34,14 +42,14 @@ function MetricCard({ icon: Icon, label, value, accent, onClick }: {
   return (
     <div
       onClick={onClick}
-      className={`flex items-center gap-3 px-4 py-3 rounded-md border border-vscode-border bg-vscode-sidebar ${onClick ? 'cursor-pointer hover:bg-vscode-hover' : ''}`}
+      className={`flex items-center gap-3 px-4 py-3 rounded-md border border-idpxyz-border bg-idpxyz-sidebar ${onClick ? 'cursor-pointer hover:bg-idpxyz-hover' : ''}`}
     >
       <div className="w-9 h-9 rounded-md flex items-center justify-center shrink-0" style={{ backgroundColor: accent ? `${accent}20` : 'rgba(0,122,204,0.12)' }}>
         <Icon size={18} style={{ color: accent || '#007acc' }} />
       </div>
       <div className="min-w-0">
-        <div className="text-[20px] font-semibold text-vscode-textBright leading-tight">{value}</div>
-        <div className="text-[11px] text-vscode-textMuted">{label}</div>
+        <div className="text-[20px] font-semibold text-idpxyz-textBright leading-tight">{value}</div>
+        <div className="text-[11px] text-idpxyz-textMuted">{label}</div>
       </div>
     </div>
   );
@@ -50,9 +58,9 @@ function MetricCard({ icon: Icon, label, value, accent, onClick }: {
 function SectionTitle({ children, action, onAction }: { children: React.ReactNode; action?: string; onAction?: () => void }) {
   return (
     <div className="flex items-center justify-between mb-2">
-      <h3 className="text-[12px] font-semibold uppercase tracking-wider text-vscode-breadcrumb">{children}</h3>
+      <h3 className="text-[12px] font-semibold uppercase tracking-wider text-idpxyz-breadcrumb">{children}</h3>
       {action && (
-        <Button variant="ghost" size="sm" onClick={onAction} className="text-[11px] text-vscode-accent">
+        <Button variant="ghost" size="sm" onClick={onAction} className="text-[11px] text-idpxyz-accent">
           {action} <IconArrowRight size={12} />
         </Button>
       )}
@@ -61,35 +69,47 @@ function SectionTitle({ children, action, onAction }: { children: React.ReactNod
 }
 
 export default function Dashboard({ onOpenTab }: DashboardProps) {
+  const [dateRange, setDateRange] = useState('today');
+  const [channelScope, setChannelScope] = useState('all');
   const m = dashboardMetrics;
   const maxStage = Math.max(...fulfillmentStageDistribution.map(s => s.count));
 
   return (
-    <div className="flex-1 flex flex-col overflow-hidden bg-vscode-editor">
+    <div className="flex-1 flex flex-col overflow-hidden bg-idpxyz-editor">
       {/* Page Header */}
       <PageHeader className="px-6 py-3 shrink-0">
         <PageHeaderContent>
-          <IconChart size={18} className="text-vscode-accent" />
+          <IconChart size={18} className="text-idpxyz-accent" />
           <PageHeaderTitle>OMS 控制台</PageHeaderTitle>
         </PageHeaderContent>
         <PageHeaderActions>
-          <Select size="sm">
-            <SelectOption>今天</SelectOption>
-            <SelectOption>最近7天</SelectOption>
-            <SelectOption>最近30天</SelectOption>
+          <Select value={dateRange} onValueChange={setDateRange}>
+            <SelectTrigger size="sm" className="w-[120px]">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="today">今天</SelectItem>
+              <SelectItem value="7d">最近7天</SelectItem>
+              <SelectItem value="30d">最近30天</SelectItem>
+            </SelectContent>
           </Select>
-          <Select size="sm">
-            <SelectOption>全部渠道</SelectOption>
-            <SelectOption>官网</SelectOption>
-            <SelectOption>App</SelectOption>
-            <SelectOption>平台</SelectOption>
+          <Select value={channelScope} onValueChange={setChannelScope}>
+            <SelectTrigger size="sm" className="w-[140px]">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">全部渠道</SelectItem>
+              <SelectItem value="官网">官网</SelectItem>
+              <SelectItem value="App">App</SelectItem>
+              <SelectItem value="平台">平台</SelectItem>
+            </SelectContent>
           </Select>
           <Button variant="ghost" size="icon" title="刷新"><IconRefresh size={14} /></Button>
         </PageHeaderActions>
       </PageHeader>
 
       {/* Context Bar - Summary Metrics (Section 9.3) */}
-      <div className="grid grid-cols-6 gap-3 px-6 py-3 border-b border-vscode-border shrink-0 bg-vscode-sidebar/50">
+      <div className="grid grid-cols-6 gap-3 px-6 py-3 border-b border-idpxyz-border shrink-0 bg-idpxyz-sidebar/50">
         <MetricCard icon={IconPackage} label="今日订单总数" value={m.totalOrdersToday} onClick={() => onOpenTab?.('orders')} />
         <MetricCard icon={IconBilling} label="已付款订单" value={m.paidOrders} accent="#6a9955" />
         <MetricCard icon={IconClock} label="待分配" value={m.awaitingAllocation} accent="#569cd6" onClick={() => onOpenTab?.('fulfillment')} />
@@ -108,11 +128,11 @@ export default function Dashboard({ onOpenTab }: DashboardProps) {
             <div className="space-y-2">
               {channelDistribution.map(ch => (
                 <div key={ch.channel} className="flex items-center gap-3">
-                  <span className="text-[11px] text-vscode-text w-20 shrink-0">{ch.channel}</span>
-                  <div className="flex-1 h-[14px] bg-vscode-border/40 rounded-sm overflow-hidden">
-                    <div className="h-full bg-vscode-accent/70 rounded-sm transition-all" style={{ width: `${ch.pct}%` }} />
+                  <span className="text-[11px] text-idpxyz-text w-20 shrink-0">{ch.channel}</span>
+                  <div className="flex-1 h-[14px] bg-idpxyz-border/40 rounded-sm overflow-hidden">
+                    <div className="h-full bg-idpxyz-accent/70 rounded-sm transition-all" style={{ width: `${ch.pct}%` }} />
                   </div>
-                  <span className="text-[11px] text-vscode-textMuted w-12 text-right shrink-0">{ch.count} ({ch.pct}%)</span>
+                  <span className="text-[11px] text-idpxyz-textMuted w-12 text-right shrink-0">{ch.count} ({ch.pct}%)</span>
                 </div>
               ))}
             </div>
@@ -121,14 +141,14 @@ export default function Dashboard({ onOpenTab }: DashboardProps) {
             <div className="space-y-1.5">
               {fulfillmentStageDistribution.map(s => (
                 <div key={s.stage} className="flex items-center gap-3">
-                  <span className="text-[11px] text-vscode-text w-20 shrink-0 truncate">{s.stage}</span>
-                  <div className="flex-1 h-[14px] bg-vscode-border/40 rounded-sm overflow-hidden">
+                  <span className="text-[11px] text-idpxyz-text w-20 shrink-0 truncate">{s.stage}</span>
+                  <div className="flex-1 h-[14px] bg-idpxyz-border/40 rounded-sm overflow-hidden">
                     <div className="h-full rounded-sm transition-all" style={{
                       width: `${(s.count / maxStage) * 100}%`,
                       backgroundColor: s.stage === '已发货' || s.stage === '已签收' ? 'rgba(106,153,85,0.6)' : 'rgba(86,156,214,0.5)',
                     }} />
                   </div>
-                  <span className="text-[11px] text-vscode-textMuted w-8 text-right shrink-0">{s.count}</span>
+                  <span className="text-[11px] text-idpxyz-textMuted w-8 text-right shrink-0">{s.count}</span>
                 </div>
               ))}
             </div>
@@ -143,13 +163,13 @@ export default function Dashboard({ onOpenTab }: DashboardProps) {
                 return (
                   <div
                     key={exc.id}
-                    className="flex items-center gap-2 px-3 py-2 rounded hover:bg-vscode-hover cursor-pointer border border-vscode-border/50"
+                    className="flex items-center gap-2 px-3 py-2 rounded hover:bg-idpxyz-hover cursor-pointer border border-idpxyz-border/50"
                     onClick={() => onOpenTab?.('exceptions')}
                   >
                     <span className="w-2 h-2 rounded-full shrink-0" style={{ backgroundColor: sev.color }} />
-                    <span className="text-[11px] text-vscode-accent font-medium shrink-0">{exc.id}</span>
-                    <span className="text-[11px] text-vscode-text truncate flex-1">{exc.type}</span>
-                    <span className="text-[10px] text-vscode-textMuted shrink-0">{exc.order}</span>
+                    <span className="text-[11px] text-idpxyz-accent font-medium shrink-0">{exc.id}</span>
+                    <span className="text-[11px] text-idpxyz-text truncate flex-1">{exc.type}</span>
+                    <span className="text-[10px] text-idpxyz-textMuted shrink-0">{exc.order}</span>
                     <span className="text-[10px] px-1.5 py-0.5 rounded font-medium shrink-0" style={{ color: sev.color, backgroundColor: sev.bgColor }}>{sev.label}</span>
                   </div>
                 );
@@ -158,32 +178,32 @@ export default function Dashboard({ onOpenTab }: DashboardProps) {
 
             <SectionTitle>风险摘要</SectionTitle>
             <div className="grid grid-cols-2 gap-2">
-              <div className="flex items-center gap-2 px-3 py-2.5 rounded border border-vscode-border bg-vscode-sidebar">
+              <div className="flex items-center gap-2 px-3 py-2.5 rounded border border-idpxyz-border bg-idpxyz-sidebar">
                 <IconBilling size={14} className="text-red-400 shrink-0" />
                 <div>
-                  <div className="text-[14px] font-semibold text-vscode-textBright">3</div>
-                  <div className="text-[10px] text-vscode-textMuted">支付失败</div>
+                  <div className="text-[14px] font-semibold text-idpxyz-textBright">3</div>
+                  <div className="text-[10px] text-idpxyz-textMuted">支付失败</div>
                 </div>
               </div>
-              <div className="flex items-center gap-2 px-3 py-2.5 rounded border border-vscode-border bg-vscode-sidebar">
+              <div className="flex items-center gap-2 px-3 py-2.5 rounded border border-idpxyz-border bg-idpxyz-sidebar">
                 <IconShipment size={14} className="text-orange-400 shrink-0" />
                 <div>
-                  <div className="text-[14px] font-semibold text-vscode-textBright">2</div>
-                  <div className="text-[10px] text-vscode-textMuted">物流异常</div>
+                  <div className="text-[14px] font-semibold text-idpxyz-textBright">2</div>
+                  <div className="text-[10px] text-idpxyz-textMuted">物流异常</div>
                 </div>
               </div>
-              <div className="flex items-center gap-2 px-3 py-2.5 rounded border border-vscode-border bg-vscode-sidebar">
+              <div className="flex items-center gap-2 px-3 py-2.5 rounded border border-idpxyz-border bg-idpxyz-sidebar">
                 <IconSecurityAlert size={14} className="text-red-400 shrink-0" />
                 <div>
-                  <div className="text-[14px] font-semibold text-vscode-textBright">1</div>
-                  <div className="text-[10px] text-vscode-textMuted">高风险订单</div>
+                  <div className="text-[14px] font-semibold text-idpxyz-textBright">1</div>
+                  <div className="text-[10px] text-idpxyz-textMuted">高风险订单</div>
                 </div>
               </div>
-              <div className="flex items-center gap-2 px-3 py-2.5 rounded border border-vscode-border bg-vscode-sidebar">
+              <div className="flex items-center gap-2 px-3 py-2.5 rounded border border-idpxyz-border bg-idpxyz-sidebar">
                 <IconPackage size={14} className="text-yellow-400 shrink-0" />
                 <div>
-                  <div className="text-[14px] font-semibold text-vscode-textBright">4</div>
-                  <div className="text-[10px] text-vscode-textMuted">库存不足</div>
+                  <div className="text-[14px] font-semibold text-idpxyz-textBright">4</div>
+                  <div className="text-[10px] text-idpxyz-textMuted">库存不足</div>
                 </div>
               </div>
             </div>
@@ -199,10 +219,10 @@ export default function Dashboard({ onOpenTab }: DashboardProps) {
                 { label: '确认地址 ORD-..010', priority: 'medium' as const, age: '3小时' },
                 { label: '处理地址变更 ORD-..001', priority: 'low' as const, age: '30分钟' },
               ].map((task, i) => (
-                <div key={i} className="flex items-center gap-2 px-3 py-2 rounded hover:bg-vscode-hover cursor-pointer border border-vscode-border/50">
+                <div key={i} className="flex items-center gap-2 px-3 py-2 rounded hover:bg-idpxyz-hover cursor-pointer border border-idpxyz-border/50">
                   <span className={`w-2 h-2 rounded-full shrink-0 ${task.priority === 'high' ? 'bg-red-400' : task.priority === 'medium' ? 'bg-yellow-400' : 'bg-gray-400'}`} />
-                  <span className="text-[11px] text-vscode-text truncate flex-1">{task.label}</span>
-                  <span className="text-[10px] text-vscode-textMuted shrink-0">{task.age}</span>
+                  <span className="text-[11px] text-idpxyz-text truncate flex-1">{task.label}</span>
+                  <span className="text-[10px] text-idpxyz-textMuted shrink-0">{task.age}</span>
                 </div>
               ))}
             </div>
@@ -215,11 +235,11 @@ export default function Dashboard({ onOpenTab }: DashboardProps) {
                 { name: '周明', pending: 1, active: 1 },
                 { name: '未分配', pending: 6, active: 0 },
               ].map(member => (
-                <div key={member.name} className="flex items-center gap-2 px-3 py-2 rounded border border-vscode-border/50">
-                  <IconUsers size={12} className="text-vscode-textMuted shrink-0" />
-                  <span className="text-[11px] text-vscode-text flex-1">{member.name}</span>
-                  <span className="text-[10px] px-1.5 py-0.5 rounded bg-vscode-accent/15 text-vscode-accent shrink-0">{member.active} 处理中</span>
-                  <span className="text-[10px] px-1.5 py-0.5 rounded bg-vscode-hover text-vscode-textMuted shrink-0">{member.pending} 待处理</span>
+                <div key={member.name} className="flex items-center gap-2 px-3 py-2 rounded border border-idpxyz-border/50">
+                  <IconUsers size={12} className="text-idpxyz-textMuted shrink-0" />
+                  <span className="text-[11px] text-idpxyz-text flex-1">{member.name}</span>
+                  <span className="text-[10px] px-1.5 py-0.5 rounded bg-idpxyz-accent/15 text-idpxyz-accent shrink-0">{member.active} 处理中</span>
+                  <span className="text-[10px] px-1.5 py-0.5 rounded bg-idpxyz-hover text-idpxyz-textMuted shrink-0">{member.pending} 待处理</span>
                 </div>
               ))}
             </div>
@@ -234,9 +254,9 @@ export default function Dashboard({ onOpenTab }: DashboardProps) {
                 { time: '10:45', action: '已升级至仓库运营团队', actor: '王丽' },
               ].map((evt, i) => (
                 <div key={i} className="flex items-center gap-2 py-1 text-[11px]">
-                  <span className="text-vscode-textMuted font-mono shrink-0 w-10">{evt.time}</span>
-                  <span className="text-vscode-text truncate flex-1">{evt.action}</span>
-                  <span className="text-vscode-accent shrink-0">{evt.actor}</span>
+                  <span className="text-idpxyz-textMuted font-mono shrink-0 w-10">{evt.time}</span>
+                  <span className="text-idpxyz-text truncate flex-1">{evt.action}</span>
+                  <span className="text-idpxyz-accent shrink-0">{evt.actor}</span>
                 </div>
               ))}
             </div>
@@ -244,7 +264,7 @@ export default function Dashboard({ onOpenTab }: DashboardProps) {
         </div>
 
         {/* Quick volume indicator */}
-        <div className="mt-5 pt-4 border-t border-vscode-border">
+        <div className="mt-5 pt-4 border-t border-idpxyz-border">
           <SectionTitle>今日订单量趋势</SectionTitle>
           <div className="flex items-end gap-1 h-[60px] mt-2">
             {[8, 12, 18, 22, 15, 11, 9, 6, 14, 19, 25, 20, 17, 13, 10, 8, 5, 3, 2, 1, 0, 0, 0, 0].map((v, i) => (
@@ -257,7 +277,7 @@ export default function Dashboard({ onOpenTab }: DashboardProps) {
               </div>
             ))}
           </div>
-          <div className="flex justify-between text-[9px] text-vscode-textMuted mt-0.5 px-0.5">
+          <div className="flex justify-between text-[9px] text-idpxyz-textMuted mt-0.5 px-0.5">
             <span>0h</span><span>6h</span><span>12h</span><span>18h</span><span>23h</span>
           </div>
         </div>

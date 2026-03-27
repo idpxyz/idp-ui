@@ -10,11 +10,11 @@ interface BaseStateProps {
 
 function StateShell({ icon, title, description, actionLabel, onAction }: BaseStateProps & { icon: React.ReactNode }) {
   return (
-    <div className="flex h-full w-full items-center justify-center bg-vscode-editor">
-      <div className="max-w-[420px] rounded-md border border-vscode-border bg-vscode-sidebar px-6 py-5 text-center">
-        <div className="mb-3 flex justify-center text-vscode-textMuted">{icon}</div>
-        <h3 className="text-[14px] font-semibold text-vscode-textBright">{title}</h3>
-        <p className="mt-1 text-[12px] leading-5 text-vscode-textMuted">{description}</p>
+    <div className="flex h-full w-full items-center justify-center bg-idpxyz-editor">
+      <div className="max-w-[420px] rounded-md border border-idpxyz-border bg-idpxyz-sidebar px-6 py-5 text-center">
+        <div className="mb-3 flex justify-center text-idpxyz-textMuted">{icon}</div>
+        <h3 className="text-[14px] font-semibold text-idpxyz-textBright">{title}</h3>
+        <p className="mt-1 text-[12px] leading-5 text-idpxyz-textMuted">{description}</p>
         {actionLabel && onAction && (
           <div className="mt-4">
             <Button variant="outline" size="sm" onClick={onAction}>
@@ -85,12 +85,12 @@ export function UnavailableState({ onRetry }: { onRetry?: () => void }) {
 
 export function SectionErrorState({ message, onRetry }: { message: string; onRetry?: () => void }) {
   return (
-    <div className="rounded border border-red-500/30 bg-red-500/5 px-3 py-2 text-[12px] text-vscode-text">
+    <div className="rounded border border-red-500/30 bg-red-500/5 px-3 py-2 text-[12px] text-idpxyz-text">
       <div className="flex items-center gap-2 text-red-400">
         <AlertTriangle size={13} />
         <span className="font-medium">Section failed to load</span>
       </div>
-      <p className="mt-1 text-vscode-textMuted">{message}</p>
+      <p className="mt-1 text-idpxyz-textMuted">{message}</p>
       {onRetry && (
         <Button className="mt-2" variant="outline" size="sm" onClick={onRetry}>
           Retry

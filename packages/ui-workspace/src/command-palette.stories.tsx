@@ -51,11 +51,11 @@ export const Interactive: StoryObj<typeof CommandPalette> = {
   render: function CommandPaletteDemo() {
     const [open, setOpen] = useState(false);
     return (
-      <div className="min-h-[360px] bg-vscode-bg rounded-md border border-vscode-border p-4">
+      <div className="min-h-[360px] bg-idpxyz-bg rounded-md border border-idpxyz-border p-4">
         <Button type="button" onClick={() => setOpen(true)}>
           Open command palette
         </Button>
-        <p className="mt-3 text-[12px] text-vscode-textMuted">
+        <p className="mt-3 text-[12px] text-idpxyz-textMuted">
           When open: Esc to close, ↑↓ to move, Enter to run.
         </p>
         <CommandPalette open={open} onClose={() => setOpen(false)} actions={sampleActions} />
@@ -68,7 +68,7 @@ export const Open: StoryObj<typeof CommandPalette> = {
   render: function CommandPaletteOpenDemo() {
     const [open, setOpen] = useState(true);
     return (
-      <div className="min-h-[420px] bg-vscode-bg rounded-md border border-vscode-border p-4 relative">
+      <div className="min-h-[420px] bg-idpxyz-bg rounded-md border border-idpxyz-border p-4 relative">
         <Button type="button" variant="outline" size="sm" onClick={() => setOpen((o) => !o)}>
           Toggle
         </Button>

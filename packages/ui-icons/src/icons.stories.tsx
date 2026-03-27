@@ -49,15 +49,15 @@ const meta: Meta = { title: 'Icons/Gallery' };
 export default meta;
 
 const IconCell = ({ Icon, name }: { Icon: React.ComponentType<{ size?: number }>; name: string }) => (
-  <div className="flex flex-col items-center gap-1.5 p-3 rounded-lg bg-vscode-sidebar border border-vscode-border min-w-[80px]">
+  <div className="flex flex-col items-center gap-1.5 p-3 rounded-lg bg-idpxyz-sidebar border border-idpxyz-border min-w-[80px]">
     <Icon size={20} />
-    <span className="text-[10px] text-vscode-textMuted text-center">{name}</span>
+    <span className="text-[10px] text-idpxyz-textMuted text-center">{name}</span>
   </div>
 );
 
 export const SystemIcons: StoryObj = {
   render: () => (
-    <div className="flex flex-wrap gap-2 text-vscode-text">
+    <div className="flex flex-wrap gap-2 text-idpxyz-text">
       <IconCell Icon={IconDashboard} name="Dashboard" />
       <IconCell Icon={IconSearch} name="Search" />
       <IconCell Icon={IconSettings} name="Settings" />
@@ -104,8 +104,8 @@ export const SystemIcons: StoryObj = {
 export const DomainIcons: StoryObj = {
   render: () => (
     <div>
-      <h4 className="text-xs text-vscode-textMuted mb-2 font-semibold">Commerce</h4>
-      <div className="flex flex-wrap gap-2 text-vscode-text mb-4">
+      <h4 className="text-xs text-idpxyz-textMuted mb-2 font-semibold">Commerce</h4>
+      <div className="flex flex-wrap gap-2 text-idpxyz-text mb-4">
         <IconCell Icon={IconOrder} name="Order" />
         <IconCell Icon={IconPackage} name="Package" />
         <IconCell Icon={IconReturn} name="Return" />
@@ -113,8 +113,8 @@ export const DomainIcons: StoryObj = {
         <IconCell Icon={IconCatalog} name="Catalog" />
         <IconCell Icon={IconInvoice} name="Invoice" />
       </div>
-      <h4 className="text-xs text-vscode-textMuted mb-2 font-semibold">Logistics</h4>
-      <div className="flex flex-wrap gap-2 text-vscode-text mb-4">
+      <h4 className="text-xs text-idpxyz-textMuted mb-2 font-semibold">Logistics</h4>
+      <div className="flex flex-wrap gap-2 text-idpxyz-text mb-4">
         <IconCell Icon={IconShipment} name="Shipment" />
         <IconCell Icon={IconContainer} name="Container" />
         <IconCell Icon={IconVessel} name="Vessel" />
@@ -124,8 +124,8 @@ export const DomainIcons: StoryObj = {
         <IconCell Icon={IconTemperature} name="Temperature" />
         <IconCell Icon={IconMilestone} name="Milestone" />
       </div>
-      <h4 className="text-xs text-vscode-textMuted mb-2 font-semibold">Inventory Management</h4>
-      <div className="flex flex-wrap gap-2 text-vscode-text mb-4">
+      <h4 className="text-xs text-idpxyz-textMuted mb-2 font-semibold">Inventory Management</h4>
+      <div className="flex flex-wrap gap-2 text-idpxyz-text mb-4">
         <IconCell Icon={IconInventory} name="Inventory" />
         <IconCell Icon={IconBox} name="Box" />
         <IconCell Icon={IconScan} name="Scan" />
@@ -139,8 +139,8 @@ export const DomainIcons: StoryObj = {
         <IconCell Icon={IconExpiryManagement} name="Expiry" />
         <IconCell Icon={IconInventoryCount} name="InvCount" />
       </div>
-      <h4 className="text-xs text-vscode-textMuted mb-2 font-semibold">Supply Chain</h4>
-      <div className="flex flex-wrap gap-2 text-vscode-text mb-4">
+      <h4 className="text-xs text-idpxyz-textMuted mb-2 font-semibold">Supply Chain</h4>
+      <div className="flex flex-wrap gap-2 text-idpxyz-text mb-4">
         <IconCell Icon={IconFactory} name="Factory" />
         <IconCell Icon={IconWarehouse} name="Warehouse" />
         <IconCell Icon={IconDistributionCenter} name="DistCenter" />
@@ -151,8 +151,8 @@ export const DomainIcons: StoryObj = {
         <IconCell Icon={IconDemandForecast} name="Forecast" />
         <IconCell Icon={IconLayers} name="Layers" />
       </div>
-      <h4 className="text-xs text-vscode-textMuted mb-2 font-semibold">Documents & Compliance</h4>
-      <div className="flex flex-wrap gap-2 text-vscode-text mb-4">
+      <h4 className="text-xs text-idpxyz-textMuted mb-2 font-semibold">Documents & Compliance</h4>
+      <div className="flex flex-wrap gap-2 text-idpxyz-text mb-4">
         <IconCell Icon={IconBillOfLading} name="BillOfLading" />
         <IconCell Icon={IconPickingList} name="PickingList" />
         <IconCell Icon={IconPackingList} name="PackingList" />
@@ -160,8 +160,8 @@ export const DomainIcons: StoryObj = {
         <IconCell Icon={IconQualityControl} name="QC" />
         <IconCell Icon={IconEDI} name="EDI" />
       </div>
-      <h4 className="text-xs text-vscode-textMuted mb-2 font-semibold">Warehouse Operations</h4>
-      <div className="flex flex-wrap gap-2 text-vscode-text mb-4">
+      <h4 className="text-xs text-idpxyz-textMuted mb-2 font-semibold">Warehouse Operations</h4>
+      <div className="flex flex-wrap gap-2 text-idpxyz-text mb-4">
         <IconCell Icon={IconReceiveGoods} name="Receive" />
         <IconCell Icon={IconDispatchGoods} name="Dispatch" />
         <IconCell Icon={IconPutaway} name="Putaway" />
@@ -180,8 +180,8 @@ export const DomainIcons: StoryObj = {
         <IconCell Icon={IconPackageDamaged} name="Damaged" />
         <IconCell Icon={IconDamagedGoods} name="DmgGoods" />
       </div>
-      <h4 className="text-xs text-vscode-textMuted mb-2 font-semibold">WMS Advanced</h4>
-      <div className="flex flex-wrap gap-2 text-vscode-text mb-4">
+      <h4 className="text-xs text-idpxyz-textMuted mb-2 font-semibold">WMS Advanced</h4>
+      <div className="flex flex-wrap gap-2 text-idpxyz-text mb-4">
         <IconCell Icon={IconWavePlanning} name="Wave" />
         <IconCell Icon={IconZoneManagement} name="Zone" />
         <IconCell Icon={IconDockManagement} name="Dock" />
@@ -204,8 +204,8 @@ export const DomainIcons: StoryObj = {
         <IconCell Icon={IconWarehouseKPI} name="WMS KPI" />
         <IconCell Icon={IconWarehouseLayout} name="Layout" />
       </div>
-      <h4 className="text-xs text-vscode-textMuted mb-2 font-semibold">Ledger & Settlement</h4>
-      <div className="flex flex-wrap gap-2 text-vscode-text mb-4">
+      <h4 className="text-xs text-idpxyz-textMuted mb-2 font-semibold">Ledger & Settlement</h4>
+      <div className="flex flex-wrap gap-2 text-idpxyz-text mb-4">
         <IconCell Icon={IconLedger} name="Ledger" />
         <IconCell Icon={IconWallet} name="Wallet" />
         <IconCell Icon={IconBank} name="Bank" />
@@ -222,8 +222,8 @@ export const DomainIcons: StoryObj = {
         <IconCell Icon={IconDebitCredit} name="Debit/Credit" />
         <IconCell Icon={IconPaymentVerified} name="PayVerified" />
       </div>
-      <h4 className="text-xs text-vscode-textMuted mb-2 font-semibold">Operations</h4>
-      <div className="flex flex-wrap gap-2 text-vscode-text">
+      <h4 className="text-xs text-idpxyz-textMuted mb-2 font-semibold">Operations</h4>
+      <div className="flex flex-wrap gap-2 text-idpxyz-text">
         <IconCell Icon={IconActivity} name="Activity" />
         <IconCell Icon={IconAutomation} name="Automation" />
         <IconCell Icon={IconWorkflow} name="Workflow" />
@@ -236,8 +236,8 @@ export const DomainIcons: StoryObj = {
 export const StatusIcons: StoryObj = {
   render: () => (
     <div>
-      <h4 className="text-xs text-vscode-textMuted mb-2 font-semibold">System Status</h4>
-      <div className="flex flex-wrap gap-2 text-vscode-text mb-4">
+      <h4 className="text-xs text-idpxyz-textMuted mb-2 font-semibold">System Status</h4>
+      <div className="flex flex-wrap gap-2 text-idpxyz-text mb-4">
         <IconCell Icon={IconSuccess} name="Success" />
         <IconCell Icon={IconError} name="Error" />
         <IconCell Icon={IconWarning} name="Warning" />
@@ -251,8 +251,8 @@ export const StatusIcons: StoryObj = {
         <IconCell Icon={IconConnected} name="Connected" />
         <IconCell Icon={IconOffline} name="Offline" />
       </div>
-      <h4 className="text-xs text-vscode-textMuted mb-2 font-semibold">Business Lifecycle</h4>
-      <div className="flex flex-wrap gap-2 text-vscode-text">
+      <h4 className="text-xs text-idpxyz-textMuted mb-2 font-semibold">Business Lifecycle</h4>
+      <div className="flex flex-wrap gap-2 text-idpxyz-text">
         <IconCell Icon={IconDraft} name="Draft" />
         <IconCell Icon={IconSubmitted} name="Submitted" />
         <IconCell Icon={IconApproved} name="Approved" />

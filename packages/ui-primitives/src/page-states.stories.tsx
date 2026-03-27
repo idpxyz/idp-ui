@@ -14,7 +14,7 @@ export default meta;
 
 function StateFrame({ children }: { children: ReactNode }) {
   return (
-    <div className="h-[320px] w-full max-w-[720px] border border-vscode-border rounded-md overflow-hidden">
+    <div className="h-[320px] w-full max-w-[720px] border border-idpxyz-border rounded-md overflow-hidden">
       {children}
     </div>
   );
@@ -62,7 +62,7 @@ export const Unavailable: StoryObj = {
 
 export const SectionError: StoryObj = {
   render: () => (
-    <div className="max-w-[480px] rounded-md border border-vscode-border p-4 bg-vscode-bg">
+    <div className="max-w-[480px] rounded-md border border-idpxyz-border p-4 bg-idpxyz-bg">
       <SectionErrorState message="Failed to load line items: network timeout." onRetry={() => {}} />
     </div>
   ),

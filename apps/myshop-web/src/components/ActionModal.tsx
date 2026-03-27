@@ -43,24 +43,24 @@ export function ActionModal({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
       <div className="absolute inset-0 bg-black/50" onClick={onClose} />
-      <div className="relative bg-vscode-sidebar border border-vscode-border rounded-lg shadow-xl w-full max-w-[480px] mx-4">
+      <div className="relative bg-idpxyz-sidebar border border-idpxyz-border rounded-lg shadow-xl w-full max-w-[480px] mx-4">
         {/* Header */}
-        <div className="flex items-center justify-between px-4 py-3 border-b border-vscode-border">
-          <h3 className="text-[13px] font-semibold text-vscode-textBright">{title}</h3>
-          <button onClick={onClose} className="text-vscode-textMuted hover:text-vscode-text transition-colors">
+        <div className="flex items-center justify-between px-4 py-3 border-b border-idpxyz-border">
+          <h3 className="text-[13px] font-semibold text-idpxyz-textBright">{title}</h3>
+          <button onClick={onClose} className="text-idpxyz-textMuted hover:text-idpxyz-text transition-colors">
             <IconClose size={14} />
           </button>
         </div>
 
         {/* Body */}
         <div className="px-4 py-3">
-          {description && <p className="text-[12px] text-vscode-textMuted mb-3">{description}</p>}
+          {description && <p className="text-[12px] text-idpxyz-textMuted mb-3">{description}</p>}
           {children}
         </div>
 
         {/* Footer */}
         {!hideFooter && (
-          <div className="flex items-center justify-end gap-2 px-4 py-3 border-t border-vscode-border">
+          <div className="flex items-center justify-end gap-2 px-4 py-3 border-t border-idpxyz-border">
             <Button variant="ghost" size="sm" onClick={onClose}>{cancelLabel}</Button>
             <Button
               variant={variant === 'danger' ? 'danger' : 'default'}
@@ -93,10 +93,10 @@ export function ModalInput({
 }) {
   return (
     <div className="mb-3">
-      <label className="block text-[11px] text-vscode-textMuted mb-1">{label}</label>
+      <label className="block text-[11px] text-idpxyz-textMuted mb-1">{label}</label>
       <input
         type={type}
-        className="w-full bg-vscode-inputBg border border-vscode-border rounded px-2.5 py-1.5 text-[12px] text-vscode-text outline-none focus:border-vscode-accent"
+        className="w-full bg-idpxyz-inputBg border border-idpxyz-border rounded px-2.5 py-1.5 text-[12px] text-idpxyz-text outline-none focus:border-idpxyz-accent"
         placeholder={placeholder}
         value={value}
         onChange={e => onChange(e.target.value)}
@@ -120,9 +120,9 @@ export function ModalTextarea({
 }) {
   return (
     <div className="mb-3">
-      <label className="block text-[11px] text-vscode-textMuted mb-1">{label}</label>
+      <label className="block text-[11px] text-idpxyz-textMuted mb-1">{label}</label>
       <textarea
-        className="w-full bg-vscode-inputBg border border-vscode-border rounded px-2.5 py-1.5 text-[12px] text-vscode-text outline-none focus:border-vscode-accent resize-none"
+        className="w-full bg-idpxyz-inputBg border border-idpxyz-border rounded px-2.5 py-1.5 text-[12px] text-idpxyz-text outline-none focus:border-idpxyz-accent resize-none"
         placeholder={placeholder}
         value={value}
         onChange={e => onChange(e.target.value)}
@@ -145,9 +145,9 @@ export function ModalSelect({
 }) {
   return (
     <div className="mb-3">
-      <label className="block text-[11px] text-vscode-textMuted mb-1">{label}</label>
+      <label className="block text-[11px] text-idpxyz-textMuted mb-1">{label}</label>
       <select
-        className="w-full bg-vscode-inputBg border border-vscode-border rounded px-2.5 py-1.5 text-[12px] text-vscode-text outline-none focus:border-vscode-accent"
+        className="w-full bg-idpxyz-inputBg border border-idpxyz-border rounded px-2.5 py-1.5 text-[12px] text-idpxyz-text outline-none focus:border-idpxyz-accent"
         value={value}
         onChange={e => onChange(e.target.value)}
       >

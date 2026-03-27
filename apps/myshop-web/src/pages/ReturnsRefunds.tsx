@@ -80,32 +80,32 @@ export default function ReturnsRefunds({ onSelectOrder, onOpenOrderDetail }: Ret
   };
 
   return (
-    <div className="flex-1 flex flex-col overflow-hidden bg-vscode-editor min-w-0">
-      <div className="flex items-center justify-between px-5 py-2.5 border-b border-vscode-border shrink-0">
+    <div className="flex-1 flex flex-col overflow-hidden bg-idpxyz-editor min-w-0">
+      <div className="flex items-center justify-between px-5 py-2.5 border-b border-idpxyz-border shrink-0">
         <div className="flex items-center gap-3">
-          <IconReturn size={16} className="text-vscode-accent" />
-          <h1 className="text-[14px] font-semibold text-vscode-textBright">退货 / 退款</h1>
-          <span className="text-[11px] text-vscode-textMuted">{filtered.length} 条申请</span>
+          <IconReturn size={16} className="text-idpxyz-accent" />
+          <h1 className="text-[14px] font-semibold text-idpxyz-textBright">退货 / 退款</h1>
+          <span className="text-[11px] text-idpxyz-textMuted">{filtered.length} 条申请</span>
         </div>
       </div>
 
-      <div className="grid grid-cols-3 gap-2 px-5 py-2 border-b border-vscode-border shrink-0 text-[11px]">
-        <div className="rounded border border-vscode-border bg-vscode-sidebar px-3 py-2 text-vscode-textMuted">待审核 <span className="ml-2 text-yellow-300 font-semibold">{kpi.pending}</span></div>
-        <div className="rounded border border-vscode-border bg-vscode-sidebar px-3 py-2 text-vscode-textMuted">已批准待退款 <span className="ml-2 text-blue-300 font-semibold">{kpi.approved}</span></div>
-        <div className="rounded border border-vscode-border bg-vscode-sidebar px-3 py-2 text-vscode-textMuted">已退款 <span className="ml-2 text-green-300 font-semibold">{kpi.refunded}</span></div>
+      <div className="grid grid-cols-3 gap-2 px-5 py-2 border-b border-idpxyz-border shrink-0 text-[11px]">
+        <div className="rounded border border-idpxyz-border bg-idpxyz-sidebar px-3 py-2 text-idpxyz-textMuted">待审核 <span className="ml-2 text-yellow-300 font-semibold">{kpi.pending}</span></div>
+        <div className="rounded border border-idpxyz-border bg-idpxyz-sidebar px-3 py-2 text-idpxyz-textMuted">已批准待退款 <span className="ml-2 text-blue-300 font-semibold">{kpi.approved}</span></div>
+        <div className="rounded border border-idpxyz-border bg-idpxyz-sidebar px-3 py-2 text-idpxyz-textMuted">已退款 <span className="ml-2 text-green-300 font-semibold">{kpi.refunded}</span></div>
       </div>
 
-      <div className="flex items-center gap-2 px-5 py-2 border-b border-vscode-border shrink-0">
-        <div className="flex items-center bg-vscode-inputBg rounded px-2 h-[28px] border border-vscode-border flex-1 max-w-[320px]">
-          <IconSearch size={12} className="text-vscode-textMuted mr-1.5 shrink-0" />
+      <div className="flex items-center gap-2 px-5 py-2 border-b border-idpxyz-border shrink-0">
+        <div className="flex items-center bg-idpxyz-inputBg rounded px-2 h-[28px] border border-idpxyz-border flex-1 max-w-[320px]">
+          <IconSearch size={12} className="text-idpxyz-textMuted mr-1.5 shrink-0" />
           <input
             value={q}
             onChange={(e) => setQ(e.target.value)}
             placeholder="搜索退货单号、订单号、客户..."
-            className="bg-transparent border-none outline-none text-[11px] text-vscode-text w-full placeholder:text-vscode-textMuted"
+            className="bg-transparent border-none outline-none text-[11px] text-idpxyz-text w-full placeholder:text-idpxyz-textMuted"
           />
         </div>
-        <select value={status} onChange={(e) => setStatus(e.target.value as 'all' | ReturnStatus)} className="bg-vscode-inputBg border border-vscode-border rounded px-2 py-1 text-[11px] text-vscode-text outline-none">
+        <select value={status} onChange={(e) => setStatus(e.target.value as 'all' | ReturnStatus)} className="bg-idpxyz-inputBg border border-idpxyz-border rounded px-2 py-1 text-[11px] text-idpxyz-text outline-none">
           <option value="all">全部状态</option>
           <option value="requested">待审核</option>
           <option value="approved">已批准</option>
@@ -117,34 +117,34 @@ export default function ReturnsRefunds({ onSelectOrder, onOpenOrderDetail }: Ret
       <div className="flex-1 overflow-auto">
         <table className="w-full text-[11px] border-collapse">
           <thead className="sticky top-0 z-10">
-            <tr className="bg-vscode-sidebar text-vscode-textMuted">
-              <th className="text-left px-4 py-2 font-medium border-b border-vscode-border">退货单</th>
-              <th className="text-left px-2 py-2 font-medium border-b border-vscode-border">订单号</th>
-              <th className="text-left px-2 py-2 font-medium border-b border-vscode-border">类型</th>
-              <th className="text-left px-2 py-2 font-medium border-b border-vscode-border">原因</th>
-              <th className="text-left px-2 py-2 font-medium border-b border-vscode-border">状态</th>
-              <th className="text-right px-2 py-2 font-medium border-b border-vscode-border">金额</th>
-              <th className="text-left px-2 py-2 font-medium border-b border-vscode-border">负责人</th>
-              <th className="text-right px-3 py-2 font-medium border-b border-vscode-border">操作</th>
+            <tr className="bg-idpxyz-sidebar text-idpxyz-textMuted">
+              <th className="text-left px-4 py-2 font-medium border-b border-idpxyz-border">退货单</th>
+              <th className="text-left px-2 py-2 font-medium border-b border-idpxyz-border">订单号</th>
+              <th className="text-left px-2 py-2 font-medium border-b border-idpxyz-border">类型</th>
+              <th className="text-left px-2 py-2 font-medium border-b border-idpxyz-border">原因</th>
+              <th className="text-left px-2 py-2 font-medium border-b border-idpxyz-border">状态</th>
+              <th className="text-right px-2 py-2 font-medium border-b border-idpxyz-border">金额</th>
+              <th className="text-left px-2 py-2 font-medium border-b border-idpxyz-border">负责人</th>
+              <th className="text-right px-3 py-2 font-medium border-b border-idpxyz-border">操作</th>
             </tr>
           </thead>
           <tbody>
             {filtered.map(c => {
               const st = statusLabel[c.status];
               return (
-                <tr key={c.id} onClick={() => setSelectedId(c.id)} className={`cursor-pointer border-b border-vscode-border ${selectedId === c.id ? 'bg-vscode-accent/8' : 'hover:bg-vscode-hover'}`}>
+                <tr key={c.id} onClick={() => setSelectedId(c.id)} className={`cursor-pointer border-b border-idpxyz-border ${selectedId === c.id ? 'bg-idpxyz-accent/8' : 'hover:bg-idpxyz-hover'}`}>
                   <td className="px-4 py-2.5">
-                    <div className="text-vscode-accent font-medium">{c.id}</div>
-                    <div className="text-[10px] text-vscode-textMuted">{c.customerName} · {c.requestedAt}</div>
+                    <div className="text-idpxyz-accent font-medium">{c.id}</div>
+                    <div className="text-[10px] text-idpxyz-textMuted">{c.customerName} · {c.requestedAt}</div>
                   </td>
                   <td className="px-2 py-2.5">
-                    <button onClick={(e) => { e.stopPropagation(); openOrder(c.orderId); }} className="text-vscode-accent hover:underline">{c.orderId}</button>
+                    <button onClick={(e) => { e.stopPropagation(); openOrder(c.orderId); }} className="text-idpxyz-accent hover:underline">{c.orderId}</button>
                   </td>
-                  <td className="px-2 py-2.5 text-vscode-text">{c.type === 'return_and_refund' ? '退货退款' : '仅退款'}</td>
-                  <td className="px-2 py-2.5 text-vscode-text">{reasonLabel[c.reason]}</td>
+                  <td className="px-2 py-2.5 text-idpxyz-text">{c.type === 'return_and_refund' ? '退货退款' : '仅退款'}</td>
+                  <td className="px-2 py-2.5 text-idpxyz-text">{reasonLabel[c.reason]}</td>
                   <td className="px-2 py-2.5"><span className={`inline-block px-2 py-0.5 rounded text-[10px] font-medium ${st.cls}`}>{st.text}</span></td>
-                  <td className="px-2 py-2.5 text-right text-vscode-textBright font-medium">${c.amount.toLocaleString()}</td>
-                  <td className="px-2 py-2.5 text-vscode-text">{c.assignedTo || '-'}</td>
+                  <td className="px-2 py-2.5 text-right text-idpxyz-textBright font-medium">${c.amount.toLocaleString()}</td>
+                  <td className="px-2 py-2.5 text-idpxyz-text">{c.assignedTo || '-'}</td>
                   <td className="px-3 py-2.5">
                     <div className="flex items-center justify-end gap-1.5">
                       {c.status === 'requested' && (
@@ -168,16 +168,16 @@ export default function ReturnsRefunds({ onSelectOrder, onOpenOrderDetail }: Ret
               );
             })}
             {filtered.length === 0 && (
-              <tr><td colSpan={8} className="px-4 py-8 text-center text-vscode-textMuted">没有匹配当前筛选条件的退货/退款申请。</td></tr>
+              <tr><td colSpan={8} className="px-4 py-8 text-center text-idpxyz-textMuted">没有匹配当前筛选条件的退货/退款申请。</td></tr>
             )}
           </tbody>
         </table>
       </div>
 
       {selected && (
-        <div className="px-5 py-2 border-t border-vscode-border bg-vscode-sidebar text-[11px] flex items-center gap-4">
-          <div className="inline-flex items-center gap-1 text-vscode-text"><IconClock3 size={12} /> 申请时间: {selected.requestedAt}</div>
-          <div className="inline-flex items-center gap-1 text-vscode-textMuted">退款状态: {statusLabel[selected.status].text}</div>
+        <div className="px-5 py-2 border-t border-idpxyz-border bg-idpxyz-sidebar text-[11px] flex items-center gap-4">
+          <div className="inline-flex items-center gap-1 text-idpxyz-text"><IconClock3 size={12} /> 申请时间: {selected.requestedAt}</div>
+          <div className="inline-flex items-center gap-1 text-idpxyz-textMuted">退款状态: {statusLabel[selected.status].text}</div>
           {selected.status === 'refunded' && (
             <div className="inline-flex items-center gap-1" style={{ color: paymentStatusConfig.refunded.color }}>
               <IconCircleDollar size={12} /> 退款已完成

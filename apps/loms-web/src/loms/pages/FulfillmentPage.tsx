@@ -64,33 +64,33 @@ export default function FulfillmentPage({ onOpenTab }: FulfillmentPageProps) {
   };
 
   return (
-    <div className="flex-1 flex flex-col overflow-hidden bg-vscode-editor">
-      <div className="flex items-center justify-between h-[36px] px-4 border-b border-vscode-border shrink-0 bg-vscode-sidebar select-none">
+    <div className="flex-1 flex flex-col overflow-hidden bg-idpxyz-editor">
+      <div className="flex items-center justify-between h-[36px] px-4 border-b border-idpxyz-border shrink-0 bg-idpxyz-sidebar select-none">
         <div className="flex items-center gap-3">
-          <span className="text-[13px] text-vscode-textBright font-semibold">Fulfillment</span>
-          <span className="text-[11px] text-vscode-textMuted">All Warehouses</span>
+          <span className="text-[13px] text-idpxyz-textBright font-semibold">Fulfillment</span>
+          <span className="text-[11px] text-idpxyz-textMuted">All Warehouses</span>
         </div>
       </div>
 
-      <div className="flex items-center gap-3 px-4 py-2 border-b border-vscode-border shrink-0">
-        <div className="flex items-center bg-vscode-inputBg rounded px-2.5 h-[28px] flex-1 max-w-[320px]">
-          <Search size={13} className="text-vscode-textMuted mr-1.5 shrink-0" />
-          <input type="text" placeholder="Search FR, order, warehouse..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className="bg-transparent border-none outline-none text-[12px] text-vscode-text w-full placeholder:text-vscode-textMuted" />
+      <div className="flex items-center gap-3 px-4 py-2 border-b border-idpxyz-border shrink-0">
+        <div className="flex items-center bg-idpxyz-inputBg rounded px-2.5 h-[28px] flex-1 max-w-[320px]">
+          <Search size={13} className="text-idpxyz-textMuted mr-1.5 shrink-0" />
+          <input type="text" placeholder="Search FR, order, warehouse..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className="bg-transparent border-none outline-none text-[12px] text-idpxyz-text w-full placeholder:text-idpxyz-textMuted" />
         </div>
-        <select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)} className="bg-vscode-inputBg text-vscode-text text-[12px] h-[28px] px-2 rounded border border-vscode-border outline-none cursor-pointer">
+        <select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)} className="bg-idpxyz-inputBg text-idpxyz-text text-[12px] h-[28px] px-2 rounded border border-idpxyz-border outline-none cursor-pointer">
           <option value="all">All Status</option>
           {Object.entries(statusConfig).map(([key, cfg]) => <option key={key} value={key}>{cfg.label}</option>)}
         </select>
         <div className="flex items-center gap-3 ml-auto text-[11px]">
           {[
-            { label: 'Total', value: stats.total, color: 'text-vscode-textBright' },
+            { label: 'Total', value: stats.total, color: 'text-idpxyz-textBright' },
             { label: 'Pending', value: stats.pending, color: 'text-yellow-400' },
             { label: 'In Progress', value: stats.inProgress, color: 'text-blue-400' },
             { label: 'Shipped', value: stats.shipped, color: 'text-green-400' },
           ].map((s) => (
             <div key={s.label} className="flex items-center gap-1">
               <span className={`font-bold ${s.color}`}>{s.value}</span>
-              <span className="text-vscode-textMuted">{s.label}</span>
+              <span className="text-idpxyz-textMuted">{s.label}</span>
             </div>
           ))}
         </div>
@@ -99,15 +99,15 @@ export default function FulfillmentPage({ onOpenTab }: FulfillmentPageProps) {
       <div className="flex-1 overflow-auto">
         <table className="w-full text-[12px] border-collapse">
           <thead className="sticky top-0 z-10">
-            <tr className="bg-vscode-sidebar text-vscode-textMuted text-left">
-              <th className="px-3 py-2 font-medium border-b border-vscode-border">FR ID</th>
-              <th className="px-3 py-2 font-medium border-b border-vscode-border">Order</th>
-              <th className="px-3 py-2 font-medium border-b border-vscode-border">Warehouse</th>
-              <th className="px-3 py-2 font-medium border-b border-vscode-border text-center">Status</th>
-              <th className="px-3 py-2 font-medium border-b border-vscode-border text-center">Items</th>
-              <th className="px-3 py-2 font-medium border-b border-vscode-border">Carrier</th>
-              <th className="px-3 py-2 font-medium border-b border-vscode-border">Promise</th>
-              <th className="px-3 py-2 font-medium border-b border-vscode-border">Shipment</th>
+            <tr className="bg-idpxyz-sidebar text-idpxyz-textMuted text-left">
+              <th className="px-3 py-2 font-medium border-b border-idpxyz-border">FR ID</th>
+              <th className="px-3 py-2 font-medium border-b border-idpxyz-border">Order</th>
+              <th className="px-3 py-2 font-medium border-b border-idpxyz-border">Warehouse</th>
+              <th className="px-3 py-2 font-medium border-b border-idpxyz-border text-center">Status</th>
+              <th className="px-3 py-2 font-medium border-b border-idpxyz-border text-center">Items</th>
+              <th className="px-3 py-2 font-medium border-b border-idpxyz-border">Carrier</th>
+              <th className="px-3 py-2 font-medium border-b border-idpxyz-border">Promise</th>
+              <th className="px-3 py-2 font-medium border-b border-idpxyz-border">Shipment</th>
             </tr>
           </thead>
           <tbody>
@@ -115,25 +115,25 @@ export default function FulfillmentPage({ onOpenTab }: FulfillmentPageProps) {
               const st = statusConfig[fr.status];
               const StIcon = st.icon;
               return (
-                <tr key={fr.id} className="hover:bg-vscode-hover cursor-pointer">
-                  <td className={`px-3 ${cellPy} border-b border-vscode-border text-vscode-accent font-medium`}>{fr.id}</td>
-                  <td className={`px-3 ${cellPy} border-b border-vscode-border text-vscode-text cursor-pointer hover:text-vscode-accent`} onClick={() => onOpenTab?.(`order-detail-${fr.orderId}`, fr.orderId)}>{fr.orderId}</td>
-                  <td className={`px-3 ${cellPy} border-b border-vscode-border text-vscode-text`}>{fr.warehouse}</td>
-                  <td className={`px-3 ${cellPy} border-b border-vscode-border text-center`}>
+                <tr key={fr.id} className="hover:bg-idpxyz-hover cursor-pointer">
+                  <td className={`px-3 ${cellPy} border-b border-idpxyz-border text-idpxyz-accent font-medium`}>{fr.id}</td>
+                  <td className={`px-3 ${cellPy} border-b border-idpxyz-border text-idpxyz-text cursor-pointer hover:text-idpxyz-accent`} onClick={() => onOpenTab?.(`order-detail-${fr.orderId}`, fr.orderId)}>{fr.orderId}</td>
+                  <td className={`px-3 ${cellPy} border-b border-idpxyz-border text-idpxyz-text`}>{fr.warehouse}</td>
+                  <td className={`px-3 ${cellPy} border-b border-idpxyz-border text-center`}>
                     <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-medium" style={{ color: st.color, backgroundColor: st.bg }}>
                       <StIcon size={11} /> {st.label}
                     </span>
                   </td>
-                  <td className={`px-3 ${cellPy} border-b border-vscode-border text-center text-vscode-text`}>
+                  <td className={`px-3 ${cellPy} border-b border-idpxyz-border text-center text-idpxyz-text`}>
                     <span className={fr.allocatedItems < fr.items ? 'text-yellow-400' : 'text-green-400'}>{fr.allocatedItems}</span>/{fr.items}
                   </td>
-                  <td className={`px-3 ${cellPy} border-b border-vscode-border text-vscode-text`}>{fr.carrier}</td>
-                  <td className={`px-3 ${cellPy} border-b border-vscode-border text-vscode-textMuted`}>{fr.promisedDate}</td>
-                  <td className={`px-3 ${cellPy} border-b border-vscode-border`}>
+                  <td className={`px-3 ${cellPy} border-b border-idpxyz-border text-idpxyz-text`}>{fr.carrier}</td>
+                  <td className={`px-3 ${cellPy} border-b border-idpxyz-border text-idpxyz-textMuted`}>{fr.promisedDate}</td>
+                  <td className={`px-3 ${cellPy} border-b border-idpxyz-border`}>
                     {fr.shipmentId ? (
-                      <Button variant="ghost" size="sm" className="p-0 h-auto text-vscode-accent hover:underline" onClick={() => onOpenTab?.(`shipment-detail-${fr.shipmentId}`, `Shipment ${fr.shipmentId}`)}>{fr.shipmentId}</Button>
+                      <Button variant="ghost" size="sm" className="p-0 h-auto text-idpxyz-accent hover:underline" onClick={() => onOpenTab?.(`shipment-detail-${fr.shipmentId}`, `Shipment ${fr.shipmentId}`)}>{fr.shipmentId}</Button>
                     ) : (
-                      <span className="text-vscode-textMuted text-[11px]">-</span>
+                      <span className="text-idpxyz-textMuted text-[11px]">-</span>
                     )}
                   </td>
                 </tr>

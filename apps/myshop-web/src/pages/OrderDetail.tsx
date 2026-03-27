@@ -45,8 +45,8 @@ interface OrderDetailProps {
 function Section({ title, defaultExpanded = true, children }: { title: string; defaultExpanded?: boolean; children: React.ReactNode }) {
   const [expanded, setExpanded] = useState(defaultExpanded);
   return (
-    <div className="border-b border-vscode-border">
-      <div className="flex items-center h-[28px] px-3 text-[11px] uppercase font-bold tracking-wide cursor-pointer hover:bg-vscode-hover" onClick={() => setExpanded(!expanded)}>
+    <div className="border-b border-idpxyz-border">
+      <div className="flex items-center h-[28px] px-3 text-[11px] uppercase font-bold tracking-wide cursor-pointer hover:bg-idpxyz-hover" onClick={() => setExpanded(!expanded)}>
         {expanded ? <IconChevronDown size={14} className="mr-1" /> : <IconChevronRight size={14} className="mr-1" />}
         <span>{title}</span>
       </div>
@@ -58,10 +58,10 @@ function Section({ title, defaultExpanded = true, children }: { title: string; d
 function DetailRow({ icon: Icon, label, value, valueColor }: { icon: React.ElementType; label: string; value: string | React.ReactNode; valueColor?: string }) {
   return (
     <div className="flex items-start gap-2 px-4 py-1.5 text-[12px]">
-      <Icon size={13} className="text-vscode-textMuted shrink-0 mt-0.5" />
+      <Icon size={13} className="text-idpxyz-textMuted shrink-0 mt-0.5" />
       <div className="min-w-0">
-        <div className="text-vscode-textMuted text-[11px]">{label}</div>
-        <div className={`${valueColor || 'text-vscode-text'}`}>{value}</div>
+        <div className="text-idpxyz-textMuted text-[11px]">{label}</div>
+        <div className={`${valueColor || 'text-idpxyz-text'}`}>{value}</div>
       </div>
     </div>
   );
@@ -80,7 +80,7 @@ export default function OrderDetail({ orderId, onBack }: OrderDetailProps) {
 
   if (!order) {
     return (
-      <div className="flex-1 flex items-center justify-center text-vscode-textMuted text-[13px]">
+      <div className="flex-1 flex items-center justify-center text-idpxyz-textMuted text-[13px]">
         未找到订单: {orderId}
       </div>
     );
@@ -104,11 +104,11 @@ export default function OrderDetail({ orderId, onBack }: OrderDetailProps) {
   ];
 
   return (
-    <div className="flex-1 flex overflow-hidden bg-vscode-editor">
+    <div className="flex-1 flex overflow-hidden bg-idpxyz-editor">
       {/* Main content area */}
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Object Header (Section 11.2) */}
-        <div className="px-5 py-3 border-b border-vscode-border shrink-0">
+        <div className="px-5 py-3 border-b border-idpxyz-border shrink-0">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               {onBack && (
@@ -118,13 +118,13 @@ export default function OrderDetail({ orderId, onBack }: OrderDetailProps) {
               )}
               <div>
                 <div className="flex items-center gap-2">
-                  <h1 className="text-[14px] font-semibold text-vscode-textBright">{order.id}</h1>
+                  <h1 className="text-[14px] font-semibold text-idpxyz-textBright">{order.id}</h1>
                   <StatusBadge {...os} />
                   {order.tags.map(tag => (
-                    <span key={tag} className="text-[10px] px-1.5 py-0.5 rounded bg-vscode-hover text-vscode-textMuted">{tag}</span>
+                    <span key={tag} className="text-[10px] px-1.5 py-0.5 rounded bg-idpxyz-hover text-idpxyz-textMuted">{tag}</span>
                   ))}
                 </div>
-                <div className="flex items-center gap-3 mt-0.5 text-[11px] text-vscode-textMuted">
+                <div className="flex items-center gap-3 mt-0.5 text-[11px] text-idpxyz-textMuted">
                   <span>{order.channel} \u00B7 {order.store}</span>
                   <span>创建于 {order.createdAt}</span>
                   <span>{order.customerName}</span>
@@ -142,30 +142,30 @@ export default function OrderDetail({ orderId, onBack }: OrderDetailProps) {
           </div>
 
           {/* Context Bar (Section 11.4) */}
-          <div className="flex items-center gap-4 mt-3 pt-2 border-t border-vscode-border/50">
+          <div className="flex items-center gap-4 mt-3 pt-2 border-t border-idpxyz-border/50">
             <div className="flex items-center gap-1.5">
-              <IconPackage size={12} className="text-vscode-textMuted" />
-              <span className="text-[11px] text-vscode-textMuted">订单:</span>
+              <IconPackage size={12} className="text-idpxyz-textMuted" />
+              <span className="text-[11px] text-idpxyz-textMuted">订单:</span>
               <StatusBadge {...os} />
             </div>
             <div className="flex items-center gap-1.5">
-              <IconBilling size={12} className="text-vscode-textMuted" />
-              <span className="text-[11px] text-vscode-textMuted">支付:</span>
+              <IconBilling size={12} className="text-idpxyz-textMuted" />
+              <span className="text-[11px] text-idpxyz-textMuted">支付:</span>
               <StatusBadge {...ps} />
             </div>
             <div className="flex items-center gap-1.5">
-              <IconShipment size={12} className="text-vscode-textMuted" />
-              <span className="text-[11px] text-vscode-textMuted">履约:</span>
+              <IconShipment size={12} className="text-idpxyz-textMuted" />
+              <span className="text-[11px] text-idpxyz-textMuted">履约:</span>
               <StatusBadge {...fs} />
             </div>
             <div className="flex items-center gap-1.5">
-              <IconShield size={12} className="text-vscode-textMuted" />
-              <span className="text-[11px] text-vscode-textMuted">风险:</span>
+              <IconShield size={12} className="text-idpxyz-textMuted" />
+              <span className="text-[11px] text-idpxyz-textMuted">风险:</span>
               <StatusBadge {...rl} />
             </div>
             <div className="flex items-center gap-1.5">
-              <IconClock size={12} className={order.slaHoursRemaining < 0 ? 'text-red-400' : order.slaHoursRemaining <= 6 ? 'text-yellow-400' : 'text-vscode-textMuted'} />
-              <span className={`text-[11px] font-mono ${order.slaHoursRemaining < 0 ? 'text-red-400' : order.slaHoursRemaining <= 6 ? 'text-yellow-400' : 'text-vscode-textMuted'}`}>
+              <IconClock size={12} className={order.slaHoursRemaining < 0 ? 'text-red-400' : order.slaHoursRemaining <= 6 ? 'text-yellow-400' : 'text-idpxyz-textMuted'} />
+              <span className={`text-[11px] font-mono ${order.slaHoursRemaining < 0 ? 'text-red-400' : order.slaHoursRemaining <= 6 ? 'text-yellow-400' : 'text-idpxyz-textMuted'}`}>
                 SLA: {order.slaHoursRemaining > 0 ? `剩余 ${order.slaHoursRemaining}小时` : order.slaHoursRemaining < 0 ? `超期 ${Math.abs(order.slaHoursRemaining)}小时` : '无'}
               </span>
             </div>
@@ -173,15 +173,15 @@ export default function OrderDetail({ orderId, onBack }: OrderDetailProps) {
         </div>
 
         {/* Tabs (Section 12) */}
-        <div className="flex items-center h-[35px] border-b border-vscode-border shrink-0">
+        <div className="flex items-center h-[35px] border-b border-idpxyz-border shrink-0">
           {tabs.map(tab => (
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
               className={`h-full px-4 text-[11px] uppercase tracking-wide border-b-2 transition-colors ${
                 activeTab === tab.id
-                  ? 'text-vscode-text border-b-vscode-accent font-medium'
-                  : 'text-vscode-textMuted border-transparent hover:text-vscode-text'
+                  ? 'text-idpxyz-text border-b-idpxyz-accent font-medium'
+                  : 'text-idpxyz-textMuted border-transparent hover:text-idpxyz-text'
               }`}
             >
               {tab.label}
@@ -201,10 +201,10 @@ export default function OrderDetail({ orderId, onBack }: OrderDetailProps) {
       </div>
 
       {/* Right Inspector (Section 13) */}
-      <div className="w-[280px] border-l border-vscode-border bg-vscode-sidebar flex flex-col overflow-y-auto shrink-0">
-        <div className="flex items-center justify-between px-4 h-[35px] text-[11px] uppercase tracking-wider text-vscode-breadcrumb shrink-0">
+      <div className="w-[280px] border-l border-idpxyz-border bg-idpxyz-sidebar flex flex-col overflow-y-auto shrink-0">
+        <div className="flex items-center justify-between px-4 h-[35px] text-[11px] uppercase tracking-wider text-idpxyz-breadcrumb shrink-0">
           <span>检查器</span>
-          <IconMoreH size={14} className="text-vscode-textMuted cursor-pointer" />
+          <IconMoreH size={14} className="text-idpxyz-textMuted cursor-pointer" />
         </div>
         <InspectorPanel order={order} relatedExceptions={relatedExceptions} />
       </div>
@@ -218,19 +218,19 @@ function OverviewTab({ order, lineItems, relatedExceptions, timeline }: { order:
     <div className="grid grid-cols-2 gap-5">
       <div className="space-y-4">
         <div>
-          <h3 className="text-[12px] font-semibold uppercase tracking-wider text-vscode-breadcrumb mb-2">订单概况</h3>
-          <div className="space-y-1 border border-vscode-border rounded-md p-3">
-            <div className="flex justify-between text-[12px]"><span className="text-vscode-textMuted">客户</span><span className="text-vscode-text">{order.customerName}</span></div>
-            <div className="flex justify-between text-[12px]"><span className="text-vscode-textMuted">邮箱</span><span className="text-vscode-text">{order.customerEmail}</span></div>
-            <div className="flex justify-between text-[12px]"><span className="text-vscode-textMuted">渠道</span><span className="text-vscode-text">{order.channel} / {order.store}</span></div>
-            <div className="flex justify-between text-[12px]"><span className="text-vscode-textMuted">国家</span><span className="text-vscode-text">{order.country}</span></div>
-            <div className="flex justify-between text-[12px]"><span className="text-vscode-textMuted">总额</span><span className="text-vscode-textBright font-medium">{order.currency} {order.totalAmount.toLocaleString()}</span></div>
-            <div className="flex justify-between text-[12px]"><span className="text-vscode-textMuted">商品</span><span className="text-vscode-text">{order.itemCount}</span></div>
+          <h3 className="text-[12px] font-semibold uppercase tracking-wider text-idpxyz-breadcrumb mb-2">订单概况</h3>
+          <div className="space-y-1 border border-idpxyz-border rounded-md p-3">
+            <div className="flex justify-between text-[12px]"><span className="text-idpxyz-textMuted">客户</span><span className="text-idpxyz-text">{order.customerName}</span></div>
+            <div className="flex justify-between text-[12px]"><span className="text-idpxyz-textMuted">邮箱</span><span className="text-idpxyz-text">{order.customerEmail}</span></div>
+            <div className="flex justify-between text-[12px]"><span className="text-idpxyz-textMuted">渠道</span><span className="text-idpxyz-text">{order.channel} / {order.store}</span></div>
+            <div className="flex justify-between text-[12px]"><span className="text-idpxyz-textMuted">国家</span><span className="text-idpxyz-text">{order.country}</span></div>
+            <div className="flex justify-between text-[12px]"><span className="text-idpxyz-textMuted">总额</span><span className="text-idpxyz-textBright font-medium">{order.currency} {order.totalAmount.toLocaleString()}</span></div>
+            <div className="flex justify-between text-[12px]"><span className="text-idpxyz-textMuted">商品</span><span className="text-idpxyz-text">{order.itemCount}</span></div>
             {order.tags.length > 0 && (
               <div className="flex justify-between text-[12px] items-start">
-                <span className="text-vscode-textMuted">标签</span>
+                <span className="text-idpxyz-textMuted">标签</span>
                 <div className="flex gap-1 flex-wrap justify-end">
-                  {order.tags.map(t => <span key={t} className="text-[10px] px-1.5 py-0.5 rounded bg-vscode-hover text-vscode-textMuted">{t}</span>)}
+                  {order.tags.map(t => <span key={t} className="text-[10px] px-1.5 py-0.5 rounded bg-idpxyz-hover text-idpxyz-textMuted">{t}</span>)}
                 </div>
               </div>
             )}
@@ -238,11 +238,11 @@ function OverviewTab({ order, lineItems, relatedExceptions, timeline }: { order:
         </div>
 
         <div>
-          <h3 className="text-[12px] font-semibold uppercase tracking-wider text-vscode-breadcrumb mb-2">履约概况</h3>
-          <div className="space-y-1 border border-vscode-border rounded-md p-3">
-            <div className="flex justify-between text-[12px]"><span className="text-vscode-textMuted">仓库</span><span className="text-vscode-text">{order.warehouse}</span></div>
-            <div className="flex justify-between text-[12px]"><span className="text-vscode-textMuted">已分配</span><span className="text-vscode-text">{lineItems.filter(l => l.allocatedQty > 0).length}/{lineItems.length}</span></div>
-            <div className="flex justify-between text-[12px]"><span className="text-vscode-textMuted">已履约</span><span className="text-vscode-text">{lineItems.filter(l => l.fulfilledQty > 0).length}/{lineItems.length}</span></div>
+          <h3 className="text-[12px] font-semibold uppercase tracking-wider text-idpxyz-breadcrumb mb-2">履约概况</h3>
+          <div className="space-y-1 border border-idpxyz-border rounded-md p-3">
+            <div className="flex justify-between text-[12px]"><span className="text-idpxyz-textMuted">仓库</span><span className="text-idpxyz-text">{order.warehouse}</span></div>
+            <div className="flex justify-between text-[12px]"><span className="text-idpxyz-textMuted">已分配</span><span className="text-idpxyz-text">{lineItems.filter(l => l.allocatedQty > 0).length}/{lineItems.length}</span></div>
+            <div className="flex justify-between text-[12px]"><span className="text-idpxyz-textMuted">已履约</span><span className="text-idpxyz-text">{lineItems.filter(l => l.fulfilledQty > 0).length}/{lineItems.length}</span></div>
             {lineItems.some(l => l.issue) && (
               <div className="mt-1 px-2 py-1.5 rounded bg-red-500/10 text-[11px] text-red-400 flex items-center gap-1.5">
                 <IconWarning size={12} /> {lineItems.filter(l => l.issue).length} 件商品存在问题
@@ -255,14 +255,14 @@ function OverviewTab({ order, lineItems, relatedExceptions, timeline }: { order:
       <div className="space-y-4">
         {relatedExceptions.length > 0 && (
           <div>
-            <h3 className="text-[12px] font-semibold uppercase tracking-wider text-vscode-breadcrumb mb-2">风险 / 异常</h3>
+            <h3 className="text-[12px] font-semibold uppercase tracking-wider text-idpxyz-breadcrumb mb-2">风险 / 异常</h3>
             <div className="space-y-1">
               {relatedExceptions.map(exc => (
-                <div key={exc.id} className="flex items-start gap-2 p-2.5 rounded border border-vscode-border">
+                <div key={exc.id} className="flex items-start gap-2 p-2.5 rounded border border-idpxyz-border">
                   <IconWarning size={13} className="text-red-400 shrink-0 mt-0.5" />
                   <div className="min-w-0 text-[11px]">
-                    <div className="text-vscode-accent font-medium">{exc.id} - {exc.type.replace(/_/g, ' ')}</div>
-                    <div className="text-vscode-text mt-0.5">{exc.description}</div>
+                    <div className="text-idpxyz-accent font-medium">{exc.id} - {exc.type.replace(/_/g, ' ')}</div>
+                    <div className="text-idpxyz-text mt-0.5">{exc.description}</div>
                   </div>
                 </div>
               ))}
@@ -271,14 +271,14 @@ function OverviewTab({ order, lineItems, relatedExceptions, timeline }: { order:
         )}
 
         <div>
-          <h3 className="text-[12px] font-semibold uppercase tracking-wider text-vscode-breadcrumb mb-2">最近动态</h3>
+          <h3 className="text-[12px] font-semibold uppercase tracking-wider text-idpxyz-breadcrumb mb-2">最近动态</h3>
           <div className="space-y-0">
             {timeline.slice(0, 5).map((evt, i) => (
-              <div key={i} className="flex gap-2 py-1.5 text-[11px] border-l-2 border-vscode-border ml-1 pl-2 relative">
-                <div className={`absolute -left-[5px] top-2 w-2 h-2 rounded-full ${i === 0 ? 'bg-vscode-accent' : 'bg-vscode-border'}`} />
+              <div key={i} className="flex gap-2 py-1.5 text-[11px] border-l-2 border-idpxyz-border ml-1 pl-2 relative">
+                <div className={`absolute -left-[5px] top-2 w-2 h-2 rounded-full ${i === 0 ? 'bg-idpxyz-accent' : 'bg-idpxyz-border'}`} />
                 <div className="flex-1 min-w-0">
-                  <div className="text-vscode-text">{evt.action}</div>
-                  <div className="text-vscode-textMuted">{evt.actor} \u00B7 {evt.time}</div>
+                  <div className="text-idpxyz-text">{evt.action}</div>
+                  <div className="text-idpxyz-textMuted">{evt.actor} \u00B7 {evt.time}</div>
                 </div>
               </div>
             ))}
@@ -295,35 +295,35 @@ function ItemsTab({ lineItems, currency }: { lineItems: any[]; currency: string 
   return (
     <table className="w-full text-[12px] border-collapse">
       <thead>
-        <tr className="bg-vscode-sidebar text-vscode-textMuted text-left">
-          <th className="px-3 py-2 font-medium border-b border-vscode-border">SKU</th>
-          <th className="px-3 py-2 font-medium border-b border-vscode-border">商品名称</th>
-          <th className="px-3 py-2 font-medium border-b border-vscode-border text-center">下单数</th>
-          <th className="px-3 py-2 font-medium border-b border-vscode-border text-center">已分配</th>
-          <th className="px-3 py-2 font-medium border-b border-vscode-border text-center">已履约</th>
-          <th className="px-3 py-2 font-medium border-b border-vscode-border text-center">已退货</th>
-          <th className="px-3 py-2 font-medium border-b border-vscode-border text-right">单价</th>
-          <th className="px-3 py-2 font-medium border-b border-vscode-border text-right">折扣</th>
-          <th className="px-3 py-2 font-medium border-b border-vscode-border text-right">税费</th>
-          <th className="px-3 py-2 font-medium border-b border-vscode-border">来源</th>
-          <th className="px-3 py-2 font-medium border-b border-vscode-border">问题</th>
+        <tr className="bg-idpxyz-sidebar text-idpxyz-textMuted text-left">
+          <th className="px-3 py-2 font-medium border-b border-idpxyz-border">SKU</th>
+          <th className="px-3 py-2 font-medium border-b border-idpxyz-border">商品名称</th>
+          <th className="px-3 py-2 font-medium border-b border-idpxyz-border text-center">下单数</th>
+          <th className="px-3 py-2 font-medium border-b border-idpxyz-border text-center">已分配</th>
+          <th className="px-3 py-2 font-medium border-b border-idpxyz-border text-center">已履约</th>
+          <th className="px-3 py-2 font-medium border-b border-idpxyz-border text-center">已退货</th>
+          <th className="px-3 py-2 font-medium border-b border-idpxyz-border text-right">单价</th>
+          <th className="px-3 py-2 font-medium border-b border-idpxyz-border text-right">折扣</th>
+          <th className="px-3 py-2 font-medium border-b border-idpxyz-border text-right">税费</th>
+          <th className="px-3 py-2 font-medium border-b border-idpxyz-border">来源</th>
+          <th className="px-3 py-2 font-medium border-b border-idpxyz-border">问题</th>
         </tr>
       </thead>
       <tbody>
         {lineItems.map(item => (
-          <tr key={item.sku} className="hover:bg-vscode-hover">
-            <td className="px-3 py-2 border-b border-vscode-border text-vscode-accent font-mono">{item.sku}</td>
-            <td className="px-3 py-2 border-b border-vscode-border text-vscode-text">{item.name}</td>
-            <td className="px-3 py-2 border-b border-vscode-border text-center text-vscode-text">{item.orderedQty}</td>
-            <td className={`px-3 py-2 border-b border-vscode-border text-center ${item.allocatedQty < item.orderedQty ? 'text-yellow-400' : 'text-vscode-text'}`}>{item.allocatedQty}</td>
-            <td className={`px-3 py-2 border-b border-vscode-border text-center ${item.fulfilledQty < item.orderedQty ? 'text-vscode-textMuted' : 'text-green-400'}`}>{item.fulfilledQty}</td>
-            <td className="px-3 py-2 border-b border-vscode-border text-center text-vscode-textMuted">{item.returnedQty}</td>
-            <td className="px-3 py-2 border-b border-vscode-border text-right text-vscode-text">{sym}{item.unitPrice.toFixed(2)}</td>
-            <td className="px-3 py-2 border-b border-vscode-border text-right text-vscode-textMuted">{item.discount > 0 ? `-${sym}${item.discount.toFixed(2)}` : '-'}</td>
-            <td className="px-3 py-2 border-b border-vscode-border text-right text-vscode-textMuted">{sym}{item.tax.toFixed(2)}</td>
-            <td className="px-3 py-2 border-b border-vscode-border text-vscode-textMuted">{item.inventorySource}</td>
-            <td className="px-3 py-2 border-b border-vscode-border">
-              {item.issue ? <span className="text-[10px] px-1.5 py-0.5 rounded bg-red-500/15 text-red-400">{item.issue}</span> : <span className="text-vscode-textMuted">-</span>}
+          <tr key={item.sku} className="hover:bg-idpxyz-hover">
+            <td className="px-3 py-2 border-b border-idpxyz-border text-idpxyz-accent font-mono">{item.sku}</td>
+            <td className="px-3 py-2 border-b border-idpxyz-border text-idpxyz-text">{item.name}</td>
+            <td className="px-3 py-2 border-b border-idpxyz-border text-center text-idpxyz-text">{item.orderedQty}</td>
+            <td className={`px-3 py-2 border-b border-idpxyz-border text-center ${item.allocatedQty < item.orderedQty ? 'text-yellow-400' : 'text-idpxyz-text'}`}>{item.allocatedQty}</td>
+            <td className={`px-3 py-2 border-b border-idpxyz-border text-center ${item.fulfilledQty < item.orderedQty ? 'text-idpxyz-textMuted' : 'text-green-400'}`}>{item.fulfilledQty}</td>
+            <td className="px-3 py-2 border-b border-idpxyz-border text-center text-idpxyz-textMuted">{item.returnedQty}</td>
+            <td className="px-3 py-2 border-b border-idpxyz-border text-right text-idpxyz-text">{sym}{item.unitPrice.toFixed(2)}</td>
+            <td className="px-3 py-2 border-b border-idpxyz-border text-right text-idpxyz-textMuted">{item.discount > 0 ? `-${sym}${item.discount.toFixed(2)}` : '-'}</td>
+            <td className="px-3 py-2 border-b border-idpxyz-border text-right text-idpxyz-textMuted">{sym}{item.tax.toFixed(2)}</td>
+            <td className="px-3 py-2 border-b border-idpxyz-border text-idpxyz-textMuted">{item.inventorySource}</td>
+            <td className="px-3 py-2 border-b border-idpxyz-border">
+              {item.issue ? <span className="text-[10px] px-1.5 py-0.5 rounded bg-red-500/15 text-red-400">{item.issue}</span> : <span className="text-idpxyz-textMuted">-</span>}
             </td>
           </tr>
         ))}
@@ -337,21 +337,21 @@ function PaymentTab({ order }: { order: Order }) {
   const ps = paymentStatusConfig[order.paymentStatus];
   return (
     <div className="max-w-lg space-y-4">
-      <div className="border border-vscode-border rounded-md p-4 space-y-2">
-        <h3 className="text-[12px] font-semibold text-vscode-breadcrumb uppercase tracking-wider mb-2">支付信息</h3>
-        <div className="flex justify-between text-[12px]"><span className="text-vscode-textMuted">状态</span><StatusBadge {...ps} /></div>
-        <div className="flex justify-between text-[12px]"><span className="text-vscode-textMuted">支付方式</span><span className="text-vscode-text">Visa ****4821</span></div>
-        <div className="flex justify-between text-[12px]"><span className="text-vscode-textMuted">金额</span><span className="text-vscode-textBright font-medium">{order.currency} {order.totalAmount.toLocaleString()}</span></div>
-        <div className="flex justify-between text-[12px]"><span className="text-vscode-textMuted">授权号</span><span className="text-vscode-text">AUTH-{order.id.slice(-6)}</span></div>
-        <div className="flex justify-between text-[12px]"><span className="text-vscode-textMuted">扣款</span><span className="text-vscode-text">{order.paymentStatus === 'captured' ? '已扣款' : '待扣款'}</span></div>
+      <div className="border border-idpxyz-border rounded-md p-4 space-y-2">
+        <h3 className="text-[12px] font-semibold text-idpxyz-breadcrumb uppercase tracking-wider mb-2">支付信息</h3>
+        <div className="flex justify-between text-[12px]"><span className="text-idpxyz-textMuted">状态</span><StatusBadge {...ps} /></div>
+        <div className="flex justify-between text-[12px]"><span className="text-idpxyz-textMuted">支付方式</span><span className="text-idpxyz-text">Visa ****4821</span></div>
+        <div className="flex justify-between text-[12px]"><span className="text-idpxyz-textMuted">金额</span><span className="text-idpxyz-textBright font-medium">{order.currency} {order.totalAmount.toLocaleString()}</span></div>
+        <div className="flex justify-between text-[12px]"><span className="text-idpxyz-textMuted">授权号</span><span className="text-idpxyz-text">AUTH-{order.id.slice(-6)}</span></div>
+        <div className="flex justify-between text-[12px]"><span className="text-idpxyz-textMuted">扣款</span><span className="text-idpxyz-text">{order.paymentStatus === 'captured' ? '已扣款' : '待扣款'}</span></div>
       </div>
-      <div className="border border-vscode-border rounded-md p-4">
-        <h3 className="text-[12px] font-semibold text-vscode-breadcrumb uppercase tracking-wider mb-2">交易记录</h3>
+      <div className="border border-idpxyz-border rounded-md p-4">
+        <h3 className="text-[12px] font-semibold text-idpxyz-breadcrumb uppercase tracking-wider mb-2">交易记录</h3>
         <div className="space-y-1 text-[11px]">
-          <div className="flex items-center gap-2 py-1"><IconClock size={11} className="text-vscode-textMuted" /><span className="text-vscode-textMuted">{order.createdAt}</span><span className="text-vscode-text">请求授权</span></div>
-          <div className="flex items-center gap-2 py-1"><IconCheckCircle size={11} className="text-green-400" /><span className="text-vscode-textMuted">{order.createdAt}</span><span className="text-vscode-text">授权成功</span></div>
+          <div className="flex items-center gap-2 py-1"><IconClock size={11} className="text-idpxyz-textMuted" /><span className="text-idpxyz-textMuted">{order.createdAt}</span><span className="text-idpxyz-text">请求授权</span></div>
+          <div className="flex items-center gap-2 py-1"><IconCheckCircle size={11} className="text-green-400" /><span className="text-idpxyz-textMuted">{order.createdAt}</span><span className="text-idpxyz-text">授权成功</span></div>
           {order.paymentStatus === 'captured' && (
-            <div className="flex items-center gap-2 py-1"><IconCheckCircle size={11} className="text-green-400" /><span className="text-vscode-textMuted">{order.updatedAt}</span><span className="text-vscode-text">已扣款</span></div>
+            <div className="flex items-center gap-2 py-1"><IconCheckCircle size={11} className="text-green-400" /><span className="text-idpxyz-textMuted">{order.updatedAt}</span><span className="text-idpxyz-text">已扣款</span></div>
           )}
         </div>
       </div>
@@ -364,12 +364,12 @@ function FulfillmentTab({ order, lineItems }: { order: Order; lineItems: any[] }
   const fs = fulfillmentStatusConfig[order.fulfillmentStatus];
   return (
     <div className="max-w-lg space-y-4">
-      <div className="border border-vscode-border rounded-md p-4 space-y-2">
-        <h3 className="text-[12px] font-semibold text-vscode-breadcrumb uppercase tracking-wider mb-2">履约状态</h3>
-        <div className="flex justify-between text-[12px]"><span className="text-vscode-textMuted">状态</span><StatusBadge {...fs} /></div>
-        <div className="flex justify-between text-[12px]"><span className="text-vscode-textMuted">仓库</span><span className="text-vscode-text">{order.warehouse}</span></div>
-        <div className="flex justify-between text-[12px]"><span className="text-vscode-textMuted">已分配</span><span className="text-vscode-text">{lineItems.filter(l => l.allocatedQty > 0).length}/{lineItems.length} 件</span></div>
-        <div className="flex justify-between text-[12px]"><span className="text-vscode-textMuted">已履约</span><span className="text-vscode-text">{lineItems.filter(l => l.fulfilledQty > 0).length}/{lineItems.length} 件</span></div>
+      <div className="border border-idpxyz-border rounded-md p-4 space-y-2">
+        <h3 className="text-[12px] font-semibold text-idpxyz-breadcrumb uppercase tracking-wider mb-2">履约状态</h3>
+        <div className="flex justify-between text-[12px]"><span className="text-idpxyz-textMuted">状态</span><StatusBadge {...fs} /></div>
+        <div className="flex justify-between text-[12px]"><span className="text-idpxyz-textMuted">仓库</span><span className="text-idpxyz-text">{order.warehouse}</span></div>
+        <div className="flex justify-between text-[12px]"><span className="text-idpxyz-textMuted">已分配</span><span className="text-idpxyz-text">{lineItems.filter(l => l.allocatedQty > 0).length}/{lineItems.length} 件</span></div>
+        <div className="flex justify-between text-[12px]"><span className="text-idpxyz-textMuted">已履约</span><span className="text-idpxyz-text">{lineItems.filter(l => l.fulfilledQty > 0).length}/{lineItems.length} 件</span></div>
       </div>
       {lineItems.some(l => l.issue) && (
         <div className="border border-red-500/30 rounded-md p-4 bg-red-500/5">
@@ -377,8 +377,8 @@ function FulfillmentTab({ order, lineItems }: { order: Order; lineItems: any[] }
           {lineItems.filter(l => l.issue).map(item => (
             <div key={item.sku} className="flex items-center gap-2 py-1 text-[11px]">
               <IconWarning size={12} className="text-red-400 shrink-0" />
-              <span className="text-vscode-accent font-mono">{item.sku}</span>
-              <span className="text-vscode-text">{item.issue}</span>
+              <span className="text-idpxyz-accent font-mono">{item.sku}</span>
+              <span className="text-idpxyz-text">{item.issue}</span>
             </div>
           ))}
         </div>
@@ -390,29 +390,29 @@ function FulfillmentTab({ order, lineItems }: { order: Order; lineItems: any[] }
 // ── Timeline Tab (Section 12.7) ──
 function TimelineTab({ events }: { events: any[] }) {
   const typeIcon: Record<string, React.ElementType> = { system: IconRefresh, human: IconUser, external: IconPackage, payment: IconBilling, shipment: IconShipment };
-  const typeColor: Record<string, string> = { system: 'text-vscode-textMuted', human: 'text-vscode-accent', external: 'text-green-400', payment: 'text-yellow-400', shipment: 'text-blue-400' };
+  const typeColor: Record<string, string> = { system: 'text-idpxyz-textMuted', human: 'text-idpxyz-accent', external: 'text-green-400', payment: 'text-yellow-400', shipment: 'text-blue-400' };
   return (
     <div className="max-w-2xl space-y-0">
       {events.map((evt, i) => {
         const Icon = typeIcon[evt.type] || IconPackage;
-        const color = typeColor[evt.type] || 'text-vscode-textMuted';
+        const color = typeColor[evt.type] || 'text-idpxyz-textMuted';
         return (
-          <div key={i} className="flex gap-3 py-2.5 border-l-2 border-vscode-border ml-3 pl-3 relative">
-            <div className={`absolute -left-[9px] top-3 w-4 h-4 rounded-full bg-vscode-editor border-2 border-vscode-border flex items-center justify-center ${i === 0 ? 'border-vscode-accent' : ''}`}>
-              <Icon size={9} className={i === 0 ? 'text-vscode-accent' : color} />
+          <div key={i} className="flex gap-3 py-2.5 border-l-2 border-idpxyz-border ml-3 pl-3 relative">
+            <div className={`absolute -left-[9px] top-3 w-4 h-4 rounded-full bg-idpxyz-editor border-2 border-idpxyz-border flex items-center justify-center ${i === 0 ? 'border-idpxyz-accent' : ''}`}>
+              <Icon size={9} className={i === 0 ? 'text-idpxyz-accent' : color} />
             </div>
             <div className="flex-1 min-w-0">
-              <div className="text-[12px] text-vscode-text">{evt.action}</div>
+              <div className="text-[12px] text-idpxyz-text">{evt.action}</div>
               <div className="flex items-center gap-2 mt-0.5 text-[11px]">
                 <span className={color}>{evt.actor}</span>
-                <span className="text-vscode-textMuted">{evt.time}</span>
+                <span className="text-idpxyz-textMuted">{evt.time}</span>
               </div>
             </div>
           </div>
         );
       })}
       {events.length === 0 && (
-        <div className="text-[12px] text-vscode-textMuted py-4">此订单暂无时间线事件。</div>
+        <div className="text-[12px] text-idpxyz-textMuted py-4">此订单暂无时间线事件。</div>
       )}
     </div>
   );
@@ -427,18 +427,18 @@ function NotesTab() {
         { time: '10:15', user: '刘建', avatar: '刘', text: '审查了风险标记。客户账户是新账户但支付已验证。谨慎处理中。' },
       ].map((note, i) => (
         <div key={i} className="flex gap-2 py-2">
-          <div className="w-7 h-7 rounded-full bg-vscode-accent/20 text-vscode-accent text-[10px] font-bold flex items-center justify-center shrink-0">{note.avatar}</div>
+          <div className="w-7 h-7 rounded-full bg-idpxyz-accent/20 text-idpxyz-accent text-[10px] font-bold flex items-center justify-center shrink-0">{note.avatar}</div>
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2">
-              <span className="text-vscode-accent font-medium text-[11px]">{note.user}</span>
-              <span className="text-vscode-textMuted text-[10px] font-mono">{note.time}</span>
+              <span className="text-idpxyz-accent font-medium text-[11px]">{note.user}</span>
+              <span className="text-idpxyz-textMuted text-[10px] font-mono">{note.time}</span>
             </div>
-            <div className="text-vscode-text text-[12px] mt-0.5 leading-relaxed">{note.text}</div>
+            <div className="text-idpxyz-text text-[12px] mt-0.5 leading-relaxed">{note.text}</div>
           </div>
         </div>
       ))}
-      <div className="flex items-center gap-2 pt-3 border-t border-vscode-border">
-        <input type="text" placeholder="添加备注..." className="flex-1 bg-vscode-inputBg border border-vscode-border rounded px-2.5 py-1.5 text-[12px] text-vscode-text outline-none placeholder:text-vscode-textMuted" />
+      <div className="flex items-center gap-2 pt-3 border-t border-idpxyz-border">
+        <input type="text" placeholder="添加备注..." className="flex-1 bg-idpxyz-inputBg border border-idpxyz-border rounded px-2.5 py-1.5 text-[12px] text-idpxyz-text outline-none placeholder:text-idpxyz-textMuted" />
         <Button variant="default" size="sm">添加备注</Button>
       </div>
     </div>
@@ -454,10 +454,10 @@ function InspectorPanel({ order, relatedExceptions }: { order: Order; relatedExc
     <>
       <Section title="概览">
         <div className="px-4 space-y-1.5 text-[12px]">
-          <div className="flex justify-between"><span className="text-vscode-textMuted">订单</span><StatusBadge {...os} /></div>
-          <div className="flex justify-between"><span className="text-vscode-textMuted">支付</span><StatusBadge {...ps} /></div>
-          <div className="flex justify-between"><span className="text-vscode-textMuted">履约</span><StatusBadge {...fs} /></div>
-          <div className="flex justify-between"><span className="text-vscode-textMuted">金额</span><span className="text-vscode-textBright font-medium">{order.currency} {order.totalAmount.toLocaleString()}</span></div>
+          <div className="flex justify-between"><span className="text-idpxyz-textMuted">订单</span><StatusBadge {...os} /></div>
+          <div className="flex justify-between"><span className="text-idpxyz-textMuted">支付</span><StatusBadge {...ps} /></div>
+          <div className="flex justify-between"><span className="text-idpxyz-textMuted">履约</span><StatusBadge {...fs} /></div>
+          <div className="flex justify-between"><span className="text-idpxyz-textMuted">金额</span><span className="text-idpxyz-textBright font-medium">{order.currency} {order.totalAmount.toLocaleString()}</span></div>
         </div>
       </Section>
 
@@ -475,26 +475,26 @@ function InspectorPanel({ order, relatedExceptions }: { order: Order; relatedExc
 
       <Section title="关联对象">
         <div className="px-4 space-y-1.5 text-[11px]">
-          <div className="flex items-center gap-2 px-1.5 py-1 rounded hover:bg-vscode-hover cursor-pointer">
-            <IconUser size={11} className="text-vscode-textMuted" />
-            <span className="text-vscode-textMuted">客户</span>
-            <span className="text-vscode-accent ml-auto">{order.customerName}</span>
+          <div className="flex items-center gap-2 px-1.5 py-1 rounded hover:bg-idpxyz-hover cursor-pointer">
+            <IconUser size={11} className="text-idpxyz-textMuted" />
+            <span className="text-idpxyz-textMuted">客户</span>
+            <span className="text-idpxyz-accent ml-auto">{order.customerName}</span>
           </div>
-          <div className="flex items-center gap-2 px-1.5 py-1 rounded hover:bg-vscode-hover cursor-pointer">
-            <IconLocation size={11} className="text-vscode-textMuted" />
-            <span className="text-vscode-textMuted">仓库</span>
-            <span className="text-vscode-accent ml-auto">{order.warehouse}</span>
+          <div className="flex items-center gap-2 px-1.5 py-1 rounded hover:bg-idpxyz-hover cursor-pointer">
+            <IconLocation size={11} className="text-idpxyz-textMuted" />
+            <span className="text-idpxyz-textMuted">仓库</span>
+            <span className="text-idpxyz-accent ml-auto">{order.warehouse}</span>
           </div>
-          <div className="flex items-center gap-2 px-1.5 py-1 rounded hover:bg-vscode-hover cursor-pointer">
-            <IconTag size={11} className="text-vscode-textMuted" />
-            <span className="text-vscode-textMuted">渠道</span>
-            <span className="text-vscode-accent ml-auto">{order.store}</span>
+          <div className="flex items-center gap-2 px-1.5 py-1 rounded hover:bg-idpxyz-hover cursor-pointer">
+            <IconTag size={11} className="text-idpxyz-textMuted" />
+            <span className="text-idpxyz-textMuted">渠道</span>
+            <span className="text-idpxyz-accent ml-auto">{order.store}</span>
           </div>
           {relatedExceptions.map(exc => (
-            <div key={exc.id} className="flex items-center gap-2 px-1.5 py-1 rounded hover:bg-vscode-hover cursor-pointer">
+            <div key={exc.id} className="flex items-center gap-2 px-1.5 py-1 rounded hover:bg-idpxyz-hover cursor-pointer">
               <IconWarning size={11} className="text-red-400" />
-              <span className="text-vscode-textMuted">异常</span>
-              <span className="text-vscode-accent ml-auto">{exc.id}</span>
+              <span className="text-idpxyz-textMuted">异常</span>
+              <span className="text-idpxyz-accent ml-auto">{exc.id}</span>
             </div>
           ))}
         </div>
@@ -502,9 +502,9 @@ function InspectorPanel({ order, relatedExceptions }: { order: Order; relatedExc
 
       <Section title="审计">
         <div className="px-4 space-y-1 text-[11px]">
-          <div className="flex justify-between"><span className="text-vscode-textMuted">创建时间</span><span className="text-vscode-text">{order.createdAt}</span></div>
-          <div className="flex justify-between"><span className="text-vscode-textMuted">更新时间</span><span className="text-vscode-text">{order.updatedAt}</span></div>
-          <div className="flex justify-between"><span className="text-vscode-textMuted">负责人</span><span className="text-vscode-text">{order.assignedTo || '未分配'}</span></div>
+          <div className="flex justify-between"><span className="text-idpxyz-textMuted">创建时间</span><span className="text-idpxyz-text">{order.createdAt}</span></div>
+          <div className="flex justify-between"><span className="text-idpxyz-textMuted">更新时间</span><span className="text-idpxyz-text">{order.updatedAt}</span></div>
+          <div className="flex justify-between"><span className="text-idpxyz-textMuted">负责人</span><span className="text-idpxyz-text">{order.assignedTo || '未分配'}</span></div>
         </div>
       </Section>
     </>

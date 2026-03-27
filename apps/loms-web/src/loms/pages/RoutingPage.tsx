@@ -35,22 +35,22 @@ export default function RoutingPage({ onOpenTab }: RoutingPageProps) {
   ];
 
   return (
-    <div className="flex-1 flex flex-col overflow-hidden bg-vscode-editor">
-      <div className="flex items-center h-[22px] px-3 text-[12px] text-vscode-breadcrumb bg-vscode-editor border-b border-vscode-border shrink-0 select-none">
-        <span className="hover:text-vscode-textBright cursor-pointer">Management</span>
-        <ChevronRight size={14} className="mx-0.5 text-vscode-textMuted" />
-        <span className="text-vscode-text">Routing</span>
+    <div className="flex-1 flex flex-col overflow-hidden bg-idpxyz-editor">
+      <div className="flex items-center h-[22px] px-3 text-[12px] text-idpxyz-breadcrumb bg-idpxyz-editor border-b border-idpxyz-border shrink-0 select-none">
+        <span className="hover:text-idpxyz-textBright cursor-pointer">Management</span>
+        <ChevronRight size={14} className="mx-0.5 text-idpxyz-textMuted" />
+        <span className="text-idpxyz-text">Routing</span>
       </div>
 
-      <div className="flex items-center h-[32px] border-b border-vscode-border shrink-0 px-2">
+      <div className="flex items-center h-[32px] border-b border-idpxyz-border shrink-0 px-2">
         {tabs.map((tab) => (
           <Button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
             variant="ghost"
             size="sm"
-            className={`h-full rounded-none px-3 text-[11px] border-b-2 border-r border-vscode-border/50 last:border-r-0 ${
-              activeTab === tab.id ? 'text-vscode-text border-b-vscode-accent' : 'text-vscode-textMuted border-transparent hover:text-vscode-text'
+            className={`h-full rounded-none px-3 text-[11px] border-b-2 border-r border-idpxyz-border/50 last:border-r-0 ${
+              activeTab === tab.id ? 'text-idpxyz-text border-b-idpxyz-accent' : 'text-idpxyz-textMuted border-transparent hover:text-idpxyz-text'
             }`}
           >
             {tab.label}
@@ -65,30 +65,30 @@ export default function RoutingPage({ onOpenTab }: RoutingPageProps) {
         {activeTab === 'decisions' && (
           <div className="space-y-2">
             {routingDecisions.map((rd) => (
-              <div key={rd.id} className="bg-vscode-sidebar rounded p-3 border border-vscode-border">
+              <div key={rd.id} className="bg-idpxyz-sidebar rounded p-3 border border-idpxyz-border">
                 <div className="flex items-center gap-2 mb-1.5">
-                  <GitBranch size={13} className="text-vscode-textMuted" />
-                  <span className="text-[12px] text-vscode-accent font-medium">{rd.id}</span>
-                  <span className="text-[10px] px-1.5 py-0.5 rounded bg-vscode-hover text-vscode-textMuted font-medium">{rd.type}</span>
+                  <GitBranch size={13} className="text-idpxyz-textMuted" />
+                  <span className="text-[12px] text-idpxyz-accent font-medium">{rd.id}</span>
+                  <span className="text-[10px] px-1.5 py-0.5 rounded bg-idpxyz-hover text-idpxyz-textMuted font-medium">{rd.type}</span>
                   <span
-                    className="text-[11px] text-vscode-accent cursor-pointer hover:underline"
+                    className="text-[11px] text-idpxyz-accent cursor-pointer hover:underline"
                     onClick={() => onOpenTab?.(`shipment-detail-${rd.shipment}`, `Shipment ${rd.shipment}`)}
                   >{rd.shipment}</span>
-                  <span className="ml-auto text-[10px] text-vscode-textMuted">{rd.decidedAt}</span>
+                  <span className="ml-auto text-[10px] text-idpxyz-textMuted">{rd.decidedAt}</span>
                 </div>
-                <div className="flex items-center gap-2 text-[12px] text-vscode-text mb-1">
+                <div className="flex items-center gap-2 text-[12px] text-idpxyz-text mb-1">
                   <span>{rd.from}</span>
-                  <ArrowRight size={12} className="text-vscode-textMuted" />
+                  <ArrowRight size={12} className="text-idpxyz-textMuted" />
                   <span>{rd.to}</span>
                 </div>
-                <div className="flex items-center gap-4 text-[11px] text-vscode-textMuted">
-                  <span className="text-vscode-textBright font-medium">{rd.selectedCarrier} Â· {rd.selectedService}</span>
+                <div className="flex items-center gap-4 text-[11px] text-idpxyz-textMuted">
+                  <span className="text-idpxyz-textBright font-medium">{rd.selectedCarrier} Â· {rd.selectedService}</span>
                   <span>Cost: {rd.cost}</span>
                   <span>Transit: {rd.transit}</span>
                   <span>{rd.alternativeCount} alternatives evaluated</span>
                   <span className="ml-auto">By: {rd.decidedBy}</span>
                 </div>
-                <div className="mt-1.5 text-[11px] text-vscode-textMuted italic">{rd.reason}</div>
+                <div className="mt-1.5 text-[11px] text-idpxyz-textMuted italic">{rd.reason}</div>
               </div>
             ))}
           </div>
@@ -97,14 +97,14 @@ export default function RoutingPage({ onOpenTab }: RoutingPageProps) {
         {activeTab === 'recompute' && (
           <div className="space-y-2">
             {recomputeTasks.map((rc) => (
-              <div key={rc.id} className={`bg-vscode-sidebar rounded p-3 border ${
-                rc.status === 'pending_review' ? 'border-yellow-500/30' : rc.status === 'running' ? 'border-blue-500/30' : 'border-vscode-border'
+              <div key={rc.id} className={`bg-idpxyz-sidebar rounded p-3 border ${
+                rc.status === 'pending_review' ? 'border-yellow-500/30' : rc.status === 'running' ? 'border-blue-500/30' : 'border-idpxyz-border'
               }`}>
                 <div className="flex items-center gap-2 mb-1.5">
-                  <RefreshCw size={13} className={rc.status === 'running' ? 'text-blue-400 animate-spin' : 'text-vscode-textMuted'} />
-                  <span className="text-[12px] text-vscode-accent font-medium">{rc.id}</span>
+                  <RefreshCw size={13} className={rc.status === 'running' ? 'text-blue-400 animate-spin' : 'text-idpxyz-textMuted'} />
+                  <span className="text-[12px] text-idpxyz-accent font-medium">{rc.id}</span>
                   <span
-                    className="text-[11px] text-vscode-accent cursor-pointer hover:underline"
+                    className="text-[11px] text-idpxyz-accent cursor-pointer hover:underline"
                     onClick={() => onOpenTab?.(`shipment-detail-${rc.shipment}`, `Shipment ${rc.shipment}`)}
                   >{rc.shipment}</span>
                   <span className={`ml-auto text-[10px] px-1.5 py-0.5 rounded font-medium ${
@@ -113,11 +113,11 @@ export default function RoutingPage({ onOpenTab }: RoutingPageProps) {
                     'bg-blue-500/20 text-blue-400'
                   }`}>{rc.status.replace('_', ' ')}</span>
                 </div>
-                <div className="text-[12px] text-vscode-text mb-1">
+                <div className="text-[12px] text-idpxyz-text mb-1">
                   <AlertTriangle size={11} className="inline mr-1 text-yellow-400" />
                   Trigger: {rc.trigger}
                 </div>
-                <div className="flex items-center gap-4 text-[11px] text-vscode-textMuted">
+                <div className="flex items-center gap-4 text-[11px] text-idpxyz-textMuted">
                   <span>{rc.alternatives} alternatives</span>
                   {rc.selected && <span className="text-green-400">¡ú{rc.selected}</span>}
                   <span className="flex items-center gap-1"><Clock size={10} /> {rc.computedAt}</span>

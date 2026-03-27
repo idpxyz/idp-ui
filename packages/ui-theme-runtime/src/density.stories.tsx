@@ -19,9 +19,9 @@ function DensityDemo() {
           fontSize: 13,
           cursor: 'pointer',
           borderRadius: 6,
-          border: '1px solid var(--vsc-border, #3c3c3c)',
-          background: 'var(--vsc-hover, rgba(255,255,255,0.06))',
-          color: 'var(--vsc-text, #ccc)',
+          border: '1px solid var(--idpxyz-border, #3c3c3c)',
+          background: 'var(--idpxyz-hover, rgba(255,255,255,0.06))',
+          color: 'var(--idpxyz-text, #ccc)',
         }}
       >
         Toggle density

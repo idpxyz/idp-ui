@@ -91,7 +91,7 @@ export default function App() {
   return (
     <ThemeProvider product="loms">
     <ToastProvider>
-    <div className="h-screen w-screen flex flex-col overflow-hidden bg-vscode-bg">
+    <div className="h-screen w-screen flex flex-col overflow-hidden bg-idpxyz-bg">
       <TitleBar
         rightSidebarVisible={ws.rightSidebarVisible}
         onToggleRightSidebar={() => ws.setRightSidebarVisible(!ws.rightSidebarVisible)}
@@ -162,7 +162,7 @@ export default function App() {
                         />
                       )}
                       emptyStateContent={
-                        <div className="flex-1 flex items-center justify-center bg-vscode-editor text-vscode-textMuted">
+                        <div className="flex-1 flex items-center justify-center bg-idpxyz-editor text-idpxyz-textMuted">
                           <div className="text-center">
                             <p className="text-[20px] mb-2">LOMS Operations Workbench</p>
                             <p className="text-[13px]">Select a module from the navigation panel</p>

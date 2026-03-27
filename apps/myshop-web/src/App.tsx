@@ -119,7 +119,7 @@ export default function App() {
   return (
     <ThemeProvider product="oms">
       <ToastProvider>
-        <div className="h-screen w-screen flex flex-col overflow-hidden bg-vscode-bg">
+        <div className="h-screen w-screen flex flex-col overflow-hidden bg-idpxyz-bg">
           {!isPOSFocusMode && (
             <TitleBar
               rightSidebarVisible={ws.rightSidebarVisible}
@@ -205,7 +205,7 @@ export default function App() {
                             />
                           )}
                           emptyStateContent={
-                            <div className="flex-1 flex items-center justify-center bg-vscode-editor text-vscode-textMuted">
+                            <div className="flex-1 flex items-center justify-center bg-idpxyz-editor text-idpxyz-textMuted">
                               <div className="text-center">
                                 <p className="text-[20px] mb-2">MyShop 订单管理工作台</p>
                                 <p className="text-[13px]">从左侧导航选择模块开始工作</p>

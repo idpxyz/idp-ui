@@ -37,9 +37,9 @@ export default function BottomPanel({ visible, height, maximized, onClose, onMax
   ];
 
   return (
-    <div className="bg-vscode-panelBg flex flex-col shrink-0 select-none" style={{ height }}>
+    <div className="bg-idpxyz-panelBg flex flex-col shrink-0 select-none" style={{ height }}>
       {/* Panel tabs */}
-      <div className="flex items-center justify-between h-[35px] border-b border-vscode-border shrink-0">
+      <div className="flex items-center justify-between h-[35px] border-b border-idpxyz-border shrink-0">
         <div className="flex items-center h-full">
           {tabs.map((tab) => (
             <Button
@@ -49,8 +49,8 @@ export default function BottomPanel({ visible, height, maximized, onClose, onMax
               size="sm"
               className={`h-full rounded-none px-3 text-[11px] uppercase tracking-wide border-b-2
                 ${activeTab === tab.id
-                  ? 'text-vscode-text border-b-vscode-accent'
-                  : 'text-vscode-textMuted border-transparent hover:text-vscode-text'
+                  ? 'text-idpxyz-text border-b-idpxyz-accent'
+                  : 'text-idpxyz-textMuted border-transparent hover:text-idpxyz-text'
                 }`}
             >
               <tab.icon size={14} />
@@ -77,13 +77,13 @@ export default function BottomPanel({ visible, height, maximized, onClose, onMax
         {!isLoading && activeTab === 'events' && (
           <div className="space-y-0.5">
             {trackingEvents.map((evt, i) => (
-              <div key={i} className="flex items-center gap-3 py-1 text-vscode-text">
-                <span className="text-vscode-textMuted font-mono shrink-0 text-[11px] w-[120px]">{evt.time}</span>
-                <span className={`shrink-0 text-[10px] px-1.5 py-0.5 rounded font-medium ${(evt as any).isAnomaly ? 'bg-red-500/20 text-red-400' : 'bg-vscode-hover text-vscode-textMuted'}`}>
+              <div key={i} className="flex items-center gap-3 py-1 text-idpxyz-text">
+                <span className="text-idpxyz-textMuted font-mono shrink-0 text-[11px] w-[120px]">{evt.time}</span>
+                <span className={`shrink-0 text-[10px] px-1.5 py-0.5 rounded font-medium ${(evt as any).isAnomaly ? 'bg-red-500/20 text-red-400' : 'bg-idpxyz-hover text-idpxyz-textMuted'}`}>
                   {evt.source}
                 </span>
                 <span className="truncate">{evt.event}</span>
-                <span className="ml-auto text-vscode-textMuted shrink-0">{evt.location}</span>
+                <span className="ml-auto text-idpxyz-textMuted shrink-0">{evt.location}</span>
               </div>
             ))}
           </div>
@@ -100,10 +100,10 @@ export default function BottomPanel({ visible, height, maximized, onClose, onMax
               { time: '13:15:00', actor: 'Mike Liu', action: 'Escalated EXC-004 to operations manager', level: 'info' },
               { time: '12:58:33', actor: 'System', action: 'Auto-retry successful for booking SHP-20240306', level: 'info' },
             ].map((log, i) => (
-              <div key={i} className="flex items-center gap-3 py-0.5 text-vscode-text">
-                <span className="text-vscode-textMuted font-mono shrink-0 text-[11px]">{log.time}</span>
+              <div key={i} className="flex items-center gap-3 py-0.5 text-idpxyz-text">
+                <span className="text-idpxyz-textMuted font-mono shrink-0 text-[11px]">{log.time}</span>
                 <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${log.level === 'warn' ? 'bg-yellow-400' : 'bg-blue-400'}`} />
-                <span className="text-vscode-accent shrink-0">[{log.actor}]</span>
+                <span className="text-idpxyz-accent shrink-0">[{log.actor}]</span>
                 <span className="truncate">{log.action}</span>
               </div>
             ))}
@@ -120,14 +120,14 @@ export default function BottomPanel({ visible, height, maximized, onClose, onMax
               { id: 'EXC-006', severity: 'high', reason: 'Address validation failure', object: 'SHP-20240301', age: '2h' },
               { id: 'EXC-007', severity: 'medium', reason: 'Partial fulfillment risk', object: 'ORD-1004', age: '6h' },
             ].map((c) => (
-              <div key={c.id} className="flex items-center gap-2 py-1 text-vscode-text">
+              <div key={c.id} className="flex items-center gap-2 py-1 text-idpxyz-text">
                 <span className={`w-2 h-2 rounded-full shrink-0 ${
                   c.severity === 'critical' ? 'bg-red-500' : c.severity === 'high' ? 'bg-orange-400' : c.severity === 'medium' ? 'bg-yellow-400' : 'bg-gray-400'
                 }`} />
-                <span className="text-vscode-accent font-medium shrink-0">{c.id}</span>
+                <span className="text-idpxyz-accent font-medium shrink-0">{c.id}</span>
                 <span className="truncate">{c.reason}</span>
-                <span className="ml-auto text-vscode-textMuted shrink-0">{c.object}</span>
-                <span className="text-vscode-textMuted shrink-0">{c.age}</span>
+                <span className="ml-auto text-idpxyz-textMuted shrink-0">{c.object}</span>
+                <span className="text-idpxyz-textMuted shrink-0">{c.age}</span>
               </div>
             ))}
           </div>
@@ -141,16 +141,16 @@ export default function BottomPanel({ visible, height, maximized, onClose, onMax
               { id: 'JOB-038', type: 'Retry', status: 'failed', target: 'SHP-20240310', started: '1h ago' },
               { id: 'JOB-037', type: 'Report', status: 'completed', target: 'Daily KPIs', started: '2h ago' },
             ].map((j) => (
-              <div key={j.id} className="flex items-center gap-3 py-1 text-vscode-text">
-                <span className="text-vscode-textMuted font-mono shrink-0 text-[11px]">{j.id}</span>
-                <span className="shrink-0 text-[10px] px-1.5 py-0.5 rounded font-medium bg-vscode-hover text-vscode-textMuted">{j.type}</span>
+              <div key={j.id} className="flex items-center gap-3 py-1 text-idpxyz-text">
+                <span className="text-idpxyz-textMuted font-mono shrink-0 text-[11px]">{j.id}</span>
+                <span className="shrink-0 text-[10px] px-1.5 py-0.5 rounded font-medium bg-idpxyz-hover text-idpxyz-textMuted">{j.type}</span>
                 <span className={`shrink-0 text-[10px] px-1.5 py-0.5 rounded font-medium ${
                   j.status === 'running' ? 'bg-blue-500/20 text-blue-400' :
                   j.status === 'completed' ? 'bg-green-500/20 text-green-400' :
                   'bg-red-500/20 text-red-400'
                 }`}>{j.status}</span>
                 <span className="truncate">{j.target}</span>
-                <span className="ml-auto text-vscode-textMuted shrink-0">{j.started}</span>
+                <span className="ml-auto text-idpxyz-textMuted shrink-0">{j.started}</span>
               </div>
             ))}
           </div>
@@ -164,12 +164,12 @@ export default function BottomPanel({ visible, height, maximized, onClose, onMax
               { time: '12:30:00', user: 'Admin', action: 'Updated routing rules', detail: 'CN\u2192US Express lane added', ip: '10.0.1.10' },
               { time: '11:00:00', user: 'System', action: 'Config change detected', detail: 'Carrier Maersk rate table v3.2', ip: '-' },
             ].map((a, i) => (
-              <div key={i} className="flex items-center gap-3 py-1 text-vscode-text">
-                <span className="text-vscode-textMuted font-mono shrink-0 text-[11px]">{a.time}</span>
-                <span className="text-vscode-accent shrink-0">{a.user}</span>
+              <div key={i} className="flex items-center gap-3 py-1 text-idpxyz-text">
+                <span className="text-idpxyz-textMuted font-mono shrink-0 text-[11px]">{a.time}</span>
+                <span className="text-idpxyz-accent shrink-0">{a.user}</span>
                 <span className="truncate">{a.action}</span>
-                <span className="text-vscode-textMuted truncate">{a.detail}</span>
-                <span className="ml-auto text-vscode-textMuted shrink-0 font-mono text-[10px]">{a.ip}</span>
+                <span className="text-idpxyz-textMuted truncate">{a.detail}</span>
+                <span className="ml-auto text-idpxyz-textMuted shrink-0 font-mono text-[10px]">{a.ip}</span>
               </div>
             ))}
           </div>
@@ -182,25 +182,25 @@ export default function BottomPanel({ visible, height, maximized, onClose, onMax
               { time: '11:30', user: 'Mike Liu', avatar: 'ML', text: 'Documentation re-submitted to customs. Awaiting clearance confirmation within 2h.', mentions: ['SHP-20240302'] },
             ].map((c, i) => (
               <div key={i} className="flex gap-2 py-1.5">
-                <div className="w-6 h-6 rounded-full bg-vscode-accent/20 text-vscode-accent text-[10px] font-bold flex items-center justify-center shrink-0">{c.avatar}</div>
+                <div className="w-6 h-6 rounded-full bg-idpxyz-accent/20 text-idpxyz-accent text-[10px] font-bold flex items-center justify-center shrink-0">{c.avatar}</div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2">
-                    <span className="text-vscode-accent font-medium text-[11px]">{c.user}</span>
-                    <span className="text-vscode-textMuted text-[10px] font-mono">{c.time}</span>
+                    <span className="text-idpxyz-accent font-medium text-[11px]">{c.user}</span>
+                    <span className="text-idpxyz-textMuted text-[10px] font-mono">{c.time}</span>
                   </div>
-                  <div className="text-vscode-text text-[11px] mt-0.5 leading-relaxed">{c.text}</div>
+                  <div className="text-idpxyz-text text-[11px] mt-0.5 leading-relaxed">{c.text}</div>
                   {c.mentions.length > 0 && (
                     <div className="flex gap-1 mt-1">
                       {c.mentions.map((m) => (
-                        <span key={m} className="text-[10px] px-1.5 py-0.5 rounded bg-vscode-hover text-vscode-accent cursor-pointer hover:underline">{m}</span>
+                        <span key={m} className="text-[10px] px-1.5 py-0.5 rounded bg-idpxyz-hover text-idpxyz-accent cursor-pointer hover:underline">{m}</span>
                       ))}
                     </div>
                   )}
                 </div>
               </div>
             ))}
-            <div className="flex items-center gap-2 pt-2 border-t border-vscode-border">
-              <input type="text" placeholder="Add a comment..." className="flex-1 bg-vscode-inputBg border border-vscode-border rounded px-2 py-1 text-[11px] text-vscode-text outline-none placeholder:text-vscode-textMuted" />
+            <div className="flex items-center gap-2 pt-2 border-t border-idpxyz-border">
+              <input type="text" placeholder="Add a comment..." className="flex-1 bg-idpxyz-inputBg border border-idpxyz-border rounded px-2 py-1 text-[11px] text-idpxyz-text outline-none placeholder:text-idpxyz-textMuted" />
               <Button variant="default" size="sm">Send</Button>
             </div>
           </div>

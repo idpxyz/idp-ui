@@ -1,13 +1,22 @@
+import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { FormField, Label, FormDescription, FormError, Textarea } from './form';
 import { Input } from './input';
-import { Select, SelectOption } from './select';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from './select';
 
 const meta: Meta = { title: 'Primitives/Form' };
 export default meta;
 
-export const FormLayout: StoryObj = {
-  render: () => (
+function FormLayoutStory() {
+  const [role, setRole] = useState<string | undefined>(undefined);
+
+  return (
     <div style={{ maxWidth: 400, display: 'flex', flexDirection: 'column', gap: 16 }}>
       <FormField>
         <Label required>Name</Label>
@@ -20,11 +29,15 @@ export const FormLayout: StoryObj = {
       </FormField>
       <FormField>
         <Label required>Role</Label>
-        <Select>
-          <SelectOption value="">Select role...</SelectOption>
-          <SelectOption value="admin">Admin</SelectOption>
-          <SelectOption value="editor">Editor</SelectOption>
-          <SelectOption value="viewer">Viewer</SelectOption>
+        <Select value={role} onValueChange={setRole}>
+          <SelectTrigger className="w-full">
+            <SelectValue placeholder="Select role…" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="admin">Admin</SelectItem>
+            <SelectItem value="editor">Editor</SelectItem>
+            <SelectItem value="viewer">Viewer</SelectItem>
+          </SelectContent>
         </Select>
       </FormField>
       <FormField>
@@ -37,5 +50,9 @@ export const FormLayout: StoryObj = {
         <FormError>This field is required</FormError>
       </FormField>
     </div>
-  ),
+  );
+}
+
+export const FormLayout: StoryObj = {
+  render: () => <FormLayoutStory />,
 };

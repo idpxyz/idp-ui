@@ -88,12 +88,12 @@ export default function PageRouter({ tabId, onSelectObject, onOpenTab }: PageRou
       return <ConfigPage onOpenTab={onOpenTab} />;
     default:
       return (
-        <div className="flex-1 flex items-center justify-center bg-vscode-editor text-vscode-textMuted">
+        <div className="flex-1 flex items-center justify-center bg-idpxyz-editor text-idpxyz-textMuted">
           <div className="text-center">
             <div className="text-[32px] mb-3 opacity-20">
               {(() => { const Icon = lomsTabIconMap[tabId] || Layers; return <Icon size={48} className="mx-auto" />; })()}
             </div>
-            <p className="text-[16px] mb-1 text-vscode-text">{lomsTabNameMap[tabId] || tabId}</p>
+            <p className="text-[16px] mb-1 text-idpxyz-text">{lomsTabNameMap[tabId] || tabId}</p>
             <p className="text-[12px]">This module is under development</p>
           </div>
         </div>

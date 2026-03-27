@@ -52,7 +52,7 @@ export default function ShipmentDetail({ shipmentId, onOpenTab, onSelectShipment
   const shipment = shipments.find((s) => s.id === shipmentId);
   if (!shipment) {
     return (
-      <div className="flex-1 flex items-center justify-center bg-vscode-editor text-vscode-textMuted text-[13px]">
+      <div className="flex-1 flex items-center justify-center bg-idpxyz-editor text-idpxyz-textMuted text-[13px]">
         Shipment {shipmentId} not found
       </div>
     );
@@ -119,21 +119,21 @@ export default function ShipmentDetail({ shipmentId, onOpenTab, onSelectShipment
   }, []);
 
   return (
-    <div className="flex-1 flex flex-col overflow-hidden bg-vscode-editor">
+    <div className="flex-1 flex flex-col overflow-hidden bg-idpxyz-editor">
       {/* Breadcrumbs */}
-      <div className="flex items-center h-[22px] px-3 text-[12px] text-vscode-breadcrumb bg-vscode-editor border-b border-vscode-border shrink-0 select-none">
-        <span className="hover:text-vscode-textBright cursor-pointer" onClick={() => onOpenTab?.('shipment-monitor', 'Shipment Monitor')}>Operations</span>
-        <ChevronRight size={14} className="mx-0.5 text-vscode-textMuted" />
-        <span className="hover:text-vscode-textBright cursor-pointer" onClick={() => onOpenTab?.('shipment-monitor', 'Shipment Monitor')}>Shipment Monitor</span>
-        <ChevronRight size={14} className="mx-0.5 text-vscode-textMuted" />
-        <span className="text-vscode-text">{shipment.id}</span>
+      <div className="flex items-center h-[22px] px-3 text-[12px] text-idpxyz-breadcrumb bg-idpxyz-editor border-b border-idpxyz-border shrink-0 select-none">
+        <span className="hover:text-idpxyz-textBright cursor-pointer" onClick={() => onOpenTab?.('shipment-monitor', 'Shipment Monitor')}>Operations</span>
+        <ChevronRight size={14} className="mx-0.5 text-idpxyz-textMuted" />
+        <span className="hover:text-idpxyz-textBright cursor-pointer" onClick={() => onOpenTab?.('shipment-monitor', 'Shipment Monitor')}>Shipment Monitor</span>
+        <ChevronRight size={14} className="mx-0.5 text-idpxyz-textMuted" />
+        <span className="text-idpxyz-text">{shipment.id}</span>
       </div>
 
       {/* Object Header */}
-      <div className="px-4 py-3 border-b border-vscode-border shrink-0 bg-vscode-sidebar">
+      <div className="px-4 py-3 border-b border-idpxyz-border shrink-0 bg-idpxyz-sidebar">
         <div className="flex items-center justify-between mb-2">
           <div className="flex items-center gap-3">
-            <span className="text-[16px] font-bold text-vscode-textBright">{shipment.id}</span>
+            <span className="text-[16px] font-bold text-idpxyz-textBright">{shipment.id}</span>
             <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-medium" style={{ color: st.color, backgroundColor: st.bgColor }}>
               {st.label}
             </span>
@@ -163,8 +163,8 @@ export default function ShipmentDetail({ shipmentId, onOpenTab, onSelectShipment
             <span className="inline-block px-2 py-0.5 rounded text-[11px] font-semibold border" style={{ color: sla.color, backgroundColor: sla.bgColor, borderColor: `${sla.color}55` }}>
               SLA: {sla.label}
             </span>
-            <span className="text-[11px] text-vscode-textMuted">Owner: <span className="text-vscode-text font-medium">{shipment.owner}</span></span>
-            <span className="text-[11px] text-vscode-textMuted">Updated: <span className="text-vscode-text">{shipment.lastEventTime}</span></span>
+            <span className="text-[11px] text-idpxyz-textMuted">Owner: <span className="text-idpxyz-text font-medium">{shipment.owner}</span></span>
+            <span className="text-[11px] text-idpxyz-textMuted">Updated: <span className="text-idpxyz-text">{shipment.lastEventTime}</span></span>
           </div>
           {/* Quick Actions */}
           <div className="relative" ref={actionsMenuRef}>
@@ -172,7 +172,7 @@ export default function ShipmentDetail({ shipmentId, onOpenTab, onSelectShipment
               variant="ghost"
               size="sm"
               onClick={() => setActionsOpen((v) => !v)}
-              className="h-7 px-2 text-[11px] text-vscode-textMuted hover:text-vscode-text border border-vscode-border/45 rounded-md gap-1.5"
+              className="h-7 px-2 text-[11px] text-idpxyz-textMuted hover:text-idpxyz-text border border-idpxyz-border/45 rounded-md gap-1.5"
               title="Object actions"
             >
               <GitBranch size={12} />
@@ -180,14 +180,14 @@ export default function ShipmentDetail({ shipmentId, onOpenTab, onSelectShipment
               <ChevronDown size={12} className={`${actionsOpen ? 'rotate-180' : ''} transition-transform`} />
             </Button>
             {actionsOpen && (
-              <div className="absolute right-0 mt-1 w-[220px] rounded-md border border-vscode-border bg-vscode-sidebar shadow-lg z-20 py-1">
+              <div className="absolute right-0 mt-1 w-[220px] rounded-md border border-idpxyz-border bg-idpxyz-sidebar shadow-lg z-20 py-1">
                 {quickActions.map((action) => (
                   <Button
                     key={action.label}
                     variant="ghost"
                     size="sm"
                     className={`w-full justify-start h-8 rounded-none px-2.5 text-[12px] ${
-                      action.tone === 'attention' ? 'hover:text-red-400' : 'hover:text-vscode-text'
+                      action.tone === 'attention' ? 'hover:text-red-400' : 'hover:text-idpxyz-text'
                     }`}
                     onClick={() => executeQuickAction(action)}
                   >
@@ -200,16 +200,16 @@ export default function ShipmentDetail({ shipmentId, onOpenTab, onSelectShipment
           </div>
         </div>
         {/* Summary Strip (Section 7.1 â€?carrier / activeLeg / promise / owner / network) */}
-        <div className="flex items-center gap-5 text-[12px] text-vscode-textMuted flex-wrap">
+        <div className="flex items-center gap-5 text-[12px] text-idpxyz-textMuted flex-wrap">
           <span className="flex items-center gap-1"><MapPin size={12} /> {shipment.origin}</span>
           <ArrowRight size={12} />
           <span className="flex items-center gap-1"><MapPin size={12} /> {shipment.destination}</span>
-          <span className="text-vscode-border">|</span>
+          <span className="text-idpxyz-border">|</span>
           <span className="flex items-center gap-1"><Truck size={12} /> {shipment.carrier} Â· {shipment.service}</span>
-          <span className="text-vscode-border">|</span>
-          <span className="flex items-center gap-1"><Package size={12} /> Active: <span className="text-vscode-text font-medium">{shipment.currentLeg}</span></span>
-          <span className="text-vscode-border">|</span>
-          <span className="flex items-center gap-1"><Clock size={12} /> Promise: <span className="text-vscode-text">{shipment.promisedDate}</span></span>
+          <span className="text-idpxyz-border">|</span>
+          <span className="flex items-center gap-1"><Package size={12} /> Active: <span className="text-idpxyz-text font-medium">{shipment.currentLeg}</span></span>
+          <span className="text-idpxyz-border">|</span>
+          <span className="flex items-center gap-1"><Clock size={12} /> Promise: <span className="text-idpxyz-text">{shipment.promisedDate}</span></span>
           {shipment.slaRemainingMinutes !== null && (
             <span className={`flex items-center gap-1 text-[11px] font-medium ${
               shipment.slaRemainingMinutes < 0 ? 'text-red-400' : shipment.slaRemainingMinutes < 120 ? 'text-yellow-400' : 'text-green-400'
@@ -220,8 +220,8 @@ export default function ShipmentDetail({ shipmentId, onOpenTab, onSelectShipment
               {shipment.slaRemainingMinutes < 0 ? ' overdue' : ''}
             </span>
           )}
-          <span className="text-vscode-border">|</span>
-          <span className="flex items-center gap-1 text-vscode-text font-medium">{shipment.weight}</span>
+          <span className="text-idpxyz-border">|</span>
+          <span className="flex items-center gap-1 text-idpxyz-text font-medium">{shipment.weight}</span>
         </div>
       </div>
       <ConfirmDialog
@@ -239,7 +239,7 @@ export default function ShipmentDetail({ shipmentId, onOpenTab, onSelectShipment
       />
 
       {/* Detail tabs */}
-      <div className="flex items-center h-[32px] border-b border-vscode-border shrink-0 px-2 bg-vscode-sidebar">
+      <div className="flex items-center h-[32px] border-b border-idpxyz-border shrink-0 px-2 bg-idpxyz-sidebar">
         {tabs.map((tab) => (
           <Button
             key={tab.id}
@@ -248,8 +248,8 @@ export default function ShipmentDetail({ shipmentId, onOpenTab, onSelectShipment
             size="sm"
             className={`h-full rounded-none px-3 text-[11px] border-b-2 ${
               activeTab === tab.id
-                ? 'text-vscode-text border-b-vscode-accent'
-                : 'text-vscode-textMuted border-transparent hover:text-vscode-text'
+                ? 'text-idpxyz-text border-b-idpxyz-accent'
+                : 'text-idpxyz-textMuted border-transparent hover:text-idpxyz-text'
             }`}
           >
             {tab.label}
@@ -263,8 +263,8 @@ export default function ShipmentDetail({ shipmentId, onOpenTab, onSelectShipment
       {/* Tab content */}
       <div className="flex-1 flex overflow-hidden">
         {/* Main Content */}
-        <div className="flex-1 overflow-auto p-4 bg-vscode-editor">
-          <div className="min-h-full rounded-md border border-vscode-border bg-vscode-bg p-4">
+        <div className="flex-1 overflow-auto p-4 bg-idpxyz-editor">
+          <div className="min-h-full rounded-md border border-idpxyz-border bg-idpxyz-bg p-4">
             {activeTab === 'summary' && <SummaryTab shipment={shipment} openExceptionCount={relatedExceptions.length} />}
             {activeTab === 'route' && <RouteTab shipment={shipment} />}
             {activeTab === 'timeline' && <TimelineTab shipment={shipment} />}
@@ -286,8 +286,8 @@ function SummaryTab({ shipment, openExceptionCount }: { shipment: Shipment; open
     <div className="max-w-[900px] space-y-4">
       <div className="grid grid-cols-2 gap-4">
         {/* Shipment Basics */}
-        <div className="bg-vscode-sidebar rounded p-4 border border-vscode-border">
-          <h3 className="text-[11px] uppercase tracking-wider text-vscode-textMuted font-semibold mb-3">Basic Info</h3>
+        <div className="bg-idpxyz-sidebar rounded p-4 border border-idpxyz-border">
+          <h3 className="text-[11px] uppercase tracking-wider text-idpxyz-textMuted font-semibold mb-3">Basic Info</h3>
           <div className="space-y-2.5">
             {[
               { label: 'Shipment ID', value: shipment.id },
@@ -298,36 +298,36 @@ function SummaryTab({ shipment, openExceptionCount }: { shipment: Shipment; open
               { label: 'Weight', value: shipment.weight },
             ].map((r) => (
               <div key={r.label} className="flex justify-between text-[12px]">
-                <span className="text-vscode-textMuted">{r.label}</span>
-                <span className="text-vscode-text font-medium">{r.value}</span>
+                <span className="text-idpxyz-textMuted">{r.label}</span>
+                <span className="text-idpxyz-text font-medium">{r.value}</span>
               </div>
             ))}
           </div>
         </div>
 
         {/* Origin / Destination */}
-        <div className="bg-vscode-sidebar rounded p-4 border border-vscode-border">
-          <h3 className="text-[11px] uppercase tracking-wider text-vscode-textMuted font-semibold mb-3">Origin / Destination</h3>
+        <div className="bg-idpxyz-sidebar rounded p-4 border border-idpxyz-border">
+          <h3 className="text-[11px] uppercase tracking-wider text-idpxyz-textMuted font-semibold mb-3">Origin / Destination</h3>
           <div className="space-y-3">
             <div className="flex items-start gap-2">
               <div className="w-5 h-5 rounded-full bg-green-500/20 flex items-center justify-center shrink-0 mt-0.5">
                 <Circle size={8} className="text-green-400" fill="currentColor" />
               </div>
               <div>
-                <div className="text-[11px] text-vscode-textMuted">Ship-from (Origin)</div>
-                <div className="text-[12px] text-vscode-text font-medium">{shipment.origin}</div>
-                <div className="text-[10px] text-vscode-textMuted">Region: APAC</div>
+                <div className="text-[11px] text-idpxyz-textMuted">Ship-from (Origin)</div>
+                <div className="text-[12px] text-idpxyz-text font-medium">{shipment.origin}</div>
+                <div className="text-[10px] text-idpxyz-textMuted">Region: APAC</div>
               </div>
             </div>
-            <div className="ml-2.5 border-l-2 border-dashed border-vscode-border h-4" />
+            <div className="ml-2.5 border-l-2 border-dashed border-idpxyz-border h-4" />
             <div className="flex items-start gap-2">
               <div className="w-5 h-5 rounded-full bg-blue-500/20 flex items-center justify-center shrink-0 mt-0.5">
                 <MapPin size={10} className="text-blue-400" />
               </div>
               <div>
-                <div className="text-[11px] text-vscode-textMuted">Ship-to (Destination)</div>
-                <div className="text-[12px] text-vscode-text font-medium">{shipment.destination}</div>
-                <div className="text-[10px] text-vscode-textMuted">Lane: {shipment.origin.split(',')[0]} ¡ú {shipment.destination.split(',')[0]}</div>
+                <div className="text-[11px] text-idpxyz-textMuted">Ship-to (Destination)</div>
+                <div className="text-[12px] text-idpxyz-text font-medium">{shipment.destination}</div>
+                <div className="text-[10px] text-idpxyz-textMuted">Lane: {shipment.origin.split(',')[0]} ¡ú {shipment.destination.split(',')[0]}</div>
               </div>
             </div>
           </div>
@@ -336,8 +336,8 @@ function SummaryTab({ shipment, openExceptionCount }: { shipment: Shipment; open
 
       <div className="grid grid-cols-2 gap-4">
         {/* Current Execution Snapshot (Section 8.1 executionSnapshot) */}
-        <div className="bg-vscode-sidebar rounded p-4 border border-vscode-border">
-          <h3 className="text-[11px] uppercase tracking-wider text-vscode-textMuted font-semibold mb-3">Current Execution Snapshot</h3>
+        <div className="bg-idpxyz-sidebar rounded p-4 border border-idpxyz-border">
+          <h3 className="text-[11px] uppercase tracking-wider text-idpxyz-textMuted font-semibold mb-3">Current Execution Snapshot</h3>
           <div className="space-y-2.5">
             {[
               { label: 'Current Leg', value: shipment.currentLeg },
@@ -348,13 +348,13 @@ function SummaryTab({ shipment, openExceptionCount }: { shipment: Shipment; open
               { label: 'ETA Confidence', value: shipment.slaStatus === 'on_track' ? 'High (85%)' : shipment.slaStatus === 'at_risk' ? 'Medium (62%)' : 'Low (31%)' },
             ].map((r) => (
               <div key={r.label} className="flex justify-between text-[12px]">
-                <span className="text-vscode-textMuted">{r.label}</span>
-                <span className="text-vscode-text font-medium text-right max-w-[55%] truncate">{r.value}</span>
+                <span className="text-idpxyz-textMuted">{r.label}</span>
+                <span className="text-idpxyz-text font-medium text-right max-w-[55%] truncate">{r.value}</span>
               </div>
             ))}
             {/* Tracking Health (Section 11.1 preload.trackingHealth) */}
-            <div className="pt-1 border-t border-vscode-border">
-              <div className="text-[10px] text-vscode-textMuted mb-1.5">Tracking Health</div>
+            <div className="pt-1 border-t border-idpxyz-border">
+              <div className="text-[10px] text-idpxyz-textMuted mb-1.5">Tracking Health</div>
               {(() => {
                 const stale = shipment.slaStatus === 'breached' || shipment.status === 'exception';
                 const health = stale ? 'stale' : shipment.slaStatus === 'at_risk' ? 'degraded' : 'healthy';
@@ -364,7 +364,7 @@ function SummaryTab({ shipment, openExceptionCount }: { shipment: Shipment; open
                     <span className={`text-[11px] font-medium px-1.5 py-0.5 rounded ${
                       health === 'stale' ? 'bg-red-500/10 text-red-400' : health === 'degraded' ? 'bg-yellow-500/10 text-yellow-400' : 'bg-green-500/10 text-green-400'
                     }`}>{health}</span>
-                    <span className="text-[10px] text-vscode-textMuted">
+                    <span className="text-[10px] text-idpxyz-textMuted">
                       {health === 'stale' ? `stale ${staleHours}h` : `last update: ${shipment.lastEventTime}`}
                     </span>
                   </div>
@@ -372,44 +372,44 @@ function SummaryTab({ shipment, openExceptionCount }: { shipment: Shipment; open
               })()}
             </div>
             <div className="pt-1">
-              <div className="text-[10px] text-vscode-textMuted mb-1">Leg Progress</div>
+              <div className="text-[10px] text-idpxyz-textMuted mb-1">Leg Progress</div>
               <div className="flex items-center gap-1">
                 {Array.from({ length: shipment.legs }).map((_, i) => (
-                  <div key={i} className={`flex-1 h-2 rounded-full ${i < shipment.completedLegs ? 'bg-green-400' : i === shipment.completedLegs ? 'bg-blue-400' : 'bg-vscode-border'}`} />
+                  <div key={i} className={`flex-1 h-2 rounded-full ${i < shipment.completedLegs ? 'bg-green-400' : i === shipment.completedLegs ? 'bg-blue-400' : 'bg-idpxyz-border'}`} />
                 ))}
               </div>
-              <div className="text-[10px] text-vscode-textMuted mt-1">{shipment.completedLegs}/{shipment.legs} completed</div>
+              <div className="text-[10px] text-idpxyz-textMuted mt-1">{shipment.completedLegs}/{shipment.legs} completed</div>
             </div>
           </div>
         </div>
 
         {/* Cost / Promise Snapshot (Section 5.4-D) */}
-        <div className="bg-vscode-sidebar rounded p-4 border border-vscode-border">
-          <h3 className="text-[11px] uppercase tracking-wider text-vscode-textMuted font-semibold mb-3">Cost / Promise Snapshot</h3>
+        <div className="bg-idpxyz-sidebar rounded p-4 border border-idpxyz-border">
+          <h3 className="text-[11px] uppercase tracking-wider text-idpxyz-textMuted font-semibold mb-3">Cost / Promise Snapshot</h3>
           <div className="space-y-2.5">
             <div className="flex justify-between text-[12px]">
-              <span className="text-vscode-textMuted">Expected Cost</span>
-              <span className="text-vscode-text font-medium">$1,280.00</span>
+              <span className="text-idpxyz-textMuted">Expected Cost</span>
+              <span className="text-idpxyz-text font-medium">$1,280.00</span>
             </div>
             <div className="flex justify-between text-[12px]">
-              <span className="text-vscode-textMuted">Actual Known Cost</span>
-              <span className="text-vscode-text font-medium">$1,142.50</span>
+              <span className="text-idpxyz-textMuted">Actual Known Cost</span>
+              <span className="text-idpxyz-text font-medium">$1,142.50</span>
             </div>
             <div className="flex justify-between text-[12px] items-center">
-              <span className="text-vscode-textMuted">Cost Variance</span>
+              <span className="text-idpxyz-textMuted">Cost Variance</span>
               <span className="text-green-400 font-medium text-[11px]">âˆ?137.50 (under budget)</span>
             </div>
-            <div className="h-px bg-vscode-border my-1" />
+            <div className="h-px bg-idpxyz-border my-1" />
             <div className="flex justify-between text-[12px]">
-              <span className="text-vscode-textMuted">Promise Window</span>
-              <span className="text-vscode-text font-medium">{shipment.promisedDate}</span>
+              <span className="text-idpxyz-textMuted">Promise Window</span>
+              <span className="text-idpxyz-text font-medium">{shipment.promisedDate}</span>
             </div>
             <div className="flex justify-between text-[12px]">
-              <span className="text-vscode-textMuted">Expected Delivery</span>
-              <span className="text-vscode-text font-medium">{shipment.status === 'delivered' ? shipment.promisedDate : 'In transit'}</span>
+              <span className="text-idpxyz-textMuted">Expected Delivery</span>
+              <span className="text-idpxyz-text font-medium">{shipment.status === 'delivered' ? shipment.promisedDate : 'In transit'}</span>
             </div>
             <div className="flex justify-between text-[12px] items-center">
-              <span className="text-vscode-textMuted">SLA Status</span>
+              <span className="text-idpxyz-textMuted">SLA Status</span>
               <span className="px-2 py-0.5 rounded text-[11px] font-medium" style={{ color: sla.color, backgroundColor: sla.bgColor }}>
                 {sla.label}
               </span>
@@ -423,13 +423,13 @@ function SummaryTab({ shipment, openExceptionCount }: { shipment: Shipment; open
               </div>
             )}
             {/* SLA Summary: breach risk score (Section 9.1 slaSummary) */}
-            <div className="pt-1 border-t border-vscode-border">
-              <div className="text-[10px] text-vscode-textMuted mb-1.5">Breach Risk Score</div>
+            <div className="pt-1 border-t border-idpxyz-border">
+              <div className="text-[10px] text-idpxyz-textMuted mb-1.5">Breach Risk Score</div>
               {(() => {
                 const score = shipment.slaStatus === 'breached' ? 95 : shipment.slaStatus === 'at_risk' ? 68 : shipment.riskLevel === 'high' ? 42 : 12;
                 return (
                   <div className="flex items-center gap-2">
-                    <div className="flex-1 h-1.5 bg-vscode-border rounded-full overflow-hidden">
+                    <div className="flex-1 h-1.5 bg-idpxyz-border rounded-full overflow-hidden">
                       <div className={`h-full rounded-full ${score > 70 ? 'bg-red-400' : score > 40 ? 'bg-yellow-400' : 'bg-green-400'}`} style={{ width: `${score}%` }} />
                     </div>
                     <span className={`text-[11px] font-bold ${score > 70 ? 'text-red-400' : score > 40 ? 'text-yellow-400' : 'text-green-400'}`}>{score}</span>
@@ -488,61 +488,61 @@ function RouteTab({ shipment }: { shipment: Shipment }) {
             {/* Timeline */}
             <div className="flex flex-col items-center w-6 shrink-0">
               <div className={`w-4 h-4 rounded-full flex items-center justify-center shrink-0 ${
-                leg.status === 'completed' ? 'bg-green-400' : leg.status === 'active' ? 'bg-blue-400' : 'bg-vscode-border'
+                leg.status === 'completed' ? 'bg-green-400' : leg.status === 'active' ? 'bg-blue-400' : 'bg-idpxyz-border'
               }`}>
-                {leg.status === 'completed' ? <CheckCircle size={10} className="text-white" /> : leg.status === 'active' ? <Truck size={10} className="text-white" /> : <Circle size={8} className="text-vscode-textMuted" />}
+                {leg.status === 'completed' ? <CheckCircle size={10} className="text-white" /> : leg.status === 'active' ? <Truck size={10} className="text-white" /> : <Circle size={8} className="text-idpxyz-textMuted" />}
               </div>
               {i < legs.length - 1 && (
-                <div className={`flex-1 w-0.5 my-1 ${leg.status === 'completed' ? 'bg-green-400' : 'bg-vscode-border'}`} />
+                <div className={`flex-1 w-0.5 my-1 ${leg.status === 'completed' ? 'bg-green-400' : 'bg-idpxyz-border'}`} />
               )}
             </div>
 
             {/* Leg card */}
             <div className={`flex-1 mb-3 rounded p-3 border text-[12px] ${
-              leg.status === 'active' ? 'bg-blue-500/5 border-blue-500/30' : 'bg-vscode-sidebar border-vscode-border'
+              leg.status === 'active' ? 'bg-blue-500/5 border-blue-500/30' : 'bg-idpxyz-sidebar border-idpxyz-border'
             }`}>
               <div className="flex items-center justify-between mb-1.5">
                 <div className="flex items-center gap-2">
-                  <span className="font-medium text-vscode-textBright">Leg {leg.seq}</span>
-                  <span className="text-[10px] text-vscode-textMuted font-mono">{leg.legNo}</span>
-                  <span className="text-[10px] px-1.5 py-0.5 rounded bg-vscode-hover text-vscode-textMuted">{leg.legType}</span>
+                  <span className="font-medium text-idpxyz-textBright">Leg {leg.seq}</span>
+                  <span className="text-[10px] text-idpxyz-textMuted font-mono">{leg.legNo}</span>
+                  <span className="text-[10px] px-1.5 py-0.5 rounded bg-idpxyz-hover text-idpxyz-textMuted">{leg.legType}</span>
                 </div>
                 <span className={`text-[10px] px-1.5 py-0.5 rounded uppercase font-bold ${
                   leg.status === 'completed' ? 'bg-green-500/20 text-green-400' :
                   leg.status === 'active' ? 'bg-blue-500/20 text-blue-400' :
-                  'bg-vscode-hover text-vscode-textMuted'
+                  'bg-idpxyz-hover text-idpxyz-textMuted'
                 }`}>{leg.status}</span>
               </div>
-              <div className="flex items-center gap-2 text-vscode-textMuted mb-2">
+              <div className="flex items-center gap-2 text-idpxyz-textMuted mb-2">
                 <span>{leg.origin}</span>
                 <ArrowRight size={12} />
                 <span>{leg.destination}</span>
                 <span className="ml-auto flex items-center gap-1"><Anchor size={11} /> {leg.carrier}</span>
               </div>
               {/* Planned vs Actual times */}
-              <div className="grid grid-cols-2 gap-3 mt-2 pt-2 border-t border-vscode-border text-[11px]">
+              <div className="grid grid-cols-2 gap-3 mt-2 pt-2 border-t border-idpxyz-border text-[11px]">
                 <div>
-                  <div className="text-[10px] text-vscode-textMuted uppercase tracking-wider mb-1">Planned</div>
-                  <div className="flex items-center gap-1 text-vscode-textMuted">
+                  <div className="text-[10px] text-idpxyz-textMuted uppercase tracking-wider mb-1">Planned</div>
+                  <div className="flex items-center gap-1 text-idpxyz-textMuted">
                     <Clock size={10} /> {leg.plannedStart} ¡ú{leg.plannedEnd.split(' ')[1]}
                   </div>
                 </div>
                 <div>
-                  <div className="text-[10px] text-vscode-textMuted uppercase tracking-wider mb-1">Actual</div>
+                  <div className="text-[10px] text-idpxyz-textMuted uppercase tracking-wider mb-1">Actual</div>
                   {leg.actualStart ? (
-                    <div className="flex items-center gap-1 text-vscode-text">
+                    <div className="flex items-center gap-1 text-idpxyz-text">
                       <Clock size={10} /> {leg.actualStart.split(' ')[1]} ¡ú{leg.actualEnd ? leg.actualEnd.split(' ')[1] : <span className="text-blue-400">in progress</span>}
                     </div>
                   ) : (
-                    <span className="text-vscode-textMuted">â€?¡ª</span>
+                    <span className="text-idpxyz-textMuted">â€?¡ª</span>
                   )}
                 </div>
               </div>
               {/* Dwell time */}
               {leg.dwellMinutes !== null && (
                 <div className="flex items-center gap-2 mt-2 text-[10px]">
-                  <span className="text-vscode-textMuted">Dwell at handoff:</span>
-                  <span className={`font-medium ${leg.dwellMinutes > 120 ? 'text-yellow-400' : 'text-vscode-text'}`}>{leg.dwellMinutes}m</span>
+                  <span className="text-idpxyz-textMuted">Dwell at handoff:</span>
+                  <span className={`font-medium ${leg.dwellMinutes > 120 ? 'text-yellow-400' : 'text-idpxyz-text'}`}>{leg.dwellMinutes}m</span>
                   {leg.dwellMinutes > 120 && <AlertTriangle size={10} className="text-yellow-400" />}
                 </div>
               )}
@@ -552,15 +552,15 @@ function RouteTab({ shipment }: { shipment: Shipment }) {
       </div>
 
       {/* Handoff nodes */}
-      <div className="mt-4 p-3 bg-vscode-sidebar rounded border border-vscode-border">
-        <h4 className="text-[11px] uppercase tracking-wider text-vscode-textMuted font-semibold mb-2">Handoff Points</h4>
+      <div className="mt-4 p-3 bg-idpxyz-sidebar rounded border border-idpxyz-border">
+        <h4 className="text-[11px] uppercase tracking-wider text-idpxyz-textMuted font-semibold mb-2">Handoff Points</h4>
         <div className="flex items-center gap-2 text-[12px] flex-wrap">
           {[shipment.origin, ...Array.from({ length: shipment.legs - 1 }, (_, i) => `Hub ${i + 1}`), shipment.destination].map((node, i, arr) => (
             <div key={i} className="flex items-center gap-2">
               <span className={`px-2 py-1 rounded text-[11px] ${
-                i <= shipment.completedLegs ? 'bg-green-500/10 text-green-400 font-medium' : 'bg-vscode-hover text-vscode-textMuted'
+                i <= shipment.completedLegs ? 'bg-green-500/10 text-green-400 font-medium' : 'bg-idpxyz-hover text-idpxyz-textMuted'
               }`}>{node}</span>
-              {i < arr.length - 1 && <ArrowRight size={12} className="text-vscode-textMuted" />}
+              {i < arr.length - 1 && <ArrowRight size={12} className="text-idpxyz-textMuted" />}
             </div>
           ))}
         </div>
@@ -589,7 +589,7 @@ function TrackingTab() {
     <div className="max-w-[700px]">
       {/* View toggle */}
       <div className="flex items-center gap-2 mb-4">
-        <div className="flex items-center border border-vscode-border rounded overflow-hidden text-[11px]">
+        <div className="flex items-center border border-idpxyz-border rounded overflow-hidden text-[11px]">
           <Button
             onClick={() => setTrackingView('normalized')}
             variant={trackingView === 'normalized' ? 'default' : 'ghost'}
@@ -607,7 +607,7 @@ function TrackingTab() {
             Raw Carrier Events
           </Button>
         </div>
-        <span className="text-[10px] text-vscode-textMuted ml-auto">Last sync: 2 min ago</span>
+        <span className="text-[10px] text-idpxyz-textMuted ml-auto">Last sync: 2 min ago</span>
       </div>
 
       {trackingView === 'normalized' ? (
@@ -616,21 +616,21 @@ function TrackingTab() {
             <div key={i} className="flex items-stretch gap-3">
               <div className="flex flex-col items-center w-6 shrink-0">
                 <div className={`w-3 h-3 rounded-full shrink-0 mt-1 ${
-                  i === 0 ? 'bg-vscode-accent' : evt.isAnomaly ? 'bg-red-400' : 'bg-vscode-border'
+                  i === 0 ? 'bg-idpxyz-accent' : evt.isAnomaly ? 'bg-red-400' : 'bg-idpxyz-border'
                 }`} />
-                {i < trackingEvents.length - 1 && <div className="flex-1 w-0.5 my-0.5 bg-vscode-border" />}
+                {i < trackingEvents.length - 1 && <div className="flex-1 w-0.5 my-0.5 bg-idpxyz-border" />}
               </div>
               <div className={`flex-1 mb-2 rounded p-3 border text-[12px] ${
-                evt.isAnomaly ? 'bg-red-500/5 border-red-500/30' : 'bg-vscode-sidebar border-vscode-border'
+                evt.isAnomaly ? 'bg-red-500/5 border-red-500/30' : 'bg-idpxyz-sidebar border-idpxyz-border'
               }`}>
                 <div className="flex items-center justify-between mb-0.5">
-                  <span className="text-vscode-textBright font-medium">{evt.event}</span>
+                  <span className="text-idpxyz-textBright font-medium">{evt.event}</span>
                   {evt.isAnomaly && <AlertTriangle size={13} className="text-red-400" />}
                 </div>
-                <div className="flex items-center gap-3 text-vscode-textMuted text-[11px]">
+                <div className="flex items-center gap-3 text-idpxyz-textMuted text-[11px]">
                   <span className="flex items-center gap-1"><MapPin size={11} /> {evt.location}</span>
                   <span className="flex items-center gap-1"><Clock size={11} /> {evt.time}</span>
-                  <span className="ml-auto px-1.5 py-0.5 rounded bg-vscode-hover text-[10px]">{evt.source}</span>
+                  <span className="ml-auto px-1.5 py-0.5 rounded bg-idpxyz-hover text-[10px]">{evt.source}</span>
                 </div>
               </div>
             </div>
@@ -639,22 +639,22 @@ function TrackingTab() {
       ) : (
         <table className="w-full text-[12px] border-collapse">
           <thead>
-            <tr className="text-vscode-textMuted text-left">
-              <th className="px-3 py-2 font-medium border-b border-vscode-border w-[50px]">Code</th>
-              <th className="px-3 py-2 font-medium border-b border-vscode-border">Original Description</th>
-              <th className="px-3 py-2 font-medium border-b border-vscode-border">Provider Timestamp</th>
-              <th className="px-3 py-2 font-medium border-b border-vscode-border">Source</th>
-              <th className="px-3 py-2 font-medium border-b border-vscode-border">Mapped Event</th>
+            <tr className="text-idpxyz-textMuted text-left">
+              <th className="px-3 py-2 font-medium border-b border-idpxyz-border w-[50px]">Code</th>
+              <th className="px-3 py-2 font-medium border-b border-idpxyz-border">Original Description</th>
+              <th className="px-3 py-2 font-medium border-b border-idpxyz-border">Provider Timestamp</th>
+              <th className="px-3 py-2 font-medium border-b border-idpxyz-border">Source</th>
+              <th className="px-3 py-2 font-medium border-b border-idpxyz-border">Mapped Event</th>
             </tr>
           </thead>
           <tbody>
             {rawCarrierEvents.map((evt, i) => (
-              <tr key={i} className={`hover:bg-vscode-hover ${evt.code === 'DL' ? 'bg-red-500/5' : ''}`}>
-                <td className="px-3 py-2 border-b border-vscode-border font-mono text-vscode-accent">{evt.code}</td>
-                <td className="px-3 py-2 border-b border-vscode-border text-vscode-text">{evt.description}</td>
-                <td className="px-3 py-2 border-b border-vscode-border text-vscode-textMuted text-[11px] font-mono">{evt.timestamp}</td>
-                <td className="px-3 py-2 border-b border-vscode-border"><span className="px-1.5 py-0.5 rounded bg-vscode-hover text-[10px] text-vscode-textMuted">{evt.provider}</span></td>
-                <td className="px-3 py-2 border-b border-vscode-border text-vscode-text text-[11px]">{evt.mapped}</td>
+              <tr key={i} className={`hover:bg-idpxyz-hover ${evt.code === 'DL' ? 'bg-red-500/5' : ''}`}>
+                <td className="px-3 py-2 border-b border-idpxyz-border font-mono text-idpxyz-accent">{evt.code}</td>
+                <td className="px-3 py-2 border-b border-idpxyz-border text-idpxyz-text">{evt.description}</td>
+                <td className="px-3 py-2 border-b border-idpxyz-border text-idpxyz-textMuted text-[11px] font-mono">{evt.timestamp}</td>
+                <td className="px-3 py-2 border-b border-idpxyz-border"><span className="px-1.5 py-0.5 rounded bg-idpxyz-hover text-[10px] text-idpxyz-textMuted">{evt.provider}</span></td>
+                <td className="px-3 py-2 border-b border-idpxyz-border text-idpxyz-text text-[11px]">{evt.mapped}</td>
               </tr>
             ))}
           </tbody>
@@ -668,7 +668,7 @@ function TrackingTab() {
 function ExceptionsTab({ exceptions: excList }: { exceptions: typeof exceptions }) {
   if (excList.length === 0) {
     return (
-      <div className="flex items-center justify-center h-32 text-vscode-textMuted text-[12px]">
+      <div className="flex items-center justify-center h-32 text-idpxyz-textMuted text-[12px]">
         <CheckCircle size={16} className="mr-2 text-green-400" />
         No exceptions for this shipment
       </div>
@@ -678,7 +678,7 @@ function ExceptionsTab({ exceptions: excList }: { exceptions: typeof exceptions 
   return (
     <div className="space-y-2 max-w-[700px]">
       {excList.map((exc) => (
-        <div key={exc.id} className="bg-vscode-sidebar rounded p-3 border border-vscode-border">
+        <div key={exc.id} className="bg-idpxyz-sidebar rounded p-3 border border-idpxyz-border">
           <div className="flex items-center gap-2 mb-1">
             <span className={`text-[10px] px-1.5 py-0.5 rounded uppercase font-bold ${
               exc.severity === 'critical' ? 'bg-red-500/20 text-red-400' :
@@ -686,14 +686,14 @@ function ExceptionsTab({ exceptions: excList }: { exceptions: typeof exceptions 
               exc.severity === 'medium' ? 'bg-yellow-500/20 text-yellow-400' :
               'bg-gray-500/20 text-gray-400'
             }`}>{exc.severity}</span>
-            <span className="text-[12px] text-vscode-accent font-medium">{exc.id}</span>
-            <span className="ml-auto text-[11px] text-vscode-textMuted capitalize">{exc.status}</span>
+            <span className="text-[12px] text-idpxyz-accent font-medium">{exc.id}</span>
+            <span className="ml-auto text-[11px] text-idpxyz-textMuted capitalize">{exc.status}</span>
           </div>
-          <div className="text-[12px] text-vscode-text mb-1">{exc.reason}</div>
-          <div className="text-[11px] text-vscode-textMuted">{exc.description}</div>
+          <div className="text-[12px] text-idpxyz-text mb-1">{exc.reason}</div>
+          <div className="text-[11px] text-idpxyz-textMuted">{exc.description}</div>
           <div className="mt-2 flex items-start gap-2 bg-blue-500/10 rounded p-2 text-[11px]">
             <CheckCircle size={12} className="text-blue-400 shrink-0 mt-0.5" />
-            <span className="text-vscode-text">{exc.recommendedAction}</span>
+            <span className="text-idpxyz-text">{exc.recommendedAction}</span>
           </div>
         </div>
       ))}
@@ -716,27 +716,27 @@ function DocumentsTab({ shipment }: { shipment: Shipment }) {
     <div className="max-w-[700px]">
       <table className="w-full text-[12px] border-collapse">
         <thead>
-          <tr className="text-vscode-textMuted text-left">
-            <th className="px-3 py-2 font-medium border-b border-vscode-border">Document</th>
-            <th className="px-3 py-2 font-medium border-b border-vscode-border">Type</th>
-            <th className="px-3 py-2 font-medium border-b border-vscode-border">Size</th>
-            <th className="px-3 py-2 font-medium border-b border-vscode-border">Date</th>
-            <th className="px-3 py-2 font-medium border-b border-vscode-border text-center">Status</th>
+          <tr className="text-idpxyz-textMuted text-left">
+            <th className="px-3 py-2 font-medium border-b border-idpxyz-border">Document</th>
+            <th className="px-3 py-2 font-medium border-b border-idpxyz-border">Type</th>
+            <th className="px-3 py-2 font-medium border-b border-idpxyz-border">Size</th>
+            <th className="px-3 py-2 font-medium border-b border-idpxyz-border">Date</th>
+            <th className="px-3 py-2 font-medium border-b border-idpxyz-border text-center">Status</th>
           </tr>
         </thead>
         <tbody>
           {docs.map((doc) => (
-            <tr key={doc.name} className="hover:bg-vscode-hover cursor-pointer">
-              <td className="px-3 py-2 border-b border-vscode-border">
+            <tr key={doc.name} className="hover:bg-idpxyz-hover cursor-pointer">
+              <td className="px-3 py-2 border-b border-idpxyz-border">
                 <div className="flex items-center gap-2">
-                  <FileText size={14} className="text-vscode-textMuted" />
-                  <span className="text-vscode-text">{doc.name}</span>
+                  <FileText size={14} className="text-idpxyz-textMuted" />
+                  <span className="text-idpxyz-text">{doc.name}</span>
                 </div>
               </td>
-              <td className="px-3 py-2 border-b border-vscode-border text-vscode-textMuted">{doc.type}</td>
-              <td className="px-3 py-2 border-b border-vscode-border text-vscode-textMuted">{doc.size}</td>
-              <td className="px-3 py-2 border-b border-vscode-border text-vscode-textMuted">{doc.date}</td>
-              <td className="px-3 py-2 border-b border-vscode-border text-center">
+              <td className="px-3 py-2 border-b border-idpxyz-border text-idpxyz-textMuted">{doc.type}</td>
+              <td className="px-3 py-2 border-b border-idpxyz-border text-idpxyz-textMuted">{doc.size}</td>
+              <td className="px-3 py-2 border-b border-idpxyz-border text-idpxyz-textMuted">{doc.date}</td>
+              <td className="px-3 py-2 border-b border-idpxyz-border text-center">
                 <span className={`text-[10px] px-2 py-0.5 rounded font-medium ${
                   doc.status === 'available' ? 'bg-green-500/20 text-green-400' :
                   doc.status === 'pending' ? 'bg-yellow-500/20 text-yellow-400' :
@@ -772,13 +772,13 @@ function TimelineTab({ shipment }: { shipment: Shipment }) {
 
   return (
     <div className="max-w-[700px]">
-      <div className="flex items-center gap-2 mb-4 text-[11px] text-vscode-textMuted">
+      <div className="flex items-center gap-2 mb-4 text-[11px] text-idpxyz-textMuted">
         <span>Showing unified timeline for {shipment.id}</span>
         <span className="ml-auto">Last updated: 2 min ago</span>
       </div>
       <div className="space-y-0">
         {timelineEntries.map((entry, i) => {
-          const tc = typeColors[entry.type] || { bg: 'bg-vscode-hover', text: 'text-vscode-textMuted', icon: Clock };
+          const tc = typeColors[entry.type] || { bg: 'bg-idpxyz-hover', text: 'text-idpxyz-textMuted', icon: Clock };
           const EntryIcon = tc.icon;
           return (
             <div key={i} className="flex items-stretch gap-3">
@@ -786,14 +786,14 @@ function TimelineTab({ shipment }: { shipment: Shipment }) {
                 <div className={`w-4 h-4 rounded-full flex items-center justify-center shrink-0 ${tc.bg}`}>
                   <EntryIcon size={10} className={tc.text} />
                 </div>
-                {i < timelineEntries.length - 1 && <div className="flex-1 w-0.5 my-0.5 bg-vscode-border" />}
+                {i < timelineEntries.length - 1 && <div className="flex-1 w-0.5 my-0.5 bg-idpxyz-border" />}
               </div>
-              <div className="flex-1 mb-2 rounded p-2.5 border bg-vscode-sidebar border-vscode-border text-[12px]">
+              <div className="flex-1 mb-2 rounded p-2.5 border bg-idpxyz-sidebar border-idpxyz-border text-[12px]">
                 <div className="flex items-center justify-between mb-0.5">
-                  <span className="text-vscode-textBright font-medium">{entry.desc}</span>
-                  <span className="text-[10px] text-vscode-textMuted font-mono">{entry.time}</span>
+                  <span className="text-idpxyz-textBright font-medium">{entry.desc}</span>
+                  <span className="text-[10px] text-idpxyz-textMuted font-mono">{entry.time}</span>
                 </div>
-                <div className="flex items-center gap-3 text-[11px] text-vscode-textMuted">
+                <div className="flex items-center gap-3 text-[11px] text-idpxyz-textMuted">
                   <span>source: {entry.source}</span>
                   {entry.mapped && <span>normalized: {entry.mapped}</span>}
                 </div>
@@ -820,22 +820,22 @@ function AuditTab({ shipment }: { shipment: Shipment }) {
   return (
     <div className="max-w-[700px] space-y-1">
       {activities.map((act, i) => (
-        <div key={i} className="flex items-start gap-3 py-2 text-[12px] border-b border-vscode-border last:border-0">
-          <span className="text-vscode-textMuted font-mono shrink-0 text-[11px] mt-0.5">{act.time}</span>
+        <div key={i} className="flex items-start gap-3 py-2 text-[12px] border-b border-idpxyz-border last:border-0">
+          <span className="text-idpxyz-textMuted font-mono shrink-0 text-[11px] mt-0.5">{act.time}</span>
           <div className={`w-5 h-5 rounded flex items-center justify-center shrink-0 ${
             act.type === 'state_change' ? 'bg-blue-500/20' :
             act.type === 'comment' ? 'bg-purple-500/20' :
             act.type === 'action' ? 'bg-green-500/20' :
-            'bg-vscode-hover'
+            'bg-idpxyz-hover'
           }`}>
             {act.type === 'comment' ? <MessageSquare size={11} className="text-purple-400" /> :
              act.type === 'action' ? <CheckCircle size={11} className="text-green-400" /> :
              act.type === 'state_change' ? <Package size={11} className="text-blue-400" /> :
-             <Clock size={11} className="text-vscode-textMuted" />}
+             <Clock size={11} className="text-idpxyz-textMuted" />}
           </div>
           <div className="flex-1 min-w-0">
-            <span className="text-vscode-accent mr-1.5">{act.actor}</span>
-            <span className="text-vscode-text">{act.desc}</span>
+            <span className="text-idpxyz-accent mr-1.5">{act.actor}</span>
+            <span className="text-idpxyz-text">{act.desc}</span>
           </div>
         </div>
       ))}

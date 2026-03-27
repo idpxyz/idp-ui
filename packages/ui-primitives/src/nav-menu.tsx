@@ -53,22 +53,22 @@ function NavMenuItem({ item, activeId, collapsed, depth }: { item: NavItem; acti
         onClick={handleClick}
         className={cn(
           'flex items-center gap-2 w-full text-left text-[12px] transition-colors',
-          'hover:bg-vscode-hover rounded-sm',
-          isActive ? 'bg-vscode-activeItem text-vscode-textBright' : 'text-vscode-text',
+          'hover:bg-idpxyz-hover rounded-sm',
+          isActive ? 'bg-idpxyz-activeItem text-idpxyz-textBright' : 'text-idpxyz-text',
           collapsed ? 'px-2 py-2 justify-center' : 'px-2 py-1.5',
         )}
         style={{ paddingLeft: collapsed ? undefined : `${8 + depth * 16}px` }}
         title={collapsed ? item.label : undefined}
       >
-        {item.icon && <span className="shrink-0 w-4 h-4 flex items-center justify-center text-vscode-textMuted">{item.icon}</span>}
+        {item.icon && <span className="shrink-0 w-4 h-4 flex items-center justify-center text-idpxyz-textMuted">{item.icon}</span>}
         {!collapsed && (
           <>
             <span className="flex-1 truncate">{item.label}</span>
             {item.badge !== undefined && (
-              <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-vscode-accent text-white leading-none">{item.badge}</span>
+              <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-idpxyz-accent text-white leading-none">{item.badge}</span>
             )}
             {hasChildren && (
-              expanded ? <ChevronDown size={12} className="text-vscode-textMuted" /> : <ChevronRight size={12} className="text-vscode-textMuted" />
+              expanded ? <ChevronDown size={12} className="text-idpxyz-textMuted" /> : <ChevronRight size={12} className="text-idpxyz-textMuted" />
             )}
           </>
         )}

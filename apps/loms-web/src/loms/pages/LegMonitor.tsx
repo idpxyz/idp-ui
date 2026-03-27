@@ -61,76 +61,76 @@ export default function LegMonitor({ onOpenTab }: LegMonitorProps) {
   });
 
   return (
-    <div className="flex-1 flex flex-col overflow-hidden bg-vscode-editor">
-      <div className="flex items-center justify-between h-[36px] px-4 border-b border-vscode-border shrink-0 bg-vscode-sidebar select-none">
+    <div className="flex-1 flex flex-col overflow-hidden bg-idpxyz-editor">
+      <div className="flex items-center justify-between h-[36px] px-4 border-b border-idpxyz-border shrink-0 bg-idpxyz-sidebar select-none">
         <div className="flex items-center gap-3">
-          <span className="text-[13px] text-vscode-textBright font-semibold">Leg Monitor</span>
-          <span className="text-[11px] text-vscode-textMuted">All Legs</span>
+          <span className="text-[13px] text-idpxyz-textBright font-semibold">Leg Monitor</span>
+          <span className="text-[11px] text-idpxyz-textMuted">All Legs</span>
         </div>
       </div>
 
-      <div className="flex items-center gap-3 px-4 py-2 border-b border-vscode-border shrink-0">
-        <div className="flex items-center bg-vscode-inputBg rounded px-2.5 h-[28px] flex-1 max-w-[320px]">
-          <Search size={13} className="text-vscode-textMuted mr-1.5 shrink-0" />
-          <input type="text" placeholder="Search leg, shipment, carrier..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className="bg-transparent border-none outline-none text-[12px] text-vscode-text w-full placeholder:text-vscode-textMuted" />
+      <div className="flex items-center gap-3 px-4 py-2 border-b border-idpxyz-border shrink-0">
+        <div className="flex items-center bg-idpxyz-inputBg rounded px-2.5 h-[28px] flex-1 max-w-[320px]">
+          <Search size={13} className="text-idpxyz-textMuted mr-1.5 shrink-0" />
+          <input type="text" placeholder="Search leg, shipment, carrier..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className="bg-transparent border-none outline-none text-[12px] text-idpxyz-text w-full placeholder:text-idpxyz-textMuted" />
         </div>
-        <select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)} className="bg-vscode-inputBg text-vscode-text text-[12px] h-[28px] px-2 rounded border border-vscode-border outline-none cursor-pointer">
+        <select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)} className="bg-idpxyz-inputBg text-idpxyz-text text-[12px] h-[28px] px-2 rounded border border-idpxyz-border outline-none cursor-pointer">
           <option value="all">All Status</option>
           {Object.entries(legStatusConfig).map(([key, cfg]) => <option key={key} value={key}>{cfg.label}</option>)}
         </select>
-        <span className="text-[12px] text-vscode-textMuted ml-auto">{filtered.length} legs</span>
+        <span className="text-[12px] text-idpxyz-textMuted ml-auto">{filtered.length} legs</span>
       </div>
 
       <div className="flex-1 overflow-auto">
         <table className="w-full text-[12px] border-collapse">
           <thead className="sticky top-0 z-10">
-            <tr className="bg-vscode-sidebar text-vscode-textMuted text-left">
-              <th className="px-3 py-2 font-medium border-b border-vscode-border">Leg ID</th>
-              <th className="px-3 py-2 font-medium border-b border-vscode-border">Shipment</th>
-              <th className="px-3 py-2 font-medium border-b border-vscode-border">#</th>
-              <th className="px-3 py-2 font-medium border-b border-vscode-border">Type</th>
-              <th className="px-3 py-2 font-medium border-b border-vscode-border">Carrier</th>
-              <th className="px-3 py-2 font-medium border-b border-vscode-border">Origin</th>
-              <th className="px-3 py-2 font-medium border-b border-vscode-border">Destination</th>
-              <th className="px-3 py-2 font-medium border-b border-vscode-border text-center">Status</th>
-              <th className="px-3 py-2 font-medium border-b border-vscode-border">Planned</th>
-              <th className="px-3 py-2 font-medium border-b border-vscode-border">Actual</th>
-              <th className="px-3 py-2 font-medium border-b border-vscode-border text-center">Dwell</th>
+            <tr className="bg-idpxyz-sidebar text-idpxyz-textMuted text-left">
+              <th className="px-3 py-2 font-medium border-b border-idpxyz-border">Leg ID</th>
+              <th className="px-3 py-2 font-medium border-b border-idpxyz-border">Shipment</th>
+              <th className="px-3 py-2 font-medium border-b border-idpxyz-border">#</th>
+              <th className="px-3 py-2 font-medium border-b border-idpxyz-border">Type</th>
+              <th className="px-3 py-2 font-medium border-b border-idpxyz-border">Carrier</th>
+              <th className="px-3 py-2 font-medium border-b border-idpxyz-border">Origin</th>
+              <th className="px-3 py-2 font-medium border-b border-idpxyz-border">Destination</th>
+              <th className="px-3 py-2 font-medium border-b border-idpxyz-border text-center">Status</th>
+              <th className="px-3 py-2 font-medium border-b border-idpxyz-border">Planned</th>
+              <th className="px-3 py-2 font-medium border-b border-idpxyz-border">Actual</th>
+              <th className="px-3 py-2 font-medium border-b border-idpxyz-border text-center">Dwell</th>
             </tr>
           </thead>
           <tbody>
             {filtered.map((leg) => {
               const st = legStatusConfig[leg.status];
               return (
-                <tr key={leg.id} className="hover:bg-vscode-hover cursor-pointer">
-                  <td className={`px-3 ${cellPy} border-b border-vscode-border text-vscode-accent font-medium`}>{leg.id}</td>
-                  <td className={`px-3 ${cellPy} border-b border-vscode-border`}>
-                    <Button variant="ghost" size="sm" className="p-0 h-auto text-vscode-accent hover:underline" onClick={() => onOpenTab?.(`shipment-detail-${leg.shipmentId}`, `Shipment ${leg.shipmentId}`)}>{leg.shipmentId}</Button>
+                <tr key={leg.id} className="hover:bg-idpxyz-hover cursor-pointer">
+                  <td className={`px-3 ${cellPy} border-b border-idpxyz-border text-idpxyz-accent font-medium`}>{leg.id}</td>
+                  <td className={`px-3 ${cellPy} border-b border-idpxyz-border`}>
+                    <Button variant="ghost" size="sm" className="p-0 h-auto text-idpxyz-accent hover:underline" onClick={() => onOpenTab?.(`shipment-detail-${leg.shipmentId}`, `Shipment ${leg.shipmentId}`)}>{leg.shipmentId}</Button>
                   </td>
-                  <td className={`px-3 ${cellPy} border-b border-vscode-border text-vscode-textMuted`}>L{leg.sequence}</td>
-                  <td className={`px-3 ${cellPy} border-b border-vscode-border text-vscode-text`}>{leg.legType}</td>
-                  <td className={`px-3 ${cellPy} border-b border-vscode-border text-vscode-text`}>{leg.carrier}</td>
-                  <td className={`px-3 ${cellPy} border-b border-vscode-border text-vscode-text text-[11px]`}>{leg.origin}</td>
-                  <td className={`px-3 ${cellPy} border-b border-vscode-border text-vscode-text text-[11px]`}>{leg.destination}</td>
-                  <td className={`px-3 ${cellPy} border-b border-vscode-border text-center`}>
+                  <td className={`px-3 ${cellPy} border-b border-idpxyz-border text-idpxyz-textMuted`}>L{leg.sequence}</td>
+                  <td className={`px-3 ${cellPy} border-b border-idpxyz-border text-idpxyz-text`}>{leg.legType}</td>
+                  <td className={`px-3 ${cellPy} border-b border-idpxyz-border text-idpxyz-text`}>{leg.carrier}</td>
+                  <td className={`px-3 ${cellPy} border-b border-idpxyz-border text-idpxyz-text text-[11px]`}>{leg.origin}</td>
+                  <td className={`px-3 ${cellPy} border-b border-idpxyz-border text-idpxyz-text text-[11px]`}>{leg.destination}</td>
+                  <td className={`px-3 ${cellPy} border-b border-idpxyz-border text-center`}>
                     <span className="inline-block px-2 py-0.5 rounded text-[11px] font-medium" style={{ color: st.color, backgroundColor: st.bg }}>{st.label}</span>
                   </td>
-                  <td className={`px-3 ${cellPy} border-b border-vscode-border text-vscode-textMuted text-[10px]`}>
+                  <td className={`px-3 ${cellPy} border-b border-idpxyz-border text-idpxyz-textMuted text-[10px]`}>
                     <div>{leg.plannedDeparture.split(' ')[0]}</div>
                     <div>{leg.plannedDeparture.split(' ')[1]} ¡ú{leg.plannedArrival.split(' ')[1]}</div>
                   </td>
-                  <td className={`px-3 ${cellPy} border-b border-vscode-border text-[10px]`}>
+                  <td className={`px-3 ${cellPy} border-b border-idpxyz-border text-[10px]`}>
                     {leg.actualDeparture ? (
                       <div>
-                        <div className="text-vscode-text">{leg.actualDeparture.split(' ')[1]}</div>
-                        <div className="text-vscode-textMuted">{leg.actualArrival ? leg.actualArrival.split(' ')[1] : 'In progress'}</div>
+                        <div className="text-idpxyz-text">{leg.actualDeparture.split(' ')[1]}</div>
+                        <div className="text-idpxyz-textMuted">{leg.actualArrival ? leg.actualArrival.split(' ')[1] : 'In progress'}</div>
                       </div>
-                    ) : <span className="text-vscode-textMuted">-</span>}
+                    ) : <span className="text-idpxyz-textMuted">-</span>}
                   </td>
-                  <td className={`px-3 ${cellPy} border-b border-vscode-border text-center`}>
+                  <td className={`px-3 ${cellPy} border-b border-idpxyz-border text-center`}>
                     {leg.dwellMinutes !== null ? (
-                      <span className={`text-[11px] ${leg.dwellMinutes > 150 ? 'text-yellow-400' : 'text-vscode-textMuted'}`}>{leg.dwellMinutes}m</span>
-                    ) : <span className="text-vscode-textMuted">-</span>}
+                      <span className={`text-[11px] ${leg.dwellMinutes > 150 ? 'text-yellow-400' : 'text-idpxyz-textMuted'}`}>{leg.dwellMinutes}m</span>
+                    ) : <span className="text-idpxyz-textMuted">-</span>}
                   </td>
                 </tr>
               );

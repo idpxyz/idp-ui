@@ -20,8 +20,8 @@ const statusBadgeVariants = cva(
         warning: 'bg-yellow-500/15 text-yellow-400',
         danger: 'bg-red-500/15 text-red-400',
         info: 'bg-blue-500/15 text-blue-400',
-        neutral: 'bg-vscode-hover text-vscode-textMuted',
-        pending: 'bg-vscode-hover text-vscode-textMuted',
+        neutral: 'bg-idpxyz-hover text-idpxyz-textMuted',
+        pending: 'bg-idpxyz-hover text-idpxyz-textMuted',
       },
     },
     defaultVariants: {

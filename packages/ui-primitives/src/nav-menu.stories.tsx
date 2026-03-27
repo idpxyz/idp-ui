@@ -7,7 +7,7 @@ export default meta;
 
 export const Basic: StoryObj = {
   render: () => (
-    <div className="w-[240px] rounded-lg bg-vscode-sidebar p-2">
+    <div className="w-[240px] rounded-lg bg-idpxyz-sidebar p-2">
       <NavMenu
         activeId="integrations"
         items={[

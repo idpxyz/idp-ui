@@ -66,29 +66,29 @@ export default function MyQueues({ onOpenTab }: MyQueuesProps) {
   };
 
   return (
-    <div className="flex-1 flex flex-col overflow-hidden bg-vscode-editor">
-      <div className="flex items-center justify-between px-5 py-3 border-b border-vscode-border shrink-0">
+    <div className="flex-1 flex flex-col overflow-hidden bg-idpxyz-editor">
+      <div className="flex items-center justify-between px-5 py-3 border-b border-idpxyz-border shrink-0">
         <div>
-          <h1 className="text-[15px] font-semibold text-vscode-textBright flex items-center gap-2">
-            <Layers size={16} className="text-vscode-accent" /> My Queues
+          <h1 className="text-[15px] font-semibold text-idpxyz-textBright flex items-center gap-2">
+            <Layers size={16} className="text-idpxyz-accent" /> My Queues
           </h1>
-          <p className="text-[11px] text-vscode-textMuted mt-0.5">Operational work queues with SLA and backlog visibility</p>
+          <p className="text-[11px] text-idpxyz-textMuted mt-0.5">Operational work queues with SLA and backlog visibility</p>
         </div>
         <Button variant="outline" onClick={() => addToast({ type: 'info', title: 'Queue settings', message: 'Queue configuration panel coming soon' })}>
           Queue Settings
         </Button>
       </div>
 
-      <div className="grid grid-cols-3 gap-3 px-5 py-3 border-b border-vscode-border shrink-0">
+      <div className="grid grid-cols-3 gap-3 px-5 py-3 border-b border-idpxyz-border shrink-0">
         <Metric title="Pending" value={String(totals.pending)} />
         <Metric title="Overdue" value={String(totals.overdue)} danger={totals.overdue > 0} />
         <Metric title="SLA Risk" value={String(totals.risk)} danger={totals.risk > 0} />
       </div>
 
-      <div className="flex items-center gap-3 px-5 py-2 border-b border-vscode-border shrink-0">
-        <div className="flex items-center gap-2 bg-vscode-inputBg border border-vscode-border rounded px-2 py-1 w-[260px]">
-          <Search size={12} className="text-vscode-textMuted shrink-0" />
-          <input value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search queues..." className="flex-1 bg-transparent outline-none text-[12px] text-vscode-text placeholder:text-vscode-textMuted" />
+      <div className="flex items-center gap-3 px-5 py-2 border-b border-idpxyz-border shrink-0">
+        <div className="flex items-center gap-2 bg-idpxyz-inputBg border border-idpxyz-border rounded px-2 py-1 w-[260px]">
+          <Search size={12} className="text-idpxyz-textMuted shrink-0" />
+          <input value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search queues..." className="flex-1 bg-transparent outline-none text-[12px] text-idpxyz-text placeholder:text-idpxyz-textMuted" />
         </div>
         <div className="flex items-center gap-1">
           {(['all', 'shipment', 'exception', 'carrier', 'ops'] as const).map((d) => (
@@ -97,11 +97,11 @@ export default function MyQueues({ onOpenTab }: MyQueuesProps) {
             </Button>
           ))}
         </div>
-        <label className="flex items-center gap-1.5 text-[11px] text-vscode-textMuted cursor-pointer">
-          <input type="checkbox" checked={onlyOverdue} onChange={(e) => setOnlyOverdue(e.target.checked)} className="accent-vscode-accent" />
+        <label className="flex items-center gap-1.5 text-[11px] text-idpxyz-textMuted cursor-pointer">
+          <input type="checkbox" checked={onlyOverdue} onChange={(e) => setOnlyOverdue(e.target.checked)} className="accent-idpxyz-accent" />
           <Filter size={11} /> Overdue only
         </label>
-        <span className="ml-auto text-[11px] text-vscode-textMuted">{filtered.length} queues</span>
+        <span className="ml-auto text-[11px] text-idpxyz-textMuted">{filtered.length} queues</span>
       </div>
 
       <div className="flex-1 overflow-y-auto p-5">
@@ -110,18 +110,18 @@ export default function MyQueues({ onOpenTab }: MyQueuesProps) {
             const meta = statusMeta[q.status];
             const StatusIcon = meta.icon;
             return (
-              <div key={q.id} className="border border-vscode-border rounded bg-vscode-sidebar p-3 hover:border-vscode-accent/40 transition-colors group">
+              <div key={q.id} className="border border-idpxyz-border rounded bg-idpxyz-sidebar p-3 hover:border-idpxyz-accent/40 transition-colors group">
                 <div className="flex items-start gap-3">
-                  <div className="w-8 h-8 rounded bg-vscode-hover flex items-center justify-center shrink-0">
-                    {q.domain === 'shipment' ? <Truck size={14} className="text-vscode-accent" /> : <Layers size={14} className="text-vscode-accent" />}
+                  <div className="w-8 h-8 rounded bg-idpxyz-hover flex items-center justify-center shrink-0">
+                    {q.domain === 'shipment' ? <Truck size={14} className="text-idpxyz-accent" /> : <Layers size={14} className="text-idpxyz-accent" />}
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2">
-                      <span className="text-[12px] font-medium text-vscode-textBright truncate">{q.name}</span>
+                      <span className="text-[12px] font-medium text-idpxyz-textBright truncate">{q.name}</span>
                       <span className={`inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] ${meta.bg} ${meta.color}`}>
                         <StatusIcon size={10} /> {meta.label}
                       </span>
-                      <span className="text-[10px] px-1.5 py-0.5 rounded bg-vscode-hover text-vscode-textMuted capitalize">{q.domain}</span>
+                      <span className="text-[10px] px-1.5 py-0.5 rounded bg-idpxyz-hover text-idpxyz-textMuted capitalize">{q.domain}</span>
                     </div>
                     <div className="grid grid-cols-4 gap-2 mt-2">
                       <SmallStat label="Pending" value={q.pending} />
@@ -129,7 +129,7 @@ export default function MyQueues({ onOpenTab }: MyQueuesProps) {
                       <SmallStat label="SLA Risk" value={q.slaRisk} danger={q.slaRisk > 0} />
                       <SmallStat label="Owner" value={q.assignee} icon={<User size={10} />} />
                     </div>
-                    <p className="text-[11px] text-vscode-textMuted mt-2">Next action: {q.nextAction}</p>
+                    <p className="text-[11px] text-idpxyz-textMuted mt-2">Next action: {q.nextAction}</p>
                   </div>
                   <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
                     <Button variant="default" size="sm" onClick={() => handleOpenQueue(q)}>
@@ -144,7 +144,7 @@ export default function MyQueues({ onOpenTab }: MyQueuesProps) {
             );
           })}
           {filtered.length === 0 && (
-            <div className="text-center py-14 text-vscode-textMuted">
+            <div className="text-center py-14 text-idpxyz-textMuted">
               <Layers size={28} className="mx-auto mb-2 opacity-20" />
               <p className="text-[12px]">No queues found</p>
             </div>
@@ -157,9 +157,9 @@ export default function MyQueues({ onOpenTab }: MyQueuesProps) {
 
 function Metric({ title, value, danger = false }: { title: string; value: string; danger?: boolean }) {
   return (
-    <div className="px-3 py-2 rounded border border-vscode-border bg-vscode-sidebar">
-      <div className="text-[10px] uppercase tracking-wider text-vscode-textMuted">{title}</div>
-      <div className={`text-[18px] font-semibold mt-1 ${danger ? 'text-red-400' : 'text-vscode-textBright'}`}>{value}</div>
+    <div className="px-3 py-2 rounded border border-idpxyz-border bg-idpxyz-sidebar">
+      <div className="text-[10px] uppercase tracking-wider text-idpxyz-textMuted">{title}</div>
+      <div className={`text-[18px] font-semibold mt-1 ${danger ? 'text-red-400' : 'text-idpxyz-textBright'}`}>{value}</div>
     </div>
   );
 }
@@ -176,9 +176,9 @@ function SmallStat({
   icon?: React.ReactNode;
 }) {
   return (
-    <div className="px-2 py-1 rounded bg-vscode-hover/70 text-[10px]">
-      <div className="text-vscode-textMuted">{label}</div>
-      <div className={`mt-0.5 flex items-center gap-1 font-medium ${danger ? 'text-red-400' : 'text-vscode-text'}`}>
+    <div className="px-2 py-1 rounded bg-idpxyz-hover/70 text-[10px]">
+      <div className="text-idpxyz-textMuted">{label}</div>
+      <div className={`mt-0.5 flex items-center gap-1 font-medium ${danger ? 'text-red-400' : 'text-idpxyz-text'}`}>
         {icon}
         <span className="truncate">{value}</span>
       </div>

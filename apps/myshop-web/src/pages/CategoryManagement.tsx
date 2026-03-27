@@ -147,7 +147,7 @@ export default function CategoryManagement({ onOpenTab }: CategoryManagementProp
       <div key={cat.id}>
         <div
           className={`flex items-center gap-1.5 pr-4 py-[5px] cursor-pointer transition-colors text-[12px] ${
-            isSelected ? 'bg-vscode-activeItem' : 'hover:bg-vscode-hover'
+            isSelected ? 'bg-idpxyz-activeItem' : 'hover:bg-idpxyz-hover'
           }`}
           style={{ paddingLeft: `${16 + depth * 20}px` }}
           onClick={() => selectCategory(cat)}
@@ -158,7 +158,7 @@ export default function CategoryManagement({ onOpenTab }: CategoryManagementProp
             onClick={(e) => { e.stopPropagation(); if (hasChildren) toggleExpand(cat.id); }}
           >
             {hasChildren ? (
-              isExpanded ? <IconChevronDown size={13} className="text-vscode-textMuted" /> : <IconChevronRight size={13} className="text-vscode-textMuted" />
+              isExpanded ? <IconChevronDown size={13} className="text-idpxyz-textMuted" /> : <IconChevronRight size={13} className="text-idpxyz-textMuted" />
             ) : (
               <span className="w-3" />
             )}
@@ -168,7 +168,7 @@ export default function CategoryManagement({ onOpenTab }: CategoryManagementProp
           <span className="text-[14px] shrink-0">{cat.image}</span>
 
           {/* Name */}
-          <span className={`truncate ${isSelected ? 'text-vscode-textBright font-medium' : 'text-vscode-text'}`}>
+          <span className={`truncate ${isSelected ? 'text-idpxyz-textBright font-medium' : 'text-idpxyz-text'}`}>
             {cat.name}
           </span>
 
@@ -176,13 +176,13 @@ export default function CategoryManagement({ onOpenTab }: CategoryManagementProp
           {cat.status !== 'active' && <StatusBadge {...ss} />}
 
           {/* Product count */}
-          <span className="ml-auto text-[10px] text-vscode-textMuted tabular-nums shrink-0">
+          <span className="ml-auto text-[10px] text-idpxyz-textMuted tabular-nums shrink-0">
             {cat.productCount > 0 ? `${cat.productCount} 商品` : ''}
           </span>
 
           {/* Children count */}
           {hasChildren && (
-            <span className="text-[10px] text-vscode-textMuted shrink-0">
+            <span className="text-[10px] text-idpxyz-textMuted shrink-0">
               {node.children.length} 子类
             </span>
           )}
@@ -199,15 +199,15 @@ export default function CategoryManagement({ onOpenTab }: CategoryManagementProp
   };
 
   return (
-    <div className="flex-1 flex overflow-hidden bg-vscode-editor">
+    <div className="flex-1 flex overflow-hidden bg-idpxyz-editor">
       {/* Left: Tree Panel */}
-      <div className="w-[340px] border-r border-vscode-border bg-vscode-sidebar flex flex-col shrink-0">
+      <div className="w-[340px] border-r border-idpxyz-border bg-idpxyz-sidebar flex flex-col shrink-0">
         {/* Tree Header */}
-        <div className="flex items-center justify-between px-3 py-2 border-b border-vscode-border shrink-0">
+        <div className="flex items-center justify-between px-3 py-2 border-b border-idpxyz-border shrink-0">
           <div className="flex items-center gap-2">
-            <IconFolderTree size={14} className="text-vscode-accent" />
-            <span className="text-[12px] font-semibold text-vscode-textBright">分类目录</span>
-            <span className="text-[10px] text-vscode-textMuted">{totalCats}</span>
+            <IconFolderTree size={14} className="text-idpxyz-accent" />
+            <span className="text-[12px] font-semibold text-idpxyz-textBright">分类目录</span>
+            <span className="text-[10px] text-idpxyz-textMuted">{totalCats}</span>
           </div>
           <div className="flex items-center gap-1">
             <Button variant="ghost" size="icon" className="h-5 w-5" title="新建分类"><IconPlus size={13} /></Button>
@@ -218,29 +218,29 @@ export default function CategoryManagement({ onOpenTab }: CategoryManagementProp
         </div>
 
         {/* Tree IconSearch */}
-        <div className="px-3 py-1.5 border-b border-vscode-border shrink-0">
-          <div className="flex items-center bg-vscode-inputBg rounded px-2 h-[26px]">
-            <IconSearch size={12} className="text-vscode-textMuted mr-1.5 shrink-0" />
+        <div className="px-3 py-1.5 border-b border-idpxyz-border shrink-0">
+          <div className="flex items-center bg-idpxyz-inputBg rounded px-2 h-[26px]">
+            <IconSearch size={12} className="text-idpxyz-textMuted mr-1.5 shrink-0" />
             <input
               type="text"
               placeholder="搜索分类..."
               value={searchTerm}
               onChange={e => setSearchTerm(e.target.value)}
-              className="bg-transparent border-none outline-none text-[11px] text-vscode-text w-full placeholder:text-vscode-textMuted"
+              className="bg-transparent border-none outline-none text-[11px] text-idpxyz-text w-full placeholder:text-idpxyz-textMuted"
             />
           </div>
         </div>
 
         {/* Status IconFilter Pills */}
-        <div className="flex items-center gap-1 px-3 py-1.5 border-b border-vscode-border shrink-0 overflow-x-auto">
+        <div className="flex items-center gap-1 px-3 py-1.5 border-b border-idpxyz-border shrink-0 overflow-x-auto">
           {[{ key: 'all', label: '全部' }, ...Object.entries(categoryStatusConfig).map(([k, v]) => ({ key: k, label: v.label }))].map(f => (
             <button
               key={f.key}
               onClick={() => setStatusFilter(f.key)}
               className={`px-2 py-0.5 text-[10px] rounded whitespace-nowrap transition-colors ${
                 statusFilter === f.key
-                  ? 'bg-vscode-accent/15 text-vscode-accent font-medium'
-                  : 'text-vscode-textMuted hover:text-vscode-text hover:bg-vscode-hover'
+                  ? 'bg-idpxyz-accent/15 text-idpxyz-accent font-medium'
+                  : 'text-idpxyz-textMuted hover:text-idpxyz-text hover:bg-idpxyz-hover'
               }`}
             >
               {f.label}
@@ -252,7 +252,7 @@ export default function CategoryManagement({ onOpenTab }: CategoryManagementProp
         <div className="flex-1 overflow-auto">
           {tree.map(node => renderTreeNode(node))}
           {tree.length === 0 && (
-            <div className="flex items-center justify-center py-8 text-[11px] text-vscode-textMuted">
+            <div className="flex items-center justify-center py-8 text-[11px] text-idpxyz-textMuted">
               没有匹配的分类
             </div>
           )}
@@ -264,36 +264,36 @@ export default function CategoryManagement({ onOpenTab }: CategoryManagementProp
         {selectedCat ? (
           <>
             {/* Breadcrumb */}
-            <div className="flex items-center gap-1 px-5 py-2 border-b border-vscode-border shrink-0 text-[11px]">
+            <div className="flex items-center gap-1 px-5 py-2 border-b border-idpxyz-border shrink-0 text-[11px]">
               <button
                 onClick={() => { setSelectedCatId(null); setBreadcrumb([]); }}
-                className="text-vscode-accent hover:underline"
+                className="text-idpxyz-accent hover:underline"
               >
                 全部分类
               </button>
               {breadcrumb.map((bc, i) => (
                 <span key={bc.id} className="flex items-center gap-1">
-                  <IconChevronRight size={11} className="text-vscode-textMuted" />
+                  <IconChevronRight size={11} className="text-idpxyz-textMuted" />
                   {i < breadcrumb.length - 1 ? (
-                    <button onClick={() => selectCategory(bc)} className="text-vscode-accent hover:underline">{bc.name}</button>
+                    <button onClick={() => selectCategory(bc)} className="text-idpxyz-accent hover:underline">{bc.name}</button>
                   ) : (
-                    <span className="text-vscode-textBright font-medium">{bc.name}</span>
+                    <span className="text-idpxyz-textBright font-medium">{bc.name}</span>
                   )}
                 </span>
               ))}
             </div>
 
             {/* Category Header */}
-            <div className="px-5 py-3 border-b border-vscode-border shrink-0">
+            <div className="px-5 py-3 border-b border-idpxyz-border shrink-0">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
                   <span className="text-[24px]">{selectedCat.image}</span>
                   <div>
                     <div className="flex items-center gap-2">
-                      <h1 className="text-[15px] font-semibold text-vscode-textBright">{selectedCat.name}</h1>
+                      <h1 className="text-[15px] font-semibold text-idpxyz-textBright">{selectedCat.name}</h1>
                       <StatusBadge {...categoryStatusConfig[selectedCat.status]} />
                     </div>
-                    <p className="text-[11px] text-vscode-textMuted mt-0.5">{selectedCat.description}</p>
+                    <p className="text-[11px] text-idpxyz-textMuted mt-0.5">{selectedCat.description}</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
@@ -309,26 +309,26 @@ export default function CategoryManagement({ onOpenTab }: CategoryManagementProp
               </div>
 
               {/* Summary metrics row */}
-              <div className="flex items-center gap-5 mt-3 pt-2 border-t border-vscode-border/50">
+              <div className="flex items-center gap-5 mt-3 pt-2 border-t border-idpxyz-border/50">
                 <div className="text-[11px]">
-                  <span className="text-vscode-textMuted">商品数</span>
-                  <span className="ml-1.5 text-vscode-textBright font-semibold">{selectedCat.productCount.toLocaleString()}</span>
+                  <span className="text-idpxyz-textMuted">商品数</span>
+                  <span className="ml-1.5 text-idpxyz-textBright font-semibold">{selectedCat.productCount.toLocaleString()}</span>
                 </div>
                 <div className="text-[11px]">
-                  <span className="text-vscode-textMuted">SKU 数</span>
-                  <span className="ml-1.5 text-vscode-textBright font-semibold">{selectedCat.skuCount.toLocaleString()}</span>
+                  <span className="text-idpxyz-textMuted">SKU 数</span>
+                  <span className="ml-1.5 text-idpxyz-textBright font-semibold">{selectedCat.skuCount.toLocaleString()}</span>
                 </div>
                 <div className="text-[11px]">
-                  <span className="text-vscode-textMuted">佣金率</span>
-                  <span className="ml-1.5 text-vscode-accent font-semibold">{selectedCat.commissionRate}%</span>
+                  <span className="text-idpxyz-textMuted">佣金率</span>
+                  <span className="ml-1.5 text-idpxyz-accent font-semibold">{selectedCat.commissionRate}%</span>
                 </div>
                 <div className="text-[11px]">
-                  <span className="text-vscode-textMuted">层级</span>
-                  <span className="ml-1.5 text-vscode-text">{selectedCat.level === 0 ? '一级' : selectedCat.level === 1 ? '二级' : '三级'}</span>
+                  <span className="text-idpxyz-textMuted">层级</span>
+                  <span className="ml-1.5 text-idpxyz-text">{selectedCat.level === 0 ? '一级' : selectedCat.level === 1 ? '二级' : '三级'}</span>
                 </div>
                 <div className="text-[11px]">
-                  <span className="text-vscode-textMuted">子分类</span>
-                  <span className="ml-1.5 text-vscode-text">{childCategories.length}</span>
+                  <span className="text-idpxyz-textMuted">子分类</span>
+                  <span className="ml-1.5 text-idpxyz-text">{childCategories.length}</span>
                 </div>
               </div>
             </div>
@@ -341,7 +341,7 @@ export default function CategoryManagement({ onOpenTab }: CategoryManagementProp
                   {/* Child categories */}
                   {childCategories.length > 0 && (
                     <div>
-                      <h3 className="text-[12px] font-semibold uppercase tracking-wider text-vscode-breadcrumb mb-2">子分类 ({childCategories.length})</h3>
+                      <h3 className="text-[12px] font-semibold uppercase tracking-wider text-idpxyz-breadcrumb mb-2">子分类 ({childCategories.length})</h3>
                       <div className="space-y-1">
                         {childCategories.map(child => {
                           const cs = categoryStatusConfig[child.status];
@@ -350,22 +350,22 @@ export default function CategoryManagement({ onOpenTab }: CategoryManagementProp
                             <div
                               key={child.id}
                               onClick={() => selectCategory(child)}
-                              className="flex items-center gap-2 p-2.5 rounded border border-vscode-border cursor-pointer hover:bg-vscode-hover transition-colors"
+                              className="flex items-center gap-2 p-2.5 rounded border border-idpxyz-border cursor-pointer hover:bg-idpxyz-hover transition-colors"
                             >
                               <span className="text-[16px]">{child.image}</span>
                               <div className="flex-1 min-w-0">
                                 <div className="flex items-center gap-2">
-                                  <span className="text-[12px] text-vscode-text font-medium">{child.name}</span>
+                                  <span className="text-[12px] text-idpxyz-text font-medium">{child.name}</span>
                                   {child.status !== 'active' && <StatusBadge {...cs} />}
                                 </div>
-                                <div className="text-[10px] text-vscode-textMuted mt-0.5">{child.description}</div>
+                                <div className="text-[10px] text-idpxyz-textMuted mt-0.5">{child.description}</div>
                               </div>
                               <div className="text-right shrink-0">
-                                <div className="text-[11px] text-vscode-textBright font-medium">{child.productCount}</div>
-                                <div className="text-[10px] text-vscode-textMuted">商品</div>
+                                <div className="text-[11px] text-idpxyz-textBright font-medium">{child.productCount}</div>
+                                <div className="text-[10px] text-idpxyz-textMuted">商品</div>
                               </div>
                               {subChildren.length > 0 && (
-                                <IconChevronRight size={13} className="text-vscode-textMuted shrink-0" />
+                                <IconChevronRight size={13} className="text-idpxyz-textMuted shrink-0" />
                               )}
                             </div>
                           );
@@ -376,31 +376,31 @@ export default function CategoryManagement({ onOpenTab }: CategoryManagementProp
 
                   {/* Category Attributes */}
                   <div>
-                    <h3 className="text-[12px] font-semibold uppercase tracking-wider text-vscode-breadcrumb mb-2">分类属性 ({selectedCat.attributes.length})</h3>
+                    <h3 className="text-[12px] font-semibold uppercase tracking-wider text-idpxyz-breadcrumb mb-2">分类属性 ({selectedCat.attributes.length})</h3>
                     {selectedCat.attributes.length > 0 ? (
-                      <div className="border border-vscode-border rounded-md overflow-hidden">
+                      <div className="border border-idpxyz-border rounded-md overflow-hidden">
                         <table className="w-full text-[11px]">
                           <thead>
-                            <tr className="bg-vscode-sidebar text-vscode-textMuted">
-                              <th className="px-3 py-1.5 text-left font-medium border-b border-vscode-border">属性名</th>
-                              <th className="px-3 py-1.5 text-left font-medium border-b border-vscode-border">类型</th>
-                              <th className="px-3 py-1.5 text-center font-medium border-b border-vscode-border">必填</th>
-                              <th className="px-3 py-1.5 text-left font-medium border-b border-vscode-border">可选值</th>
+                            <tr className="bg-idpxyz-sidebar text-idpxyz-textMuted">
+                              <th className="px-3 py-1.5 text-left font-medium border-b border-idpxyz-border">属性名</th>
+                              <th className="px-3 py-1.5 text-left font-medium border-b border-idpxyz-border">类型</th>
+                              <th className="px-3 py-1.5 text-center font-medium border-b border-idpxyz-border">必填</th>
+                              <th className="px-3 py-1.5 text-left font-medium border-b border-idpxyz-border">可选值</th>
                             </tr>
                           </thead>
                           <tbody>
                             {selectedCat.attributes.map((attr, i) => (
-                              <tr key={i} className="hover:bg-vscode-hover">
-                                <td className="px-3 py-1.5 border-b border-vscode-border text-vscode-text font-medium">{attr.name}</td>
-                                <td className="px-3 py-1.5 border-b border-vscode-border text-vscode-textMuted">{attr.type}</td>
-                                <td className="px-3 py-1.5 border-b border-vscode-border text-center">
-                                  {attr.required ? <IconCheckCircle size={11} className="text-green-400 inline" /> : <span className="text-vscode-textMuted">-</span>}
+                              <tr key={i} className="hover:bg-idpxyz-hover">
+                                <td className="px-3 py-1.5 border-b border-idpxyz-border text-idpxyz-text font-medium">{attr.name}</td>
+                                <td className="px-3 py-1.5 border-b border-idpxyz-border text-idpxyz-textMuted">{attr.type}</td>
+                                <td className="px-3 py-1.5 border-b border-idpxyz-border text-center">
+                                  {attr.required ? <IconCheckCircle size={11} className="text-green-400 inline" /> : <span className="text-idpxyz-textMuted">-</span>}
                                 </td>
-                                <td className="px-3 py-1.5 border-b border-vscode-border text-vscode-textMuted">
+                                <td className="px-3 py-1.5 border-b border-idpxyz-border text-idpxyz-textMuted">
                                   {attr.options ? (
                                     <div className="flex flex-wrap gap-1">
                                       {attr.options.map(o => (
-                                        <span key={o} className="px-1.5 py-0.5 rounded bg-vscode-hover text-[10px]">{o}</span>
+                                        <span key={o} className="px-1.5 py-0.5 rounded bg-idpxyz-hover text-[10px]">{o}</span>
                                       ))}
                                     </div>
                                   ) : '-'}
@@ -411,7 +411,7 @@ export default function CategoryManagement({ onOpenTab }: CategoryManagementProp
                         </table>
                       </div>
                     ) : (
-                      <div className="text-[11px] text-vscode-textMuted border border-vscode-border rounded-md p-3">
+                      <div className="text-[11px] text-idpxyz-textMuted border border-idpxyz-border rounded-md p-3">
                         此分类暂无自定义属性
                       </div>
                     )}
@@ -425,57 +425,57 @@ export default function CategoryManagement({ onOpenTab }: CategoryManagementProp
                 <div className="space-y-4">
                   {/* Category Path */}
                   <div>
-                    <h3 className="text-[12px] font-semibold uppercase tracking-wider text-vscode-breadcrumb mb-2">分类路径</h3>
-                    <div className="border border-vscode-border rounded-md p-3">
-                      <div className="flex items-center gap-1.5 text-[12px] text-vscode-text">
-                        <IconFolderTree size={13} className="text-vscode-accent shrink-0" />
+                    <h3 className="text-[12px] font-semibold uppercase tracking-wider text-idpxyz-breadcrumb mb-2">分类路径</h3>
+                    <div className="border border-idpxyz-border rounded-md p-3">
+                      <div className="flex items-center gap-1.5 text-[12px] text-idpxyz-text">
+                        <IconFolderTree size={13} className="text-idpxyz-accent shrink-0" />
                         <span className="font-mono">{selectedCat.path}</span>
                       </div>
-                      <div className="mt-1.5 text-[10px] text-vscode-textMuted">
-                        ID: <span className="font-mono text-vscode-text">{selectedCat.id}</span>
+                      <div className="mt-1.5 text-[10px] text-idpxyz-textMuted">
+                        ID: <span className="font-mono text-idpxyz-text">{selectedCat.id}</span>
                       </div>
                     </div>
                   </div>
 
                   {/* Category IconInfo */}
                   <div>
-                    <h3 className="text-[12px] font-semibold uppercase tracking-wider text-vscode-breadcrumb mb-2">基本信息</h3>
-                    <div className="border border-vscode-border rounded-md p-3 space-y-1.5 text-[11px]">
-                      <div className="flex justify-between"><span className="text-vscode-textMuted">状态</span><StatusBadge {...categoryStatusConfig[selectedCat.status]} /></div>
-                      <div className="flex justify-between"><span className="text-vscode-textMuted">排序</span><span className="text-vscode-text">{selectedCat.sortOrder}</span></div>
-                      <div className="flex justify-between"><span className="text-vscode-textMuted">佣金率</span><span className="text-vscode-accent font-medium">{selectedCat.commissionRate}%</span></div>
-                      <div className="flex justify-between"><span className="text-vscode-textMuted">创建时间</span><span className="text-vscode-text">{selectedCat.createdAt}</span></div>
-                      <div className="flex justify-between"><span className="text-vscode-textMuted">更新时间</span><span className="text-vscode-text">{selectedCat.updatedAt}</span></div>
-                      <div className="flex justify-between"><span className="text-vscode-textMuted">创建人</span><span className="text-vscode-text">{selectedCat.createdBy}</span></div>
+                    <h3 className="text-[12px] font-semibold uppercase tracking-wider text-idpxyz-breadcrumb mb-2">基本信息</h3>
+                    <div className="border border-idpxyz-border rounded-md p-3 space-y-1.5 text-[11px]">
+                      <div className="flex justify-between"><span className="text-idpxyz-textMuted">状态</span><StatusBadge {...categoryStatusConfig[selectedCat.status]} /></div>
+                      <div className="flex justify-between"><span className="text-idpxyz-textMuted">排序</span><span className="text-idpxyz-text">{selectedCat.sortOrder}</span></div>
+                      <div className="flex justify-between"><span className="text-idpxyz-textMuted">佣金率</span><span className="text-idpxyz-accent font-medium">{selectedCat.commissionRate}%</span></div>
+                      <div className="flex justify-between"><span className="text-idpxyz-textMuted">创建时间</span><span className="text-idpxyz-text">{selectedCat.createdAt}</span></div>
+                      <div className="flex justify-between"><span className="text-idpxyz-textMuted">更新时间</span><span className="text-idpxyz-text">{selectedCat.updatedAt}</span></div>
+                      <div className="flex justify-between"><span className="text-idpxyz-textMuted">创建人</span><span className="text-idpxyz-text">{selectedCat.createdBy}</span></div>
                     </div>
                   </div>
 
                   {/* Statistics */}
                   <div>
-                    <h3 className="text-[12px] font-semibold uppercase tracking-wider text-vscode-breadcrumb mb-2">统计数据</h3>
+                    <h3 className="text-[12px] font-semibold uppercase tracking-wider text-idpxyz-breadcrumb mb-2">统计数据</h3>
                     <div className="grid grid-cols-2 gap-2">
-                      <div className="border border-vscode-border rounded-md p-3 text-center">
-                        <div className="text-[18px] font-bold text-vscode-textBright">{selectedCat.productCount.toLocaleString()}</div>
-                        <div className="text-[10px] text-vscode-textMuted mt-0.5">商品数</div>
+                      <div className="border border-idpxyz-border rounded-md p-3 text-center">
+                        <div className="text-[18px] font-bold text-idpxyz-textBright">{selectedCat.productCount.toLocaleString()}</div>
+                        <div className="text-[10px] text-idpxyz-textMuted mt-0.5">商品数</div>
                       </div>
-                      <div className="border border-vscode-border rounded-md p-3 text-center">
-                        <div className="text-[18px] font-bold text-vscode-textBright">{selectedCat.skuCount.toLocaleString()}</div>
-                        <div className="text-[10px] text-vscode-textMuted mt-0.5">SKU 数</div>
+                      <div className="border border-idpxyz-border rounded-md p-3 text-center">
+                        <div className="text-[18px] font-bold text-idpxyz-textBright">{selectedCat.skuCount.toLocaleString()}</div>
+                        <div className="text-[10px] text-idpxyz-textMuted mt-0.5">SKU 数</div>
                       </div>
-                      <div className="border border-vscode-border rounded-md p-3 text-center">
-                        <div className="text-[18px] font-bold text-vscode-accent">{childCategories.length}</div>
-                        <div className="text-[10px] text-vscode-textMuted mt-0.5">子分类</div>
+                      <div className="border border-idpxyz-border rounded-md p-3 text-center">
+                        <div className="text-[18px] font-bold text-idpxyz-accent">{childCategories.length}</div>
+                        <div className="text-[10px] text-idpxyz-textMuted mt-0.5">子分类</div>
                       </div>
-                      <div className="border border-vscode-border rounded-md p-3 text-center">
-                        <div className="text-[18px] font-bold text-vscode-textBright">{selectedCat.attributes.length}</div>
-                        <div className="text-[10px] text-vscode-textMuted mt-0.5">属性</div>
+                      <div className="border border-idpxyz-border rounded-md p-3 text-center">
+                        <div className="text-[18px] font-bold text-idpxyz-textBright">{selectedCat.attributes.length}</div>
+                        <div className="text-[10px] text-idpxyz-textMuted mt-0.5">属性</div>
                       </div>
                     </div>
                   </div>
 
                   {/* Quick Actions */}
                   <div>
-                    <h3 className="text-[12px] font-semibold uppercase tracking-wider text-vscode-breadcrumb mb-2">操作</h3>
+                    <h3 className="text-[12px] font-semibold uppercase tracking-wider text-idpxyz-breadcrumb mb-2">操作</h3>
                     <div className="space-y-1">
                       <Button variant="ghost" size="sm" className="w-full justify-start"><IconPlus size={12} /> 新建子分类</Button>
                       <Button variant="ghost" size="sm" className="w-full justify-start"><IconUpload size={12} /> 批量导入商品</Button>
@@ -495,11 +495,11 @@ export default function CategoryManagement({ onOpenTab }: CategoryManagementProp
         ) : (
           /* No category selected — show overview grid */
           <>
-            <div className="flex items-center justify-between px-5 py-2.5 border-b border-vscode-border shrink-0">
+            <div className="flex items-center justify-between px-5 py-2.5 border-b border-idpxyz-border shrink-0">
               <div className="flex items-center gap-3">
-                <IconFolderTree size={16} className="text-vscode-accent" />
-                <h1 className="text-[14px] font-semibold text-vscode-textBright">商品分类管理</h1>
-                <span className="text-[11px] text-vscode-textMuted">{rootCats} 个一级分类 · {totalCats} 个分类 · {totalProducts.toLocaleString()} 商品</span>
+                <IconFolderTree size={16} className="text-idpxyz-accent" />
+                <h1 className="text-[14px] font-semibold text-idpxyz-textBright">商品分类管理</h1>
+                <span className="text-[11px] text-idpxyz-textMuted">{rootCats} 个一级分类 · {totalCats} 个分类 · {totalProducts.toLocaleString()} 商品</span>
               </div>
               <div className="flex items-center gap-2">
                 <Button variant="ghost" size="sm"><IconDownload size={13} /> 导出</Button>
@@ -509,33 +509,33 @@ export default function CategoryManagement({ onOpenTab }: CategoryManagementProp
             </div>
 
             {/* Stats Row */}
-            <div className="flex items-center gap-3 px-5 py-2.5 border-b border-vscode-border shrink-0">
-              <div className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-vscode-sidebar border border-vscode-border">
-                <IconFolder size={13} className="text-vscode-accent" />
+            <div className="flex items-center gap-3 px-5 py-2.5 border-b border-idpxyz-border shrink-0">
+              <div className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-idpxyz-sidebar border border-idpxyz-border">
+                <IconFolder size={13} className="text-idpxyz-accent" />
                 <div className="text-[11px]">
-                  <span className="text-vscode-textMuted">总分类</span>
-                  <span className="ml-1.5 text-vscode-textBright font-medium">{totalCats}</span>
+                  <span className="text-idpxyz-textMuted">总分类</span>
+                  <span className="ml-1.5 text-idpxyz-textBright font-medium">{totalCats}</span>
                 </div>
               </div>
-              <div className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-vscode-sidebar border border-vscode-border">
+              <div className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-idpxyz-sidebar border border-idpxyz-border">
                 <IconCheckCircle size={13} className="text-green-400" />
                 <div className="text-[11px]">
-                  <span className="text-vscode-textMuted">已上线</span>
-                  <span className="ml-1.5 text-vscode-textBright font-medium">{activeCats}</span>
+                  <span className="text-idpxyz-textMuted">已上线</span>
+                  <span className="ml-1.5 text-idpxyz-textBright font-medium">{activeCats}</span>
                 </div>
               </div>
-              <div className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-vscode-sidebar border border-vscode-border">
-                <IconPackage size={13} className="text-vscode-accent" />
+              <div className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-idpxyz-sidebar border border-idpxyz-border">
+                <IconPackage size={13} className="text-idpxyz-accent" />
                 <div className="text-[11px]">
-                  <span className="text-vscode-textMuted">总商品</span>
-                  <span className="ml-1.5 text-vscode-textBright font-medium">{totalProducts.toLocaleString()}</span>
+                  <span className="text-idpxyz-textMuted">总商品</span>
+                  <span className="ml-1.5 text-idpxyz-textBright font-medium">{totalProducts.toLocaleString()}</span>
                 </div>
               </div>
             </div>
 
             {/* Root category grid */}
             <div className="flex-1 overflow-auto p-5">
-              <h3 className="text-[12px] font-semibold uppercase tracking-wider text-vscode-breadcrumb mb-3">一级分类</h3>
+              <h3 className="text-[12px] font-semibold uppercase tracking-wider text-idpxyz-breadcrumb mb-3">一级分类</h3>
               <div className="grid grid-cols-3 gap-3">
                 {productCategories.filter(c => c.level === 0).sort((a, b) => a.sortOrder - b.sortOrder).map(cat => {
                   const ss = categoryStatusConfig[cat.status];
@@ -544,30 +544,30 @@ export default function CategoryManagement({ onOpenTab }: CategoryManagementProp
                     <div
                       key={cat.id}
                       onClick={() => selectCategory(cat)}
-                      className="border border-vscode-border rounded-lg p-4 cursor-pointer hover:bg-vscode-hover transition-colors"
+                      className="border border-idpxyz-border rounded-lg p-4 cursor-pointer hover:bg-idpxyz-hover transition-colors"
                     >
                       <div className="flex items-start justify-between mb-2">
                         <span className="text-[28px]">{cat.image}</span>
                         <StatusBadge {...ss} />
                       </div>
-                      <h4 className="text-[13px] font-semibold text-vscode-textBright">{cat.name}</h4>
-                      <p className="text-[10px] text-vscode-textMuted mt-1 line-clamp-2">{cat.description}</p>
-                      <div className="flex items-center gap-4 mt-3 pt-2 border-t border-vscode-border/50 text-[10px]">
+                      <h4 className="text-[13px] font-semibold text-idpxyz-textBright">{cat.name}</h4>
+                      <p className="text-[10px] text-idpxyz-textMuted mt-1 line-clamp-2">{cat.description}</p>
+                      <div className="flex items-center gap-4 mt-3 pt-2 border-t border-idpxyz-border/50 text-[10px]">
                         <div>
-                          <span className="text-vscode-textMuted">商品 </span>
-                          <span className="text-vscode-textBright font-medium">{cat.productCount.toLocaleString()}</span>
+                          <span className="text-idpxyz-textMuted">商品 </span>
+                          <span className="text-idpxyz-textBright font-medium">{cat.productCount.toLocaleString()}</span>
                         </div>
                         <div>
-                          <span className="text-vscode-textMuted">SKU </span>
-                          <span className="text-vscode-textBright font-medium">{cat.skuCount.toLocaleString()}</span>
+                          <span className="text-idpxyz-textMuted">SKU </span>
+                          <span className="text-idpxyz-textBright font-medium">{cat.skuCount.toLocaleString()}</span>
                         </div>
                         <div>
-                          <span className="text-vscode-textMuted">子类 </span>
-                          <span className="text-vscode-textBright font-medium">{children.length}</span>
+                          <span className="text-idpxyz-textMuted">子类 </span>
+                          <span className="text-idpxyz-textBright font-medium">{children.length}</span>
                         </div>
                         <div className="ml-auto">
-                          <span className="text-vscode-textMuted">佣金 </span>
-                          <span className="text-vscode-accent font-medium">{cat.commissionRate}%</span>
+                          <span className="text-idpxyz-textMuted">佣金 </span>
+                          <span className="text-idpxyz-accent font-medium">{cat.commissionRate}%</span>
                         </div>
                       </div>
                     </div>

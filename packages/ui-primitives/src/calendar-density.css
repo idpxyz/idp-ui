@@ -1,0 +1,27 @@
+/**
+ * Compact grid tokens for react-day-picker.
+ * Loaded after `react-day-picker/style.css` so these win over `.rdp-root { --rdp-* }`.
+ * `!important` avoids edge cases where inline `style` or Tailwind arbitrary props do not override
+ * the library stylesheet in some bundlers / dev servers.
+ */
+.rdp-root[data-idpxyz-density='compact'] {
+  --rdp-day-width: 25px !important;
+  --rdp-day-height: 25px !important;
+  --rdp-day_button-width: 23px !important;
+  --rdp-day_button-height: 23px !important;
+  --rdp-months-gap: 0.8rem !important;
+  --rdp-weekday-padding: 0.15rem 0 !important;
+  --rdp-nav_button-width: 1.4rem !important;
+  --rdp-nav-height: 2.75rem !important;
+}
+
+/* react-day-picker/style.css: `.rdp-selected { font-weight: bold; font-size: large; }` — match unselected days */
+.rdp-root .rdp-day.rdp-selected {
+  font-size: inherit !important;
+  font-weight: inherit !important;
+}
+
+.rdp-root .rdp-day.rdp-selected .rdp-day_button {
+  font-size: inherit !important;
+  font-weight: inherit !important;
+}

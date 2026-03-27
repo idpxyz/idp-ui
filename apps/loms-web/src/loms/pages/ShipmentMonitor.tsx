@@ -191,12 +191,12 @@ export default function ShipmentMonitor({ onSelectShipment, onOpenDetail }: Ship
   }, [savedView]);
 
   return (
-    <div className="flex-1 flex flex-col overflow-hidden bg-vscode-editor">
+    <div className="flex-1 flex flex-col overflow-hidden bg-idpxyz-editor">
       {/* Header */}
-      <div className="flex items-center justify-between h-[36px] px-4 border-b border-vscode-border shrink-0 bg-vscode-sidebar select-none">
+      <div className="flex items-center justify-between h-[36px] px-4 border-b border-idpxyz-border shrink-0 bg-idpxyz-sidebar select-none">
         <div className="flex items-center gap-3">
-          <span className="text-[13px] text-vscode-textBright font-semibold">Shipment Monitor</span>
-          <span className="text-[11px] text-vscode-textMuted">All Regions</span>
+          <span className="text-[13px] text-idpxyz-textBright font-semibold">Shipment Monitor</span>
+          <span className="text-[11px] text-idpxyz-textMuted">All Regions</span>
         </div>
         <div className="flex items-center gap-2">
           <Button variant="secondary" size="sm">
@@ -209,22 +209,22 @@ export default function ShipmentMonitor({ onSelectShipment, onOpenDetail }: Ship
       </div>
 
       {/* Filter Bar (Golden Template: Search / Primary / View-Sort / Saved View / More Filters) */}
-      <div className="border-b border-vscode-border shrink-0 bg-vscode-sidebar">
+      <div className="border-b border-idpxyz-border shrink-0 bg-idpxyz-sidebar">
         <div className="flex items-center gap-2 px-4 py-2 overflow-x-auto">
-          <div className="flex items-center bg-vscode-inputBg rounded px-2.5 h-[28px] flex-1 min-w-[260px] max-w-[380px]">
-            <Search size={13} className="text-vscode-textMuted mr-1.5 shrink-0" />
+          <div className="flex items-center bg-idpxyz-inputBg rounded px-2.5 h-[28px] flex-1 min-w-[260px] max-w-[380px]">
+            <Search size={13} className="text-idpxyz-textMuted mr-1.5 shrink-0" />
             <input
               type="text"
               placeholder="Search shipment, order, origin, destination, carrier..."
               value={searchTerm}
               onChange={(e) => { setSearchTerm(e.target.value); setCurrentPage(1); }}
-              className="bg-transparent border-none outline-none text-[12px] text-vscode-text w-full placeholder:text-vscode-textMuted"
+              className="bg-transparent border-none outline-none text-[12px] text-idpxyz-text w-full placeholder:text-idpxyz-textMuted"
             />
           </div>
           <select
             value={statusFilter}
             onChange={(e) => { setStatusFilter(e.target.value); setCurrentPage(1); }}
-            className="bg-vscode-inputBg text-vscode-text text-[12px] h-[28px] px-2 rounded border border-vscode-border outline-none cursor-pointer"
+            className="bg-idpxyz-inputBg text-idpxyz-text text-[12px] h-[28px] px-2 rounded border border-idpxyz-border outline-none cursor-pointer"
           >
             <option value="all">Status: All</option>
             {Object.entries(shipmentStatusConfig).map(([key, cfg]) => (
@@ -234,7 +234,7 @@ export default function ShipmentMonitor({ onSelectShipment, onOpenDetail }: Ship
           <select
             value={slaFilter}
             onChange={(e) => { setSlaFilter(e.target.value); setCurrentPage(1); }}
-            className="bg-vscode-inputBg text-vscode-text text-[12px] h-[28px] px-2 rounded border border-vscode-border outline-none cursor-pointer"
+            className="bg-idpxyz-inputBg text-idpxyz-text text-[12px] h-[28px] px-2 rounded border border-idpxyz-border outline-none cursor-pointer"
           >
             <option value="all">SLA: All</option>
             {Object.entries(slaStatusConfig).map(([key, cfg]) => (
@@ -244,14 +244,14 @@ export default function ShipmentMonitor({ onSelectShipment, onOpenDetail }: Ship
           <select
             value={sortBy}
             onChange={(e) => { setSortBy(e.target.value); setCurrentPage(1); }}
-            className="bg-vscode-inputBg text-vscode-text text-[12px] h-[28px] px-2 rounded border border-vscode-border outline-none cursor-pointer"
+            className="bg-idpxyz-inputBg text-idpxyz-text text-[12px] h-[28px] px-2 rounded border border-idpxyz-border outline-none cursor-pointer"
           >
             <option value="updated_desc">Sort: Updated ¡ú</option>
             <option value="promise_asc">Sort: Promise ¡ú</option>
             <option value="sla_asc">Sort: SLA Remaining ¡ú</option>
             <option value="risk_desc">Sort: Risk ¡ú</option>
           </select>
-          <div className="flex items-center border border-vscode-border rounded overflow-hidden h-[28px]">
+          <div className="flex items-center border border-idpxyz-border rounded overflow-hidden h-[28px]">
             {([
               { mode: 'table' as ViewMode, icon: List, label: 'Table' },
               { mode: 'board' as ViewMode, icon: LayoutGrid, label: 'Board' },
@@ -273,7 +273,7 @@ export default function ShipmentMonitor({ onSelectShipment, onOpenDetail }: Ship
           <select
             value={savedView}
             onChange={(e) => setSavedView(e.target.value)}
-            className="bg-vscode-inputBg text-vscode-text text-[12px] h-[28px] px-2 rounded border border-vscode-border outline-none cursor-pointer min-w-[160px]"
+            className="bg-idpxyz-inputBg text-idpxyz-text text-[12px] h-[28px] px-2 rounded border border-idpxyz-border outline-none cursor-pointer min-w-[160px]"
           >
             {savedViews.map((v) => (
               <option key={v.id} value={v.id}>{v.label}</option>
@@ -295,23 +295,23 @@ export default function ShipmentMonitor({ onSelectShipment, onOpenDetail }: Ship
           >
             <BarChart3 size={12} /> Facets
           </Button>
-          <span className="text-[12px] text-vscode-textMuted ml-auto shrink-0">
+          <span className="text-[12px] text-idpxyz-textMuted ml-auto shrink-0">
             {filtered.length} shipments
           </span>
         </div>
         {showAdvancedFilters && (
-          <div className="flex items-center gap-2 px-4 py-1.5 border-t border-vscode-border/70 bg-vscode-editor">
+          <div className="flex items-center gap-2 px-4 py-1.5 border-t border-idpxyz-border/70 bg-idpxyz-editor">
             <Button variant="outline" size="sm" className="h-6">Owner: Any</Button>
             <Button variant="outline" size="sm" className="h-6">Site: Any</Button>
             <Button variant="outline" size="sm" className="h-6">Severity: Any</Button>
             <Button variant="outline" size="sm" className="h-6">Time Window: 24h</Button>
-            <span className="text-[11px] text-vscode-textMuted ml-1">P0 placeholder for advanced filter schema</span>
+            <span className="text-[11px] text-idpxyz-textMuted ml-1">P0 placeholder for advanced filter schema</span>
           </div>
         )}
       </div>
 
       {/* Secondary Toolbar: bulk actions + KPI summary */}
-      <div className="flex items-center gap-2 px-4 py-1.5 border-b border-vscode-border shrink-0 text-[11px]">
+      <div className="flex items-center gap-2 px-4 py-1.5 border-b border-idpxyz-border shrink-0 text-[11px]">
         <Button variant="ghost" size="sm" onClick={() => setShowAdvancedFilters(!showAdvancedFilters)}>
           <Tag size={13} /> Filters
         </Button>
@@ -319,8 +319,8 @@ export default function ShipmentMonitor({ onSelectShipment, onOpenDetail }: Ship
           <AlertTriangle size={13} />
           {isUnavailable ? 'Set Available' : 'Set Unavailable'}
         </Button>
-        <div className="w-px h-4 bg-vscode-border mx-1" />
-        <span className="text-vscode-accent font-medium">{selectedIds.size} selected</span>
+        <div className="w-px h-4 bg-idpxyz-border mx-1" />
+        <span className="text-idpxyz-accent font-medium">{selectedIds.size} selected</span>
         {[
           { icon: UserPlus, label: 'Assign' },
           { icon: Tag, label: 'Tag' },
@@ -336,14 +336,14 @@ export default function ShipmentMonitor({ onSelectShipment, onOpenDetail }: Ship
         {/* KPI summary on the right */}
         <div className="flex items-center gap-3 ml-auto">
           {[
-            { label: 'Total', value: stats.total, color: 'text-vscode-textBright' },
+            { label: 'Total', value: stats.total, color: 'text-idpxyz-textBright' },
             { label: 'Transit', value: stats.inTransit, color: 'text-blue-400' },
             { label: 'Exc', value: stats.exceptions, color: 'text-red-400' },
             { label: 'Risk', value: stats.atRisk, color: 'text-yellow-400' },
           ].map((s) => (
             <div key={s.label} className="flex items-center gap-1">
               <span className={`font-bold ${s.color}`}>{s.value}</span>
-              <span className="text-vscode-textMuted">{s.label}</span>
+              <span className="text-idpxyz-textMuted">{s.label}</span>
             </div>
           ))}
         </div>
@@ -353,61 +353,61 @@ export default function ShipmentMonitor({ onSelectShipment, onOpenDetail }: Ship
       <div className="flex-1 flex overflow-hidden">
         {/* Left facet panel */}
         {showFacets && (
-          <div className="w-[200px] shrink-0 border-r border-vscode-border overflow-y-auto bg-vscode-sidebar">
+          <div className="w-[200px] shrink-0 border-r border-idpxyz-border overflow-y-auto bg-idpxyz-sidebar">
             {/* Saved Views */}
-            <div className="p-3 border-b border-vscode-border">
-              <h4 className="text-[10px] uppercase tracking-wider text-vscode-textMuted font-semibold mb-2 flex items-center gap-1"><Star size={10} /> Saved Views</h4>
+            <div className="p-3 border-b border-idpxyz-border">
+              <h4 className="text-[10px] uppercase tracking-wider text-idpxyz-textMuted font-semibold mb-2 flex items-center gap-1"><Star size={10} /> Saved Views</h4>
               {savedViews.map((v) => (
                 <div
                   key={v.id}
                   className={`flex items-center justify-between text-[11px] py-1 px-1.5 rounded cursor-pointer ${
-                    savedView === v.id ? 'bg-vscode-activeItem text-vscode-textBright' : 'hover:bg-vscode-hover'
+                    savedView === v.id ? 'bg-idpxyz-activeItem text-idpxyz-textBright' : 'hover:bg-idpxyz-hover'
                   }`}
                   onClick={() => setSavedView(v.id)}
                 >
-                  <span className="text-vscode-text truncate">{v.label}</span>
-                  <span className="text-vscode-textMuted shrink-0">{v.count}</span>
+                  <span className="text-idpxyz-text truncate">{v.label}</span>
+                  <span className="text-idpxyz-textMuted shrink-0">{v.count}</span>
                 </div>
               ))}
             </div>
             {/* Status facets */}
-            <div className="p-3 border-b border-vscode-border">
-              <h4 className="text-[10px] uppercase tracking-wider text-vscode-textMuted font-semibold mb-2">By Status</h4>
+            <div className="p-3 border-b border-idpxyz-border">
+              <h4 className="text-[10px] uppercase tracking-wider text-idpxyz-textMuted font-semibold mb-2">By Status</h4>
               {statusFacets.filter((f) => f.count > 0).map((f) => (
                 <div
                   key={f.key}
-                  className={`flex items-center justify-between text-[11px] py-1 px-1.5 rounded cursor-pointer ${statusFilter === f.key ? 'bg-vscode-activeItem' : 'hover:bg-vscode-hover'}`}
+                  className={`flex items-center justify-between text-[11px] py-1 px-1.5 rounded cursor-pointer ${statusFilter === f.key ? 'bg-idpxyz-activeItem' : 'hover:bg-idpxyz-hover'}`}
                   onClick={() => { setStatusFilter(statusFilter === f.key ? 'all' : f.key); setCurrentPage(1); }}
                 >
                   <div className="flex items-center gap-1.5">
                     <span className="w-2 h-2 rounded-full" style={{ backgroundColor: f.color }} />
-                    <span className="text-vscode-text">{f.label}</span>
+                    <span className="text-idpxyz-text">{f.label}</span>
                   </div>
-                  <span className="text-vscode-textMuted">{f.count}</span>
+                  <span className="text-idpxyz-textMuted">{f.count}</span>
                 </div>
               ))}
             </div>
             {/* Carrier facets */}
-            <div className="p-3 border-b border-vscode-border">
-              <h4 className="text-[10px] uppercase tracking-wider text-vscode-textMuted font-semibold mb-2">By Carrier</h4>
+            <div className="p-3 border-b border-idpxyz-border">
+              <h4 className="text-[10px] uppercase tracking-wider text-idpxyz-textMuted font-semibold mb-2">By Carrier</h4>
               {carrierFacets.map((f) => (
-                <div key={f.key} className="flex items-center justify-between text-[11px] py-1 px-1.5 rounded hover:bg-vscode-hover cursor-pointer">
-                  <span className="text-vscode-text">{f.label}</span>
-                  <span className="text-vscode-textMuted">{f.count}</span>
+                <div key={f.key} className="flex items-center justify-between text-[11px] py-1 px-1.5 rounded hover:bg-idpxyz-hover cursor-pointer">
+                  <span className="text-idpxyz-text">{f.label}</span>
+                  <span className="text-idpxyz-textMuted">{f.count}</span>
                 </div>
               ))}
             </div>
             {/* Watchlists (Section 4.2) */}
-            <div className="p-3 border-b border-vscode-border">
-              <h4 className="text-[10px] uppercase tracking-wider text-vscode-textMuted font-semibold mb-2 flex items-center gap-1"><Bookmark size={10} /> Watchlists</h4>
+            <div className="p-3 border-b border-idpxyz-border">
+              <h4 className="text-[10px] uppercase tracking-wider text-idpxyz-textMuted font-semibold mb-2 flex items-center gap-1"><Bookmark size={10} /> Watchlists</h4>
               {[
                 { label: 'High-value shipments', count: 4 },
                 { label: 'Customs-sensitive', count: 6 },
                 { label: 'VIP customers', count: 3 },
               ].map((w) => (
-                <div key={w.label} className="flex items-center justify-between text-[11px] py-1 px-1.5 rounded hover:bg-vscode-hover cursor-pointer">
-                  <span className="text-vscode-text truncate">{w.label}</span>
-                  <span className="text-vscode-textMuted shrink-0">{w.count}</span>
+                <div key={w.label} className="flex items-center justify-between text-[11px] py-1 px-1.5 rounded hover:bg-idpxyz-hover cursor-pointer">
+                  <span className="text-idpxyz-text truncate">{w.label}</span>
+                  <span className="text-idpxyz-textMuted shrink-0">{w.count}</span>
                 </div>
               ))}
             </div>
@@ -420,33 +420,33 @@ export default function ShipmentMonitor({ onSelectShipment, onOpenDetail }: Ship
               return (
                 <div className="p-3 flex-1 overflow-y-auto">
                   <div className="flex items-center justify-between mb-2">
-                  <h4 className="text-[10px] uppercase tracking-wider text-vscode-textMuted font-semibold flex items-center gap-1"><Eye size={10} /> Preview</h4>
+                  <h4 className="text-[10px] uppercase tracking-wider text-idpxyz-textMuted font-semibold flex items-center gap-1"><Eye size={10} /> Preview</h4>
                   <Button variant="ghost" size="icon" className="h-5 w-5" onClick={() => setSelectedId(null)} title="Close Preview (Esc)">¡Á</Button>
                 </div>
                   <div className="space-y-2.5">
                     <div>
-                      <span className="text-vscode-accent text-[12px] font-medium cursor-pointer hover:underline" onClick={() => onOpenDetail?.(prev.id)}>{prev.id}</span>
+                      <span className="text-idpxyz-accent text-[12px] font-medium cursor-pointer hover:underline" onClick={() => onOpenDetail?.(prev.id)}>{prev.id}</span>
                       <div className="flex items-center gap-1.5 mt-1">
                         <span className="px-1.5 py-0.5 rounded text-[10px] font-medium" style={{ color: st?.color, backgroundColor: st?.bgColor }}>{st?.label}</span>
                         {risk && <span className="px-1.5 py-0.5 rounded text-[10px] font-medium" style={{ color: risk.color, backgroundColor: risk.bgColor }}>{risk.label}</span>}
                       </div>
                     </div>
                     <div className="text-[11px] space-y-1">
-                      <div className="flex justify-between"><span className="text-vscode-textMuted">Active Leg</span><span className="text-vscode-text">{prev.currentLeg}</span></div>
-                      <div className="flex justify-between"><span className="text-vscode-textMuted">Carrier</span><span className="text-vscode-text">{prev.carrier}</span></div>
-                      <div className="flex justify-between"><span className="text-vscode-textMuted">SLA</span><span className={prev.slaRemainingMinutes !== null && prev.slaRemainingMinutes < 0 ? 'text-red-400' : 'text-vscode-text'}>{formatSlaRemaining(prev.slaRemainingMinutes)}</span></div>
-                      <div className="flex justify-between"><span className="text-vscode-textMuted">Owner</span><span className="text-vscode-text">{prev.owner}</span></div>
-                      <div className="flex justify-between"><span className="text-vscode-textMuted">Route</span><span className="text-vscode-text">{prev.origin} ¡ú{prev.destination}</span></div>
+                      <div className="flex justify-between"><span className="text-idpxyz-textMuted">Active Leg</span><span className="text-idpxyz-text">{prev.currentLeg}</span></div>
+                      <div className="flex justify-between"><span className="text-idpxyz-textMuted">Carrier</span><span className="text-idpxyz-text">{prev.carrier}</span></div>
+                      <div className="flex justify-between"><span className="text-idpxyz-textMuted">SLA</span><span className={prev.slaRemainingMinutes !== null && prev.slaRemainingMinutes < 0 ? 'text-red-400' : 'text-idpxyz-text'}>{formatSlaRemaining(prev.slaRemainingMinutes)}</span></div>
+                      <div className="flex justify-between"><span className="text-idpxyz-textMuted">Owner</span><span className="text-idpxyz-text">{prev.owner}</span></div>
+                      <div className="flex justify-between"><span className="text-idpxyz-textMuted">Route</span><span className="text-idpxyz-text">{prev.origin} ¡ú{prev.destination}</span></div>
                     </div>
                     <div>
-                      <span className="text-[10px] text-vscode-textMuted uppercase tracking-wider font-semibold">Last Event</span>
-                      <div className="mt-1 text-[11px] text-vscode-text bg-vscode-hover rounded px-2 py-1.5">
+                      <span className="text-[10px] text-idpxyz-textMuted uppercase tracking-wider font-semibold">Last Event</span>
+                      <div className="mt-1 text-[11px] text-idpxyz-text bg-idpxyz-hover rounded px-2 py-1.5">
                         <div>{prev.lastEvent}</div>
-                        <div className="text-vscode-textMuted text-[10px] mt-0.5">{prev.lastEventTime}</div>
+                        <div className="text-idpxyz-textMuted text-[10px] mt-0.5">{prev.lastEventTime}</div>
                       </div>
                     </div>
                     <div>
-                      <span className="text-[10px] text-vscode-textMuted uppercase tracking-wider font-semibold">Quick Actions</span>
+                      <span className="text-[10px] text-idpxyz-textMuted uppercase tracking-wider font-semibold">Quick Actions</span>
                       <div className="mt-1 space-y-1">
                         <Button variant="default" size="sm" className="w-full justify-start font-medium" onClick={() => { onOpenDetail?.(prev.id); setSelectedId(null); }}>Open Full Detail ¡ú</Button>
                         <Button variant="ghost" size="sm" className="w-full justify-start">Resync Tracking</Button>
@@ -463,9 +463,9 @@ export default function ShipmentMonitor({ onSelectShipment, onOpenDetail }: Ship
         {/* Main grid */}
         <div className="flex-1 flex flex-col overflow-hidden">
           {/* Facet Summary Strip (Section 15.2) */}
-          <div className="flex items-center gap-4 px-3 py-1.5 bg-vscode-sidebar border-b border-vscode-border text-[11px] shrink-0 overflow-x-auto">
+          <div className="flex items-center gap-4 px-3 py-1.5 bg-idpxyz-sidebar border-b border-idpxyz-border text-[11px] shrink-0 overflow-x-auto">
             <div className="flex items-center gap-1.5">
-              <span className="text-vscode-textMuted">Status:</span>
+              <span className="text-idpxyz-textMuted">Status:</span>
               {Object.entries(
                 filtered.reduce<Record<string, number>>((acc, s) => { acc[s.status] = (acc[s.status] || 0) + 1; return acc; }, {})
               ).map(([status, count]) => {
@@ -473,9 +473,9 @@ export default function ShipmentMonitor({ onSelectShipment, onOpenDetail }: Ship
                 return <span key={status} className="whitespace-nowrap" style={{ color: cfg?.color }}>{cfg?.label || status} <strong>{count}</strong></span>;
               })}
             </div>
-            <span className="text-vscode-border">|</span>
+            <span className="text-idpxyz-border">|</span>
             <div className="flex items-center gap-1.5">
-              <span className="text-vscode-textMuted">Risk:</span>
+              <span className="text-idpxyz-textMuted">Risk:</span>
               {Object.entries(
                 filtered.reduce<Record<string, number>>((acc, s) => { acc[s.riskLevel] = (acc[s.riskLevel] || 0) + 1; return acc; }, {})
               ).map(([risk, count]) => {
@@ -483,13 +483,13 @@ export default function ShipmentMonitor({ onSelectShipment, onOpenDetail }: Ship
                 return <span key={risk} className="whitespace-nowrap" style={{ color: cfg?.color }}>{cfg?.label || risk} <strong>{count}</strong></span>;
               })}
             </div>
-            <span className="text-vscode-border">|</span>
+            <span className="text-idpxyz-border">|</span>
             <div className="flex items-center gap-1.5">
-              <span className="text-vscode-textMuted">Carrier:</span>
+              <span className="text-idpxyz-textMuted">Carrier:</span>
               {Object.entries(
                 filtered.reduce<Record<string, number>>((acc, s) => { acc[s.carrier] = (acc[s.carrier] || 0) + 1; return acc; }, {})
               ).slice(0, 4).map(([carrier, count]) => (
-                <span key={carrier} className="text-vscode-text whitespace-nowrap">{carrier} <strong>{count}</strong></span>
+                <span key={carrier} className="text-idpxyz-text whitespace-nowrap">{carrier} <strong>{count}</strong></span>
               ))}
             </div>
           </div>
@@ -501,30 +501,30 @@ export default function ShipmentMonitor({ onSelectShipment, onOpenDetail }: Ship
           ) : viewMode === 'table' && (
             <>
               <div className="flex-1 p-2">
-                <div className="h-full border border-vscode-border rounded-md bg-vscode-sidebar overflow-hidden">
+                <div className="h-full border border-idpxyz-border rounded-md bg-idpxyz-sidebar overflow-hidden">
                   <div className="h-full overflow-auto">
                     <table className="w-full text-[12px] border-collapse">
                   <thead className="sticky top-0 z-10">
-                    <tr className="bg-vscode-sidebar text-vscode-textMuted text-left">
-                      <th className="px-2 py-2 font-medium border-b border-vscode-border w-[30px]">
-                        <input type="checkbox" checked={selectedIds.size === paged.length && paged.length > 0} onChange={toggleSelectAll} className="accent-vscode-accent" />
+                    <tr className="bg-idpxyz-sidebar text-idpxyz-textMuted text-left">
+                      <th className="px-2 py-2 font-medium border-b border-idpxyz-border w-[30px]">
+                        <input type="checkbox" checked={selectedIds.size === paged.length && paged.length > 0} onChange={toggleSelectAll} className="accent-idpxyz-accent" />
                       </th>
-                      <th className="px-3 py-2 font-medium border-b border-vscode-border whitespace-nowrap">Shipment</th>
-                      <th className="px-3 py-2 font-medium border-b border-vscode-border whitespace-nowrap">Order</th>
-                      <th className="px-3 py-2 font-medium border-b border-vscode-border whitespace-nowrap">Origin</th>
-                      <th className="px-3 py-2 font-medium border-b border-vscode-border whitespace-nowrap">Destination</th>
-                      <th className="px-3 py-2 font-medium border-b border-vscode-border whitespace-nowrap">Carrier</th>
-                      <th className="px-3 py-2 font-medium border-b border-vscode-border whitespace-nowrap">Lane</th>
-                      <th className="px-3 py-2 font-medium border-b border-vscode-border whitespace-nowrap text-center">Status</th>
-                      <th className="px-3 py-2 font-medium border-b border-vscode-border whitespace-nowrap">Active Leg</th>
-                      <th className="px-3 py-2 font-medium border-b border-vscode-border whitespace-nowrap text-center">Risk</th>
-                      <th className="px-3 py-2 font-medium border-b border-vscode-border whitespace-nowrap text-center">SLA</th>
-                      <th className="px-3 py-2 font-medium border-b border-vscode-border whitespace-nowrap text-center">Remaining</th>
-                      <th className="px-3 py-2 font-medium border-b border-vscode-border whitespace-nowrap text-center">Exc</th>
-                      <th className="px-3 py-2 font-medium border-b border-vscode-border whitespace-nowrap">Legs</th>
-                      <th className="px-3 py-2 font-medium border-b border-vscode-border whitespace-nowrap">Owner</th>
-                      <th className="px-3 py-2 font-medium border-b border-vscode-border whitespace-nowrap">Last Event</th>
-                      <th className="px-3 py-2 font-medium border-b border-vscode-border whitespace-nowrap text-center w-[60px]"></th>
+                      <th className="px-3 py-2 font-medium border-b border-idpxyz-border whitespace-nowrap">Shipment</th>
+                      <th className="px-3 py-2 font-medium border-b border-idpxyz-border whitespace-nowrap">Order</th>
+                      <th className="px-3 py-2 font-medium border-b border-idpxyz-border whitespace-nowrap">Origin</th>
+                      <th className="px-3 py-2 font-medium border-b border-idpxyz-border whitespace-nowrap">Destination</th>
+                      <th className="px-3 py-2 font-medium border-b border-idpxyz-border whitespace-nowrap">Carrier</th>
+                      <th className="px-3 py-2 font-medium border-b border-idpxyz-border whitespace-nowrap">Lane</th>
+                      <th className="px-3 py-2 font-medium border-b border-idpxyz-border whitespace-nowrap text-center">Status</th>
+                      <th className="px-3 py-2 font-medium border-b border-idpxyz-border whitespace-nowrap">Active Leg</th>
+                      <th className="px-3 py-2 font-medium border-b border-idpxyz-border whitespace-nowrap text-center">Risk</th>
+                      <th className="px-3 py-2 font-medium border-b border-idpxyz-border whitespace-nowrap text-center">SLA</th>
+                      <th className="px-3 py-2 font-medium border-b border-idpxyz-border whitespace-nowrap text-center">Remaining</th>
+                      <th className="px-3 py-2 font-medium border-b border-idpxyz-border whitespace-nowrap text-center">Exc</th>
+                      <th className="px-3 py-2 font-medium border-b border-idpxyz-border whitespace-nowrap">Legs</th>
+                      <th className="px-3 py-2 font-medium border-b border-idpxyz-border whitespace-nowrap">Owner</th>
+                      <th className="px-3 py-2 font-medium border-b border-idpxyz-border whitespace-nowrap">Last Event</th>
+                      <th className="px-3 py-2 font-medium border-b border-idpxyz-border whitespace-nowrap text-center w-[60px]"></th>
                     </tr>
                   </thead>
                   {isLoading ? <SkeletonTable rows={8} cols={17} /> : <tbody>
@@ -538,60 +538,60 @@ export default function ShipmentMonitor({ onSelectShipment, onOpenDetail }: Ship
                           onClick={() => handleRowClick(shipment)}
                           onDoubleClick={() => onOpenDetail?.(shipment.id)}
                           className={`cursor-pointer transition-colors ${
-                            selectedId === shipment.id ? 'bg-vscode-activeItem' : 'hover:bg-vscode-hover'
+                            selectedId === shipment.id ? 'bg-idpxyz-activeItem' : 'hover:bg-idpxyz-hover'
                           }`}
                         >
-                          <td className={`px-2 ${cellPy} border-b border-vscode-border`} onClick={(e) => e.stopPropagation()}>
-                            <input type="checkbox" checked={selectedIds.has(shipment.id)} onChange={() => toggleSelect(shipment.id)} className="accent-vscode-accent" />
+                          <td className={`px-2 ${cellPy} border-b border-idpxyz-border`} onClick={(e) => e.stopPropagation()}>
+                            <input type="checkbox" checked={selectedIds.has(shipment.id)} onChange={() => toggleSelect(shipment.id)} className="accent-idpxyz-accent" />
                           </td>
-                          <td className={`px-3 ${cellPy} border-b border-vscode-border whitespace-nowrap`}>
-                            <span className="text-vscode-accent font-medium">{shipment.id}</span>
+                          <td className={`px-3 ${cellPy} border-b border-idpxyz-border whitespace-nowrap`}>
+                            <span className="text-idpxyz-accent font-medium">{shipment.id}</span>
                           </td>
-                          <td className={`px-3 ${cellPy} border-b border-vscode-border text-vscode-textMuted whitespace-nowrap`}>{shipment.orderId}</td>
-                          <td className={`px-3 ${cellPy} border-b border-vscode-border text-vscode-text whitespace-nowrap`}>{shipment.origin}</td>
-                          <td className={`px-3 ${cellPy} border-b border-vscode-border text-vscode-text whitespace-nowrap`}>{shipment.destination}</td>
-                          <td className={`px-3 ${cellPy} border-b border-vscode-border text-vscode-text whitespace-nowrap`}>{shipment.carrier}</td>
-                          <td className={`px-3 ${cellPy} border-b border-vscode-border text-vscode-textMuted whitespace-nowrap text-[11px]`}>{shipment.origin.split(',')[0]} ¡ú {shipment.destination.split(',')[0]}</td>
-                          <td className={`px-3 ${cellPy} border-b border-vscode-border text-center whitespace-nowrap`}>
+                          <td className={`px-3 ${cellPy} border-b border-idpxyz-border text-idpxyz-textMuted whitespace-nowrap`}>{shipment.orderId}</td>
+                          <td className={`px-3 ${cellPy} border-b border-idpxyz-border text-idpxyz-text whitespace-nowrap`}>{shipment.origin}</td>
+                          <td className={`px-3 ${cellPy} border-b border-idpxyz-border text-idpxyz-text whitespace-nowrap`}>{shipment.destination}</td>
+                          <td className={`px-3 ${cellPy} border-b border-idpxyz-border text-idpxyz-text whitespace-nowrap`}>{shipment.carrier}</td>
+                          <td className={`px-3 ${cellPy} border-b border-idpxyz-border text-idpxyz-textMuted whitespace-nowrap text-[11px]`}>{shipment.origin.split(',')[0]} ¡ú {shipment.destination.split(',')[0]}</td>
+                          <td className={`px-3 ${cellPy} border-b border-idpxyz-border text-center whitespace-nowrap`}>
                             <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-medium" style={{ color: st.color, backgroundColor: st.bgColor }}>
                               <StatusIcon size={11} /> {st.label}
                             </span>
                           </td>
-                          <td className={`px-3 ${cellPy} border-b border-vscode-border whitespace-nowrap text-[11px] text-vscode-text`}>{shipment.currentLeg}</td>
-                          <td className={`px-3 ${cellPy} border-b border-vscode-border text-center whitespace-nowrap`}>
+                          <td className={`px-3 ${cellPy} border-b border-idpxyz-border whitespace-nowrap text-[11px] text-idpxyz-text`}>{shipment.currentLeg}</td>
+                          <td className={`px-3 ${cellPy} border-b border-idpxyz-border text-center whitespace-nowrap`}>
                             {(() => { const r = riskConfig[shipment.riskLevel]; return r ? <span className="inline-block px-2 py-0.5 rounded text-[11px] font-medium" style={{ color: r.color, backgroundColor: r.bgColor }}>{r.label}</span> : null; })()}
                           </td>
-                          <td className={`px-3 ${cellPy} border-b border-vscode-border text-center whitespace-nowrap`}>
+                          <td className={`px-3 ${cellPy} border-b border-idpxyz-border text-center whitespace-nowrap`}>
                             <span className="inline-block px-2 py-0.5 rounded text-[11px] font-medium" style={{ color: sla.color, backgroundColor: sla.bgColor }}>{sla.label}</span>
                           </td>
-                          <td className={`px-3 ${cellPy} border-b border-vscode-border text-center whitespace-nowrap`}>
-                            <span className={`text-[11px] font-medium ${shipment.slaRemainingMinutes !== null && shipment.slaRemainingMinutes < 0 ? 'text-red-400' : shipment.slaRemainingMinutes !== null && shipment.slaRemainingMinutes < 120 ? 'text-yellow-400' : 'text-vscode-textMuted'}`}>
+                          <td className={`px-3 ${cellPy} border-b border-idpxyz-border text-center whitespace-nowrap`}>
+                            <span className={`text-[11px] font-medium ${shipment.slaRemainingMinutes !== null && shipment.slaRemainingMinutes < 0 ? 'text-red-400' : shipment.slaRemainingMinutes !== null && shipment.slaRemainingMinutes < 120 ? 'text-yellow-400' : 'text-idpxyz-textMuted'}`}>
                               {formatSlaRemaining(shipment.slaRemainingMinutes)}
                             </span>
                           </td>
-                          <td className={`px-3 ${cellPy} border-b border-vscode-border text-center whitespace-nowrap`}>
-                            {(() => { const cnt = exceptions.filter((e) => e.objectId === shipment.id && e.status !== 'resolved').length; return cnt > 0 ? <span className="text-red-400 font-medium text-[11px]">{cnt}</span> : <span className="text-vscode-textMuted text-[11px]">0</span>; })()}
+                          <td className={`px-3 ${cellPy} border-b border-idpxyz-border text-center whitespace-nowrap`}>
+                            {(() => { const cnt = exceptions.filter((e) => e.objectId === shipment.id && e.status !== 'resolved').length; return cnt > 0 ? <span className="text-red-400 font-medium text-[11px]">{cnt}</span> : <span className="text-idpxyz-textMuted text-[11px]">0</span>; })()}
                           </td>
-                          <td className={`px-3 ${cellPy} border-b border-vscode-border text-vscode-text whitespace-nowrap`}>
+                          <td className={`px-3 ${cellPy} border-b border-idpxyz-border text-idpxyz-text whitespace-nowrap`}>
                             <div className="flex items-center gap-1.5">
                               <div className="flex gap-0.5">
                                 {Array.from({ length: shipment.legs }).map((_, i) => (
-                                  <div key={i} className={`w-2 h-2 rounded-full ${i < shipment.completedLegs ? 'bg-green-400' : 'bg-vscode-border'}`} />
+                                  <div key={i} className={`w-2 h-2 rounded-full ${i < shipment.completedLegs ? 'bg-green-400' : 'bg-idpxyz-border'}`} />
                                 ))}
                               </div>
-                              <span className="text-[11px] text-vscode-textMuted">{shipment.currentLeg}</span>
+                              <span className="text-[11px] text-idpxyz-textMuted">{shipment.currentLeg}</span>
                             </div>
                           </td>
-                          <td className={`px-3 ${cellPy} border-b border-vscode-border whitespace-nowrap`}>
-                            <span className={`text-[11px] ${shipment.owner === 'Unassigned' ? 'text-vscode-textMuted italic' : 'text-vscode-text'}`}>{shipment.owner}</span>
+                          <td className={`px-3 ${cellPy} border-b border-idpxyz-border whitespace-nowrap`}>
+                            <span className={`text-[11px] ${shipment.owner === 'Unassigned' ? 'text-idpxyz-textMuted italic' : 'text-idpxyz-text'}`}>{shipment.owner}</span>
                           </td>
-                          <td className={`px-3 ${cellPy} border-b border-vscode-border whitespace-nowrap`}>
+                          <td className={`px-3 ${cellPy} border-b border-idpxyz-border whitespace-nowrap`}>
                             <div className="flex flex-col">
-                              <span className="text-vscode-text text-[11px] truncate max-w-[180px]">{shipment.lastEvent}</span>
-                              <span className="text-vscode-textMuted text-[10px]"><Clock size={10} className="inline mr-0.5" />{shipment.lastEventTime}</span>
+                              <span className="text-idpxyz-text text-[11px] truncate max-w-[180px]">{shipment.lastEvent}</span>
+                              <span className="text-idpxyz-textMuted text-[10px]"><Clock size={10} className="inline mr-0.5" />{shipment.lastEventTime}</span>
                             </div>
                           </td>
-                          <td className={`px-3 ${cellPy} border-b border-vscode-border text-center`}>
+                          <td className={`px-3 ${cellPy} border-b border-idpxyz-border text-center`}>
                             <Button variant="ghost" size="icon" className="h-6 w-6" onClick={(e) => { e.stopPropagation(); onOpenDetail?.(shipment.id); }} title="Open Detail">
                               <Eye size={14} />
                             </Button>
@@ -629,7 +629,7 @@ export default function ShipmentMonitor({ onSelectShipment, onOpenDetail }: Ship
               </div>
 
               {/* Pagination */}
-              <div className="flex items-center justify-between px-4 py-1.5 border-t border-vscode-border bg-vscode-sidebar shrink-0 text-[12px] text-vscode-textMuted select-none">
+              <div className="flex items-center justify-between px-4 py-1.5 border-t border-idpxyz-border bg-idpxyz-sidebar shrink-0 text-[12px] text-idpxyz-textMuted select-none">
                 <span>Page {currentPage} / {totalPages}</span>
                 <div className="flex items-center gap-1">
                   <Button variant="ghost" size="icon" onClick={() => setCurrentPage(1)} disabled={currentPage === 1}><ChevronsLeft size={14} /></Button>
@@ -650,8 +650,8 @@ export default function ShipmentMonitor({ onSelectShipment, onOpenDetail }: Ship
                     <div key={statusKey} className="w-[240px] shrink-0">
                       <div className="flex items-center gap-2 mb-2 px-2">
                         <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: cfg.color }} />
-                        <span className="text-[12px] text-vscode-textBright font-semibold">{cfg.label}</span>
-                        <span className="text-[10px] text-vscode-textMuted bg-vscode-hover px-1.5 rounded-full">{items.length}</span>
+                        <span className="text-[12px] text-idpxyz-textBright font-semibold">{cfg.label}</span>
+                        <span className="text-[10px] text-idpxyz-textMuted bg-idpxyz-hover px-1.5 rounded-full">{items.length}</span>
                       </div>
                       <div className="space-y-1.5">
                         {items.map((s) => {
@@ -659,20 +659,20 @@ export default function ShipmentMonitor({ onSelectShipment, onOpenDetail }: Ship
                           return (
                             <div
                               key={s.id}
-                              className="bg-vscode-sidebar rounded p-2.5 border border-vscode-border hover:border-vscode-accent/50 cursor-pointer"
+                              className="bg-idpxyz-sidebar rounded p-2.5 border border-idpxyz-border hover:border-idpxyz-accent/50 cursor-pointer"
                               onClick={() => { handleRowClick(s); }}
                               onDoubleClick={() => onOpenDetail?.(s.id)}
                             >
                               <div className="flex items-center justify-between mb-1">
-                                <span className="text-[11px] text-vscode-accent font-medium">{s.id}</span>
+                                <span className="text-[11px] text-idpxyz-accent font-medium">{s.id}</span>
                                 <span className="text-[9px] px-1.5 py-0.5 rounded font-medium" style={{ color: sla.color, backgroundColor: sla.bgColor }}>{sla.label}</span>
                               </div>
-                              <div className="text-[10px] text-vscode-textMuted mb-1">{s.origin} ¡ú{s.destination}</div>
+                              <div className="text-[10px] text-idpxyz-textMuted mb-1">{s.origin} ¡ú{s.destination}</div>
                               <div className="flex items-center justify-between text-[10px]">
-                                <span className="text-vscode-textMuted">{s.carrier}</span>
+                                <span className="text-idpxyz-textMuted">{s.carrier}</span>
                                 <div className="flex gap-0.5">
                                   {Array.from({ length: s.legs }).map((_, i) => (
-                                    <div key={i} className={`w-1.5 h-1.5 rounded-full ${i < s.completedLegs ? 'bg-green-400' : 'bg-vscode-border'}`} />
+                                    <div key={i} className={`w-1.5 h-1.5 rounded-full ${i < s.completedLegs ? 'bg-green-400' : 'bg-idpxyz-border'}`} />
                                   ))}
                                 </div>
                               </div>
@@ -690,25 +690,25 @@ export default function ShipmentMonitor({ onSelectShipment, onOpenDetail }: Ship
           {viewMode === 'timeline' && (
             <div className="flex-1 overflow-auto p-4">
               <div className="max-w-[700px]">
-                <h3 className="text-[12px] text-vscode-textBright font-semibold mb-3">Shipments by Promise Date</h3>
+                <h3 className="text-[12px] text-idpxyz-textBright font-semibold mb-3">Shipments by Promise Date</h3>
                 {[...filtered].sort((a, b) => a.promisedDate.localeCompare(b.promisedDate)).map((s) => {
                   const st = shipmentStatusConfig[s.status];
                   const sla = slaStatusConfig[s.slaStatus];
                   return (
                     <div
                       key={s.id}
-                      className="flex items-center gap-3 py-2 border-b border-vscode-border hover:bg-vscode-hover cursor-pointer"
+                      className="flex items-center gap-3 py-2 border-b border-idpxyz-border hover:bg-idpxyz-hover cursor-pointer"
                       onClick={() => handleRowClick(s)}
                       onDoubleClick={() => onOpenDetail?.(s.id)}
                     >
-                      <span className="text-[11px] text-vscode-textMuted font-mono w-[80px] shrink-0">{s.promisedDate}</span>
+                      <span className="text-[11px] text-idpxyz-textMuted font-mono w-[80px] shrink-0">{s.promisedDate}</span>
                       <span className={`w-2 h-2 rounded-full shrink-0`} style={{ backgroundColor: st.color }} />
-                      <span className="text-[12px] text-vscode-accent font-medium w-[110px] shrink-0">{s.id}</span>
-                      <span className="text-[11px] text-vscode-text truncate flex-1">{s.origin} ¡ú{s.destination}</span>
+                      <span className="text-[12px] text-idpxyz-accent font-medium w-[110px] shrink-0">{s.id}</span>
+                      <span className="text-[11px] text-idpxyz-text truncate flex-1">{s.origin} ¡ú{s.destination}</span>
                       <span className="text-[10px] px-1.5 py-0.5 rounded font-medium shrink-0" style={{ color: sla.color, backgroundColor: sla.bgColor }}>{sla.label}</span>
                       <div className="flex gap-0.5 shrink-0">
                         {Array.from({ length: s.legs }).map((_, i) => (
-                          <div key={i} className={`w-1.5 h-1.5 rounded-full ${i < s.completedLegs ? 'bg-green-400' : 'bg-vscode-border'}`} />
+                          <div key={i} className={`w-1.5 h-1.5 rounded-full ${i < s.completedLegs ? 'bg-green-400' : 'bg-idpxyz-border'}`} />
                         ))}
                       </div>
                     </div>

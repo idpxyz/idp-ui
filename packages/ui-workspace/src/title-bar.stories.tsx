@@ -14,14 +14,14 @@ export const Basic: StoryObj<typeof TitleBar> = {
     const [rightSidebar, setRightSidebar] = useState(true);
     const [bottomPanel, setBottomPanel] = useState(false);
     return (
-      <div className="w-full min-w-[960px] rounded-md border border-vscode-border overflow-hidden">
+      <div className="w-full min-w-[960px] rounded-md border border-idpxyz-border overflow-hidden">
         <TitleBar
           rightSidebarVisible={rightSidebar}
           onToggleRightSidebar={() => setRightSidebar((v) => !v)}
           bottomPanelVisible={bottomPanel}
           onToggleBottomPanel={() => setBottomPanel((v) => !v)}
         />
-        <div className="h-24 bg-vscode-bg flex items-center justify-center text-vscode-textMuted text-[12px]">
+        <div className="h-24 bg-idpxyz-bg flex items-center justify-center text-idpxyz-textMuted text-[12px]">
           Toggle layout buttons on the right; main menu and search are non-functional demos.
         </div>
       </div>
@@ -34,7 +34,7 @@ export const WithRecentObjects: StoryObj<typeof TitleBar> = {
     const [rightSidebar, setRightSidebar] = useState(true);
     const [bottomPanel, setBottomPanel] = useState(false);
     return (
-      <div className="w-full min-w-[960px] rounded-md border border-vscode-border overflow-hidden">
+      <div className="w-full min-w-[960px] rounded-md border border-idpxyz-border overflow-hidden">
         <TitleBar
           rightSidebarVisible={rightSidebar}
           onToggleRightSidebar={() => setRightSidebar((v) => !v)}
@@ -47,7 +47,7 @@ export const WithRecentObjects: StoryObj<typeof TitleBar> = {
           ]}
           onOpenRecentObject={() => {}}
         />
-        <div className="h-20 bg-vscode-bg flex items-center justify-center text-vscode-textMuted text-[12px]">
+        <div className="h-20 bg-idpxyz-bg flex items-center justify-center text-idpxyz-textMuted text-[12px]">
           Open the clock menu for recent objects.
         </div>
       </div>

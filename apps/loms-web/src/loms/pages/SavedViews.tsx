@@ -51,14 +51,14 @@ export default function SavedViews({ onOpenTab }: SavedViewsProps) {
   ];
 
   return (
-    <div className="flex-1 flex flex-col overflow-hidden bg-vscode-editor">
+    <div className="flex-1 flex flex-col overflow-hidden bg-idpxyz-editor">
       {/* Header */}
-      <div className="flex items-center justify-between px-5 py-3 border-b border-vscode-border shrink-0">
+      <div className="flex items-center justify-between px-5 py-3 border-b border-idpxyz-border shrink-0">
         <div>
-          <h1 className="text-[15px] font-semibold text-vscode-textBright flex items-center gap-2">
+          <h1 className="text-[15px] font-semibold text-idpxyz-textBright flex items-center gap-2">
             <Star size={16} className="text-yellow-400" /> Saved Views
           </h1>
-          <p className="text-[11px] text-vscode-textMuted mt-0.5">Saved filter presets and report configurations</p>
+          <p className="text-[11px] text-idpxyz-textMuted mt-0.5">Saved filter presets and report configurations</p>
         </div>
         <Button variant="default" onClick={() => addToast({ type: 'info', title: 'Create View', message: 'View builder coming soon' })}>
           + New View
@@ -66,14 +66,14 @@ export default function SavedViews({ onOpenTab }: SavedViewsProps) {
       </div>
 
       {/* Filter bar */}
-      <div className="flex items-center gap-3 px-5 py-2 border-b border-vscode-border shrink-0">
-        <div className="flex items-center gap-2 bg-vscode-inputBg border border-vscode-border rounded px-2 py-1 w-[220px]">
-          <Search size={12} className="text-vscode-textMuted shrink-0" />
+      <div className="flex items-center gap-3 px-5 py-2 border-b border-idpxyz-border shrink-0">
+        <div className="flex items-center gap-2 bg-idpxyz-inputBg border border-idpxyz-border rounded px-2 py-1 w-[220px]">
+          <Search size={12} className="text-idpxyz-textMuted shrink-0" />
           <input
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search views..."
-            className="flex-1 bg-transparent outline-none text-[12px] text-vscode-text placeholder:text-vscode-textMuted"
+            className="flex-1 bg-transparent outline-none text-[12px] text-idpxyz-text placeholder:text-idpxyz-textMuted"
           />
         </div>
         <div className="flex items-center gap-1">
@@ -88,14 +88,14 @@ export default function SavedViews({ onOpenTab }: SavedViewsProps) {
             </Button>
           ))}
         </div>
-        <span className="ml-auto text-[11px] text-vscode-textMuted">{filtered.length} views</span>
+        <span className="ml-auto text-[11px] text-idpxyz-textMuted">{filtered.length} views</span>
       </div>
 
       <div className="flex-1 overflow-y-auto p-5 space-y-6">
         {/* Pinned */}
         {pinned.length > 0 && (
           <section>
-            <h3 className="text-[10px] uppercase tracking-wider text-vscode-textMuted font-semibold mb-2 flex items-center gap-1.5">
+            <h3 className="text-[10px] uppercase tracking-wider text-idpxyz-textMuted font-semibold mb-2 flex items-center gap-1.5">
               <Star size={10} className="text-yellow-400" /> Pinned
             </h3>
             <div className="grid grid-cols-1 gap-2">
@@ -107,7 +107,7 @@ export default function SavedViews({ onOpenTab }: SavedViewsProps) {
         {/* All others */}
         {rest.length > 0 && (
           <section>
-            {pinned.length > 0 && <h3 className="text-[10px] uppercase tracking-wider text-vscode-textMuted font-semibold mb-2">All Views</h3>}
+            {pinned.length > 0 && <h3 className="text-[10px] uppercase tracking-wider text-idpxyz-textMuted font-semibold mb-2">All Views</h3>}
             <div className="grid grid-cols-1 gap-2">
               {rest.map((v) => <ViewCard key={v.id} view={v} onApply={handleApply} onDelete={handleDelete} />)}
             </div>
@@ -115,7 +115,7 @@ export default function SavedViews({ onOpenTab }: SavedViewsProps) {
         )}
 
         {filtered.length === 0 && (
-          <div className="flex flex-col items-center justify-center py-16 text-vscode-textMuted">
+          <div className="flex flex-col items-center justify-center py-16 text-idpxyz-textMuted">
             <Star size={32} className="mb-3 opacity-20" />
             <p className="text-[13px]">No saved views match your filters</p>
           </div>
@@ -136,19 +136,19 @@ function ViewCard({
 }) {
   const Icon = view.icon;
   return (
-    <div className="flex items-center gap-3 px-4 py-3 rounded border border-vscode-border bg-vscode-sidebar hover:border-vscode-accent/40 transition-colors group">
-      <div className="w-8 h-8 rounded bg-vscode-hover flex items-center justify-center shrink-0">
-        <Icon size={14} className="text-vscode-accent" />
+    <div className="flex items-center gap-3 px-4 py-3 rounded border border-idpxyz-border bg-idpxyz-sidebar hover:border-idpxyz-accent/40 transition-colors group">
+      <div className="w-8 h-8 rounded bg-idpxyz-hover flex items-center justify-center shrink-0">
+        <Icon size={14} className="text-idpxyz-accent" />
       </div>
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-2">
-          <span className="text-[12px] font-medium text-vscode-textBright truncate">{view.name}</span>
+          <span className="text-[12px] font-medium text-idpxyz-textBright truncate">{view.name}</span>
           {view.shared
-            ? <span title="Shared"><Globe size={10} className="text-vscode-textMuted shrink-0" /></span>
-            : <span title="Private"><Lock size={10} className="text-vscode-textMuted shrink-0" /></span>}
+            ? <span title="Shared"><Globe size={10} className="text-idpxyz-textMuted shrink-0" /></span>
+            : <span title="Private"><Lock size={10} className="text-idpxyz-textMuted shrink-0" /></span>}
         </div>
-        <p className="text-[11px] text-vscode-textMuted truncate mt-0.5">{view.description}</p>
-        <div className="flex items-center gap-3 mt-1 text-[10px] text-vscode-textMuted">
+        <p className="text-[11px] text-idpxyz-textMuted truncate mt-0.5">{view.description}</p>
+        <div className="flex items-center gap-3 mt-1 text-[10px] text-idpxyz-textMuted">
           <span>by {view.owner}</span>
           <span>·</span>
           <span>Used {view.useCount}×</span>

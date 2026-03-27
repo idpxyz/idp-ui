@@ -45,22 +45,22 @@ export default function ConfigPage({ onOpenTab }: ConfigPageProps) {
   ];
 
   return (
-    <div className="flex-1 flex flex-col overflow-hidden bg-vscode-editor">
-      <div className="flex items-center h-[22px] px-3 text-[12px] text-vscode-breadcrumb bg-vscode-editor border-b border-vscode-border shrink-0 select-none">
-        <span className="hover:text-vscode-textBright cursor-pointer">Admin</span>
-        <ChevronRight size={14} className="mx-0.5 text-vscode-textMuted" />
-        <span className="text-vscode-text">Configuration</span>
+    <div className="flex-1 flex flex-col overflow-hidden bg-idpxyz-editor">
+      <div className="flex items-center h-[22px] px-3 text-[12px] text-idpxyz-breadcrumb bg-idpxyz-editor border-b border-idpxyz-border shrink-0 select-none">
+        <span className="hover:text-idpxyz-textBright cursor-pointer">Admin</span>
+        <ChevronRight size={14} className="mx-0.5 text-idpxyz-textMuted" />
+        <span className="text-idpxyz-text">Configuration</span>
       </div>
 
-      <div className="flex items-center h-[32px] border-b border-vscode-border shrink-0 px-2">
+      <div className="flex items-center h-[32px] border-b border-idpxyz-border shrink-0 px-2">
         {tabs.map((tab) => (
           <Button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
             variant="ghost"
             size="sm"
-            className={`h-full rounded-none px-3 text-[11px] border-b-2 border-r border-vscode-border/50 last:border-r-0 ${
-              activeTab === tab.id ? 'text-vscode-text border-b-vscode-accent' : 'text-vscode-textMuted border-transparent hover:text-vscode-text'
+            className={`h-full rounded-none px-3 text-[11px] border-b-2 border-r border-idpxyz-border/50 last:border-r-0 ${
+              activeTab === tab.id ? 'text-idpxyz-text border-b-idpxyz-accent' : 'text-idpxyz-textMuted border-transparent hover:text-idpxyz-text'
             }`}
           >
             {tab.label}
@@ -71,8 +71,8 @@ export default function ConfigPage({ onOpenTab }: ConfigPageProps) {
       <div className="flex-1 overflow-auto p-4">
         {activeTab === 'general' && (
           <div className="max-w-[600px] space-y-4">
-            <div className="bg-vscode-sidebar rounded-lg p-4 border border-vscode-border">
-              <h3 className="text-[12px] font-semibold text-vscode-textBright mb-3 flex items-center gap-2">
+            <div className="bg-idpxyz-sidebar rounded-lg p-4 border border-idpxyz-border">
+              <h3 className="text-[12px] font-semibold text-idpxyz-textBright mb-3 flex items-center gap-2">
                 <Settings size={14} /> System Settings
               </h3>
               <div className="space-y-3">
@@ -85,12 +85,12 @@ export default function ConfigPage({ onOpenTab }: ConfigPageProps) {
                   { label: 'Currency Display', value: 'USD', type: 'select' },
                 ].map((setting) => (
                   <div key={setting.label} className="flex items-center justify-between">
-                    <span className="text-[12px] text-vscode-text">{setting.label}</span>
-                    <span className="text-[12px] text-vscode-textMuted bg-vscode-hover px-2 py-1 rounded">{setting.value}</span>
+                    <span className="text-[12px] text-idpxyz-text">{setting.label}</span>
+                    <span className="text-[12px] text-idpxyz-textMuted bg-idpxyz-hover px-2 py-1 rounded">{setting.value}</span>
                   </div>
                 ))}
               </div>
-              <div className="flex items-center gap-2 mt-4 pt-3 border-t border-vscode-border">
+              <div className="flex items-center gap-2 mt-4 pt-3 border-t border-idpxyz-border">
                 <Button variant="default" size="sm">
                   <Save size={12} /> Save Changes
                 </Button>
@@ -100,8 +100,8 @@ export default function ConfigPage({ onOpenTab }: ConfigPageProps) {
               </div>
             </div>
 
-            <div className="bg-vscode-sidebar rounded-lg p-4 border border-vscode-border">
-              <h3 className="text-[12px] font-semibold text-vscode-textBright mb-3 flex items-center gap-2">
+            <div className="bg-idpxyz-sidebar rounded-lg p-4 border border-idpxyz-border">
+              <h3 className="text-[12px] font-semibold text-idpxyz-textBright mb-3 flex items-center gap-2">
                 <Shield size={14} /> Notification Preferences
               </h3>
               <div className="space-y-2">
@@ -113,8 +113,8 @@ export default function ConfigPage({ onOpenTab }: ConfigPageProps) {
                   { label: 'Daily digest email', enabled: true },
                 ].map((pref) => (
                   <div key={pref.label} className="flex items-center justify-between py-1">
-                    <span className="text-[12px] text-vscode-text">{pref.label}</span>
-                    <div className={`w-8 h-4 rounded-full relative cursor-pointer transition-colors ${pref.enabled ? 'bg-vscode-accent' : 'bg-vscode-border'}`}>
+                    <span className="text-[12px] text-idpxyz-text">{pref.label}</span>
+                    <div className={`w-8 h-4 rounded-full relative cursor-pointer transition-colors ${pref.enabled ? 'bg-idpxyz-accent' : 'bg-idpxyz-border'}`}>
                       <div className={`absolute top-0.5 w-3 h-3 rounded-full bg-white transition-all ${pref.enabled ? 'left-[18px]' : 'left-0.5'}`} />
                     </div>
                   </div>
@@ -127,18 +127,18 @@ export default function ConfigPage({ onOpenTab }: ConfigPageProps) {
         {activeTab === 'rules' && (
           <div className="space-y-2">
             {rulesList.map((rule) => (
-              <div key={rule.id} className="bg-vscode-sidebar rounded p-3 border border-vscode-border">
+              <div key={rule.id} className="bg-idpxyz-sidebar rounded p-3 border border-idpxyz-border">
                 <div className="flex items-center gap-2 mb-1.5">
-                  <span className="text-[12px] text-vscode-accent font-medium">{rule.id}</span>
-                  <span className="text-[12px] text-vscode-textBright font-medium">{rule.name}</span>
-                  <span className="text-[10px] px-1.5 py-0.5 rounded bg-vscode-hover text-vscode-textMuted font-medium">{rule.type}</span>
+                  <span className="text-[12px] text-idpxyz-accent font-medium">{rule.id}</span>
+                  <span className="text-[12px] text-idpxyz-textBright font-medium">{rule.name}</span>
+                  <span className="text-[10px] px-1.5 py-0.5 rounded bg-idpxyz-hover text-idpxyz-textMuted font-medium">{rule.type}</span>
                   <span className={`ml-auto text-[10px] px-1.5 py-0.5 rounded font-medium ${
                     rule.status === 'active' ? 'bg-green-500/20 text-green-400' : 'bg-gray-500/20 text-gray-400'
                   }`}>{rule.status}</span>
                 </div>
-                <div className="flex items-center gap-4 text-[11px] text-vscode-textMuted">
-                  <span>Trigger: <span className="text-vscode-text">{rule.trigger}</span></span>
-                  <span>Action: <span className="text-vscode-text">{rule.action}</span></span>
+                <div className="flex items-center gap-4 text-[11px] text-idpxyz-textMuted">
+                  <span>Trigger: <span className="text-idpxyz-text">{rule.trigger}</span></span>
+                  <span>Action: <span className="text-idpxyz-text">{rule.action}</span></span>
                   <span className="ml-auto">Last: {rule.lastTriggered}</span>
                 </div>
               </div>
@@ -149,15 +149,15 @@ export default function ConfigPage({ onOpenTab }: ConfigPageProps) {
         {activeTab === 'access' && (
           <div className="space-y-3">
             {accessRoles.map((role) => (
-              <div key={role.role} className="bg-vscode-sidebar rounded p-4 border border-vscode-border">
+              <div key={role.role} className="bg-idpxyz-sidebar rounded p-4 border border-idpxyz-border">
                 <div className="flex items-center gap-2 mb-2">
-                  <Users size={14} className="text-vscode-textMuted" />
-                  <span className="text-[13px] text-vscode-textBright font-semibold">{role.role}</span>
-                  <span className="text-[11px] text-vscode-textMuted">{role.users} users</span>
+                  <Users size={14} className="text-idpxyz-textMuted" />
+                  <span className="text-[13px] text-idpxyz-textBright font-semibold">{role.role}</span>
+                  <span className="text-[11px] text-idpxyz-textMuted">{role.users} users</span>
                 </div>
                 <div className="flex flex-wrap gap-1.5">
                   {role.permissions.map((p) => (
-                    <span key={p} className="text-[10px] px-2 py-0.5 rounded bg-vscode-hover text-vscode-text">{p}</span>
+                    <span key={p} className="text-[10px] px-2 py-0.5 rounded bg-idpxyz-hover text-idpxyz-text">{p}</span>
                   ))}
                 </div>
               </div>
@@ -168,12 +168,12 @@ export default function ConfigPage({ onOpenTab }: ConfigPageProps) {
         {activeTab === 'audit' && (
           <div className="space-y-0.5">
             {auditEntries.map((a, i) => (
-              <div key={i} className="flex items-center gap-3 py-1.5 text-[12px] text-vscode-text border-b border-vscode-border last:border-0">
-                <span className="text-vscode-textMuted font-mono shrink-0 text-[11px] w-[130px]">{a.time}</span>
-                <span className="text-vscode-accent shrink-0">{a.user}</span>
+              <div key={i} className="flex items-center gap-3 py-1.5 text-[12px] text-idpxyz-text border-b border-idpxyz-border last:border-0">
+                <span className="text-idpxyz-textMuted font-mono shrink-0 text-[11px] w-[130px]">{a.time}</span>
+                <span className="text-idpxyz-accent shrink-0">{a.user}</span>
                 <span className="truncate">{a.action}</span>
-                <span className="text-vscode-textMuted truncate">{a.detail}</span>
-                <span className="ml-auto text-vscode-textMuted shrink-0 font-mono text-[10px]">{a.ip}</span>
+                <span className="text-idpxyz-textMuted truncate">{a.detail}</span>
+                <span className="ml-auto text-idpxyz-textMuted shrink-0 font-mono text-[10px]">{a.ip}</span>
               </div>
             ))}
           </div>

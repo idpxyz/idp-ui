@@ -1,94 +1,112 @@
 'use client';
 
 import * as React from 'react';
+import * as CheckboxPrimitive from '@radix-ui/react-checkbox';
+import * as RadioGroupPrimitive from '@radix-ui/react-radio-group';
+import * as SwitchPrimitive from '@radix-ui/react-switch';
+import { Check, Circle } from 'lucide-react';
 import { cn } from '@idpxyz/ui-utils';
 
-const Checkbox = React.forwardRef<HTMLInputElement, React.InputHTMLAttributes<HTMLInputElement> & { label?: string }>(
-  ({ className, label, id, ...props }, ref) => {
-    const inputId = id || React.useId();
-    return (
-      <div className="flex items-center gap-2">
-        <input
-          ref={ref}
-          type="checkbox"
-          id={inputId}
-          className={cn(
-            'h-4 w-4 rounded border border-vscode-border bg-vscode-input text-vscode-accent cursor-pointer',
-            'focus:ring-2 focus:ring-vscode-accent/40 focus:ring-offset-0',
-            className
-          )}
-          {...props}
-        />
-        {label && (
-          <label htmlFor={inputId} className="text-[12px] text-vscode-text cursor-pointer select-none">
-            {label}
-          </label>
+const Checkbox = React.forwardRef<
+  React.ComponentRef<typeof CheckboxPrimitive.Root>,
+  React.ComponentPropsWithoutRef<typeof CheckboxPrimitive.Root> & { label?: string }
+>(({ className, label, id, ...props }, ref) => {
+  const inputId = id || React.useId();
+  return (
+    <div className="flex items-center gap-2">
+      <CheckboxPrimitive.Root
+        ref={ref}
+        id={inputId}
+        className={cn(
+          'peer h-4 w-4 shrink-0 rounded border border-idpxyz-border bg-idpxyz-input',
+          'focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-idpxyz-accent/35 focus-visible:ring-offset-0',
+          'data-[state=checked]:border-idpxyz-accent data-[state=checked]:bg-idpxyz-accent',
+          'disabled:cursor-not-allowed disabled:opacity-40',
+          className
         )}
-      </div>
-    );
-  }
-);
-Checkbox.displayName = 'Checkbox';
+        {...props}
+      >
+        <CheckboxPrimitive.Indicator className="flex items-center justify-center text-white">
+          <Check className="h-3 w-3" strokeWidth={3} />
+        </CheckboxPrimitive.Indicator>
+      </CheckboxPrimitive.Root>
+      {label && (
+        <label htmlFor={inputId} className="text-[12px] text-idpxyz-text cursor-pointer select-none">
+          {label}
+        </label>
+      )}
+    </div>
+  );
+});
+Checkbox.displayName = CheckboxPrimitive.Root.displayName;
 
-const Radio = React.forwardRef<HTMLInputElement, React.InputHTMLAttributes<HTMLInputElement> & { label?: string }>(
-  ({ className, label, id, ...props }, ref) => {
-    const inputId = id || React.useId();
-    return (
-      <div className="flex items-center gap-2">
-        <input
-          ref={ref}
-          type="radio"
-          id={inputId}
-          className={cn(
-            'h-4 w-4 border border-vscode-border bg-vscode-input text-vscode-accent cursor-pointer',
-            'focus:ring-2 focus:ring-vscode-accent/40 focus:ring-offset-0',
-            className
-          )}
-          {...props}
-        />
-        {label && (
-          <label htmlFor={inputId} className="text-[12px] text-vscode-text cursor-pointer select-none">
-            {label}
-          </label>
+const RadioGroup = React.forwardRef<
+  React.ComponentRef<typeof RadioGroupPrimitive.Root>,
+  React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Root>
+>(({ className, ...props }, ref) => (
+  <RadioGroupPrimitive.Root ref={ref} className={cn('flex flex-col gap-2', className)} {...props} />
+));
+RadioGroup.displayName = RadioGroupPrimitive.Root.displayName;
+
+const RadioGroupItem = React.forwardRef<
+  React.ComponentRef<typeof RadioGroupPrimitive.Item>,
+  React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Item> & { label?: string }
+>(({ className, label, id, ...props }, ref) => {
+  const inputId = id || React.useId();
+  return (
+    <div className="flex items-center gap-2">
+      <RadioGroupPrimitive.Item
+        ref={ref}
+        id={inputId}
+        className={cn(
+          'h-4 w-4 shrink-0 rounded-full border border-idpxyz-border bg-idpxyz-input',
+          'focus:outline-none focus-visible:ring-1 focus-visible:ring-idpxyz-accent/35 focus-visible:ring-offset-0',
+          'data-[state=checked]:border-idpxyz-accent',
+          'disabled:cursor-not-allowed disabled:opacity-40',
+          className
         )}
-      </div>
-    );
-  }
-);
-Radio.displayName = 'Radio';
+        {...props}
+      >
+        <RadioGroupPrimitive.Indicator className="flex items-center justify-center">
+          <Circle className="h-2 w-2 fill-idpxyz-accent text-idpxyz-accent" />
+        </RadioGroupPrimitive.Indicator>
+      </RadioGroupPrimitive.Item>
+      {label && (
+        <label htmlFor={inputId} className="text-[12px] text-idpxyz-text cursor-pointer select-none">
+          {label}
+        </label>
+      )}
+    </div>
+  );
+});
+RadioGroupItem.displayName = RadioGroupPrimitive.Item.displayName;
 
-const Switch = React.forwardRef<HTMLButtonElement, {
-  checked?: boolean;
-  onCheckedChange?: (checked: boolean) => void;
-  disabled?: boolean;
-  label?: string;
-  className?: string;
-}>(({ checked = false, onCheckedChange, disabled, label, className }, ref) => (
+const Switch = React.forwardRef<
+  React.ComponentRef<typeof SwitchPrimitive.Root>,
+  React.ComponentPropsWithoutRef<typeof SwitchPrimitive.Root> & { label?: string }
+>(({ className, label, ...props }, ref) => (
   <div className="flex items-center gap-2">
-    <button
+    <SwitchPrimitive.Root
       ref={ref}
-      role="switch"
-      aria-checked={checked}
-      disabled={disabled}
-      onClick={() => onCheckedChange?.(!checked)}
       className={cn(
-        'relative inline-flex h-5 w-9 shrink-0 rounded-full border-2 border-transparent transition-colors cursor-pointer',
-        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-vscode-accent/40',
+        'relative inline-flex h-5 w-9 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors',
+        'focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-idpxyz-accent/35 focus-visible:ring-offset-0',
         'disabled:cursor-not-allowed disabled:opacity-40',
-        checked ? 'bg-vscode-accent' : 'bg-vscode-border',
+        'data-[state=checked]:bg-idpxyz-accent data-[state=unchecked]:bg-idpxyz-border',
         className
       )}
+      {...props}
     >
-      <span
+      <SwitchPrimitive.Thumb
         className={cn(
-          'pointer-events-none block h-4 w-4 rounded-full bg-white shadow-sm transition-transform',
-          checked ? 'translate-x-4' : 'translate-x-0'
+          'pointer-events-none block h-4 w-4 rounded-full bg-white shadow-sm ring-0 transition-transform',
+          'data-[state=checked]:translate-x-4 data-[state=unchecked]:translate-x-0'
         )}
       />
-    </button>
-    {label && <span className="text-[12px] text-vscode-text select-none">{label}</span>}
+    </SwitchPrimitive.Root>
+    {label && <span className="text-[12px] text-idpxyz-text select-none">{label}</span>}
   </div>
 ));
-Switch.displayName = 'Switch';
+Switch.displayName = SwitchPrimitive.Root.displayName;
 
-export { Checkbox, Radio, Switch };
+export { Checkbox, RadioGroup, RadioGroupItem, Switch };

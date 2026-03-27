@@ -122,8 +122,8 @@ function Row({ label, required, hint, children }: { label: string; required?: bo
   return (
     <div className="flex items-start gap-3 py-1.5">
       <div className="w-[100px] shrink-0 pt-0.5">
-        <span className="text-[11px] text-vscode-textMuted">{label}{required && <span className="text-red-400 ml-0.5">*</span>}</span>
-        {hint && <div className="text-[9px] text-vscode-textMuted/70 mt-0.5 leading-tight">{hint}</div>}
+        <span className="text-[11px] text-idpxyz-textMuted">{label}{required && <span className="text-red-400 ml-0.5">*</span>}</span>
+        {hint && <div className="text-[9px] text-idpxyz-textMuted/70 mt-0.5 leading-tight">{hint}</div>}
       </div>
       <div className="flex-1 min-w-0">{children}</div>
     </div>
@@ -135,7 +135,7 @@ function Inp({ value, onChange, placeholder, className = '', type = 'text' }: {
 }) {
   return (
     <input type={type} value={value} onChange={e => onChange(e.target.value)} placeholder={placeholder}
-      className={`bg-vscode-inputBg border border-vscode-border rounded px-2.5 py-1 text-[11px] text-vscode-text outline-none focus:border-vscode-accent placeholder:text-vscode-textMuted w-full ${className}`} />
+      className={`bg-idpxyz-inputBg border border-idpxyz-border rounded px-2.5 py-1 text-[11px] text-idpxyz-text outline-none focus:border-idpxyz-accent placeholder:text-idpxyz-textMuted w-full ${className}`} />
   );
 }
 
@@ -144,7 +144,7 @@ function Sel({ value, onChange, options, placeholder }: {
 }) {
   return (
     <select value={value} onChange={e => onChange(e.target.value)}
-      className="bg-vscode-inputBg border border-vscode-border rounded px-2.5 py-1 text-[11px] text-vscode-text outline-none focus:border-vscode-accent w-full">
+      className="bg-idpxyz-inputBg border border-idpxyz-border rounded px-2.5 py-1 text-[11px] text-idpxyz-text outline-none focus:border-idpxyz-accent w-full">
       {placeholder && <option value="">{placeholder}</option>}
       {options.map(o => <option key={o.v} value={o.v}>{o.l}</option>)}
     </select>
@@ -156,9 +156,9 @@ function SectionHead({ id, icon: Icon, label, expanded, toggle, status }: {
 }) {
   return (
     <button id={`sec-${id}`} onClick={toggle}
-      className="w-full flex items-center gap-2 px-4 h-[32px] text-[11px] uppercase tracking-wider text-vscode-breadcrumb border-b border-vscode-border bg-vscode-sidebar hover:bg-vscode-hover transition-colors shrink-0">
+      className="w-full flex items-center gap-2 px-4 h-[32px] text-[11px] uppercase tracking-wider text-idpxyz-breadcrumb border-b border-idpxyz-border bg-idpxyz-sidebar hover:bg-idpxyz-hover transition-colors shrink-0">
       {expanded ? <IconChevronDown size={11} /> : <IconChevronRight size={11} />}
-      <Icon size={12} className="text-vscode-accent" />
+      <Icon size={12} className="text-idpxyz-accent" />
       <span className="font-bold">{label}</span>
       {status === 'ok' && <IconCheck size={10} className="text-green-400 ml-auto" />}
       {status === 'warn' && <IconAlertCircle size={10} className="text-yellow-400 ml-auto" />}
@@ -173,7 +173,7 @@ function TierEditor({ tiers, onChange, thLabel, valLabel, thPlaceholder, valPlac
 }) {
   return (
     <div className="space-y-1.5">
-      <div className="flex items-center gap-1.5 text-[9px] text-vscode-textMuted">
+      <div className="flex items-center gap-1.5 text-[9px] text-idpxyz-textMuted">
         <span className="w-[100px]">{thLabel}</span>
         <span className="w-[100px]">{valLabel}</span>
       </div>
@@ -182,12 +182,12 @@ function TierEditor({ tiers, onChange, thLabel, valLabel, thPlaceholder, valPlac
           <Inp value={t.threshold} onChange={v => { const n = [...tiers]; n[i] = { ...n[i], threshold: v }; onChange(n); }} placeholder={thPlaceholder} className="w-[100px]" />
           <Inp value={t.value} onChange={v => { const n = [...tiers]; n[i] = { ...n[i], value: v }; onChange(n); }} placeholder={valPlaceholder} className="w-[100px]" />
           {tiers.length > 1 && (
-            <button onClick={() => onChange(tiers.filter((_, j) => j !== i))} className="text-vscode-textMuted hover:text-red-400"><IconTrash size={11} /></button>
+            <button onClick={() => onChange(tiers.filter((_, j) => j !== i))} className="text-idpxyz-textMuted hover:text-red-400"><IconTrash size={11} /></button>
           )}
         </div>
       ))}
       <button onClick={() => onChange([...tiers, { threshold: '', value: '' }])}
-        className="flex items-center gap-1 text-[10px] text-vscode-accent hover:underline"><IconPlus size={10} /> 添加阶梯</button>
+        className="flex items-center gap-1 text-[10px] text-idpxyz-accent hover:underline"><IconPlus size={10} /> 添加阶梯</button>
     </div>
   );
 }
@@ -214,43 +214,43 @@ function ProductPicker({ selectedId, selectedName, icon: SelIcon, onSelect, onCl
 
   if (selectedId) {
     return (
-      <div className="flex items-center gap-1.5 bg-vscode-inputBg border border-vscode-border rounded px-2 py-1 text-[11px]">
-        <SelIcon size={10} className="text-vscode-accent shrink-0" />
-        <span className="text-vscode-text truncate flex-1">{selectedName}</span>
-        <IconClose size={10} className="text-vscode-textMuted cursor-pointer hover:text-red-400 shrink-0" onClick={onClear} />
+      <div className="flex items-center gap-1.5 bg-idpxyz-inputBg border border-idpxyz-border rounded px-2 py-1 text-[11px]">
+        <SelIcon size={10} className="text-idpxyz-accent shrink-0" />
+        <span className="text-idpxyz-text truncate flex-1">{selectedName}</span>
+        <IconClose size={10} className="text-idpxyz-textMuted cursor-pointer hover:text-red-400 shrink-0" onClick={onClear} />
       </div>
     );
   }
 
   return (
     <div ref={ref} className="relative min-w-[260px]">
-      <div className="flex items-center bg-vscode-inputBg border border-vscode-border rounded px-2.5 h-[28px] cursor-pointer hover:border-vscode-accent transition-colors"
+      <div className="flex items-center bg-idpxyz-inputBg border border-idpxyz-border rounded px-2.5 h-[28px] cursor-pointer hover:border-idpxyz-accent transition-colors"
         onClick={() => setOpen(o => !o)}>
-        <IconSearch size={11} className="text-vscode-textMuted mr-1.5 shrink-0" />
+        <IconSearch size={11} className="text-idpxyz-textMuted mr-1.5 shrink-0" />
         {open ? (
           <input autoFocus type="text" value={search} onChange={e => setSearch(e.target.value)}
             onClick={e => e.stopPropagation()}
             placeholder="输入关键词筛选..."
-            className="bg-transparent border-none outline-none text-[11px] text-vscode-text w-full placeholder:text-vscode-textMuted" />
+            className="bg-transparent border-none outline-none text-[11px] text-idpxyz-text w-full placeholder:text-idpxyz-textMuted" />
         ) : (
-          <span className="text-[11px] text-vscode-textMuted flex-1">{placeholder || '点击选择商品...'}</span>
+          <span className="text-[11px] text-idpxyz-textMuted flex-1">{placeholder || '点击选择商品...'}</span>
         )}
-        <IconChevronDown size={10} className={`text-vscode-textMuted shrink-0 ml-1 transition-transform ${open ? 'rotate-180' : ''}`} />
+        <IconChevronDown size={10} className={`text-idpxyz-textMuted shrink-0 ml-1 transition-transform ${open ? 'rotate-180' : ''}`} />
       </div>
       {open && (
-        <div className="absolute z-30 mt-1 left-0 min-w-[400px] border border-vscode-border rounded bg-vscode-sidebar shadow-lg max-h-[240px] overflow-auto">
+        <div className="absolute z-30 mt-1 left-0 min-w-[400px] border border-idpxyz-border rounded bg-idpxyz-sidebar shadow-lg max-h-[240px] overflow-auto">
           {results.map(s => (
             <div key={s.id}
               onClick={() => { onSelect(s.id, s.name); setSearch(''); setOpen(false); }}
-              className="flex items-center gap-2.5 px-3 py-2 cursor-pointer text-[11px] hover:bg-vscode-hover text-vscode-text border-b border-vscode-border last:border-b-0">
+              className="flex items-center gap-2.5 px-3 py-2 cursor-pointer text-[11px] hover:bg-idpxyz-hover text-idpxyz-text border-b border-idpxyz-border last:border-b-0">
               <span className="text-[14px] shrink-0">{s.mainImage}</span>
               <div className="flex-1 min-w-0">
-                <div className="text-vscode-text">{s.name}</div>
-                <div className="text-[9px] text-vscode-textMuted">{s.brand} · {s.id}</div>
+                <div className="text-idpxyz-text">{s.name}</div>
+                <div className="text-[9px] text-idpxyz-textMuted">{s.brand} · {s.id}</div>
               </div>
             </div>
           ))}
-          {results.length === 0 && <div className="px-3 py-2.5 text-[10px] text-vscode-textMuted text-center">无匹配商品</div>}
+          {results.length === 0 && <div className="px-3 py-2.5 text-[10px] text-idpxyz-textMuted text-center">无匹配商品</div>}
         </div>
       )}
     </div>
@@ -334,19 +334,19 @@ export default function PromotionCreate({ onOpenTab, onBack }: PromotionCreatePr
       : [];
 
   return (
-    <div className="flex-1 flex flex-col overflow-hidden bg-vscode-editor">
+    <div className="flex-1 flex flex-col overflow-hidden bg-idpxyz-editor">
       {/* Header */}
-      <div className="flex items-center justify-between px-5 py-2.5 border-b border-vscode-border shrink-0">
+      <div className="flex items-center justify-between px-5 py-2.5 border-b border-idpxyz-border shrink-0">
         <div className="flex items-center gap-3">
-          {onBack && <button onClick={onBack} className="text-vscode-textMuted hover:text-vscode-text"><IconArrowLeft size={14} /></button>}
-          <IconAutomation size={15} className="text-vscode-accent" />
-          <h1 className="text-[14px] font-semibold text-vscode-textBright">创建促销活动</h1>
-          {form.name && <span className="text-[11px] text-vscode-textMuted truncate max-w-[200px]">— {form.name}</span>}
-          {form.type && <span className="text-[10px] px-1.5 py-0.5 rounded bg-vscode-hover text-vscode-textMuted">{promotionTypeConfig[form.type].label}</span>}
+          {onBack && <button onClick={onBack} className="text-idpxyz-textMuted hover:text-idpxyz-text"><IconArrowLeft size={14} /></button>}
+          <IconAutomation size={15} className="text-idpxyz-accent" />
+          <h1 className="text-[14px] font-semibold text-idpxyz-textBright">创建促销活动</h1>
+          {form.name && <span className="text-[11px] text-idpxyz-textMuted truncate max-w-[200px]">— {form.name}</span>}
+          {form.type && <span className="text-[10px] px-1.5 py-0.5 rounded bg-idpxyz-hover text-idpxyz-textMuted">{promotionTypeConfig[form.type].label}</span>}
         </div>
         <div className="flex items-center gap-1.5">
-          <span className="text-[10px] text-vscode-textMuted mr-1">{sectionDefs.filter(s => ss(s.id) === 'ok').length}/{sectionDefs.length}</span>
-          <div className="w-px h-4 bg-vscode-border mx-1" />
+          <span className="text-[10px] text-idpxyz-textMuted mr-1">{sectionDefs.filter(s => ss(s.id) === 'ok').length}/{sectionDefs.length}</span>
+          <div className="w-px h-4 bg-idpxyz-border mx-1" />
           <Button variant="ghost" size="sm"><IconSave size={12} /> 保存草稿</Button>
           <Button variant="default" size="sm"><IconCheck size={12} /> 创建活动</Button>
         </div>
@@ -355,29 +355,29 @@ export default function PromotionCreate({ onOpenTab, onBack }: PromotionCreatePr
       {/* Body */}
       <div className="flex-1 flex overflow-hidden">
         {/* Left nav */}
-        <div className="w-[190px] border-r border-vscode-border bg-vscode-sidebar flex flex-col overflow-auto shrink-0">
-          <div className="flex items-center justify-between px-4 h-[35px] text-[11px] uppercase tracking-wider text-vscode-breadcrumb shrink-0 border-b border-vscode-border">
+        <div className="w-[190px] border-r border-idpxyz-border bg-idpxyz-sidebar flex flex-col overflow-auto shrink-0">
+          <div className="flex items-center justify-between px-4 h-[35px] text-[11px] uppercase tracking-wider text-idpxyz-breadcrumb shrink-0 border-b border-idpxyz-border">
             <span>表单区块</span>
-            <IconMoreH size={14} className="text-vscode-textMuted" />
+            <IconMoreH size={14} className="text-idpxyz-textMuted" />
           </div>
           {sectionDefs.map(s => {
             const st = ss(s.id);
             const Icon = s.icon;
             return (
               <button key={s.id} onClick={() => scrollTo(s.id)}
-                className={`w-full flex items-center gap-2 px-4 py-2 text-[11px] text-left border-b border-vscode-border transition-colors hover:bg-vscode-hover ${expanded.has(s.id) ? 'text-vscode-text' : 'text-vscode-textMuted'}`}>
-                <Icon size={11} className={st === 'ok' ? 'text-green-400' : st === 'warn' ? 'text-yellow-400' : 'text-vscode-textMuted'} />
+                className={`w-full flex items-center gap-2 px-4 py-2 text-[11px] text-left border-b border-idpxyz-border transition-colors hover:bg-idpxyz-hover ${expanded.has(s.id) ? 'text-idpxyz-text' : 'text-idpxyz-textMuted'}`}>
+                <Icon size={11} className={st === 'ok' ? 'text-green-400' : st === 'warn' ? 'text-yellow-400' : 'text-idpxyz-textMuted'} />
                 <span className="flex-1 truncate">{s.label}</span>
                 {st === 'ok' && <IconCheck size={9} className="text-green-400 shrink-0" />}
                 {st === 'warn' && <IconAlertCircle size={9} className="text-yellow-400 shrink-0" />}
               </button>
             );
           })}
-          <div className="mt-auto px-4 py-3 border-t border-vscode-border">
+          <div className="mt-auto px-4 py-3 border-t border-idpxyz-border">
             <div className="flex gap-1 mb-1.5">
-              {sectionDefs.map(s => <div key={s.id} className={`flex-1 h-1.5 rounded-full ${ss(s.id) === 'ok' ? 'bg-green-400' : ss(s.id) === 'warn' ? 'bg-yellow-400' : 'bg-vscode-border'}`} />)}
+              {sectionDefs.map(s => <div key={s.id} className={`flex-1 h-1.5 rounded-full ${ss(s.id) === 'ok' ? 'bg-green-400' : ss(s.id) === 'warn' ? 'bg-yellow-400' : 'bg-idpxyz-border'}`} />)}
             </div>
-            <div className="text-[10px] text-vscode-textMuted">{sectionDefs.filter(s => ss(s.id) === 'ok').length}/{sectionDefs.length} 区块完成</div>
+            <div className="text-[10px] text-idpxyz-textMuted">{sectionDefs.filter(s => ss(s.id) === 'ok').length}/{sectionDefs.length} 区块完成</div>
           </div>
         </div>
 
@@ -387,7 +387,7 @@ export default function PromotionCreate({ onOpenTab, onBack }: PromotionCreatePr
           {/* 1. 基本信息 */}
           <SectionHead id="basic" icon={IconAutomation} label="基本信息" expanded={isOpen('basic')} toggle={() => tog('basic')} status={ss('basic')} />
           {isOpen('basic') && (
-            <div className="px-4 py-3 border-b border-vscode-border space-y-0.5">
+            <div className="px-4 py-3 border-b border-idpxyz-border space-y-0.5">
               <Row label="活动名称" required>
                 <Inp value={form.name} onChange={v => set('name', v)} placeholder="如：春季大促 - 全场8折" />
               </Row>
@@ -396,7 +396,7 @@ export default function PromotionCreate({ onOpenTab, onBack }: PromotionCreatePr
               </Row>
               <Row label="活动描述">
                 <textarea value={form.description} onChange={e => set('description', e.target.value)} placeholder="活动描述，将展示给运营人员..." rows={3}
-                  className="w-full bg-vscode-inputBg border border-vscode-border rounded px-2.5 py-1.5 text-[11px] text-vscode-text outline-none focus:border-vscode-accent placeholder:text-vscode-textMuted resize-none" />
+                  className="w-full bg-idpxyz-inputBg border border-idpxyz-border rounded px-2.5 py-1.5 text-[11px] text-idpxyz-text outline-none focus:border-idpxyz-accent placeholder:text-idpxyz-textMuted resize-none" />
               </Row>
             </div>
           )}
@@ -409,9 +409,9 @@ export default function PromotionCreate({ onOpenTab, onBack }: PromotionCreatePr
               <>
                 <SectionHead id="typeRules" icon={TypeIcon} label={`活动规则 — ${promotionTypeConfig[form.type].label}`} expanded={isOpen('typeRules')} toggle={() => tog('typeRules')} status={ss('typeRules')} />
                 {isOpen('typeRules') && (
-                  <div className="px-4 py-3 border-b border-vscode-border space-y-1">
+                  <div className="px-4 py-3 border-b border-idpxyz-border space-y-1">
                     {/* Type hint banner */}
-                    <div className="flex items-center gap-2 px-3 py-1.5 mb-2 rounded bg-vscode-accent/8 text-[10px] text-vscode-accent">
+                    <div className="flex items-center gap-2 px-3 py-1.5 mb-2 rounded bg-idpxyz-accent/8 text-[10px] text-idpxyz-accent">
                       <TypeIcon size={12} />
                       <span>{th.hint}</span>
                     </div>
@@ -424,7 +424,7 @@ export default function PromotionCreate({ onOpenTab, onBack }: PromotionCreatePr
                         </Row>
                         <Row label="秒杀价" required hint="活动期间的商品售价">
                           <div className="flex items-center gap-1.5">
-                            <span className="text-[10px] text-vscode-textMuted">$</span>
+                            <span className="text-[10px] text-idpxyz-textMuted">$</span>
                             <Inp value={form.flashSalePrice} onChange={v => set('flashSalePrice', v)} placeholder="299" className="w-[120px]" />
                           </div>
                         </Row>
@@ -449,28 +449,28 @@ export default function PromotionCreate({ onOpenTab, onBack }: PromotionCreatePr
                                     onSelect={(id, name) => { const items = [...form.bundleItems]; items[idx] = { ...items[idx], productId: id, productName: name }; set('bundleItems', items); }}
                                     onClear={() => { const items = [...form.bundleItems]; items[idx] = { ...items[idx], productId: '', productName: '' }; set('bundleItems', items); }} />
                                 </div>
-                                <span className="text-[10px] text-vscode-textMuted">×</span>
+                                <span className="text-[10px] text-idpxyz-textMuted">×</span>
                                 <Inp value={bi.qty} onChange={v => {
                                   const items = [...form.bundleItems]; items[idx] = { ...items[idx], qty: v }; set('bundleItems', items);
                                 }} placeholder="1" className="w-[50px]" />
                                 {form.bundleItems.length > 1 && (
-                                  <button onClick={() => set('bundleItems', form.bundleItems.filter((_, i) => i !== idx))} className="text-vscode-textMuted hover:text-red-400"><IconTrash size={11} /></button>
+                                  <button onClick={() => set('bundleItems', form.bundleItems.filter((_, i) => i !== idx))} className="text-idpxyz-textMuted hover:text-red-400"><IconTrash size={11} /></button>
                                 )}
                               </div>
                             ))}
                             <button onClick={() => set('bundleItems', [...form.bundleItems, { productId: '', productName: '', qty: '1' }])}
-                              className="flex items-center gap-1 text-[10px] text-vscode-accent hover:underline"><IconPlus size={10} /> 添加商品</button>
+                              className="flex items-center gap-1 text-[10px] text-idpxyz-accent hover:underline"><IconPlus size={10} /> 添加商品</button>
                           </div>
                         </Row>
                         <Row label="组合原价" hint="各商品原价合计（自动计算或手动输入）">
                           <div className="flex items-center gap-1.5">
-                            <span className="text-[10px] text-vscode-textMuted">$</span>
+                            <span className="text-[10px] text-idpxyz-textMuted">$</span>
                             <Inp value={form.bundleOriginalTotal} onChange={v => set('bundleOriginalTotal', v)} placeholder="自动" className="w-[100px]" />
                           </div>
                         </Row>
                         <Row label="组合价" required hint="打包后的优惠价格">
                           <div className="flex items-center gap-1.5">
-                            <span className="text-[10px] text-vscode-textMuted">$</span>
+                            <span className="text-[10px] text-idpxyz-textMuted">$</span>
                             <Inp value={form.bundlePrice} onChange={v => set('bundlePrice', v)} placeholder="199" className="w-[100px]" />
                             {form.bundleOriginalTotal && form.bundlePrice && (
                               <span className="text-[9px] text-green-400 ml-1">
@@ -487,16 +487,16 @@ export default function PromotionCreate({ onOpenTab, onBack }: PromotionCreatePr
                       <>
                         <Row label="购买数量" required hint="买满 IconClose 件">
                           <div className="flex items-center gap-1.5">
-                            <span className="text-[10px] text-vscode-textMuted">买</span>
+                            <span className="text-[10px] text-idpxyz-textMuted">买</span>
                             <Inp value={form.buyQty} onChange={v => set('buyQty', v)} placeholder="2" className="w-[60px]" />
-                            <span className="text-[10px] text-vscode-textMuted">件</span>
+                            <span className="text-[10px] text-idpxyz-textMuted">件</span>
                           </div>
                         </Row>
                         <Row label="赠送数量" required hint="送 Y 件">
                           <div className="flex items-center gap-1.5">
-                            <span className="text-[10px] text-vscode-textMuted">送</span>
+                            <span className="text-[10px] text-idpxyz-textMuted">送</span>
                             <Inp value={form.getQty} onChange={v => set('getQty', v)} placeholder="1" className="w-[60px]" />
-                            <span className="text-[10px] text-vscode-textMuted">件</span>
+                            <span className="text-[10px] text-idpxyz-textMuted">件</span>
                           </div>
                         </Row>
                         <Row label="赠品" hint="不填则赠送同款商品">
@@ -509,8 +509,8 @@ export default function PromotionCreate({ onOpenTab, onBack }: PromotionCreatePr
                     {form.type === 'percentage_off' && (
                       <>
                         <Row label="使用阶梯">
-                          <label className="flex items-center gap-1.5 cursor-pointer text-[11px] text-vscode-text">
-                            <input type="checkbox" checked={form.usePctTiers} onChange={e => set('usePctTiers', e.target.checked)} className="accent-[var(--vscode-accent)]" />
+                          <label className="flex items-center gap-1.5 cursor-pointer text-[11px] text-idpxyz-text">
+                            <input type="checkbox" checked={form.usePctTiers} onChange={e => set('usePctTiers', e.target.checked)} className="accent-[var(--idpxyz-accent)]" />
                             启用阶梯折扣（按消费金额递增折扣力度）
                           </label>
                         </Row>
@@ -519,18 +519,18 @@ export default function PromotionCreate({ onOpenTab, onBack }: PromotionCreatePr
                             <Row label="折扣百分比" required>
                               <div className="flex items-center gap-1.5">
                                 <Inp value={form.discountPct} onChange={v => set('discountPct', v)} placeholder="20" className="w-[80px]" />
-                                <span className="text-[10px] text-vscode-textMuted">% OFF</span>
+                                <span className="text-[10px] text-idpxyz-textMuted">% OFF</span>
                               </div>
                             </Row>
                             <Row label="最低消费" hint="达到此金额才可享受">
                               <div className="flex items-center gap-1.5">
-                                <span className="text-[10px] text-vscode-textMuted">$</span>
+                                <span className="text-[10px] text-idpxyz-textMuted">$</span>
                                 <Inp value={form.minOrderAmount} onChange={v => set('minOrderAmount', v)} placeholder="0" className="w-[100px]" />
                               </div>
                             </Row>
                             <Row label="最高优惠" hint="封顶优惠金额">
                               <div className="flex items-center gap-1.5">
-                                <span className="text-[10px] text-vscode-textMuted">$</span>
+                                <span className="text-[10px] text-idpxyz-textMuted">$</span>
                                 <Inp value={form.maxDiscountAmount} onChange={v => set('maxDiscountAmount', v)} placeholder="100" className="w-[100px]" />
                               </div>
                             </Row>
@@ -555,14 +555,14 @@ export default function PromotionCreate({ onOpenTab, onBack }: PromotionCreatePr
                       <>
                         <Row label="最低消费" hint="满此金额免运费，0 = 无条件">
                           <div className="flex items-center gap-1.5">
-                            <span className="text-[10px] text-vscode-textMuted">$</span>
+                            <span className="text-[10px] text-idpxyz-textMuted">$</span>
                             <Inp value={form.freeShipMinAmount} onChange={v => set('freeShipMinAmount', v)} placeholder="0" className="w-[100px]" />
                           </div>
                         </Row>
                         <Row label="最大重量" hint="包裹重量不超过此值，0 = 不限">
                           <div className="flex items-center gap-1.5">
                             <Inp value={form.freeShipMaxWeight} onChange={v => set('freeShipMaxWeight', v)} placeholder="0" className="w-[80px]" />
-                            <span className="text-[10px] text-vscode-textMuted">kg</span>
+                            <span className="text-[10px] text-idpxyz-textMuted">kg</span>
                           </div>
                         </Row>
                         <Row label="适用区域" hint="选择免运费覆盖区域">
@@ -576,7 +576,7 @@ export default function PromotionCreate({ onOpenTab, onBack }: PromotionCreatePr
                                   const next = cur.includes(r) ? cur.filter(x => x !== r) : [...cur, r];
                                   set('freeShipRegions', next.length === 0 ? ['全国'] : next);
                                 }}
-                                  className={`px-2 py-0.5 rounded text-[10px] border transition-colors ${on ? 'border-vscode-accent bg-vscode-accent/15 text-vscode-accent' : 'border-vscode-border text-vscode-textMuted hover:bg-vscode-hover'}`}>
+                                  className={`px-2 py-0.5 rounded text-[10px] border transition-colors ${on ? 'border-idpxyz-accent bg-idpxyz-accent/15 text-idpxyz-accent' : 'border-idpxyz-border text-idpxyz-textMuted hover:bg-idpxyz-hover'}`}>
                                   {on && <IconCheck size={8} className="inline mr-0.5" />}{r}
                                 </button>
                               );
@@ -596,7 +596,7 @@ export default function PromotionCreate({ onOpenTab, onBack }: PromotionCreatePr
             <>
           <SectionHead id="scope" icon={IconTarget} label={form.type === 'buy_x_get_y' ? '参与商品范围' : '适用范围'} expanded={isOpen('scope')} toggle={() => tog('scope')} status={ss('scope')} />
           {isOpen('scope') && (
-            <div className="px-4 py-3 border-b border-vscode-border space-y-2">
+            <div className="px-4 py-3 border-b border-idpxyz-border space-y-2">
               {form.type === 'buy_x_get_y' && (
                 <div className="flex items-center gap-2 px-3 py-1.5 mb-1 rounded bg-yellow-400/8 text-[10px] text-yellow-400">
                   <IconAlertCircle size={11} />
@@ -607,8 +607,8 @@ export default function PromotionCreate({ onOpenTab, onBack }: PromotionCreatePr
                 <div className="flex items-center gap-3 text-[11px]">
                   {([['all', '全部商品'], ['category', '指定分类'], ['product', '指定商品']] as const).map(([v, l]) => (
                     <label key={v} className="flex items-center gap-1.5 cursor-pointer">
-                      <input type="radio" checked={form.scope === v} onChange={() => { set('scope', v); set('scopeIds', []); set('scopeNames', []); }} className="accent-[var(--vscode-accent)]" />
-                      <span className="text-vscode-text">{l}</span>
+                      <input type="radio" checked={form.scope === v} onChange={() => { set('scope', v); set('scopeIds', []); set('scopeNames', []); }} className="accent-[var(--idpxyz-accent)]" />
+                      <span className="text-idpxyz-text">{l}</span>
                     </label>
                   ))}
                 </div>
@@ -619,38 +619,38 @@ export default function PromotionCreate({ onOpenTab, onBack }: PromotionCreatePr
                   {form.scopeIds.length > 0 && (
                     <div className="flex flex-wrap gap-1 mb-2">
                       {form.scopeIds.map((id, i) => (
-                        <span key={id} className="flex items-center gap-0.5 px-1.5 py-0.5 rounded bg-vscode-accent/10 text-[10px] text-vscode-accent">
+                        <span key={id} className="flex items-center gap-0.5 px-1.5 py-0.5 rounded bg-idpxyz-accent/10 text-[10px] text-idpxyz-accent">
                           {form.scopeNames[i]}
                           <IconClose size={8} className="cursor-pointer hover:text-red-400" onClick={() => rmScopeItem(id)} />
                         </span>
                       ))}
                     </div>
                   )}
-                  <div className="flex items-center bg-vscode-inputBg rounded px-2 h-[26px] border border-vscode-border mb-1.5">
-                    <IconSearch size={11} className="text-vscode-textMuted mr-1.5 shrink-0" />
+                  <div className="flex items-center bg-idpxyz-inputBg rounded px-2 h-[26px] border border-idpxyz-border mb-1.5">
+                    <IconSearch size={11} className="text-idpxyz-textMuted mr-1.5 shrink-0" />
                     <input type="text" value={scopeSearch} onChange={e => setScopeSearch(e.target.value)}
                       placeholder={form.scope === 'category' ? '搜索分类...' : '搜索商品名称/ID...'}
-                      className="bg-transparent border-none outline-none text-[11px] text-vscode-text w-full placeholder:text-vscode-textMuted" />
-                    {scopeSearch && <IconClose size={10} className="text-vscode-textMuted cursor-pointer shrink-0" onClick={() => setScopeSearch('')} />}
+                      className="bg-transparent border-none outline-none text-[11px] text-idpxyz-text w-full placeholder:text-idpxyz-textMuted" />
+                    {scopeSearch && <IconClose size={10} className="text-idpxyz-textMuted cursor-pointer shrink-0" onClick={() => setScopeSearch('')} />}
                   </div>
-                  <div className="border border-vscode-border rounded max-h-[150px] overflow-auto">
+                  <div className="border border-idpxyz-border rounded max-h-[150px] overflow-auto">
                     {scopeResults.map(item => {
                       const id = item.id;
                       const name = 'name' in item ? item.name : '';
                       const selected = form.scopeIds.includes(id);
                       return (
                         <div key={id} onClick={() => selected ? rmScopeItem(id) : addScopeItem(id, name)}
-                          className={`flex items-center gap-2 px-3 py-1.5 cursor-pointer text-[11px] transition-colors ${selected ? 'bg-vscode-accent/10 text-vscode-accent' : 'hover:bg-vscode-hover text-vscode-text'}`}>
-                          {selected ? <IconCheck size={10} /> : <IconPlus size={10} className="text-vscode-textMuted" />}
+                          className={`flex items-center gap-2 px-3 py-1.5 cursor-pointer text-[11px] transition-colors ${selected ? 'bg-idpxyz-accent/10 text-idpxyz-accent' : 'hover:bg-idpxyz-hover text-idpxyz-text'}`}>
+                          {selected ? <IconCheck size={10} /> : <IconPlus size={10} className="text-idpxyz-textMuted" />}
                           {'image' in item && <span className="text-[12px]">{(item as { image: string }).image}</span>}
                           {'mainImage' in item && <span className="text-[12px]">{(item as { mainImage: string }).mainImage}</span>}
                           <span className="truncate">{name}</span>
-                          {'path' in item && <span className="text-[9px] text-vscode-textMuted ml-auto">{(item as { path: string }).path}</span>}
-                          {'brand' in item && <span className="text-[9px] text-vscode-textMuted ml-auto">{(item as { brand: string }).brand}</span>}
+                          {'path' in item && <span className="text-[9px] text-idpxyz-textMuted ml-auto">{(item as { path: string }).path}</span>}
+                          {'brand' in item && <span className="text-[9px] text-idpxyz-textMuted ml-auto">{(item as { brand: string }).brand}</span>}
                         </div>
                       );
                     })}
-                    {scopeResults.length === 0 && <div className="px-3 py-2 text-[10px] text-vscode-textMuted">无匹配结果</div>}
+                    {scopeResults.length === 0 && <div className="px-3 py-2 text-[10px] text-idpxyz-textMuted">无匹配结果</div>}
                   </div>
                 </div>
               )}
@@ -661,7 +661,7 @@ export default function PromotionCreate({ onOpenTab, onBack }: PromotionCreatePr
                     const on = form.channels.includes(ch);
                     return (
                       <button key={ch} type="button" onClick={() => toggleChannel(ch)}
-                        className={`px-2 py-0.5 rounded text-[10px] border transition-colors ${on ? 'border-vscode-accent bg-vscode-accent/15 text-vscode-accent' : 'border-vscode-border text-vscode-textMuted hover:bg-vscode-hover'}`}>
+                        className={`px-2 py-0.5 rounded text-[10px] border transition-colors ${on ? 'border-idpxyz-accent bg-idpxyz-accent/15 text-idpxyz-accent' : 'border-idpxyz-border text-idpxyz-textMuted hover:bg-idpxyz-hover'}`}>
                         {on && <IconCheck size={8} className="inline mr-0.5" />}{ch}
                       </button>
                     );
@@ -676,7 +676,7 @@ export default function PromotionCreate({ onOpenTab, onBack }: PromotionCreatePr
           {/* 4. 活动时间 */}
           <SectionHead id="time" icon={IconCalendar} label="活动时间" expanded={isOpen('time')} toggle={() => tog('time')} status={ss('time')} />
           {isOpen('time') && (
-            <div className="px-4 py-3 border-b border-vscode-border space-y-0.5">
+            <div className="px-4 py-3 border-b border-idpxyz-border space-y-0.5">
               <Row label="开始时间" required>
                 <div className="flex items-center gap-1.5">
                   <Inp value={form.startDate} onChange={v => set('startDate', v)} placeholder="2025-03-15" type="date" className="w-[140px]" />
@@ -690,7 +690,7 @@ export default function PromotionCreate({ onOpenTab, onBack }: PromotionCreatePr
                 </div>
               </Row>
               {form.startDate && form.endDate && (
-                <div className="pt-1 pl-[112px] text-[10px] text-vscode-textMuted">
+                <div className="pt-1 pl-[112px] text-[10px] text-idpxyz-textMuted">
                   活动时长: {Math.max(0, Math.ceil((new Date(form.endDate).getTime() - new Date(form.startDate).getTime()) / (1000 * 60 * 60 * 24)))} 天
                 </div>
               )}
@@ -700,13 +700,13 @@ export default function PromotionCreate({ onOpenTab, onBack }: PromotionCreatePr
           {/* 5. 高级规则 */}
           <SectionHead id="rules" icon={IconSettings} label="高级规则" expanded={isOpen('rules')} toggle={() => tog('rules')} status={ss('rules')} />
           {isOpen('rules') && (
-            <div className="px-4 py-3 border-b border-vscode-border space-y-0.5">
+            <div className="px-4 py-3 border-b border-idpxyz-border space-y-0.5">
               <Row label="使用上限" hint="0 = 不限">
                 <Inp value={form.usageLimit} onChange={v => set('usageLimit', v)} placeholder="0" className="w-[100px]" />
               </Row>
               <Row label="活动预算" required hint="总预算金额">
                 <div className="flex items-center gap-1.5">
-                  <span className="text-[10px] text-vscode-textMuted">$</span>
+                  <span className="text-[10px] text-idpxyz-textMuted">$</span>
                   <Inp value={form.budget} onChange={v => set('budget', v)} placeholder="50000" className="w-[120px]" />
                 </div>
               </Row>
@@ -714,8 +714,8 @@ export default function PromotionCreate({ onOpenTab, onBack }: PromotionCreatePr
                 <Inp value={form.priority} onChange={v => set('priority', v)} placeholder="10" className="w-[80px]" />
               </Row>
               <Row label="可叠加">
-                <label className="flex items-center gap-1.5 cursor-pointer text-[11px] text-vscode-text">
-                  <input type="checkbox" checked={form.stackable} onChange={e => set('stackable', e.target.checked)} className="accent-[var(--vscode-accent)]" />
+                <label className="flex items-center gap-1.5 cursor-pointer text-[11px] text-idpxyz-text">
+                  <input type="checkbox" checked={form.stackable} onChange={e => set('stackable', e.target.checked)} className="accent-[var(--idpxyz-accent)]" />
                   允许与其他促销活动叠加使用
                 </label>
               </Row>

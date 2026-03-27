@@ -1,8 +1,8 @@
 /**
  * Vertical separator for the 52px title/activity column (right edge).
- * Implemented as a 1px bar + opacity — reliable with CSS variables; `color-mix` / Tailwind opacity on `var(--vsc-border)` often fails in apps.
+ * Implemented as a 1px bar + opacity — reliable with CSS variables; `color-mix` / Tailwind opacity on `var(--idpxyz-border)` often fails in apps.
  */
-const edgeStyle = { backgroundColor: 'var(--vsc-border)', opacity: 0.42 } as const;
+const edgeStyle = { backgroundColor: 'var(--idpxyz-border)', opacity: 0.42 } as const;
 
 /** Trailing edge in a horizontal flex row (e.g. ActivityBar). */
 export function ShellColumnEdgeFlex() {

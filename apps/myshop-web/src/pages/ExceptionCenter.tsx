@@ -17,7 +17,14 @@ import {
   IconMoreH,
   IconDownload,
 } from '@idpxyz/ui-icons';
-import { Button, Select, SelectOption } from '@idpxyz/ui-primitives';
+import {
+  Button,
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@idpxyz/ui-primitives';
 import {
   PageHeader, PageHeaderContent, PageHeaderTitle, PageHeaderDescription, PageHeaderActions,
   FilterBar, FilterSearch,
@@ -116,7 +123,7 @@ export default function ExceptionCenter({ onOpenOrder }: ExceptionCenterProps) {
   const actions = selectedExc ? (resolveActions[selectedExc.type] || []) : [];
 
   return (
-    <div className="flex-1 flex overflow-hidden bg-vscode-editor">
+    <div className="flex-1 flex overflow-hidden bg-idpxyz-editor">
       {/* Main Queue Area */}
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Header (Section 15.3) */}
@@ -133,15 +140,15 @@ export default function ExceptionCenter({ onOpenOrder }: ExceptionCenterProps) {
         </PageHeader>
 
         {/* Saved Views */}
-        <div className="flex items-center gap-1 px-5 py-1.5 border-b border-vscode-border shrink-0 overflow-x-auto tab-scroll-hidden">
+        <div className="flex items-center gap-1 px-5 py-1.5 border-b border-idpxyz-border shrink-0 overflow-x-auto tab-scroll-hidden">
           {savedViews.map(v => (
             <button
               key={v.id}
               onClick={() => { setActiveView(v.id); }}
               className={`px-2.5 py-1 text-[11px] rounded-md whitespace-nowrap transition-colors ${
                 activeView === v.id
-                  ? 'bg-vscode-accent/15 text-vscode-accent font-medium'
-                  : 'text-vscode-textMuted hover:text-vscode-text hover:bg-vscode-hover'
+                  ? 'bg-idpxyz-accent/15 text-idpxyz-accent font-medium'
+                  : 'text-idpxyz-textMuted hover:text-idpxyz-text hover:bg-idpxyz-hover'
               }`}
             >
               {v.label}
@@ -158,15 +165,18 @@ export default function ExceptionCenter({ onOpenOrder }: ExceptionCenterProps) {
             onClear={() => setSearchTerm('')}
             className="max-w-[280px]"
           />
-          <Select
-            size="sm"
-            value={severityFilter}
-            onChange={e => setSeverityFilter(e.target.value)}
-          >
-            <SelectOption value="all">全部严重度</SelectOption>
-            {Object.entries(exceptionSeverityConfig).map(([k, v]) => (
-              <SelectOption key={k} value={k}>{v.label}</SelectOption>
-            ))}
+          <Select value={severityFilter} onValueChange={setSeverityFilter}>
+            <SelectTrigger size="sm" className="w-[180px]">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">全部严重度</SelectItem>
+              {Object.entries(exceptionSeverityConfig).map(([k, v]) => (
+                <SelectItem key={k} value={k}>
+                  {v.label}
+                </SelectItem>
+              ))}
+            </SelectContent>
           </Select>
         </FilterBar>
 
@@ -174,59 +184,59 @@ export default function ExceptionCenter({ onOpenOrder }: ExceptionCenterProps) {
         <div className="flex-1 overflow-auto">
           <table className="w-full text-[12px] border-collapse">
             <thead className="sticky top-0 z-10">
-              <tr className="bg-vscode-sidebar text-vscode-textMuted text-left">
-                <th className="px-3 py-2 font-medium border-b border-vscode-border whitespace-nowrap">订单号</th>
-                <th className="px-3 py-2 font-medium border-b border-vscode-border whitespace-nowrap">异常类型</th>
-                <th className="px-3 py-2 font-medium border-b border-vscode-border whitespace-nowrap text-center">严重度</th>
-                <th className="px-3 py-2 font-medium border-b border-vscode-border whitespace-nowrap">渠道</th>
-                <th className="px-3 py-2 font-medium border-b border-vscode-border whitespace-nowrap">客户</th>
-                <th className="px-3 py-2 font-medium border-b border-vscode-border whitespace-nowrap text-right">金额</th>
-                <th className="px-3 py-2 font-medium border-b border-vscode-border whitespace-nowrap text-center">SLA</th>
-                <th className="px-3 py-2 font-medium border-b border-vscode-border whitespace-nowrap">负责人</th>
-                <th className="px-3 py-2 font-medium border-b border-vscode-border whitespace-nowrap">创建时间</th>
-                <th className="px-3 py-2 font-medium border-b border-vscode-border whitespace-nowrap">最近操作</th>
+              <tr className="bg-idpxyz-sidebar text-idpxyz-textMuted text-left">
+                <th className="px-3 py-2 font-medium border-b border-idpxyz-border whitespace-nowrap">订单号</th>
+                <th className="px-3 py-2 font-medium border-b border-idpxyz-border whitespace-nowrap">异常类型</th>
+                <th className="px-3 py-2 font-medium border-b border-idpxyz-border whitespace-nowrap text-center">严重度</th>
+                <th className="px-3 py-2 font-medium border-b border-idpxyz-border whitespace-nowrap">渠道</th>
+                <th className="px-3 py-2 font-medium border-b border-idpxyz-border whitespace-nowrap">客户</th>
+                <th className="px-3 py-2 font-medium border-b border-idpxyz-border whitespace-nowrap text-right">金额</th>
+                <th className="px-3 py-2 font-medium border-b border-idpxyz-border whitespace-nowrap text-center">SLA</th>
+                <th className="px-3 py-2 font-medium border-b border-idpxyz-border whitespace-nowrap">负责人</th>
+                <th className="px-3 py-2 font-medium border-b border-idpxyz-border whitespace-nowrap">创建时间</th>
+                <th className="px-3 py-2 font-medium border-b border-idpxyz-border whitespace-nowrap">最近操作</th>
               </tr>
             </thead>
             <tbody>
               {filtered.map(exc => {
                 const sev = exceptionSeverityConfig[exc.severity];
                 const tp = exceptionTypeConfig[exc.type];
-                const slaColor = exc.slaHoursRemaining < 0 ? 'text-red-400' : exc.slaHoursRemaining <= 4 ? 'text-yellow-400' : 'text-vscode-textMuted';
+                const slaColor = exc.slaHoursRemaining < 0 ? 'text-red-400' : exc.slaHoursRemaining <= 4 ? 'text-yellow-400' : 'text-idpxyz-textMuted';
                 return (
                   <tr
                     key={exc.id}
                     onClick={() => setSelectedExcId(exc.id)}
                     onDoubleClick={() => onOpenOrder?.(exc.orderId)}
                     className={`cursor-pointer transition-colors ${
-                      selectedExcId === exc.id ? 'bg-vscode-activeItem' : 'hover:bg-vscode-hover'
+                      selectedExcId === exc.id ? 'bg-idpxyz-activeItem' : 'hover:bg-idpxyz-hover'
                     }`}
                   >
-                    <td className="px-3 py-2 border-b border-vscode-border">
-                      <span className="text-vscode-accent font-medium cursor-pointer hover:underline" onClick={e => { e.stopPropagation(); onOpenOrder?.(exc.orderId); }}>
+                    <td className="px-3 py-2 border-b border-idpxyz-border">
+                      <span className="text-idpxyz-accent font-medium cursor-pointer hover:underline" onClick={e => { e.stopPropagation(); onOpenOrder?.(exc.orderId); }}>
                         {exc.orderId}
                       </span>
-                      <div className="text-[10px] text-vscode-textMuted">{exc.id}</div>
+                      <div className="text-[10px] text-idpxyz-textMuted">{exc.id}</div>
                     </td>
-                    <td className="px-3 py-2 border-b border-vscode-border whitespace-nowrap">
+                    <td className="px-3 py-2 border-b border-idpxyz-border whitespace-nowrap">
                       <span className="inline-block px-2 py-0.5 rounded text-[10px] font-medium" style={{ color: tp.color, backgroundColor: tp.bgColor }}>{tp.label}</span>
                     </td>
-                    <td className="px-3 py-2 border-b border-vscode-border text-center whitespace-nowrap">
+                    <td className="px-3 py-2 border-b border-idpxyz-border text-center whitespace-nowrap">
                       <span className="inline-block px-2 py-0.5 rounded text-[10px] font-medium" style={{ color: sev.color, backgroundColor: sev.bgColor }}>{sev.label}</span>
                     </td>
-                    <td className="px-3 py-2 border-b border-vscode-border text-vscode-text">{exc.channel}</td>
-                    <td className="px-3 py-2 border-b border-vscode-border text-vscode-text">{exc.customerName}</td>
-                    <td className="px-3 py-2 border-b border-vscode-border text-right text-vscode-textBright font-medium">${exc.amount.toLocaleString()}</td>
-                    <td className={`px-3 py-2 border-b border-vscode-border text-center font-mono text-[11px] ${slaColor}`}>
+                    <td className="px-3 py-2 border-b border-idpxyz-border text-idpxyz-text">{exc.channel}</td>
+                    <td className="px-3 py-2 border-b border-idpxyz-border text-idpxyz-text">{exc.customerName}</td>
+                    <td className="px-3 py-2 border-b border-idpxyz-border text-right text-idpxyz-textBright font-medium">${exc.amount.toLocaleString()}</td>
+                    <td className={`px-3 py-2 border-b border-idpxyz-border text-center font-mono text-[11px] ${slaColor}`}>
                       {exc.slaHoursRemaining > 0 ? `${exc.slaHoursRemaining}小时` : exc.slaHoursRemaining < 0 ? `超${Math.abs(exc.slaHoursRemaining)}小时` : '-'}
                     </td>
-                    <td className="px-3 py-2 border-b border-vscode-border text-vscode-text text-[11px]">{exc.assignedTo || '-'}</td>
-                    <td className="px-3 py-2 border-b border-vscode-border text-vscode-textMuted text-[11px]">{exc.createdAt}</td>
-                    <td className="px-3 py-2 border-b border-vscode-border text-vscode-textMuted text-[11px] truncate max-w-[200px]">{exc.lastAction}</td>
+                    <td className="px-3 py-2 border-b border-idpxyz-border text-idpxyz-text text-[11px]">{exc.assignedTo || '-'}</td>
+                    <td className="px-3 py-2 border-b border-idpxyz-border text-idpxyz-textMuted text-[11px]">{exc.createdAt}</td>
+                    <td className="px-3 py-2 border-b border-idpxyz-border text-idpxyz-textMuted text-[11px] truncate max-w-[200px]">{exc.lastAction}</td>
                   </tr>
                 );
               })}
               {filtered.length === 0 && (
-                <tr><td colSpan={10} className="px-4 py-8 text-center text-vscode-textMuted">没有匹配当前筛选条件的异常。</td></tr>
+                <tr><td colSpan={10} className="px-4 py-8 text-center text-idpxyz-textMuted">没有匹配当前筛选条件的异常。</td></tr>
               )}
             </tbody>
           </table>
@@ -234,50 +244,50 @@ export default function ExceptionCenter({ onOpenOrder }: ExceptionCenterProps) {
       </div>
 
       {/* Right Quick Resolve Panel (Section 15.3) */}
-      <div className="w-[300px] border-l border-vscode-border bg-vscode-sidebar flex flex-col overflow-y-auto shrink-0">
-        <div className="flex items-center justify-between px-4 h-[35px] text-[11px] uppercase tracking-wider text-vscode-breadcrumb shrink-0 border-b border-vscode-border">
+      <div className="w-[300px] border-l border-idpxyz-border bg-idpxyz-sidebar flex flex-col overflow-y-auto shrink-0">
+        <div className="flex items-center justify-between px-4 h-[35px] text-[11px] uppercase tracking-wider text-idpxyz-breadcrumb shrink-0 border-b border-idpxyz-border">
           <span>快速处理</span>
-          <IconMoreH size={14} className="text-vscode-textMuted cursor-pointer" />
+          <IconMoreH size={14} className="text-idpxyz-textMuted cursor-pointer" />
         </div>
 
         {selectedExc ? (
           <>
             {/* Exception summary */}
-            <div className="px-4 py-3 border-b border-vscode-border">
+            <div className="px-4 py-3 border-b border-idpxyz-border">
               <div className="flex items-center gap-2 mb-2">
-                <span className="text-[12px] text-vscode-accent font-medium">{selectedExc.id}</span>
+                <span className="text-[12px] text-idpxyz-accent font-medium">{selectedExc.id}</span>
                 <span className="inline-block px-2 py-0.5 rounded text-[10px] font-medium" style={{ color: exceptionSeverityConfig[selectedExc.severity].color, backgroundColor: exceptionSeverityConfig[selectedExc.severity].bgColor }}>
                   {exceptionSeverityConfig[selectedExc.severity].label}
                 </span>
               </div>
-              <div className="text-[11px] text-vscode-text leading-relaxed">{selectedExc.description}</div>
-              <div className="flex items-center gap-3 mt-2 text-[11px] text-vscode-textMuted">
-                <span>订单：<span className="text-vscode-accent cursor-pointer hover:underline" onClick={() => onOpenOrder?.(selectedExc.orderId)}>{selectedExc.orderId}</span></span>
+              <div className="text-[11px] text-idpxyz-text leading-relaxed">{selectedExc.description}</div>
+              <div className="flex items-center gap-3 mt-2 text-[11px] text-idpxyz-textMuted">
+                <span>订单：<span className="text-idpxyz-accent cursor-pointer hover:underline" onClick={() => onOpenOrder?.(selectedExc.orderId)}>{selectedExc.orderId}</span></span>
               </div>
             </div>
 
             {/* Exception Details */}
-            <div className="px-4 py-3 border-b border-vscode-border space-y-1.5 text-[11px]">
-              <div className="flex justify-between"><span className="text-vscode-textMuted">类型</span><span className="text-vscode-text">{exceptionTypeConfig[selectedExc.type].label}</span></div>
-              <div className="flex justify-between"><span className="text-vscode-textMuted">客户</span><span className="text-vscode-text">{selectedExc.customerName}</span></div>
-              <div className="flex justify-between"><span className="text-vscode-textMuted">金额</span><span className="text-vscode-textBright font-medium">${selectedExc.amount.toLocaleString()}</span></div>
+            <div className="px-4 py-3 border-b border-idpxyz-border space-y-1.5 text-[11px]">
+              <div className="flex justify-between"><span className="text-idpxyz-textMuted">类型</span><span className="text-idpxyz-text">{exceptionTypeConfig[selectedExc.type].label}</span></div>
+              <div className="flex justify-between"><span className="text-idpxyz-textMuted">客户</span><span className="text-idpxyz-text">{selectedExc.customerName}</span></div>
+              <div className="flex justify-between"><span className="text-idpxyz-textMuted">金额</span><span className="text-idpxyz-textBright font-medium">${selectedExc.amount.toLocaleString()}</span></div>
               <div className="flex justify-between">
-                <span className="text-vscode-textMuted">SLA</span>
-                <span className={selectedExc.slaHoursRemaining < 0 ? 'text-red-400 font-medium' : selectedExc.slaHoursRemaining <= 4 ? 'text-yellow-400' : 'text-vscode-text'}>
+                <span className="text-idpxyz-textMuted">SLA</span>
+                <span className={selectedExc.slaHoursRemaining < 0 ? 'text-red-400 font-medium' : selectedExc.slaHoursRemaining <= 4 ? 'text-yellow-400' : 'text-idpxyz-text'}>
                   {selectedExc.slaHoursRemaining > 0 ? `剩余 ${selectedExc.slaHoursRemaining}小时` : `超期 ${Math.abs(selectedExc.slaHoursRemaining)}小时`}
                 </span>
               </div>
-              <div className="flex justify-between"><span className="text-vscode-textMuted">负责人</span><span className="text-vscode-text">{selectedExc.assignedTo || '未分配'}</span></div>
-              <div className="flex justify-between"><span className="text-vscode-textMuted">最近操作</span><span className="text-vscode-text truncate ml-4">{selectedExc.lastAction}</span></div>
+              <div className="flex justify-between"><span className="text-idpxyz-textMuted">负责人</span><span className="text-idpxyz-text">{selectedExc.assignedTo || '未分配'}</span></div>
+              <div className="flex justify-between"><span className="text-idpxyz-textMuted">最近操作</span><span className="text-idpxyz-text truncate ml-4">{selectedExc.lastAction}</span></div>
             </div>
 
             {/* Resolution Actions */}
-            <div className="px-4 py-3 border-b border-vscode-border">
-              <div className="text-[11px] uppercase font-bold tracking-wide text-vscode-breadcrumb mb-2">处理操作</div>
+            <div className="px-4 py-3 border-b border-idpxyz-border">
+              <div className="text-[11px] uppercase font-bold tracking-wide text-idpxyz-breadcrumb mb-2">处理操作</div>
               <div className="space-y-1">
                 {actions.map(a => (
                   <Button key={a.label} variant="ghost" size="sm" className="w-full justify-start">
-                    <a.icon size={12} className={`shrink-0 ${a.priority === 'high' ? 'text-red-400' : a.priority === 'medium' ? 'text-yellow-400' : 'text-vscode-textMuted'}`} />
+                    <a.icon size={12} className={`shrink-0 ${a.priority === 'high' ? 'text-red-400' : a.priority === 'medium' ? 'text-yellow-400' : 'text-idpxyz-textMuted'}`} />
                     <span className="flex-1 text-left">{a.label}</span>
                     {a.priority === 'high' && <span className="text-[9px] px-1 py-0.5 rounded bg-red-500/20 text-red-400">!</span>}
                   </Button>
@@ -287,7 +297,7 @@ export default function ExceptionCenter({ onOpenOrder }: ExceptionCenterProps) {
 
             {/* Assign / Escalate */}
             <div className="px-4 py-3">
-              <div className="text-[11px] uppercase font-bold tracking-wide text-vscode-breadcrumb mb-2">管理</div>
+              <div className="text-[11px] uppercase font-bold tracking-wide text-idpxyz-breadcrumb mb-2">管理</div>
               <div className="space-y-1">
                 <Button variant="ghost" size="sm" className="w-full justify-start"><IconUserPlus size={12} /> 分配给我</Button>
                 <Button variant="ghost" size="sm" className="w-full justify-start"><IconUserPlus size={12} /> 分配给...</Button>
@@ -297,7 +307,7 @@ export default function ExceptionCenter({ onOpenOrder }: ExceptionCenterProps) {
             </div>
           </>
         ) : (
-          <div className="flex-1 flex items-center justify-center text-vscode-textMuted text-[12px] px-4 text-center">
+          <div className="flex-1 flex items-center justify-center text-idpxyz-textMuted text-[12px] px-4 text-center">
             选择一个异常以查看处理操作
           </div>
         )}

@@ -79,14 +79,14 @@ export default function POSHistory({ onSelectObject }: POSHistoryProps) {
   };
 
   return (
-    <div className="flex-1 flex overflow-hidden bg-vscode-editor min-w-0">
+    <div className="flex-1 flex overflow-hidden bg-idpxyz-editor min-w-0">
       <div className="flex-1 flex flex-col overflow-hidden min-w-0">
         {/* Header */}
-        <div className="flex items-center justify-between px-5 py-2.5 border-b border-vscode-border shrink-0">
+        <div className="flex items-center justify-between px-5 py-2.5 border-b border-idpxyz-border shrink-0">
           <div className="flex items-center gap-3">
-            <IconReceipt size={16} className="text-vscode-accent" />
-            <h1 className="text-[14px] font-semibold text-vscode-textBright">交易记录</h1>
-            <span className="text-[11px] text-vscode-textMuted">{allTransactions.length} 笔交易</span>
+            <IconReceipt size={16} className="text-idpxyz-accent" />
+            <h1 className="text-[14px] font-semibold text-idpxyz-textBright">交易记录</h1>
+            <span className="text-[11px] text-idpxyz-textMuted">{allTransactions.length} 笔交易</span>
           </div>
           <div className="flex items-center gap-1.5">
             <Button variant="ghost" size="sm" onClick={() => addToast({ type: 'success', title: '导出中', message: `正在导出 ${filtered.length} 笔交易为 CSV...` })}>
@@ -99,56 +99,56 @@ export default function POSHistory({ onSelectObject }: POSHistoryProps) {
         </div>
 
         {/* Stats row */}
-        <div className="flex items-center gap-3 px-5 py-2 border-b border-vscode-border shrink-0">
-          <div className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-vscode-sidebar border border-vscode-border">
+        <div className="flex items-center gap-3 px-5 py-2 border-b border-idpxyz-border shrink-0">
+          <div className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-idpxyz-sidebar border border-idpxyz-border">
             <IconDollar size={13} className="text-green-400" />
-            <div className="text-[11px]"><span className="text-vscode-textMuted">今日收入</span><span className="ml-1.5 text-green-400 font-bold">${todayTotal.toLocaleString()}</span></div>
+            <div className="text-[11px]"><span className="text-idpxyz-textMuted">今日收入</span><span className="ml-1.5 text-green-400 font-bold">${todayTotal.toLocaleString()}</span></div>
           </div>
-          <div className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-vscode-sidebar border border-vscode-border">
-            <IconReceipt size={13} className="text-vscode-accent" />
-            <div className="text-[11px]"><span className="text-vscode-textMuted">今日笔数</span><span className="ml-1.5 text-vscode-accent font-bold">{todayCount}</span></div>
+          <div className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-idpxyz-sidebar border border-idpxyz-border">
+            <IconReceipt size={13} className="text-idpxyz-accent" />
+            <div className="text-[11px]"><span className="text-idpxyz-textMuted">今日笔数</span><span className="ml-1.5 text-idpxyz-accent font-bold">{todayCount}</span></div>
           </div>
-          <div className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-vscode-sidebar border border-vscode-border">
-            <IconHash size={13} className="text-vscode-textMuted" />
-            <div className="text-[11px]"><span className="text-vscode-textMuted">客单价</span><span className="ml-1.5 text-vscode-textBright font-bold">${avgTicket}</span></div>
+          <div className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-idpxyz-sidebar border border-idpxyz-border">
+            <IconHash size={13} className="text-idpxyz-textMuted" />
+            <div className="text-[11px]"><span className="text-idpxyz-textMuted">客单价</span><span className="ml-1.5 text-idpxyz-textBright font-bold">${avgTicket}</span></div>
           </div>
-          <div className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-vscode-sidebar border border-vscode-border">
+          <div className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-idpxyz-sidebar border border-idpxyz-border">
             <IconReturn size={13} className="text-red-400" />
-            <div className="text-[11px]"><span className="text-vscode-textMuted">退款</span><span className="ml-1.5 text-red-400 font-bold">{todayRefunds}</span></div>
+            <div className="text-[11px]"><span className="text-idpxyz-textMuted">退款</span><span className="ml-1.5 text-red-400 font-bold">{todayRefunds}</span></div>
           </div>
         </div>
 
         {/* Filters */}
-        <div className="flex items-center gap-2 px-5 py-1.5 border-b border-vscode-border shrink-0">
-          <IconFilter size={12} className="text-vscode-textMuted" />
-          <div className="flex items-center gap-1 bg-vscode-inputBg border border-vscode-border rounded px-2 py-0.5">
-            <IconSearch size={11} className="text-vscode-textMuted" />
-            <input className="bg-transparent text-[11px] text-vscode-text outline-none w-[150px] placeholder:text-vscode-textMuted" placeholder="搜索单号/收银员/会员..." value={searchTerm} onChange={e => setSearchTerm(e.target.value)} />
+        <div className="flex items-center gap-2 px-5 py-1.5 border-b border-idpxyz-border shrink-0">
+          <IconFilter size={12} className="text-idpxyz-textMuted" />
+          <div className="flex items-center gap-1 bg-idpxyz-inputBg border border-idpxyz-border rounded px-2 py-0.5">
+            <IconSearch size={11} className="text-idpxyz-textMuted" />
+            <input className="bg-transparent text-[11px] text-idpxyz-text outline-none w-[150px] placeholder:text-idpxyz-textMuted" placeholder="搜索单号/收银员/会员..." value={searchTerm} onChange={e => setSearchTerm(e.target.value)} />
           </div>
-          <select className="bg-vscode-inputBg border border-vscode-border rounded px-2 py-1 text-[11px] text-vscode-text outline-none" value={statusFilter} onChange={e => setStatusFilter(e.target.value as typeof statusFilter)}>
+          <select className="bg-idpxyz-inputBg border border-idpxyz-border rounded px-2 py-1 text-[11px] text-idpxyz-text outline-none" value={statusFilter} onChange={e => setStatusFilter(e.target.value as typeof statusFilter)}>
             <option value="all">全部状态</option>
             <option value="completed">已完成</option>
             <option value="refunded">已退款</option>
             <option value="voided">已作废</option>
             <option value="pending">待支付</option>
           </select>
-          <select className="bg-vscode-inputBg border border-vscode-border rounded px-2 py-1 text-[11px] text-vscode-text outline-none" value={payMethodFilter} onChange={e => setPayMethodFilter(e.target.value as typeof payMethodFilter)}>
+          <select className="bg-idpxyz-inputBg border border-idpxyz-border rounded px-2 py-1 text-[11px] text-idpxyz-text outline-none" value={payMethodFilter} onChange={e => setPayMethodFilter(e.target.value as typeof payMethodFilter)}>
             <option value="all">全部支付方式</option>
             {(Object.entries(posPaymentMethodConfig) as [POSPaymentMethod, { label: string }][]).map(([k, v]) => (
               <option key={k} value={k}>{v.label}</option>
             ))}
           </select>
-          <select className="bg-vscode-inputBg border border-vscode-border rounded px-2 py-1 text-[11px] text-vscode-text outline-none" value={storeFilter} onChange={e => setStoreFilter(e.target.value)}>
+          <select className="bg-idpxyz-inputBg border border-idpxyz-border rounded px-2 py-1 text-[11px] text-idpxyz-text outline-none" value={storeFilter} onChange={e => setStoreFilter(e.target.value)}>
             {stores.map(s => <option key={s} value={s}>{s === 'all' ? '全部门店' : s}</option>)}
           </select>
-          <span className="text-[10px] text-vscode-textMuted ml-auto">{filtered.length} 条记录</span>
+          <span className="text-[10px] text-idpxyz-textMuted ml-auto">{filtered.length} 条记录</span>
         </div>
 
         {/* Transaction table */}
         <div className="flex-1 overflow-auto">
           <table className="w-full text-[11px]">
             <thead>
-              <tr className="bg-vscode-sidebar text-vscode-textMuted sticky top-0 z-10">
+              <tr className="bg-idpxyz-sidebar text-idpxyz-textMuted sticky top-0 z-10">
                 <th className="text-left px-4 py-2 font-medium">交易单号</th>
                 <th className="text-left px-3 py-2 font-medium">时间</th>
                 <th className="text-left px-3 py-2 font-medium">门店</th>
@@ -167,29 +167,29 @@ export default function POSHistory({ onSelectObject }: POSHistoryProps) {
                 return (
                   <tr
                     key={txn.id}
-                    className={`border-b border-vscode-border hover:bg-vscode-hover/50 cursor-pointer transition-colors ${selectedId === txn.id ? 'bg-vscode-accent/5' : ''}`}
+                    className={`border-b border-idpxyz-border hover:bg-idpxyz-hover/50 cursor-pointer transition-colors ${selectedId === txn.id ? 'bg-idpxyz-accent/5' : ''}`}
                     onClick={() => handleSelectTransaction(txn)}
                   >
                     <td className="px-4 py-2">
-                      <div className="text-vscode-accent font-mono font-medium">{txn.id}</div>
-                      <div className="text-[9px] text-vscode-textMuted font-mono">{txn.receiptNo}</div>
+                      <div className="text-idpxyz-accent font-mono font-medium">{txn.id}</div>
+                      <div className="text-[9px] text-idpxyz-textMuted font-mono">{txn.receiptNo}</div>
                     </td>
-                    <td className="px-3 py-2 text-vscode-text">{txn.createdAt}</td>
-                    <td className="px-3 py-2 text-vscode-textMuted">{txn.storeName.slice(-5)}</td>
-                    <td className="px-3 py-2 text-vscode-text">{txn.cashierName}</td>
+                    <td className="px-3 py-2 text-idpxyz-text">{txn.createdAt}</td>
+                    <td className="px-3 py-2 text-idpxyz-textMuted">{txn.storeName.slice(-5)}</td>
+                    <td className="px-3 py-2 text-idpxyz-text">{txn.cashierName}</td>
                     <td className="px-3 py-2">
                       <div className="flex items-center gap-0.5">
                         {txn.items.slice(0, 3).map((item, i) => (
                           <span key={i} className="text-[13px]">{item.image}</span>
                         ))}
-                        {txn.items.length > 3 && <span className="text-[10px] text-vscode-textMuted">+{txn.items.length - 3}</span>}
+                        {txn.items.length > 3 && <span className="text-[10px] text-idpxyz-textMuted">+{txn.items.length - 3}</span>}
                       </div>
-                      <div className="text-[10px] text-vscode-textMuted truncate max-w-[160px]">
+                      <div className="text-[10px] text-idpxyz-textMuted truncate max-w-[160px]">
                         {txn.items.map(i => i.name).join(', ')}
                       </div>
                     </td>
                     <td className="px-3 py-2 text-right">
-                      <span className={`font-medium ${txn.status === 'refunded' ? 'text-red-400 line-through' : 'text-vscode-textBright'}`}>
+                      <span className={`font-medium ${txn.status === 'refunded' ? 'text-red-400 line-through' : 'text-idpxyz-textBright'}`}>
                         ${txn.total.toFixed(2)}
                       </span>
                       {txn.discount > 0 && (
@@ -200,11 +200,11 @@ export default function POSHistory({ onSelectObject }: POSHistoryProps) {
                     <td className="px-3 py-2">
                       {txn.memberName ? (
                         <div className="flex items-center gap-1">
-                          <IconCustomer size={10} className="text-vscode-accent" />
-                          <span className="text-vscode-text">{txn.memberName}</span>
+                          <IconCustomer size={10} className="text-idpxyz-accent" />
+                          <span className="text-idpxyz-text">{txn.memberName}</span>
                         </div>
                       ) : (
-                        <span className="text-vscode-textMuted">散客</span>
+                        <span className="text-idpxyz-textMuted">散客</span>
                       )}
                     </td>
                     <td className="px-3 py-2"><StatusBadge {...ss} /></td>
@@ -214,83 +214,83 @@ export default function POSHistory({ onSelectObject }: POSHistoryProps) {
             </tbody>
           </table>
           {filtered.length === 0 && (
-            <div className="flex items-center justify-center py-12 text-[12px] text-vscode-textMuted">没有匹配的交易记录</div>
+            <div className="flex items-center justify-center py-12 text-[12px] text-idpxyz-textMuted">没有匹配的交易记录</div>
           )}
         </div>
       </div>
 
       {/* Right: Transaction detail panel */}
       {selected && (
-        <div className="w-[300px] flex flex-col overflow-hidden bg-vscode-sidebar border-l border-vscode-border shrink-0">
-          <div className="px-4 py-3 border-b border-vscode-border">
+        <div className="w-[300px] flex flex-col overflow-hidden bg-idpxyz-sidebar border-l border-idpxyz-border shrink-0">
+          <div className="px-4 py-3 border-b border-idpxyz-border">
             <div className="flex items-center gap-2 mb-1">
-              <IconReceipt size={14} className="text-vscode-accent" />
-              <span className="text-[12px] font-semibold text-vscode-textBright">交易详情</span>
+              <IconReceipt size={14} className="text-idpxyz-accent" />
+              <span className="text-[12px] font-semibold text-idpxyz-textBright">交易详情</span>
               <StatusBadge {...posTransactionStatusConfig[selected.status]} />
             </div>
-            <div className="text-[10px] text-vscode-textMuted font-mono">{selected.id}</div>
+            <div className="text-[10px] text-idpxyz-textMuted font-mono">{selected.id}</div>
           </div>
 
           <div className="flex-1 overflow-auto">
             {/* Receipt-style detail */}
-            <div className="mx-3 my-3 bg-vscode-editor border border-vscode-border rounded-lg p-3 space-y-1.5 text-[11px]">
-              <div className="text-center font-bold text-[12px] text-vscode-textBright mb-2 pb-2 border-b border-dashed border-vscode-border">
+            <div className="mx-3 my-3 bg-idpxyz-editor border border-idpxyz-border rounded-lg p-3 space-y-1.5 text-[11px]">
+              <div className="text-center font-bold text-[12px] text-idpxyz-textBright mb-2 pb-2 border-b border-dashed border-idpxyz-border">
                 {selected.storeName}
               </div>
-              <div className="flex justify-between"><span className="text-vscode-textMuted">单号</span><span className="text-vscode-text font-mono text-[10px]">{selected.receiptNo}</span></div>
-              <div className="flex justify-between"><span className="text-vscode-textMuted">时间</span><span className="text-vscode-text">{selected.createdAt}</span></div>
-              <div className="flex justify-between"><span className="text-vscode-textMuted">收银员</span><span className="text-vscode-text">{selected.cashierName}</span></div>
+              <div className="flex justify-between"><span className="text-idpxyz-textMuted">单号</span><span className="text-idpxyz-text font-mono text-[10px]">{selected.receiptNo}</span></div>
+              <div className="flex justify-between"><span className="text-idpxyz-textMuted">时间</span><span className="text-idpxyz-text">{selected.createdAt}</span></div>
+              <div className="flex justify-between"><span className="text-idpxyz-textMuted">收银员</span><span className="text-idpxyz-text">{selected.cashierName}</span></div>
               {selected.memberName && (
-                <div className="flex justify-between"><span className="text-vscode-textMuted">会员</span><span className="text-vscode-accent">{selected.memberName}</span></div>
+                <div className="flex justify-between"><span className="text-idpxyz-textMuted">会员</span><span className="text-idpxyz-accent">{selected.memberName}</span></div>
               )}
 
-              <div className="border-t border-dashed border-vscode-border pt-1.5 mt-1.5 space-y-1">
+              <div className="border-t border-dashed border-idpxyz-border pt-1.5 mt-1.5 space-y-1">
                 {selected.items.map((item, i) => (
                   <div key={i} className="flex items-start gap-2">
                     <span className="text-[14px]">{item.image}</span>
                     <div className="flex-1 min-w-0">
-                      <div className="text-vscode-textBright truncate">{item.name}</div>
-                      <div className="text-[10px] text-vscode-textMuted">{item.skuName}</div>
+                      <div className="text-idpxyz-textBright truncate">{item.name}</div>
+                      <div className="text-[10px] text-idpxyz-textMuted">{item.skuName}</div>
                       <div className="flex items-center gap-2 text-[10px]">
                         <span>${item.price} x {item.qty}</span>
                         {item.discount > 0 && <span className="text-green-400">-${item.discount}</span>}
                       </div>
                     </div>
-                    <span className="text-vscode-textBright font-medium">${(item.price * item.qty - item.discount * item.qty).toFixed(2)}</span>
+                    <span className="text-idpxyz-textBright font-medium">${(item.price * item.qty - item.discount * item.qty).toFixed(2)}</span>
                   </div>
                 ))}
               </div>
 
-              <div className="border-t border-dashed border-vscode-border pt-1.5 mt-1.5 space-y-0.5">
-                <div className="flex justify-between"><span className="text-vscode-textMuted">小计</span><span>${selected.subtotal.toFixed(2)}</span></div>
-                {selected.discount > 0 && <div className="flex justify-between"><span className="text-vscode-textMuted">优惠</span><span className="text-green-400">-${selected.discount.toFixed(2)}</span></div>}
-                <div className="flex justify-between"><span className="text-vscode-textMuted">税费</span><span>${selected.tax.toFixed(2)}</span></div>
-                <div className="flex justify-between font-bold text-[12px] pt-1"><span className="text-vscode-textBright">合计</span><span className="text-vscode-accent">${selected.total.toFixed(2)}</span></div>
+              <div className="border-t border-dashed border-idpxyz-border pt-1.5 mt-1.5 space-y-0.5">
+                <div className="flex justify-between"><span className="text-idpxyz-textMuted">小计</span><span>${selected.subtotal.toFixed(2)}</span></div>
+                {selected.discount > 0 && <div className="flex justify-between"><span className="text-idpxyz-textMuted">优惠</span><span className="text-green-400">-${selected.discount.toFixed(2)}</span></div>}
+                <div className="flex justify-between"><span className="text-idpxyz-textMuted">税费</span><span>${selected.tax.toFixed(2)}</span></div>
+                <div className="flex justify-between font-bold text-[12px] pt-1"><span className="text-idpxyz-textBright">合计</span><span className="text-idpxyz-accent">${selected.total.toFixed(2)}</span></div>
               </div>
 
-              <div className="border-t border-dashed border-vscode-border pt-1.5 mt-1.5 space-y-0.5">
-                <div className="flex justify-between"><span className="text-vscode-textMuted">支付方式</span><StatusBadge {...posPaymentMethodConfig[selected.paymentMethod]} /></div>
-                {selected.paymentRef && <div className="flex justify-between"><span className="text-vscode-textMuted">流水号</span><span className="text-[10px] font-mono text-vscode-text">{selected.paymentRef}</span></div>}
+              <div className="border-t border-dashed border-idpxyz-border pt-1.5 mt-1.5 space-y-0.5">
+                <div className="flex justify-between"><span className="text-idpxyz-textMuted">支付方式</span><StatusBadge {...posPaymentMethodConfig[selected.paymentMethod]} /></div>
+                {selected.paymentRef && <div className="flex justify-between"><span className="text-idpxyz-textMuted">流水号</span><span className="text-[10px] font-mono text-idpxyz-text">{selected.paymentRef}</span></div>}
                 {selected.paymentMethod === 'cash' && (
                   <>
-                    <div className="flex justify-between"><span className="text-vscode-textMuted">收取</span><span>${selected.cashReceived.toFixed(2)}</span></div>
-                    <div className="flex justify-between"><span className="text-vscode-textMuted">找零</span><span className="text-yellow-400">${selected.changeGiven.toFixed(2)}</span></div>
+                    <div className="flex justify-between"><span className="text-idpxyz-textMuted">收取</span><span>${selected.cashReceived.toFixed(2)}</span></div>
+                    <div className="flex justify-between"><span className="text-idpxyz-textMuted">找零</span><span className="text-yellow-400">${selected.changeGiven.toFixed(2)}</span></div>
                   </>
                 )}
                 {selected.pointsEarned > 0 && (
-                  <div className="flex justify-between"><span className="text-vscode-textMuted">获得积分</span><span className="text-yellow-400">+{selected.pointsEarned}</span></div>
+                  <div className="flex justify-between"><span className="text-idpxyz-textMuted">获得积分</span><span className="text-yellow-400">+{selected.pointsEarned}</span></div>
                 )}
               </div>
 
               {selected.note && (
-                <div className="border-t border-dashed border-vscode-border pt-1.5 mt-1.5">
-                  <span className="text-vscode-textMuted">备注: </span><span className="text-vscode-text">{selected.note}</span>
+                <div className="border-t border-dashed border-idpxyz-border pt-1.5 mt-1.5">
+                  <span className="text-idpxyz-textMuted">备注: </span><span className="text-idpxyz-text">{selected.note}</span>
                 </div>
               )}
             </div>
           </div>
 
-          <div className="px-3 py-2 border-t border-vscode-border shrink-0 flex gap-1.5">
+          <div className="px-3 py-2 border-t border-idpxyz-border shrink-0 flex gap-1.5">
             <Button variant="ghost" size="sm" className="flex-1 justify-center" onClick={() => addToast({ type: 'success', title: '打印中', message: '正在打印交易小票...' })}>
               <IconReceipt size={11} /> 重打小票
             </Button>

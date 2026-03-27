@@ -17,7 +17,11 @@ import {
 import {
   Button,
   Table, TableHeader, TableBody, TableRow, TableHead, TableCell,
-  Select, SelectOption,
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
 } from '@idpxyz/ui-primitives';
 import {
   PageHeader, PageHeaderContent, PageHeaderTitle, PageHeaderDescription, PageHeaderActions,
@@ -110,7 +114,7 @@ export default function OrdersList({ onSelectOrder, onOpenOrderDetail }: OrdersL
   };
 
   return (
-    <div className="flex-1 flex flex-col overflow-hidden bg-vscode-editor">
+    <div className="flex-1 flex flex-col overflow-hidden bg-idpxyz-editor">
       {/* Page Header (Section 10.2) */}
       <PageHeader className="px-5 shrink-0">
         <PageHeaderContent>
@@ -124,15 +128,15 @@ export default function OrdersList({ onSelectOrder, onOpenOrderDetail }: OrdersL
       </PageHeader>
 
       {/* Saved Views (Section 10.6) */}
-      <div className="flex items-center gap-1 px-5 py-1.5 border-b border-vscode-border shrink-0 overflow-x-auto tab-scroll-hidden">
+      <div className="flex items-center gap-1 px-5 py-1.5 border-b border-idpxyz-border shrink-0 overflow-x-auto tab-scroll-hidden">
         {savedViews.map(v => (
           <button
             key={v.id}
             onClick={() => { setActiveView(v.id); setCurrentPage(1); }}
             className={`px-2.5 py-1 text-[11px] rounded-md whitespace-nowrap transition-colors ${
               activeView === v.id
-                ? 'bg-vscode-accent/15 text-vscode-accent font-medium'
-                : 'text-vscode-textMuted hover:text-vscode-text hover:bg-vscode-hover'
+                ? 'bg-idpxyz-accent/15 text-idpxyz-accent font-medium'
+                : 'text-idpxyz-textMuted hover:text-idpxyz-text hover:bg-idpxyz-hover'
             }`}
           >
             {v.label}
@@ -150,24 +154,34 @@ export default function OrdersList({ onSelectOrder, onOpenOrderDetail }: OrdersL
           className="max-w-[320px]"
         />
         <Select
-          size="sm"
           value={statusFilter}
-          onChange={e => { setStatusFilter(e.target.value); setCurrentPage(1); }}
+          onValueChange={(v) => { setStatusFilter(v); setCurrentPage(1); }}
         >
-          <SelectOption value="all">全部状态</SelectOption>
-          {Object.entries(orderStatusConfig).map(([k, v]) => (
-            <SelectOption key={k} value={k}>{v.label}</SelectOption>
-          ))}
+          <SelectTrigger size="sm" className="w-[160px]">
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">全部状态</SelectItem>
+            {Object.entries(orderStatusConfig).map(([k, v]) => (
+              <SelectItem key={k} value={k}>
+                {v.label}
+              </SelectItem>
+            ))}
+          </SelectContent>
         </Select>
         <Select
-          size="sm"
           value={channelFilter}
-          onChange={e => { setChannelFilter(e.target.value); setCurrentPage(1); }}
+          onValueChange={(v) => { setChannelFilter(v); setCurrentPage(1); }}
         >
-          <SelectOption value="all">全部渠道</SelectOption>
-          <SelectOption value="官网">官网</SelectOption>
-          <SelectOption value="App">App</SelectOption>
-          <SelectOption value="平台">平台</SelectOption>
+          <SelectTrigger size="sm" className="w-[140px]">
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">全部渠道</SelectItem>
+            <SelectItem value="官网">官网</SelectItem>
+            <SelectItem value="App">App</SelectItem>
+            <SelectItem value="平台">平台</SelectItem>
+          </SelectContent>
         </Select>
         <Button variant="ghost" size="sm" onClick={() => setShowFilters(!showFilters)}>
           <IconFilter size={13} /> 更多筛选
@@ -176,9 +190,9 @@ export default function OrdersList({ onSelectOrder, onOpenOrderDetail }: OrdersL
 
       {/* Bulk Action Bar (Section 10.7) */}
       {selectedIds.size > 0 && (
-        <div className="flex items-center gap-2 px-5 py-1.5 bg-vscode-accent/10 border-b border-vscode-accent/30 shrink-0">
-          <span className="text-[11px] text-vscode-accent font-medium">已选 {selectedIds.size} 项</span>
-          <div className="h-3 w-px bg-vscode-border mx-1" />
+        <div className="flex items-center gap-2 px-5 py-1.5 bg-idpxyz-accent/10 border-b border-idpxyz-accent/30 shrink-0">
+          <span className="text-[11px] text-idpxyz-accent font-medium">已选 {selectedIds.size} 项</span>
+          <div className="h-3 w-px bg-idpxyz-border mx-1" />
           <Button variant="ghost" size="sm" className="text-[11px]"><IconPause size={12} /> 暂挂</Button>
           <Button variant="ghost" size="sm" className="text-[11px]"><IconPlay size={12} /> 释放</Button>
           <Button variant="ghost" size="sm" className="text-[11px]"><IconUserPlus size={12} /> 分配</Button>
@@ -191,10 +205,10 @@ export default function OrdersList({ onSelectOrder, onOpenOrderDetail }: OrdersL
       {/* Dense Data Table (Section 10.4) */}
       <div className="flex-1 overflow-auto">
         <Table>
-          <TableHeader className="sticky top-0 z-10 bg-vscode-sidebar">
+          <TableHeader className="sticky top-0 z-10 bg-idpxyz-sidebar">
             <TableRow>
               <TableHead className="w-8">
-                <input type="checkbox" checked={selectedIds.size === paged.length && paged.length > 0} onChange={toggleSelectAll} className="accent-vscode-accent" />
+                <input type="checkbox" checked={selectedIds.size === paged.length && paged.length > 0} onChange={toggleSelectAll} className="accent-idpxyz-accent" />
               </TableHead>
               <TableHead className="whitespace-nowrap">订单号</TableHead>
               <TableHead className="whitespace-nowrap">渠道</TableHead>
@@ -218,28 +232,28 @@ export default function OrdersList({ onSelectOrder, onOpenOrderDetail }: OrdersL
               const ps = paymentStatusConfig[order.paymentStatus];
               const fs = fulfillmentStatusConfig[order.fulfillmentStatus];
               const rl = riskLevelConfig[order.riskLevel];
-              const slaColor = order.slaHoursRemaining < 0 ? 'text-red-400' : order.slaHoursRemaining <= 6 ? 'text-yellow-400' : 'text-vscode-textMuted';
+              const slaColor = order.slaHoursRemaining < 0 ? 'text-red-400' : order.slaHoursRemaining <= 6 ? 'text-yellow-400' : 'text-idpxyz-textMuted';
               return (
                 <TableRow
                   key={order.id}
                   onClick={() => handleRowClick(order)}
                   onDoubleClick={() => handleRowDoubleClick(order)}
                   className={`cursor-pointer ${
-                    selectedOrderId === order.id ? 'bg-vscode-activeItem' : ''
+                    selectedOrderId === order.id ? 'bg-idpxyz-activeItem' : ''
                   }`}
                 >
                   <TableCell className="py-1.5">
-                    <input type="checkbox" checked={selectedIds.has(order.id)} onClick={e => toggleSelect(order.id, e)} onChange={() => {}} className="accent-vscode-accent" />
+                    <input type="checkbox" checked={selectedIds.has(order.id)} onClick={e => toggleSelect(order.id, e)} onChange={() => {}} className="accent-idpxyz-accent" />
                   </TableCell>
-                  <TableCell className="py-1.5 text-vscode-accent font-medium whitespace-nowrap">{order.id}</TableCell>
+                  <TableCell className="py-1.5 text-idpxyz-accent font-medium whitespace-nowrap">{order.id}</TableCell>
                   <TableCell className="py-1.5 whitespace-nowrap">
                     <div className="flex flex-col">
                       <span>{order.channel}</span>
-                      <span className="text-[10px] text-vscode-textMuted">{order.store}</span>
+                      <span className="text-[10px] text-idpxyz-textMuted">{order.store}</span>
                     </div>
                   </TableCell>
                   <TableCell className="py-1.5 whitespace-nowrap">{order.customerName}</TableCell>
-                  <TableCell className="py-1.5 text-vscode-textMuted whitespace-nowrap text-[11px]">{order.createdAt}</TableCell>
+                  <TableCell className="py-1.5 text-idpxyz-textMuted whitespace-nowrap text-[11px]">{order.createdAt}</TableCell>
                   <TableCell className="py-1.5 text-center whitespace-nowrap">
                     <span className="inline-block px-2 py-0.5 rounded text-[10px] font-medium" style={{ color: os.color, backgroundColor: os.bgColor }}>{os.label}</span>
                   </TableCell>
@@ -249,7 +263,7 @@ export default function OrdersList({ onSelectOrder, onOpenOrderDetail }: OrdersL
                   <TableCell className="py-1.5 text-center whitespace-nowrap">
                     <span className="inline-block px-2 py-0.5 rounded text-[10px] font-medium" style={{ color: fs.color, backgroundColor: fs.bgColor }}>{fs.label}</span>
                   </TableCell>
-                  <TableCell className="py-1.5 text-right whitespace-nowrap text-vscode-textBright font-medium">
+                  <TableCell className="py-1.5 text-right whitespace-nowrap text-idpxyz-textBright font-medium">
                     {order.currency === 'USD' ? '$' : order.currency === 'EUR' ? '\u20AC' : order.currency}{order.totalAmount.toLocaleString()}
                   </TableCell>
                   <TableCell className="py-1.5 text-center">{order.itemCount}</TableCell>
@@ -259,7 +273,7 @@ export default function OrdersList({ onSelectOrder, onOpenOrderDetail }: OrdersL
                   <TableCell className={`py-1.5 text-center whitespace-nowrap text-[11px] font-mono ${slaColor}`}>
                     {order.slaHoursRemaining > 0 ? `${order.slaHoursRemaining}小时` : order.slaHoursRemaining < 0 ? `超${Math.abs(order.slaHoursRemaining)}小时` : '-'}
                   </TableCell>
-                  <TableCell className="py-1.5 text-vscode-textMuted whitespace-nowrap text-[11px]">{order.warehouse}</TableCell>
+                  <TableCell className="py-1.5 text-idpxyz-textMuted whitespace-nowrap text-[11px]">{order.warehouse}</TableCell>
                   <TableCell className="py-1.5 whitespace-nowrap text-[11px]">{order.assignedTo || '-'}</TableCell>
                   <TableCell className="py-1.5">
                     <Button variant="ghost" size="icon" className="h-5 w-5"><IconMoreH size={12} /></Button>
@@ -269,7 +283,7 @@ export default function OrdersList({ onSelectOrder, onOpenOrderDetail }: OrdersL
             })}
             {paged.length === 0 && (
               <TableRow>
-                <TableCell colSpan={15} className="px-4 py-8 text-center text-vscode-textMuted">
+                <TableCell colSpan={15} className="px-4 py-8 text-center text-idpxyz-textMuted">
                   没有匹配当前筛选条件的订单，请调整搜索或视图。
                 </TableCell>
               </TableRow>
@@ -279,7 +293,7 @@ export default function OrdersList({ onSelectOrder, onOpenOrderDetail }: OrdersL
       </div>
 
       {/* Pagination */}
-      <div className="flex items-center justify-between px-5 py-1.5 border-t border-vscode-border shrink-0 text-[12px] text-vscode-textMuted select-none">
+      <div className="flex items-center justify-between px-5 py-1.5 border-t border-idpxyz-border shrink-0 text-[12px] text-idpxyz-textMuted select-none">
         <span>第 {currentPage} / {totalPages} 页 · 共 {filtered.length} 条</span>
         <div className="flex items-center gap-1">
           <Button variant="ghost" size="icon" onClick={() => setCurrentPage(1)} disabled={currentPage === 1}><IconChevronsLeft size={14} /></Button>

@@ -1,6 +1,7 @@
 'use client';
 
 import * as React from 'react';
+import * as DropdownMenuPrimitive from '@radix-ui/react-dropdown-menu';
 import { cn } from '@idpxyz/ui-utils';
 
 interface DropdownMenuProps {
@@ -10,81 +11,58 @@ interface DropdownMenuProps {
 }
 
 function DropdownMenu({ trigger, children, align = 'left' }: DropdownMenuProps) {
-  const [open, setOpen] = React.useState(false);
-  const ref = React.useRef<HTMLDivElement>(null);
-
-  React.useEffect(() => {
-    if (!open) return;
-    function handleClick(e: MouseEvent) {
-      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
-    }
-    function handleEscape(e: KeyboardEvent) {
-      if (e.key === 'Escape') setOpen(false);
-    }
-    document.addEventListener('mousedown', handleClick);
-    document.addEventListener('keydown', handleEscape);
-    return () => {
-      document.removeEventListener('mousedown', handleClick);
-      document.removeEventListener('keydown', handleEscape);
-    };
-  }, [open]);
-
   return (
-    <div ref={ref} className="relative inline-block">
-      <div onClick={() => setOpen(!open)} role="button" aria-expanded={open} aria-haspopup="menu">
-        {trigger}
-      </div>
-      {open && (
-        <div
-          role="menu"
+    <DropdownMenuPrimitive.Root>
+      <DropdownMenuPrimitive.Trigger asChild>{trigger}</DropdownMenuPrimitive.Trigger>
+      <DropdownMenuPrimitive.Portal>
+        <DropdownMenuPrimitive.Content
+          align={align === 'right' ? 'end' : 'start'}
+          sideOffset={4}
           className={cn(
-            'absolute z-50 mt-1 min-w-[160px] py-1 bg-vscode-sidebar border border-vscode-border rounded-md shadow-xl',
-            'animate-in fade-in zoom-in-95',
-            align === 'right' ? 'right-0' : 'left-0'
+            'z-50 min-w-[160px] rounded-md border border-idpxyz-border bg-idpxyz-sidebar py-1 shadow-xl',
+            'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95'
           )}
         >
-          {React.Children.map(children, (child) =>
-            React.isValidElement(child) ? React.cloneElement(child as React.ReactElement<{ onClose?: () => void }>, { onClose: () => setOpen(false) }) : child
-          )}
-        </div>
-      )}
-    </div>
+          {children}
+        </DropdownMenuPrimitive.Content>
+      </DropdownMenuPrimitive.Portal>
+    </DropdownMenuPrimitive.Root>
   );
 }
 
-interface MenuItemProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface MenuItemProps extends React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Item> {
   destructive?: boolean;
-  onClose?: () => void;
 }
 
-const MenuItem = React.forwardRef<HTMLButtonElement, MenuItemProps>(
-  ({ className, destructive, onClick, onClose, children, ...props }, ref) => (
-    <button
+const MenuItem = React.forwardRef<React.ComponentRef<typeof DropdownMenuPrimitive.Item>, MenuItemProps>(
+  ({ className, destructive, ...props }, ref) => (
+    <DropdownMenuPrimitive.Item
       ref={ref}
-      role="menuitem"
       className={cn(
-        'flex w-full items-center gap-2 px-3 py-1.5 text-[12px] text-left transition-colors',
-        destructive
-          ? 'text-red-400 hover:bg-red-500/10'
-          : 'text-vscode-text hover:bg-vscode-hover',
-        'disabled:opacity-40 disabled:pointer-events-none',
+        'flex w-full cursor-pointer select-none items-center gap-2 px-3 py-1.5 text-[12px] text-left outline-none transition-colors',
+        'focus:bg-idpxyz-hover data-[disabled]:pointer-events-none data-[disabled]:opacity-40',
+        destructive ? 'text-red-400 focus:bg-red-500/10' : 'text-idpxyz-text',
         className
       )}
-      onClick={(e) => { onClick?.(e); onClose?.(); }}
       {...props}
-    >
-      {children}
-    </button>
+    />
   )
 );
-MenuItem.displayName = 'MenuItem';
+MenuItem.displayName = DropdownMenuPrimitive.Item.displayName;
 
-function MenuSeparator() {
-  return <div className="my-1 border-t border-vscode-border" role="separator" />;
+function MenuSeparator({ className, ...props }: React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Separator>) {
+  return (
+    <DropdownMenuPrimitive.Separator className={cn('-mx-1 my-1 h-px bg-idpxyz-border', className)} {...props} />
+  );
 }
 
-function MenuLabel({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
-  return <div className={cn('px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-vscode-textMuted', className)} {...props} />;
+function MenuLabel({ className, ...props }: React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Label>) {
+  return (
+    <DropdownMenuPrimitive.Label
+      className={cn('px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-idpxyz-textMuted', className)}
+      {...props}
+    />
+  );
 }
 
 export { DropdownMenu, MenuItem, MenuSeparator, MenuLabel };

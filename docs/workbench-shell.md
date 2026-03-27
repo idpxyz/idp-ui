@@ -6,7 +6,7 @@
 
 1. `ThemeProvider`（`product` 与产品一致：`loms` | `oms` | …）
 2. `ToastProvider`（`@idpxyz/ui-theme-runtime`，与 Primitives 的 Toaster 二选一，勿混用）
-3. 根容器：`h-screen w-screen flex flex-col overflow-hidden bg-vscode-bg`
+3. 根容器：`h-screen w-screen flex flex-col overflow-hidden bg-idpxyz-bg`
 4. `TitleBar`（可选：全屏/专注模式时可条件隐藏）
 5. 主行：`flex flex-1 overflow-hidden`
    - `ActivityBar`（同上，可条件隐藏）

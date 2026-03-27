@@ -11,7 +11,7 @@ function statusStyle(s: MockOrder['status']) {
     case 'completed':
       return 'bg-green-500/15 text-green-400';
     default:
-      return 'bg-vscode-hover text-vscode-textMuted';
+      return 'bg-idpxyz-hover text-idpxyz-textMuted';
   }
 }
 
@@ -103,10 +103,10 @@ export function OrdersOverviewPage() {
     });
   }, [filtered, sortKey, sortDir]);
   return (
-    <div className="flex-1 flex flex-col min-h-0 bg-vscode-editor text-vscode-text p-6 overflow-auto">
+    <div className="flex-1 flex flex-col min-h-0 bg-idpxyz-editor text-idpxyz-text p-6 overflow-auto">
       <div className="mb-6">
-        <h1 className="text-[18px] font-semibold text-vscode-textBright mb-1">订单概览</h1>
-        <p className="text-[13px] text-vscode-textMuted">Mock 数据 — 演示渠道与状态筛选前的列表视图。</p>
+        <h1 className="text-[18px] font-semibold text-idpxyz-textBright mb-1">订单概览</h1>
+        <p className="text-[13px] text-idpxyz-textMuted">Mock 数据 — 演示渠道与状态筛选前的列表视图。</p>
       </div>
 
       <div className="mb-4 flex items-center gap-2">
@@ -116,7 +116,7 @@ export function OrdersOverviewPage() {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="搜索：订单号 / 客户 / 渠道"
-          className="h-8 w-[320px] max-w-full rounded border border-vscode-border bg-vscode-inputBg px-3 text-[13px] text-vscode-text placeholder:text-vscode-textMuted outline-none focus-visible:ring-1 focus-visible:ring-vscode-accent/40"
+          className="h-8 w-[320px] max-w-full rounded border border-idpxyz-border bg-idpxyz-inputBg px-3 text-[13px] text-idpxyz-text placeholder:text-idpxyz-textMuted outline-none focus-visible:ring-1 focus-visible:ring-idpxyz-accent/40"
         />
         <div className="flex items-center gap-2">
           {(
@@ -131,26 +131,26 @@ export function OrdersOverviewPage() {
               key={s.key}
               type="button"
               onClick={() => setStatus(s.key)}
-              className={`h-8 rounded px-3 text-[12px] border border-vscode-border ${
+              className={`h-8 rounded px-3 text-[12px] border border-idpxyz-border ${
                 status === s.key
-                  ? 'bg-vscode-activeItem text-vscode-textBright'
-                  : 'bg-vscode-sidebar text-vscode-textMuted hover:bg-vscode-hover hover:text-vscode-text'
+                  ? 'bg-idpxyz-activeItem text-idpxyz-textBright'
+                  : 'bg-idpxyz-sidebar text-idpxyz-textMuted hover:bg-idpxyz-hover hover:text-idpxyz-text'
               }`}
             >
               {s.label}
             </button>
           ))}
         </div>
-        <div className="ml-auto text-[12px] text-vscode-textMuted">
-          结果：<span className="text-vscode-text">{filtered.length}</span> / {mockOrders.length}
+        <div className="ml-auto text-[12px] text-idpxyz-textMuted">
+          结果：<span className="text-idpxyz-text">{filtered.length}</span> / {mockOrders.length}
         </div>
       </div>
       </div>
 
-      <div className="rounded border border-vscode-border overflow-x-auto bg-vscode-panelBg">
+      <div className="rounded border border-idpxyz-border overflow-x-auto bg-idpxyz-panelBg">
         <table className="w-full min-w-[720px] text-[13px] text-left border-collapse">
           <thead>
-            <tr className="border-b border-vscode-border bg-vscode-sidebar text-vscode-textMuted text-[11px] uppercase tracking-wide">
+            <tr className="border-b border-idpxyz-border bg-idpxyz-sidebar text-idpxyz-textMuted text-[11px] uppercase tracking-wide">
               <th className="px-4 py-2.5 font-medium whitespace-nowrap">
                 <button type="button" onClick={() => handlerSortClick('id')} className="flex items-center gap-1">
                   订单号
@@ -203,17 +203,17 @@ export function OrdersOverviewPage() {
           </thead>
           <tbody>
             {sorted.map((row) => (
-              <tr key={row.id} className="border-b border-vscode-border last:border-b-0 hover:bg-vscode-hover">
-                <td className="px-4 py-2.5 font-mono text-vscode-accent whitespace-nowrap">{row.id}</td>
+              <tr key={row.id} className="border-b border-idpxyz-border last:border-b-0 hover:bg-idpxyz-hover">
+                <td className="px-4 py-2.5 font-mono text-idpxyz-accent whitespace-nowrap">{row.id}</td>
                 <td className="px-4 py-2.5 whitespace-nowrap">{row.customer}</td>
-                <td className="px-4 py-2.5 text-vscode-textMuted whitespace-nowrap">{row.channel}</td>
+                <td className="px-4 py-2.5 text-idpxyz-textMuted whitespace-nowrap">{row.channel}</td>
                 <td className="px-4 py-2.5 whitespace-nowrap">
                   <span className={`inline-flex rounded px-2 py-0.5 text-[11px] font-medium whitespace-nowrap ${statusStyle(row.status)}`}>
                     {statusLabel(row.status)}
                   </span>
                 </td>
                 <td className="px-4 py-2.5 text-right tabular-nums whitespace-nowrap">{row.total}</td>
-                <td className="px-4 py-2.5 text-vscode-textMuted whitespace-nowrap">{row.placedAt}</td>
+                <td className="px-4 py-2.5 text-idpxyz-textMuted whitespace-nowrap">{row.placedAt}</td>
               </tr>
             ))}
           </tbody>

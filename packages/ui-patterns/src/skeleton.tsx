@@ -4,14 +4,14 @@ interface SkeletonProps {
 
 export function Skeleton({ className = '' }: SkeletonProps) {
   return (
-    <div className={`animate-pulse bg-vscode-hover rounded ${className}`} />
+    <div className={`animate-pulse bg-idpxyz-hover rounded ${className}`} />
   );
 }
 
 export function SkeletonRow({ cols = 6 }: { cols?: number }) {
   const widths = ['w-[80px]', 'w-[120px]', 'w-[100px]', 'w-[90px]', 'w-[110px]', 'w-[70px]', 'w-[130px]', 'w-[95px]'];
   return (
-    <tr className="border-b border-vscode-border">
+    <tr className="border-b border-idpxyz-border">
       {Array.from({ length: cols }).map((_, i) => (
         <td key={i} className="px-3 py-2.5">
           <Skeleton className={`h-[13px] ${widths[i % widths.length]}`} />
@@ -33,7 +33,7 @@ export function SkeletonTable({ rows = 5, cols = 6 }: { rows?: number; cols?: nu
 
 export function SkeletonCard() {
   return (
-    <div className="bg-vscode-sidebar rounded p-4 border border-vscode-border space-y-2.5">
+    <div className="bg-idpxyz-sidebar rounded p-4 border border-idpxyz-border space-y-2.5">
       <Skeleton className="h-[11px] w-[100px]" />
       <Skeleton className="h-[13px] w-full" />
       <Skeleton className="h-[13px] w-[85%]" />

@@ -13,7 +13,7 @@ export const Right: StoryObj = {
       <>
         <Button onClick={() => setOpen(true)}>Open Drawer</Button>
         <Drawer open={open} onOpenChange={setOpen} side="right">
-          <DrawerHeader onClose={() => setOpen(false)}>
+          <DrawerHeader>
             <div style={{ fontSize: 14, fontWeight: 600, color: '#fff' }}>Drawer Title</div>
           </DrawerHeader>
           <DrawerBody>

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
-import { Checkbox, Radio, Switch } from './form-controls';
+import { Checkbox, RadioGroup, RadioGroupItem, Switch } from './form-controls';
 
 const meta: Meta = { title: 'Primitives/FormControls' };
 export default meta;
@@ -17,11 +17,11 @@ export const Checkboxes: StoryObj = {
 
 export const Radios: StoryObj = {
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-      <Radio name="plan" label="Free" defaultChecked />
-      <Radio name="plan" label="Pro" />
-      <Radio name="plan" label="Enterprise" />
-    </div>
+    <RadioGroup defaultValue="free">
+      <RadioGroupItem value="free" label="Free" />
+      <RadioGroupItem value="pro" label="Pro" />
+      <RadioGroupItem value="ent" label="Enterprise" />
+    </RadioGroup>
   ),
 };
 

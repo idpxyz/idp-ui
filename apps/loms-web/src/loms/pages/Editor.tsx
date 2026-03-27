@@ -33,37 +33,37 @@ export default function Editor({ fileName, onSelectOrder }: EditorProps) {
   };
 
   return (
-    <div className="flex-1 flex flex-col overflow-hidden bg-vscode-editor">
+    <div className="flex-1 flex flex-col overflow-hidden bg-idpxyz-editor">
       {/* Breadcrumbs */}
-      <div className="flex items-center h-[22px] px-3 text-[12px] text-vscode-breadcrumb bg-vscode-editor border-b border-vscode-border shrink-0 select-none">
-        <span className="hover:text-vscode-textBright cursor-pointer">{"订单管理"}</span>
-        <ChevronRight size={14} className="mx-0.5 text-vscode-textMuted" />
-        <span className="text-vscode-text">{fileName}</span>
+      <div className="flex items-center h-[22px] px-3 text-[12px] text-idpxyz-breadcrumb bg-idpxyz-editor border-b border-idpxyz-border shrink-0 select-none">
+        <span className="hover:text-idpxyz-textBright cursor-pointer">{"订单管理"}</span>
+        <ChevronRight size={14} className="mx-0.5 text-idpxyz-textMuted" />
+        <span className="text-idpxyz-text">{fileName}</span>
       </div>
 
       {/* Toolbar */}
-      <div className="flex items-center gap-3 px-4 py-2 border-b border-vscode-border shrink-0">
-        <div className="flex items-center bg-vscode-inputBg rounded px-2.5 h-[28px] flex-1 max-w-[320px]">
-          <Search size={13} className="text-vscode-textMuted mr-1.5 shrink-0" />
+      <div className="flex items-center gap-3 px-4 py-2 border-b border-idpxyz-border shrink-0">
+        <div className="flex items-center bg-idpxyz-inputBg rounded px-2.5 h-[28px] flex-1 max-w-[320px]">
+          <Search size={13} className="text-idpxyz-textMuted mr-1.5 shrink-0" />
           <input
             type="text"
             placeholder="搜索订单号、客户、商品..."
             value={searchTerm}
             onChange={(e) => { setSearchTerm(e.target.value); setCurrentPage(1); }}
-            className="bg-transparent border-none outline-none text-[12px] text-vscode-text w-full placeholder:text-vscode-textMuted"
+            className="bg-transparent border-none outline-none text-[12px] text-idpxyz-text w-full placeholder:text-idpxyz-textMuted"
           />
         </div>
         <select
           value={statusFilter}
           onChange={(e) => { setStatusFilter(e.target.value); setCurrentPage(1); }}
-          className="bg-vscode-inputBg text-vscode-text text-[12px] h-[28px] px-2 rounded border border-vscode-border outline-none cursor-pointer"
+          className="bg-idpxyz-inputBg text-idpxyz-text text-[12px] h-[28px] px-2 rounded border border-idpxyz-border outline-none cursor-pointer"
         >
           <option value="all">{"全部状态"}</option>
           {Object.entries(statusConfig).map(([key, cfg]) => (
             <option key={key} value={key}>{cfg.label}</option>
           ))}
         </select>
-        <span className="text-[12px] text-vscode-textMuted ml-auto">
+        <span className="text-[12px] text-idpxyz-textMuted ml-auto">
           {"共 "}{filtered.length}{" 条"}        </span>
       </div>
 
@@ -71,16 +71,16 @@ export default function Editor({ fileName, onSelectOrder }: EditorProps) {
       <div className="flex-1 overflow-auto">
         <table className="w-full text-[12px] border-collapse">
           <thead className="sticky top-0 z-10">
-            <tr className="bg-vscode-sidebar text-vscode-textMuted text-left">
-              <th className="px-4 py-2 font-medium border-b border-vscode-border whitespace-nowrap">{"订单号"}</th>
-              <th className="px-4 py-2 font-medium border-b border-vscode-border whitespace-nowrap">{"客户"}</th>
-              <th className="px-4 py-2 font-medium border-b border-vscode-border whitespace-nowrap">{"商品"}</th>
-              <th className="px-4 py-2 font-medium border-b border-vscode-border whitespace-nowrap text-center">{"数量"}</th>
-              <th className="px-4 py-2 font-medium border-b border-vscode-border whitespace-nowrap text-right">{"单价"}</th>
-              <th className="px-4 py-2 font-medium border-b border-vscode-border whitespace-nowrap text-right">{"总额"}</th>
-              <th className="px-4 py-2 font-medium border-b border-vscode-border whitespace-nowrap text-center">{"状态"}</th>
-              <th className="px-4 py-2 font-medium border-b border-vscode-border whitespace-nowrap">{"日期"}</th>
-              <th className="px-4 py-2 font-medium border-b border-vscode-border whitespace-nowrap text-center">{"操作"}</th>
+            <tr className="bg-idpxyz-sidebar text-idpxyz-textMuted text-left">
+              <th className="px-4 py-2 font-medium border-b border-idpxyz-border whitespace-nowrap">{"订单号"}</th>
+              <th className="px-4 py-2 font-medium border-b border-idpxyz-border whitespace-nowrap">{"客户"}</th>
+              <th className="px-4 py-2 font-medium border-b border-idpxyz-border whitespace-nowrap">{"商品"}</th>
+              <th className="px-4 py-2 font-medium border-b border-idpxyz-border whitespace-nowrap text-center">{"数量"}</th>
+              <th className="px-4 py-2 font-medium border-b border-idpxyz-border whitespace-nowrap text-right">{"单价"}</th>
+              <th className="px-4 py-2 font-medium border-b border-idpxyz-border whitespace-nowrap text-right">{"总额"}</th>
+              <th className="px-4 py-2 font-medium border-b border-idpxyz-border whitespace-nowrap text-center">{"状态"}</th>
+              <th className="px-4 py-2 font-medium border-b border-idpxyz-border whitespace-nowrap">{"日期"}</th>
+              <th className="px-4 py-2 font-medium border-b border-idpxyz-border whitespace-nowrap text-center">{"操作"}</th>
             </tr>
           </thead>
           <tbody>
@@ -92,17 +92,17 @@ export default function Editor({ fileName, onSelectOrder }: EditorProps) {
                   onClick={() => handleRowClick(order)}
                   className={`cursor-pointer transition-colors ${
                     selectedOrderId === order.id
-                      ? 'bg-vscode-activeItem'
-                      : 'hover:bg-vscode-hover'
+                      ? 'bg-idpxyz-activeItem'
+                      : 'hover:bg-idpxyz-hover'
                   }`}
                 >
-                  <td className="px-4 py-2 border-b border-vscode-border text-vscode-accent font-medium whitespace-nowrap">{order.id}</td>
-                  <td className="px-4 py-2 border-b border-vscode-border text-vscode-text whitespace-nowrap">{order.customerName}</td>
-                  <td className="px-4 py-2 border-b border-vscode-border text-vscode-text">{order.product}</td>
-                  <td className="px-4 py-2 border-b border-vscode-border text-vscode-text text-center">{order.quantity}</td>
-                  <td className="px-4 py-2 border-b border-vscode-border text-vscode-text text-right whitespace-nowrap">{"￥"}{order.price.toLocaleString()}</td>
-                  <td className="px-4 py-2 border-b border-vscode-border text-vscode-textBright font-medium text-right whitespace-nowrap">{"￥"}{order.total.toLocaleString()}</td>
-                  <td className="px-4 py-2 border-b border-vscode-border text-center whitespace-nowrap">
+                  <td className="px-4 py-2 border-b border-idpxyz-border text-idpxyz-accent font-medium whitespace-nowrap">{order.id}</td>
+                  <td className="px-4 py-2 border-b border-idpxyz-border text-idpxyz-text whitespace-nowrap">{order.customerName}</td>
+                  <td className="px-4 py-2 border-b border-idpxyz-border text-idpxyz-text">{order.product}</td>
+                  <td className="px-4 py-2 border-b border-idpxyz-border text-idpxyz-text text-center">{order.quantity}</td>
+                  <td className="px-4 py-2 border-b border-idpxyz-border text-idpxyz-text text-right whitespace-nowrap">{"￥"}{order.price.toLocaleString()}</td>
+                  <td className="px-4 py-2 border-b border-idpxyz-border text-idpxyz-textBright font-medium text-right whitespace-nowrap">{"￥"}{order.total.toLocaleString()}</td>
+                  <td className="px-4 py-2 border-b border-idpxyz-border text-center whitespace-nowrap">
                     <span
                       className="inline-block px-2 py-0.5 rounded text-[11px] font-medium"
                       style={{ color: st.color, backgroundColor: st.bgColor }}
@@ -110,8 +110,8 @@ export default function Editor({ fileName, onSelectOrder }: EditorProps) {
                       {st.label}
                     </span>
                   </td>
-                  <td className="px-4 py-2 border-b border-vscode-border text-vscode-textMuted whitespace-nowrap">{order.date}</td>
-                  <td className="px-4 py-2 border-b border-vscode-border text-center">
+                  <td className="px-4 py-2 border-b border-idpxyz-border text-idpxyz-textMuted whitespace-nowrap">{order.date}</td>
+                  <td className="px-4 py-2 border-b border-idpxyz-border text-center">
                     <Button
                       onClick={(e) => { e.stopPropagation(); handleRowClick(order); }}
                       variant="ghost"
@@ -127,7 +127,7 @@ export default function Editor({ fileName, onSelectOrder }: EditorProps) {
             })}
             {paged.length === 0 && (
               <tr>
-                <td colSpan={9} className="px-4 py-8 text-center text-vscode-textMuted">
+                <td colSpan={9} className="px-4 py-8 text-center text-idpxyz-textMuted">
                   {"没有找到匹配的订单"}                </td>
               </tr>
             )}
@@ -136,7 +136,7 @@ export default function Editor({ fileName, onSelectOrder }: EditorProps) {
       </div>
 
       {/* Pagination */}
-      <div className="flex items-center justify-between px-4 py-1.5 border-t border-vscode-border shrink-0 text-[12px] text-vscode-textMuted select-none">
+      <div className="flex items-center justify-between px-4 py-1.5 border-t border-idpxyz-border shrink-0 text-[12px] text-idpxyz-textMuted select-none">
         <span>{"第 "}{currentPage}{" / "}{totalPages}{" 页"}</span>
         <div className="flex items-center gap-1">
           <Button variant="ghost" size="icon" onClick={() => setCurrentPage(1)} disabled={currentPage === 1}><ChevronsLeft size={14} /></Button>

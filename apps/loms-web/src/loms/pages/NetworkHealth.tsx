@@ -34,11 +34,11 @@ export default function NetworkHealth({ onOpenTab }: NetworkHealthProps) {
   const offline = carriers.filter((c) => c.status === 'offline').length;
 
   return (
-    <div className="flex-1 flex flex-col overflow-hidden bg-vscode-editor">
-      <div className="flex items-center h-[22px] px-3 text-[12px] text-vscode-breadcrumb bg-vscode-editor border-b border-vscode-border shrink-0 select-none">
-        <span className="hover:text-vscode-textBright cursor-pointer">Overview</span>
-        <ChevronRight size={14} className="mx-0.5 text-vscode-textMuted" />
-        <span className="text-vscode-text">Network Health</span>
+    <div className="flex-1 flex flex-col overflow-hidden bg-idpxyz-editor">
+      <div className="flex items-center h-[22px] px-3 text-[12px] text-idpxyz-breadcrumb bg-idpxyz-editor border-b border-idpxyz-border shrink-0 select-none">
+        <span className="hover:text-idpxyz-textBright cursor-pointer">Overview</span>
+        <ChevronRight size={14} className="mx-0.5 text-idpxyz-textMuted" />
+        <span className="text-idpxyz-text">Network Health</span>
       </div>
 
       <div className="flex-1 overflow-auto p-4">
@@ -50,37 +50,37 @@ export default function NetworkHealth({ onOpenTab }: NetworkHealthProps) {
             { label: 'Offline', value: offline, icon: WifiOff, color: 'text-red-400', bg: 'bg-red-500/10' },
             { label: 'Total API Calls (24h)', value: carriers.reduce((s, c) => s + c.apiCalls24h, 0).toLocaleString(), icon: RefreshCw, color: 'text-blue-400', bg: 'bg-blue-500/10' },
           ].map((kpi) => (
-            <div key={kpi.label} className={`${kpi.bg} rounded-lg p-4 border border-vscode-border`}>
+            <div key={kpi.label} className={`${kpi.bg} rounded-lg p-4 border border-idpxyz-border`}>
               <kpi.icon size={18} className={`${kpi.color} mb-2`} />
               <div className={`text-[24px] font-bold ${kpi.color}`}>{kpi.value}</div>
-              <div className="text-[12px] text-vscode-textMuted mt-0.5">{kpi.label}</div>
+              <div className="text-[12px] text-idpxyz-textMuted mt-0.5">{kpi.label}</div>
             </div>
           ))}
         </div>
 
         {/* Carrier connectivity */}
-        <div className="bg-vscode-sidebar rounded-lg p-4 border border-vscode-border mb-4">
-          <h3 className="text-[12px] font-semibold text-vscode-textBright mb-3 flex items-center gap-2">
-            <Wifi size={14} className="text-vscode-textMuted" />
+        <div className="bg-idpxyz-sidebar rounded-lg p-4 border border-idpxyz-border mb-4">
+          <h3 className="text-[12px] font-semibold text-idpxyz-textBright mb-3 flex items-center gap-2">
+            <Wifi size={14} className="text-idpxyz-textMuted" />
             Carrier Connectivity
           </h3>
           <table className="w-full text-[12px] border-collapse">
             <thead>
-              <tr className="text-vscode-textMuted text-left">
-                <th className="px-3 py-1.5 font-medium border-b border-vscode-border">Carrier</th>
-                <th className="px-3 py-1.5 font-medium border-b border-vscode-border text-center">Status</th>
-                <th className="px-3 py-1.5 font-medium border-b border-vscode-border">Latency</th>
-                <th className="px-3 py-1.5 font-medium border-b border-vscode-border">Uptime (30d)</th>
-                <th className="px-3 py-1.5 font-medium border-b border-vscode-border">Last Sync</th>
-                <th className="px-3 py-1.5 font-medium border-b border-vscode-border text-right">API Calls (24h)</th>
-                <th className="px-3 py-1.5 font-medium border-b border-vscode-border text-right">Errors (24h)</th>
+              <tr className="text-idpxyz-textMuted text-left">
+                <th className="px-3 py-1.5 font-medium border-b border-idpxyz-border">Carrier</th>
+                <th className="px-3 py-1.5 font-medium border-b border-idpxyz-border text-center">Status</th>
+                <th className="px-3 py-1.5 font-medium border-b border-idpxyz-border">Latency</th>
+                <th className="px-3 py-1.5 font-medium border-b border-idpxyz-border">Uptime (30d)</th>
+                <th className="px-3 py-1.5 font-medium border-b border-idpxyz-border">Last Sync</th>
+                <th className="px-3 py-1.5 font-medium border-b border-idpxyz-border text-right">API Calls (24h)</th>
+                <th className="px-3 py-1.5 font-medium border-b border-idpxyz-border text-right">Errors (24h)</th>
               </tr>
             </thead>
             <tbody>
               {carriers.map((c) => (
-                <tr key={c.name} className="hover:bg-vscode-hover cursor-pointer">
-                  <td className="px-3 py-1.5 border-b border-vscode-border text-vscode-text font-medium">{c.name}</td>
-                  <td className="px-3 py-1.5 border-b border-vscode-border text-center">
+                <tr key={c.name} className="hover:bg-idpxyz-hover cursor-pointer">
+                  <td className="px-3 py-1.5 border-b border-idpxyz-border text-idpxyz-text font-medium">{c.name}</td>
+                  <td className="px-3 py-1.5 border-b border-idpxyz-border text-center">
                     <span className={`inline-flex items-center gap-1 text-[10px] px-2 py-0.5 rounded font-medium ${
                       c.status === 'online' ? 'bg-green-500/20 text-green-400' :
                       c.status === 'degraded' ? 'bg-yellow-500/20 text-yellow-400' :
@@ -90,12 +90,12 @@ export default function NetworkHealth({ onOpenTab }: NetworkHealthProps) {
                       {c.status}
                     </span>
                   </td>
-                  <td className="px-3 py-1.5 border-b border-vscode-border text-vscode-text font-mono">{c.latency}</td>
-                  <td className="px-3 py-1.5 border-b border-vscode-border text-vscode-text">{c.uptime}</td>
-                  <td className="px-3 py-1.5 border-b border-vscode-border text-vscode-textMuted">{c.lastSync}</td>
-                  <td className="px-3 py-1.5 border-b border-vscode-border text-right text-vscode-text">{c.apiCalls24h.toLocaleString()}</td>
-                  <td className="px-3 py-1.5 border-b border-vscode-border text-right">
-                    <span className={c.errors24h > 10 ? 'text-red-400 font-medium' : c.errors24h > 0 ? 'text-yellow-400' : 'text-vscode-textMuted'}>{c.errors24h}</span>
+                  <td className="px-3 py-1.5 border-b border-idpxyz-border text-idpxyz-text font-mono">{c.latency}</td>
+                  <td className="px-3 py-1.5 border-b border-idpxyz-border text-idpxyz-text">{c.uptime}</td>
+                  <td className="px-3 py-1.5 border-b border-idpxyz-border text-idpxyz-textMuted">{c.lastSync}</td>
+                  <td className="px-3 py-1.5 border-b border-idpxyz-border text-right text-idpxyz-text">{c.apiCalls24h.toLocaleString()}</td>
+                  <td className="px-3 py-1.5 border-b border-idpxyz-border text-right">
+                    <span className={c.errors24h > 10 ? 'text-red-400 font-medium' : c.errors24h > 0 ? 'text-yellow-400' : 'text-idpxyz-textMuted'}>{c.errors24h}</span>
                   </td>
                 </tr>
               ))}
@@ -104,19 +104,19 @@ export default function NetworkHealth({ onOpenTab }: NetworkHealthProps) {
         </div>
 
         {/* Integration endpoints */}
-        <div className="bg-vscode-sidebar rounded-lg p-4 border border-vscode-border">
-          <h3 className="text-[12px] font-semibold text-vscode-textBright mb-3 flex items-center gap-2">
-            <RefreshCw size={14} className="text-vscode-textMuted" />
+        <div className="bg-idpxyz-sidebar rounded-lg p-4 border border-idpxyz-border">
+          <h3 className="text-[12px] font-semibold text-idpxyz-textBright mb-3 flex items-center gap-2">
+            <RefreshCw size={14} className="text-idpxyz-textMuted" />
             Integration Endpoints
           </h3>
           <div className="grid grid-cols-2 gap-2">
             {integrations.map((ep) => (
-              <div key={ep.name} className="flex items-center gap-3 p-2.5 rounded border border-vscode-border hover:bg-vscode-hover">
+              <div key={ep.name} className="flex items-center gap-3 p-2.5 rounded border border-idpxyz-border hover:bg-idpxyz-hover">
                 <span className={`w-2.5 h-2.5 rounded-full shrink-0 ${
                   ep.status === 'online' ? 'bg-green-400' : ep.status === 'degraded' ? 'bg-yellow-400' : 'bg-red-400'
                 }`} />
-                <span className="text-[12px] text-vscode-text flex-1">{ep.name}</span>
-                <span className="text-[11px] text-vscode-textMuted font-mono">{ep.latency}</span>
+                <span className="text-[12px] text-idpxyz-text flex-1">{ep.name}</span>
+                <span className="text-[11px] text-idpxyz-textMuted font-mono">{ep.latency}</span>
               </div>
             ))}
           </div>

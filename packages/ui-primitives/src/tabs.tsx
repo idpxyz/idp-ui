@@ -1,118 +1,85 @@
+'use client';
+
 import * as React from 'react';
+import * as TabsPrimitive from '@radix-ui/react-tabs';
 import { cn } from '@idpxyz/ui-utils';
 
-interface TabsProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'defaultValue'> {
-  value?: string;
-  defaultValue?: string;
-  onValueChange?: (value: string) => void;
+type TabsProps = React.ComponentPropsWithoutRef<typeof TabsPrimitive.Root>;
+
+function Tabs({ className, ...props }: TabsProps) {
+  return <TabsPrimitive.Root className={cn('flex flex-col', className)} {...props} />;
 }
 
-function Tabs({ value: controlledValue, defaultValue, onValueChange, className, children, ...props }: TabsProps) {
-  const [internalValue, setInternalValue] = React.useState(defaultValue ?? '');
-  const value = controlledValue ?? internalValue;
-  const handleChange = React.useCallback((v: string) => {
-    if (controlledValue === undefined) setInternalValue(v);
-    onValueChange?.(v);
-  }, [controlledValue, onValueChange]);
+const TabsList = React.forwardRef<
+  React.ComponentRef<typeof TabsPrimitive.List>,
+  React.ComponentPropsWithoutRef<typeof TabsPrimitive.List>
+>(({ className, ...props }, ref) => (
+  <TabsPrimitive.List
+    ref={ref}
+    className={cn(
+      'inline-flex h-[36px] items-center gap-0 border-b border-idpxyz-border',
+      className
+    )}
+    {...props}
+  />
+));
+TabsList.displayName = TabsPrimitive.List.displayName;
 
-  return (
-    <TabsContext.Provider value={{ value, onValueChange: handleChange }}>
-      <div className={cn('flex flex-col', className)} {...props}>
-        {children}
-      </div>
-    </TabsContext.Provider>
-  );
-}
-
-const TabsContext = React.createContext<{ value: string; onValueChange: (v: string) => void }>({
-  value: '',
-  onValueChange: () => {},
-});
-
-function useTabsContext() {
-  return React.useContext(TabsContext);
-}
-
-const TabsList = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
-  ({ className, ...props }, ref) => (
-    <div
-      ref={ref}
-      role="tablist"
-      className={cn(
-        'inline-flex h-[36px] items-center gap-0 border-b border-vscode-border',
-        className
-      )}
-      {...props}
-    />
-  )
-);
-TabsList.displayName = 'TabsList';
-
-interface TabsTriggerProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  value: string;
+interface TabsTriggerProps extends React.ComponentPropsWithoutRef<typeof TabsPrimitive.Trigger> {
   closable?: boolean;
   onClose?: (value: string) => void;
 }
 
-const TabsTrigger = React.forwardRef<HTMLButtonElement, TabsTriggerProps>(
-  ({ className, value, closable, onClose, children, ...props }, ref) => {
-    const ctx = useTabsContext();
-    const isActive = ctx.value === value;
-    return (
-      <button
-        ref={ref}
-        role="tab"
-        type="button"
-        aria-selected={isActive}
-        data-state={isActive ? 'active' : 'inactive'}
-        onClick={() => ctx.onValueChange(value)}
-        className={cn(
-          'group relative inline-flex h-full items-center justify-center gap-1.5 px-4 text-[13px] font-medium transition-colors',
-          'text-vscode-textMuted hover:text-vscode-text focus-visible:outline-none',
-          isActive && 'text-vscode-textBright after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:bg-vscode-accent after:rounded-full',
-          className
-        )}
-        {...props}
-      >
-        {children}
-        {closable && (
-          <span
-            role="button"
-            aria-label={`Close ${value}`}
-            onClick={(e) => { e.stopPropagation(); onClose?.(value); }}
-            className="ml-1 p-0.5 rounded hover:bg-vscode-hover opacity-0 group-hover:opacity-100 transition-opacity"
-          >
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5">
-              <line x1="3" y1="3" x2="9" y2="9" />
-              <line x1="9" y1="3" x2="3" y2="9" />
-            </svg>
-          </span>
-        )}
-      </button>
-    );
-  }
+const TabsTrigger = React.forwardRef<React.ComponentRef<typeof TabsPrimitive.Trigger>, TabsTriggerProps>(
+  ({ className, value, closable, onClose, children, ...props }, ref) => (
+    <TabsPrimitive.Trigger
+      ref={ref}
+      value={value!}
+      className={cn(
+        'group relative inline-flex h-full items-center justify-center gap-1.5 px-4 text-[13px] font-medium transition-colors',
+        'text-idpxyz-textMuted hover:text-idpxyz-text focus-visible:outline-none',
+        'data-[state=active]:text-idpxyz-textBright data-[state=active]:after:absolute data-[state=active]:after:bottom-0 data-[state=active]:after:left-0 data-[state=active]:after:right-0 data-[state=active]:after:h-[2px] data-[state=active]:after:bg-idpxyz-accent data-[state=active]:after:rounded-full',
+        className
+      )}
+      {...props}
+    >
+      {children}
+      {closable && value !== undefined && (
+        <span
+          role="button"
+          tabIndex={-1}
+          aria-label={`Close ${value}`}
+          onClick={(e) => {
+            e.stopPropagation();
+            e.preventDefault();
+            onClose?.(value);
+          }}
+          onPointerDown={(e) => e.stopPropagation()}
+          className="ml-1 p-0.5 rounded hover:bg-idpxyz-hover opacity-0 group-hover:opacity-100 transition-opacity"
+        >
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5">
+            <line x1="3" y1="3" x2="9" y2="9" />
+            <line x1="9" y1="3" x2="3" y2="9" />
+          </svg>
+        </span>
+      )}
+    </TabsPrimitive.Trigger>
+  )
 );
 TabsTrigger.displayName = 'TabsTrigger';
 
-interface TabsContentProps extends React.HTMLAttributes<HTMLDivElement> {
-  value: string;
-}
+type TabsContentProps = React.ComponentPropsWithoutRef<typeof TabsPrimitive.Content>;
 
-const TabsContent = React.forwardRef<HTMLDivElement, TabsContentProps>(
-  ({ className, value, ...props }, ref) => {
-    const ctx = useTabsContext();
-    if (ctx.value !== value) return null;
-    return (
-      <div
-        ref={ref}
-        role="tabpanel"
-        data-state="active"
-        className={cn('mt-0 focus-visible:outline-none', className)}
-        {...props}
-      />
-    );
-  }
+const TabsContent = React.forwardRef<React.ComponentRef<typeof TabsPrimitive.Content>, TabsContentProps>(
+  ({ className, value, ...props }, ref) => (
+    <TabsPrimitive.Content
+      ref={ref}
+      value={value!}
+      className={cn('mt-0 focus-visible:outline-none', className)}
+      {...props}
+    />
+  )
 );
-TabsContent.displayName = 'TabsContent';
+TabsContent.displayName = TabsPrimitive.Content.displayName;
 
 export { Tabs, TabsList, TabsTrigger, TabsContent, type TabsProps, type TabsTriggerProps, type TabsContentProps };

@@ -18,14 +18,14 @@ interface TimelineProps {
 }
 
 const dotColors = {
-  default: 'bg-vscode-textMuted ring-vscode-textMuted/20',
+  default: 'bg-idpxyz-textMuted ring-idpxyz-textMuted/20',
   success: 'bg-green-500 ring-green-500/20',
   warning: 'bg-yellow-500 ring-yellow-500/20',
   error: 'bg-red-500 ring-red-500/20',
 };
 
 const lineColors = {
-  default: 'bg-vscode-border',
+  default: 'bg-idpxyz-border',
   success: 'bg-green-500/40',
   warning: 'bg-yellow-500/40',
   error: 'bg-red-500/40',
@@ -52,12 +52,12 @@ function Timeline({ items, className }: TimelineProps) {
             )}
           </div>
           <div className="flex-1 min-w-0 pb-8 last:pb-0">
-            <div className="bg-vscode-sidebar/50 border border-vscode-border/50 rounded-lg px-4 py-3 group-hover:border-vscode-accent/30 transition-colors">
+            <div className="bg-idpxyz-sidebar/50 border border-idpxyz-border/50 rounded-lg px-4 py-3 group-hover:border-idpxyz-accent/30 transition-colors">
               <div className="flex items-center justify-between">
-                <div className="text-[13px] font-semibold text-vscode-textBright">{item.title}</div>
-                {item.timestamp && <div className="text-[11px] text-vscode-textMuted">{item.timestamp}</div>}
+                <div className="text-[13px] font-semibold text-idpxyz-textBright">{item.title}</div>
+                {item.timestamp && <div className="text-[11px] text-idpxyz-textMuted">{item.timestamp}</div>}
               </div>
-              {item.description && <div className="text-[12px] text-vscode-textMuted mt-1">{item.description}</div>}
+              {item.description && <div className="text-[12px] text-idpxyz-textMuted mt-1">{item.description}</div>}
             </div>
           </div>
         </div>

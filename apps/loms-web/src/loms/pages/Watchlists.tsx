@@ -63,29 +63,29 @@ export default function Watchlists({ onOpenTab }: WatchlistsProps) {
   };
 
   return (
-    <div className="flex-1 flex flex-col overflow-hidden bg-vscode-editor">
-      <div className="flex items-center justify-between px-5 py-3 border-b border-vscode-border shrink-0">
+    <div className="flex-1 flex flex-col overflow-hidden bg-idpxyz-editor">
+      <div className="flex items-center justify-between px-5 py-3 border-b border-idpxyz-border shrink-0">
         <div>
-          <h1 className="text-[15px] font-semibold text-vscode-textBright flex items-center gap-2">
-            <Eye size={16} className="text-vscode-accent" /> Watchlists
+          <h1 className="text-[15px] font-semibold text-idpxyz-textBright flex items-center gap-2">
+            <Eye size={16} className="text-idpxyz-accent" /> Watchlists
           </h1>
-          <p className="text-[11px] text-vscode-textMuted mt-0.5">Continuous monitoring lists with alert rules</p>
+          <p className="text-[11px] text-idpxyz-textMuted mt-0.5">Continuous monitoring lists with alert rules</p>
         </div>
         <Button variant="default" onClick={() => addToast({ type: 'info', title: 'New watchlist', message: 'Watchlist builder will open here' })}>
           <Plus size={12} /> New Watchlist
         </Button>
       </div>
 
-      <div className="grid grid-cols-3 gap-3 px-5 py-3 border-b border-vscode-border shrink-0">
+      <div className="grid grid-cols-3 gap-3 px-5 py-3 border-b border-idpxyz-border shrink-0">
         <Metric title="Total Watchlists" value={String(watchlistsLocal.length)} />
         <Metric title="Watched Objects" value={String(totalWatchedObjects)} />
         <Metric title="Critical Alerts" value={String(totalCritical)} danger={totalCritical > 0} />
       </div>
 
-      <div className="flex items-center gap-3 px-5 py-2 border-b border-vscode-border shrink-0">
-        <div className="flex items-center gap-2 bg-vscode-inputBg border border-vscode-border rounded px-2 py-1 w-[260px]">
-          <Search size={12} className="text-vscode-textMuted shrink-0" />
-          <input value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search watchlists..." className="flex-1 bg-transparent outline-none text-[12px] text-vscode-text placeholder:text-vscode-textMuted" />
+      <div className="flex items-center gap-3 px-5 py-2 border-b border-idpxyz-border shrink-0">
+        <div className="flex items-center gap-2 bg-idpxyz-inputBg border border-idpxyz-border rounded px-2 py-1 w-[260px]">
+          <Search size={12} className="text-idpxyz-textMuted shrink-0" />
+          <input value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search watchlists..." className="flex-1 bg-transparent outline-none text-[12px] text-idpxyz-text placeholder:text-idpxyz-textMuted" />
         </div>
         <div className="flex items-center gap-1">
           {(['all', 'shipment', 'exception'] as const).map((t) => (
@@ -94,31 +94,31 @@ export default function Watchlists({ onOpenTab }: WatchlistsProps) {
             </Button>
           ))}
         </div>
-        <label className="flex items-center gap-1.5 text-[11px] text-vscode-textMuted cursor-pointer">
-          <input type="checkbox" checked={onlyAlerts} onChange={(e) => setOnlyAlerts(e.target.checked)} className="accent-vscode-accent" />
+        <label className="flex items-center gap-1.5 text-[11px] text-idpxyz-textMuted cursor-pointer">
+          <input type="checkbox" checked={onlyAlerts} onChange={(e) => setOnlyAlerts(e.target.checked)} className="accent-idpxyz-accent" />
           Critical only
         </label>
-        <span className="ml-auto text-[11px] text-vscode-textMuted">{filtered.length} watchlists</span>
+        <span className="ml-auto text-[11px] text-idpxyz-textMuted">{filtered.length} watchlists</span>
       </div>
 
       <div className="flex-1 overflow-y-auto p-5">
         <div className="space-y-2">
           {filtered.map((w) => (
-            <div key={w.id} className="border border-vscode-border rounded bg-vscode-sidebar p-3 hover:border-vscode-accent/40 transition-colors group">
+            <div key={w.id} className="border border-idpxyz-border rounded bg-idpxyz-sidebar p-3 hover:border-idpxyz-accent/40 transition-colors group">
               <div className="flex items-start gap-3">
-                <div className="w-8 h-8 rounded bg-vscode-hover flex items-center justify-center shrink-0">
-                  {w.type === 'shipment' ? <Truck size={14} className="text-vscode-accent" /> : <AlertTriangle size={14} className="text-orange-400" />}
+                <div className="w-8 h-8 rounded bg-idpxyz-hover flex items-center justify-center shrink-0">
+                  {w.type === 'shipment' ? <Truck size={14} className="text-idpxyz-accent" /> : <AlertTriangle size={14} className="text-orange-400" />}
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2">
-                    <span className="text-[12px] font-medium text-vscode-textBright truncate">{w.name}</span>
-                    <span className="text-[10px] px-1.5 py-0.5 rounded bg-vscode-hover text-vscode-textMuted capitalize">{w.type}</span>
+                    <span className="text-[12px] font-medium text-idpxyz-textBright truncate">{w.name}</span>
+                    <span className="text-[10px] px-1.5 py-0.5 rounded bg-idpxyz-hover text-idpxyz-textMuted capitalize">{w.type}</span>
                     {w.critical > 0 && (
                       <span className="text-[10px] px-1.5 py-0.5 rounded bg-red-500/20 text-red-400">{w.critical} critical</span>
                     )}
                   </div>
-                  <p className="text-[11px] text-vscode-textMuted mt-0.5 truncate">{w.rule}</p>
-                  <div className="flex items-center gap-3 mt-1 text-[10px] text-vscode-textMuted">
+                  <p className="text-[11px] text-idpxyz-textMuted mt-0.5 truncate">{w.rule}</p>
+                  <div className="flex items-center gap-3 mt-1 text-[10px] text-idpxyz-textMuted">
                     <span>{w.count} objects</span>
                     <span>·</span>
                     <span>Owner: {w.owner}</span>
@@ -138,7 +138,7 @@ export default function Watchlists({ onOpenTab }: WatchlistsProps) {
             </div>
           ))}
           {filtered.length === 0 && (
-            <div className="text-center py-14 text-vscode-textMuted">
+            <div className="text-center py-14 text-idpxyz-textMuted">
               <Eye size={28} className="mx-auto mb-2 opacity-20" />
               <p className="text-[12px]">No watchlists found</p>
             </div>
@@ -151,9 +151,9 @@ export default function Watchlists({ onOpenTab }: WatchlistsProps) {
 
 function Metric({ title, value, danger = false }: { title: string; value: string; danger?: boolean }) {
   return (
-    <div className="px-3 py-2 rounded border border-vscode-border bg-vscode-sidebar">
-      <div className="text-[10px] uppercase tracking-wider text-vscode-textMuted">{title}</div>
-      <div className={`text-[18px] font-semibold mt-1 ${danger ? 'text-red-400' : 'text-vscode-textBright'}`}>{value}</div>
+    <div className="px-3 py-2 rounded border border-idpxyz-border bg-idpxyz-sidebar">
+      <div className="text-[10px] uppercase tracking-wider text-idpxyz-textMuted">{title}</div>
+      <div className={`text-[18px] font-semibold mt-1 ${danger ? 'text-red-400' : 'text-idpxyz-textBright'}`}>{value}</div>
     </div>
   );
 }

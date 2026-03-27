@@ -94,9 +94,9 @@ function App() {
 
 ### VS Code Theme Tokens (Workspace)
 Used by workspace components (EditorGroup, ActivityBar, etc.):
-- `vscode-bg`, `vscode-sidebar`, `vscode-tab`, `vscode-editor`
-- `vscode-text`, `vscode-textMuted`, `vscode-textBright`
-- `vscode-accent`, `vscode-border`, `vscode-hover`, `vscode-activeItem`
+- `idpxyz-bg`, `idpxyz-sidebar`, `idpxyz-tab`, `idpxyz-editor`
+- `idpxyz-text`, `idpxyz-textMuted`, `idpxyz-textBright`
+- `idpxyz-accent`, `idpxyz-border`, `idpxyz-hover`, `idpxyz-activeItem`
 
 ## CSS Variables
 

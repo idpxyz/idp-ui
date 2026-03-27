@@ -91,7 +91,7 @@ export default function EditorGroup({
 
   const getTabIcon = (id: string) => {
     const Icon = tabIconMap[id] || Layers;
-    return <Icon size={13} className="mr-1.5 shrink-0 text-vscode-textMuted" />;
+    return <Icon size={13} className="mr-1.5 shrink-0 text-idpxyz-textMuted" />;
   };
 
   const checkOverflow = useCallback(() => {
@@ -130,20 +130,20 @@ export default function EditorGroup({
   return (
     <div
       className={`flex-1 flex flex-col overflow-hidden min-w-0 min-h-0 ${
-        isActive ? 'ring-1 ring-vscode-accent/30' : ''
+        isActive ? 'ring-1 ring-idpxyz-accent/30' : ''
       }`}
       onClick={onActivate}
     >
       {/* Tab bar */}
       {group.tabs.length > 0 && (
-        <div className="flex items-center bg-vscode-tab h-[35px] shrink-0 select-none border-b border-vscode-border">
+        <div className="flex items-center bg-idpxyz-tab h-[35px] shrink-0 select-none border-b border-idpxyz-border">
           {/* Scroll left button */}
           {canScrollLeft && (
             <Button
               onClick={(e) => { e.stopPropagation(); scrollTabs('left'); }}
               variant="ghost"
               size="icon"
-              className="w-[24px] h-full rounded-none shrink-0 border-r border-vscode-tabBorder"
+              className="w-[24px] h-full rounded-none shrink-0 border-r border-idpxyz-tabBorder"
               title="Scroll tabs left"
             >
               <ChevronLeft size={14} />
@@ -158,13 +158,13 @@ export default function EditorGroup({
               <div
                 key={tab.id}
                 data-tab-id={tab.id}
-                className={`group flex items-center h-[35px] min-w-0 px-3 cursor-pointer text-[13px] border-r border-vscode-tabBorder shrink-0 relative
+                className={`group flex items-center h-[35px] min-w-0 px-3 cursor-pointer text-[13px] border-r border-idpxyz-tabBorder shrink-0 relative
                   ${isOverflowing ? 'max-w-[160px]' : ''}
                   ${group.activeTab === tab.id
-                    ? 'bg-vscode-tabActive text-vscode-textBright border-t-2 border-t-vscode-accent'
-                    : 'bg-vscode-tab text-vscode-textMuted hover:bg-vscode-hover border-t border-t-transparent hover:text-vscode-text'
+                    ? 'bg-idpxyz-tabActive text-idpxyz-textBright border-t-2 border-t-idpxyz-accent'
+                    : 'bg-idpxyz-tab text-idpxyz-textMuted hover:bg-idpxyz-hover border-t border-t-transparent hover:text-idpxyz-text'
                   }
-                  ${dragOverIdx === group.tabs.indexOf(tab) ? 'ring-1 ring-vscode-accent/60' : ''}
+                  ${dragOverIdx === group.tabs.indexOf(tab) ? 'ring-1 ring-idpxyz-accent/60' : ''}
                 `}
                 draggable
                 onDragStart={(e) => {
@@ -198,12 +198,12 @@ export default function EditorGroup({
                 })()}
                 {getTabIcon(tab.id)}
                 {tab.pinned && (
-                  <span className="text-vscode-accent text-[10px] mr-1 shrink-0" title="Pinned">{'\u25CF'}</span>
+                  <span className="text-idpxyz-accent text-[10px] mr-1 shrink-0" title="Pinned">{'\u25CF'}</span>
                 )}
                 <span className="min-w-0 flex-1 truncate whitespace-nowrap mr-2">
                   {tab.name}
                   {tab.subtitle && (
-                    <span className={`text-[10px] ml-1 ${group.activeTab === tab.id ? 'text-vscode-text' : 'text-vscode-textMuted'}`}>
+                    <span className={`text-[10px] ml-1 ${group.activeTab === tab.id ? 'text-idpxyz-text' : 'text-idpxyz-textMuted'}`}>
                       {tab.subtitle}
                     </span>
                   )}
@@ -234,7 +234,7 @@ export default function EditorGroup({
               onClick={(e) => { e.stopPropagation(); scrollTabs('right'); }}
               variant="ghost"
               size="icon"
-              className="w-[24px] h-full rounded-none shrink-0 border-l border-vscode-tabBorder"
+              className="w-[24px] h-full rounded-none shrink-0 border-l border-idpxyz-tabBorder"
               title="Scroll tabs right"
             >
               <ChevronRight size={14} />
@@ -248,7 +248,7 @@ export default function EditorGroup({
                 onClick={(e) => { e.stopPropagation(); setTabListOpen(!tabListOpen); }}
                 variant="ghost"
                 size="icon"
-                className="w-[28px] h-full rounded-none border-l border-vscode-tabBorder"
+                className="w-[28px] h-full rounded-none border-l border-idpxyz-tabBorder"
                 title="Open tabs list"
               >
                 <ChevronDown size={14} />
@@ -256,7 +256,7 @@ export default function EditorGroup({
               {tabListOpen && (
                 <>
                   <div className="fixed inset-0 z-40" onClick={() => setTabListOpen(false)} />
-                  <div className="absolute right-0 top-full mt-0.5 z-50 bg-vscode-sidebar border border-vscode-border rounded shadow-lg py-1 min-w-[220px] max-h-[320px] overflow-y-auto">
+                  <div className="absolute right-0 top-full mt-0.5 z-50 bg-idpxyz-sidebar border border-idpxyz-border rounded shadow-lg py-1 min-w-[220px] max-h-[320px] overflow-y-auto">
                     {group.tabs.map((tab) => (
                       <Button
                         key={tab.id}
@@ -264,12 +264,12 @@ export default function EditorGroup({
                         size="sm"
                         onClick={(e) => { e.stopPropagation(); onTabClick(tab.id); setTabListOpen(false); }}
                         className={`w-full h-auto justify-start rounded-none px-3 py-1.5 text-[12px] ${
-                          group.activeTab === tab.id ? 'text-vscode-accent font-medium' : 'text-vscode-text'
+                          group.activeTab === tab.id ? 'text-idpxyz-accent font-medium' : 'text-idpxyz-text'
                         }`}
                       >
                         {getTabIcon(tab.id)}
                         <span className="truncate">{tab.name}</span>
-                        {tab.pinned && <span className="text-vscode-accent text-[9px] ml-auto shrink-0">{'\u25CF'}</span>}
+                        {tab.pinned && <span className="text-idpxyz-accent text-[9px] ml-auto shrink-0">{'\u25CF'}</span>}
                         {(() => { const d = getTabRiskDot(tab); return d ? <span className={`w-1.5 h-1.5 rounded-full ${d} ml-auto shrink-0`} /> : null; })()}
                       </Button>
                     ))}
@@ -302,7 +302,7 @@ export default function EditorGroup({
                 {menuOpen && (
                   <>
                     <div className="fixed inset-0 z-40" onClick={() => setMenuOpen(false)} />
-                    <div className="absolute right-0 top-full mt-1 z-50 bg-vscode-sidebar border border-vscode-border rounded shadow-lg py-1 min-w-[min(100vw-24px,280px)]">
+                    <div className="absolute right-0 top-full mt-1 z-50 bg-idpxyz-sidebar border border-idpxyz-border rounded shadow-lg py-1 min-w-[min(100vw-24px,280px)]">
                       <Button
                         onClick={(e) => { e.stopPropagation(); onSplitRight(); setMenuOpen(false); }}
                         variant="ghost"
@@ -311,7 +311,7 @@ export default function EditorGroup({
                       >
                         <SplitSquareHorizontal size={14} className="shrink-0" />
                         <span className="min-w-0 flex-1 text-left">Split Editor Right</span>
-                        <span className="shrink-0 text-vscode-textMuted text-[11px] tabular-nums">
+                        <span className="shrink-0 text-idpxyz-textMuted text-[11px] tabular-nums">
                           {'Ctrl+\\'}
                         </span>
                       </Button>
@@ -323,7 +323,7 @@ export default function EditorGroup({
                       >
                         <FlipVertical2 size={14} className="shrink-0" />
                         <span className="min-w-0 flex-1 text-left">Split Editor Down</span>
-                        <span className="shrink-0 text-vscode-textMuted text-[11px] whitespace-nowrap tabular-nums">
+                        <span className="shrink-0 text-idpxyz-textMuted text-[11px] whitespace-nowrap tabular-nums">
                           {'Ctrl+K\u00A0Ctrl+\\'}
                         </span>
                       </Button>
@@ -346,17 +346,17 @@ export default function EditorGroup({
           <>
             <div className="fixed inset-0 z-[60]" onClick={() => setCtxMenu(null)} onContextMenu={(e) => { e.preventDefault(); setCtxMenu(null); }} />
             <div
-              className="fixed z-[61] bg-vscode-sidebar border border-vscode-border rounded shadow-xl py-1 min-w-[220px]"
+              className="fixed z-[61] bg-idpxyz-sidebar border border-idpxyz-border rounded shadow-xl py-1 min-w-[220px]"
               style={{ left: ctxMenu.x, top: ctxMenu.y }}
             >
               <Button
                 onClick={() => { onTabClose(ctxMenu.tabId); setCtxMenu(null); }}
                 variant="ghost"
                 size="sm"
-                className="group flex w-full h-auto justify-start rounded-none px-3 py-1.5 text-[12px] hover:bg-vscode-accent hover:text-white"
+                className="group flex w-full h-auto justify-start rounded-none px-3 py-1.5 text-[12px] hover:bg-idpxyz-accent hover:text-white"
               >
                 Close
-                <span className="ml-auto shrink-0 pl-2 text-[11px] text-vscode-textMuted group-hover:text-white/90">
+                <span className="ml-auto shrink-0 pl-2 text-[11px] text-idpxyz-textMuted group-hover:text-white/90">
                   Ctrl+F4
                 </span>
               </Button>
@@ -365,7 +365,7 @@ export default function EditorGroup({
                 disabled={!hasOtherTabs}
                 variant="ghost"
                 size="sm"
-                className="w-full h-auto justify-start rounded-none px-3 py-1.5 text-[12px] hover:bg-vscode-accent hover:text-white disabled:opacity-40 disabled:pointer-events-none"
+                className="w-full h-auto justify-start rounded-none px-3 py-1.5 text-[12px] hover:bg-idpxyz-accent hover:text-white disabled:opacity-40 disabled:pointer-events-none"
               >
                 Close Others
               </Button>
@@ -374,7 +374,7 @@ export default function EditorGroup({
                 disabled={!hasTabsToRight}
                 variant="ghost"
                 size="sm"
-                className="w-full h-auto justify-start rounded-none px-3 py-1.5 text-[12px] hover:bg-vscode-accent hover:text-white disabled:opacity-40 disabled:pointer-events-none"
+                className="w-full h-auto justify-start rounded-none px-3 py-1.5 text-[12px] hover:bg-idpxyz-accent hover:text-white disabled:opacity-40 disabled:pointer-events-none"
               >
                 Close to the Right
               </Button>
@@ -382,19 +382,19 @@ export default function EditorGroup({
                 onClick={() => { onCloseAll(); setCtxMenu(null); }}
                 variant="ghost"
                 size="sm"
-                className="group flex w-full h-auto justify-start rounded-none px-3 py-1.5 text-[12px] hover:bg-vscode-accent hover:text-white"
+                className="group flex w-full h-auto justify-start rounded-none px-3 py-1.5 text-[12px] hover:bg-idpxyz-accent hover:text-white"
               >
                 Close All
-                <span className="ml-auto shrink-0 pl-2 text-[11px] text-vscode-textMuted group-hover:text-white/90">
+                <span className="ml-auto shrink-0 pl-2 text-[11px] text-idpxyz-textMuted group-hover:text-white/90">
                   Ctrl+K W
                 </span>
               </Button>
-              <div className="h-px bg-vscode-border my-1" />
+              <div className="h-px bg-idpxyz-border my-1" />
               <Button
                 onClick={() => { onTabPin(ctxMenu.tabId); setCtxMenu(null); }}
                 variant="ghost"
                 size="sm"
-                className="w-full h-auto justify-start rounded-none px-3 py-1.5 text-[12px] hover:bg-vscode-accent hover:text-white"
+                className="w-full h-auto justify-start rounded-none px-3 py-1.5 text-[12px] hover:bg-idpxyz-accent hover:text-white"
               >
                 {ctxTab?.pinned ? 'Unpin Tab' : 'Pin Tab'}
               </Button>
@@ -402,22 +402,22 @@ export default function EditorGroup({
                 onClick={() => { onReopenClosed(); setCtxMenu(null); }}
                 variant="ghost"
                 size="sm"
-                className="group flex w-full h-auto justify-start rounded-none px-3 py-1.5 text-[12px] hover:bg-vscode-accent hover:text-white"
+                className="group flex w-full h-auto justify-start rounded-none px-3 py-1.5 text-[12px] hover:bg-idpxyz-accent hover:text-white"
               >
                 Reopen Closed Tab
-                <span className="ml-auto shrink-0 pl-2 text-[11px] text-vscode-textMuted group-hover:text-white/90">
+                <span className="ml-auto shrink-0 pl-2 text-[11px] text-idpxyz-textMuted group-hover:text-white/90">
                   Ctrl+Shift+T
                 </span>
               </Button>
-              <div className="h-px bg-vscode-border my-1" />
+              <div className="h-px bg-idpxyz-border my-1" />
               <Button
                 onClick={() => { navigator.clipboard.writeText(ctxMenu.tabId); setCtxMenu(null); }}
                 variant="ghost"
                 size="sm"
-                className="group flex w-full h-auto justify-start rounded-none px-3 py-1.5 text-[12px] hover:bg-vscode-accent hover:text-white"
+                className="group flex w-full h-auto justify-start rounded-none px-3 py-1.5 text-[12px] hover:bg-idpxyz-accent hover:text-white"
               >
                 Copy Tab ID
-                <span className="ml-auto shrink-0 pl-2 text-[11px] text-vscode-textMuted group-hover:text-white/90">
+                <span className="ml-auto shrink-0 pl-2 text-[11px] text-idpxyz-textMuted group-hover:text-white/90">
                   Shift+Alt+C
                 </span>
               </Button>
@@ -431,7 +431,7 @@ export default function EditorGroup({
         renderContent(activeTabData.id)
       ) : (
         emptyStateContent || (
-          <div className="flex-1 flex items-center justify-center bg-vscode-editor text-vscode-textMuted">
+          <div className="flex-1 flex items-center justify-center bg-idpxyz-editor text-idpxyz-textMuted">
             <div className="text-center">
               <p className="text-[20px] mb-2">Operations Workbench</p>
               <p className="text-[13px]">Select a module from the navigation panel</p>

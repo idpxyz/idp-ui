@@ -122,20 +122,20 @@ export default function ChannelStorePage({ onOpenTab }: ChannelStoreProps) {
   const totalOrdersToday = allStores.reduce((sum, s) => sum + s.ordersToday, 0);
 
   return (
-    <div className="flex-1 flex overflow-hidden bg-vscode-editor">
+    <div className="flex-1 flex overflow-hidden bg-idpxyz-editor">
       {/* Main Area */}
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Header */}
-        <div className="flex items-center justify-between px-5 py-2.5 border-b border-vscode-border shrink-0">
+        <div className="flex items-center justify-between px-5 py-2.5 border-b border-idpxyz-border shrink-0">
           <div className="flex items-center gap-3">
-            <IconStore size={16} className="text-vscode-accent" />
-            <h1 className="text-[14px] font-semibold text-vscode-textBright">渠道 / 店铺管理</h1>
-            <span className="text-[11px] text-vscode-textMuted">{allChannels.length} 个渠道 · {totalStores} 个店铺</span>
+            <IconStore size={16} className="text-idpxyz-accent" />
+            <h1 className="text-[14px] font-semibold text-idpxyz-textBright">渠道 / 店铺管理</h1>
+            <span className="text-[11px] text-idpxyz-textMuted">{allChannels.length} 个渠道 · {totalStores} 个店铺</span>
           </div>
           <div className="flex items-center gap-1.5">
             {selectedStore && selectedChannel && (
               <>
-                <span className="text-[10px] text-vscode-textMuted mr-1 border-r border-vscode-border pr-2">{selectedStore.name}</span>
+                <span className="text-[10px] text-idpxyz-textMuted mr-1 border-r border-idpxyz-border pr-2">{selectedStore.name}</span>
                 <Button variant="ghost" size="sm"><IconRefresh size={12} /> 同步</Button>
                 <Button variant="ghost" size="sm"><IconSettings size={12} /> 设置</Button>
                 <Button variant="ghost" size="sm"><IconExternalLink size={12} /> 打开</Button>
@@ -148,7 +148,7 @@ export default function ChannelStorePage({ onOpenTab }: ChannelStoreProps) {
                 {(selectedStore.status === 'disconnected' || selectedStore.status === 'archived') && (
                   <Button variant="ghost" size="sm" className="text-red-400 hover:text-red-300"><IconTrash size={12} /> 删除</Button>
                 )}
-                <div className="w-px h-4 bg-vscode-border mx-1" />
+                <div className="w-px h-4 bg-idpxyz-border mx-1" />
               </>
             )}
             <Button variant="ghost" size="sm"><IconRefresh size={13} /> 同步全部</Button>
@@ -158,47 +158,47 @@ export default function ChannelStorePage({ onOpenTab }: ChannelStoreProps) {
         </div>
 
         {/* Summary Cards */}
-        <div className="flex items-center gap-3 px-5 py-2.5 border-b border-vscode-border shrink-0">
-          <div className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-vscode-sidebar border border-vscode-border">
-            <IconGlobal size={13} className="text-vscode-accent" />
+        <div className="flex items-center gap-3 px-5 py-2.5 border-b border-idpxyz-border shrink-0">
+          <div className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-idpxyz-sidebar border border-idpxyz-border">
+            <IconGlobal size={13} className="text-idpxyz-accent" />
             <div className="text-[11px]">
-              <span className="text-vscode-textMuted">渠道</span>
-              <span className="ml-1.5 text-vscode-textBright font-medium">{allChannels.length}</span>
+              <span className="text-idpxyz-textMuted">渠道</span>
+              <span className="ml-1.5 text-idpxyz-textBright font-medium">{allChannels.length}</span>
             </div>
           </div>
-          <div className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-vscode-sidebar border border-vscode-border">
+          <div className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-idpxyz-sidebar border border-idpxyz-border">
             <IconStore size={13} className="text-green-400" />
             <div className="text-[11px]">
-              <span className="text-vscode-textMuted">运营中</span>
-              <span className="ml-1.5 text-vscode-textBright font-medium">{activeStores}/{totalStores}</span>
+              <span className="text-idpxyz-textMuted">运营中</span>
+              <span className="ml-1.5 text-idpxyz-textBright font-medium">{activeStores}/{totalStores}</span>
             </div>
           </div>
-          <div className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-vscode-sidebar border border-vscode-border">
+          <div className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-idpxyz-sidebar border border-idpxyz-border">
             <IconWarning size={13} className="text-yellow-400" />
             <div className="text-[11px]">
-              <span className="text-vscode-textMuted">异常</span>
-              <span className="ml-1.5 text-vscode-textBright font-medium">{issueStores}</span>
+              <span className="text-idpxyz-textMuted">异常</span>
+              <span className="ml-1.5 text-idpxyz-textBright font-medium">{issueStores}</span>
             </div>
           </div>
-          <div className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-vscode-sidebar border border-vscode-border">
-            <IconOrder size={13} className="text-vscode-accent" />
+          <div className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-idpxyz-sidebar border border-idpxyz-border">
+            <IconOrder size={13} className="text-idpxyz-accent" />
             <div className="text-[11px]">
-              <span className="text-vscode-textMuted">今日订单</span>
-              <span className="ml-1.5 text-vscode-textBright font-medium">{totalOrdersToday}</span>
+              <span className="text-idpxyz-textMuted">今日订单</span>
+              <span className="ml-1.5 text-idpxyz-textBright font-medium">{totalOrdersToday}</span>
             </div>
           </div>
         </div>
 
         {/* Quick Views */}
-        <div className="flex items-center gap-1 px-5 py-1.5 border-b border-vscode-border shrink-0 overflow-x-auto tab-scroll-hidden">
+        <div className="flex items-center gap-1 px-5 py-1.5 border-b border-idpxyz-border shrink-0 overflow-x-auto tab-scroll-hidden">
           {savedViews.map(v => (
             <button
               key={v.id}
               onClick={() => setActiveQuickView(v.id)}
               className={`px-2.5 py-1 text-[11px] rounded-md whitespace-nowrap transition-colors ${
                 activeQuickView === v.id
-                  ? 'bg-vscode-accent/15 text-vscode-accent font-medium'
-                  : 'text-vscode-textMuted hover:text-vscode-text hover:bg-vscode-hover'
+                  ? 'bg-idpxyz-accent/15 text-idpxyz-accent font-medium'
+                  : 'text-idpxyz-textMuted hover:text-idpxyz-text hover:bg-idpxyz-hover'
               }`}
             >
               {v.label}
@@ -207,21 +207,21 @@ export default function ChannelStorePage({ onOpenTab }: ChannelStoreProps) {
         </div>
 
         {/* Filters */}
-        <div className="flex items-center gap-2 px-5 py-2 border-b border-vscode-border shrink-0">
-          <div className="flex items-center bg-vscode-inputBg rounded px-2.5 h-[28px] flex-1 max-w-[280px]">
-            <IconSearch size={13} className="text-vscode-textMuted mr-1.5 shrink-0" />
+        <div className="flex items-center gap-2 px-5 py-2 border-b border-idpxyz-border shrink-0">
+          <div className="flex items-center bg-idpxyz-inputBg rounded px-2.5 h-[28px] flex-1 max-w-[280px]">
+            <IconSearch size={13} className="text-idpxyz-textMuted mr-1.5 shrink-0" />
             <input
               type="text"
               placeholder="搜索店铺名称、ID、区域..."
               value={searchTerm}
               onChange={e => setSearchTerm(e.target.value)}
-              className="bg-transparent border-none outline-none text-[12px] text-vscode-text w-full placeholder:text-vscode-textMuted"
+              className="bg-transparent border-none outline-none text-[12px] text-idpxyz-text w-full placeholder:text-idpxyz-textMuted"
             />
           </div>
           <select
             value={typeFilter}
             onChange={e => setTypeFilter(e.target.value)}
-            className="bg-vscode-inputBg text-vscode-text text-[11px] h-[28px] px-2 rounded border border-vscode-border outline-none"
+            className="bg-idpxyz-inputBg text-idpxyz-text text-[11px] h-[28px] px-2 rounded border border-idpxyz-border outline-none"
           >
             <option value="all">全部类型</option>
             {Object.entries(channelTypeConfig).map(([k, v]) => (
@@ -231,7 +231,7 @@ export default function ChannelStorePage({ onOpenTab }: ChannelStoreProps) {
           <select
             value={statusFilter}
             onChange={e => setStatusFilter(e.target.value)}
-            className="bg-vscode-inputBg text-vscode-text text-[11px] h-[28px] px-2 rounded border border-vscode-border outline-none"
+            className="bg-idpxyz-inputBg text-idpxyz-text text-[11px] h-[28px] px-2 rounded border border-idpxyz-border outline-none"
           >
             <option value="all">全部状态</option>
             {Object.entries(storeStatusConfig).map(([k, v]) => (
@@ -243,22 +243,22 @@ export default function ChannelStorePage({ onOpenTab }: ChannelStoreProps) {
         {/* Channel → IconStore Tree */}
         <div className="flex-1 overflow-auto">
           {channelTree.map(({ channel, stores }) => (
-            <div key={channel.id} className="border-b border-vscode-border">
+            <div key={channel.id} className="border-b border-idpxyz-border">
               {/* Channel Header */}
               <div
-                className="flex items-center gap-2 px-5 py-2 cursor-pointer hover:bg-vscode-hover select-none"
+                className="flex items-center gap-2 px-5 py-2 cursor-pointer hover:bg-idpxyz-hover select-none"
                 onClick={() => toggleChannel(channel.id)}
               >
-                {expandedChannels.has(channel.id) ? <IconChevronDown size={14} className="text-vscode-textMuted" /> : <IconChevronRight size={14} className="text-vscode-textMuted" />}
-                <IconGlobal size={14} className="text-vscode-accent" />
-                <span className="text-[12px] font-semibold text-vscode-textBright">{channel.name}</span>
+                {expandedChannels.has(channel.id) ? <IconChevronDown size={14} className="text-idpxyz-textMuted" /> : <IconChevronRight size={14} className="text-idpxyz-textMuted" />}
+                <IconGlobal size={14} className="text-idpxyz-accent" />
+                <span className="text-[12px] font-semibold text-idpxyz-textBright">{channel.name}</span>
                 <StatusBadge {...channelTypeConfig[channel.type]} />
-                <span className="text-[11px] text-vscode-textMuted ml-2">{stores.length} 个店铺</span>
-                <span className="ml-auto text-[11px] text-vscode-textMuted">
-                  30天订单 <span className="text-vscode-text font-medium">{channel.totalOrders30d.toLocaleString()}</span>
+                <span className="text-[11px] text-idpxyz-textMuted ml-2">{stores.length} 个店铺</span>
+                <span className="ml-auto text-[11px] text-idpxyz-textMuted">
+                  30天订单 <span className="text-idpxyz-text font-medium">{channel.totalOrders30d.toLocaleString()}</span>
                 </span>
-                <span className="text-[11px] text-vscode-textMuted ml-4">
-                  收入 <span className="text-vscode-textBright font-medium">{channel.currency} {channel.revenue30d.toLocaleString()}</span>
+                <span className="text-[11px] text-idpxyz-textMuted ml-4">
+                  收入 <span className="text-idpxyz-textBright font-medium">{channel.currency} {channel.revenue30d.toLocaleString()}</span>
                 </span>
               </div>
 
@@ -273,14 +273,14 @@ export default function ChannelStorePage({ onOpenTab }: ChannelStoreProps) {
                       <div
                         key={store.id}
                         onClick={() => setSelectedStoreId(store.id)}
-                        className={`flex items-center gap-3 pl-12 pr-5 py-2 cursor-pointer transition-colors border-t border-vscode-border/50 ${
-                          selectedStoreId === store.id ? 'bg-vscode-activeItem' : 'hover:bg-vscode-hover'
+                        className={`flex items-center gap-3 pl-12 pr-5 py-2 cursor-pointer transition-colors border-t border-idpxyz-border/50 ${
+                          selectedStoreId === store.id ? 'bg-idpxyz-activeItem' : 'hover:bg-idpxyz-hover'
                         }`}
                       >
-                        <IconStore size={13} className="text-vscode-textMuted shrink-0" />
+                        <IconStore size={13} className="text-idpxyz-textMuted shrink-0" />
                         <div className="min-w-[180px]">
-                          <div className="text-[12px] text-vscode-text font-medium">{store.name}</div>
-                          <div className="text-[10px] text-vscode-textMuted">{store.id} · {store.region}</div>
+                          <div className="text-[12px] text-idpxyz-text font-medium">{store.name}</div>
+                          <div className="text-[10px] text-idpxyz-textMuted">{store.id} · {store.region}</div>
                         </div>
                         <StatusBadge {...ss} />
                         <div className="flex items-center gap-1 ml-2">
@@ -289,20 +289,20 @@ export default function ChannelStorePage({ onOpenTab }: ChannelStoreProps) {
                         </div>
                         <div className="ml-auto flex items-center gap-6 text-[11px]">
                           <div className="text-center min-w-[50px]">
-                            <div className="text-vscode-textMuted">今日</div>
-                            <div className="text-vscode-textBright font-medium">{store.ordersToday}</div>
+                            <div className="text-idpxyz-textMuted">今日</div>
+                            <div className="text-idpxyz-textBright font-medium">{store.ordersToday}</div>
                           </div>
                           <div className="text-center min-w-[50px]">
-                            <div className="text-vscode-textMuted">30天</div>
-                            <div className="text-vscode-textBright font-medium">{store.orders30d}</div>
+                            <div className="text-idpxyz-textMuted">30天</div>
+                            <div className="text-idpxyz-textBright font-medium">{store.orders30d}</div>
                           </div>
                           <div className="text-right min-w-[100px]">
-                            <div className="text-vscode-textMuted">30天收入</div>
-                            <div className="text-vscode-textBright font-medium">{store.currency} {store.revenue30d.toLocaleString()}</div>
+                            <div className="text-idpxyz-textMuted">30天收入</div>
+                            <div className="text-idpxyz-textBright font-medium">{store.currency} {store.revenue30d.toLocaleString()}</div>
                           </div>
                           <div className="text-right min-w-[120px]">
-                            <div className="text-vscode-textMuted">最近同步</div>
-                            <div className="text-vscode-text text-[10px]">{store.lastSyncAt}</div>
+                            <div className="text-idpxyz-textMuted">最近同步</div>
+                            <div className="text-idpxyz-text text-[10px]">{store.lastSyncAt}</div>
                           </div>
                           <Button variant="ghost" size="icon" className="h-5 w-5"><IconMoreH size={12} /></Button>
                         </div>
@@ -310,7 +310,7 @@ export default function ChannelStorePage({ onOpenTab }: ChannelStoreProps) {
                     );
                   })}
                   {stores.length === 0 && (
-                    <div className="pl-12 pr-5 py-3 text-[11px] text-vscode-textMuted border-t border-vscode-border/50">
+                    <div className="pl-12 pr-5 py-3 text-[11px] text-idpxyz-textMuted border-t border-idpxyz-border/50">
                       此渠道下无匹配店铺
                     </div>
                   )}
@@ -319,7 +319,7 @@ export default function ChannelStorePage({ onOpenTab }: ChannelStoreProps) {
             </div>
           ))}
           {channelTree.length === 0 && (
-            <div className="flex items-center justify-center py-12 text-[12px] text-vscode-textMuted">
+            <div className="flex items-center justify-center py-12 text-[12px] text-idpxyz-textMuted">
               没有匹配当前筛选条件的渠道或店铺
             </div>
           )}
@@ -327,69 +327,69 @@ export default function ChannelStorePage({ onOpenTab }: ChannelStoreProps) {
       </div>
 
       {/* Right Inspector Panel */}
-      <div className="w-[300px] border-l border-vscode-border bg-vscode-sidebar flex flex-col overflow-y-auto shrink-0">
-        <div className="flex items-center justify-between px-4 h-[35px] text-[11px] uppercase tracking-wider text-vscode-breadcrumb shrink-0 border-b border-vscode-border">
+      <div className="w-[300px] border-l border-idpxyz-border bg-idpxyz-sidebar flex flex-col overflow-y-auto shrink-0">
+        <div className="flex items-center justify-between px-4 h-[35px] text-[11px] uppercase tracking-wider text-idpxyz-breadcrumb shrink-0 border-b border-idpxyz-border">
           <span>店铺详情</span>
-          <IconMoreH size={14} className="text-vscode-textMuted cursor-pointer" />
+          <IconMoreH size={14} className="text-idpxyz-textMuted cursor-pointer" />
         </div>
 
         {selectedStore && selectedChannel ? (
           <>
             {/* IconStore Identity */}
-            <div className="px-4 py-3 border-b border-vscode-border">
+            <div className="px-4 py-3 border-b border-idpxyz-border">
               <div className="flex items-center gap-2 mb-2">
-                <IconStore size={14} className="text-vscode-accent" />
-                <span className="text-[13px] text-vscode-textBright font-semibold">{selectedStore.name}</span>
+                <IconStore size={14} className="text-idpxyz-accent" />
+                <span className="text-[13px] text-idpxyz-textBright font-semibold">{selectedStore.name}</span>
               </div>
               <div className="flex items-center gap-2 mb-1">
                 <StatusBadge {...storeStatusConfig[selectedStore.status]} />
                 <StatusBadge {...channelTypeConfig[selectedChannel.type]} />
               </div>
-              <div className="text-[10px] text-vscode-textMuted mt-1">{selectedStore.id} · {selectedChannel.name}</div>
+              <div className="text-[10px] text-idpxyz-textMuted mt-1">{selectedStore.id} · {selectedChannel.name}</div>
             </div>
 
             {/* IconStore Details */}
-            <div className="px-4 py-3 border-b border-vscode-border space-y-1.5 text-[11px]">
-              <div className="text-[11px] uppercase font-bold tracking-wide text-vscode-breadcrumb mb-2">基本信息</div>
-              <div className="flex justify-between"><span className="text-vscode-textMuted">区域</span><span className="text-vscode-text">{selectedStore.region}</span></div>
+            <div className="px-4 py-3 border-b border-idpxyz-border space-y-1.5 text-[11px]">
+              <div className="text-[11px] uppercase font-bold tracking-wide text-idpxyz-breadcrumb mb-2">基本信息</div>
+              <div className="flex justify-between"><span className="text-idpxyz-textMuted">区域</span><span className="text-idpxyz-text">{selectedStore.region}</span></div>
               <div className="flex justify-between items-center">
-                <span className="text-vscode-textMuted">链接</span>
-                <span className="text-vscode-accent text-[10px] flex items-center gap-1 cursor-pointer hover:underline"><IconLink size={10} />{selectedStore.url}</span>
+                <span className="text-idpxyz-textMuted">链接</span>
+                <span className="text-idpxyz-accent text-[10px] flex items-center gap-1 cursor-pointer hover:underline"><IconLink size={10} />{selectedStore.url}</span>
               </div>
-              <div className="flex justify-between"><span className="text-vscode-textMuted">API 版本</span><span className="text-vscode-text font-mono">{selectedStore.apiVersion}</span></div>
-              <div className="flex justify-between"><span className="text-vscode-textMuted">创建时间</span><span className="text-vscode-text">{selectedStore.createdAt}</span></div>
+              <div className="flex justify-between"><span className="text-idpxyz-textMuted">API 版本</span><span className="text-idpxyz-text font-mono">{selectedStore.apiVersion}</span></div>
+              <div className="flex justify-between"><span className="text-idpxyz-textMuted">创建时间</span><span className="text-idpxyz-text">{selectedStore.createdAt}</span></div>
             </div>
 
             {/* Sync Status */}
-            <div className="px-4 py-3 border-b border-vscode-border space-y-1.5 text-[11px]">
-              <div className="text-[11px] uppercase font-bold tracking-wide text-vscode-breadcrumb mb-2">同步状态</div>
+            <div className="px-4 py-3 border-b border-idpxyz-border space-y-1.5 text-[11px]">
+              <div className="text-[11px] uppercase font-bold tracking-wide text-idpxyz-breadcrumb mb-2">同步状态</div>
               <div className="flex justify-between items-center">
-                <span className="text-vscode-textMuted">状态</span>
+                <span className="text-idpxyz-textMuted">状态</span>
                 <div className="flex items-center gap-1">
                   {(() => { const s = syncStatusIcon[selectedStore.syncStatus]; const I = s.icon; return <><I size={11} className={s.color} /><span className={s.color}>{s.label}</span></>; })()}
                 </div>
               </div>
-              <div className="flex justify-between"><span className="text-vscode-textMuted">最近同步</span><span className="text-vscode-text">{selectedStore.lastSyncAt}</span></div>
+              <div className="flex justify-between"><span className="text-idpxyz-textMuted">最近同步</span><span className="text-idpxyz-text">{selectedStore.lastSyncAt}</span></div>
             </div>
 
             {/* Performance */}
-            <div className="px-4 py-3 border-b border-vscode-border space-y-1.5 text-[11px]">
-              <div className="text-[11px] uppercase font-bold tracking-wide text-vscode-breadcrumb mb-2">业绩概览</div>
-              <div className="flex justify-between"><span className="text-vscode-textMuted">今日订单</span><span className="text-vscode-textBright font-medium">{selectedStore.ordersToday}</span></div>
-              <div className="flex justify-between"><span className="text-vscode-textMuted">30天订单</span><span className="text-vscode-textBright font-medium">{selectedStore.orders30d}</span></div>
-              <div className="flex justify-between"><span className="text-vscode-textMuted">30天收入</span><span className="text-vscode-textBright font-medium">{selectedStore.currency} {selectedStore.revenue30d.toLocaleString()}</span></div>
+            <div className="px-4 py-3 border-b border-idpxyz-border space-y-1.5 text-[11px]">
+              <div className="text-[11px] uppercase font-bold tracking-wide text-idpxyz-breadcrumb mb-2">业绩概览</div>
+              <div className="flex justify-between"><span className="text-idpxyz-textMuted">今日订单</span><span className="text-idpxyz-textBright font-medium">{selectedStore.ordersToday}</span></div>
+              <div className="flex justify-between"><span className="text-idpxyz-textMuted">30天订单</span><span className="text-idpxyz-textBright font-medium">{selectedStore.orders30d}</span></div>
+              <div className="flex justify-between"><span className="text-idpxyz-textMuted">30天收入</span><span className="text-idpxyz-textBright font-medium">{selectedStore.currency} {selectedStore.revenue30d.toLocaleString()}</span></div>
             </div>
 
             {/* Contact */}
-            <div className="px-4 py-3 border-b border-vscode-border space-y-1.5 text-[11px]">
-              <div className="text-[11px] uppercase font-bold tracking-wide text-vscode-breadcrumb mb-2">负责人</div>
+            <div className="px-4 py-3 border-b border-idpxyz-border space-y-1.5 text-[11px]">
+              <div className="text-[11px] uppercase font-bold tracking-wide text-idpxyz-breadcrumb mb-2">负责人</div>
               <div className="flex items-center gap-2">
-                <IconUser size={11} className="text-vscode-textMuted" />
-                <span className="text-vscode-text">{selectedStore.contactPerson}</span>
+                <IconUser size={11} className="text-idpxyz-textMuted" />
+                <span className="text-idpxyz-text">{selectedStore.contactPerson}</span>
               </div>
               <div className="flex items-center gap-2">
-                <IconMail size={11} className="text-vscode-textMuted" />
-                <span className="text-vscode-accent text-[10px]">{selectedStore.contactEmail}</span>
+                <IconMail size={11} className="text-idpxyz-textMuted" />
+                <span className="text-idpxyz-accent text-[10px]">{selectedStore.contactEmail}</span>
               </div>
             </div>
 
@@ -397,7 +397,7 @@ export default function ChannelStorePage({ onOpenTab }: ChannelStoreProps) {
             <div className="px-4 py-3" />
           </>
         ) : (
-          <div className="flex-1 flex items-center justify-center text-vscode-textMuted text-[12px] px-4 text-center">
+          <div className="flex-1 flex items-center justify-center text-idpxyz-textMuted text-[12px] px-4 text-center">
             选择一个店铺以查看详情
           </div>
         )}

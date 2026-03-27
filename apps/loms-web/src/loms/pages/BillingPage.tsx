@@ -41,22 +41,22 @@ export default function BillingPage({ onOpenTab }: BillingPageProps) {
   ];
 
   return (
-    <div className="flex-1 flex flex-col overflow-hidden bg-vscode-editor">
-      <div className="flex items-center h-[22px] px-3 text-[12px] text-vscode-breadcrumb bg-vscode-editor border-b border-vscode-border shrink-0 select-none">
-        <span className="hover:text-vscode-textBright cursor-pointer">Management</span>
-        <ChevronRight size={14} className="mx-0.5 text-vscode-textMuted" />
-        <span className="text-vscode-text">Billing</span>
+    <div className="flex-1 flex flex-col overflow-hidden bg-idpxyz-editor">
+      <div className="flex items-center h-[22px] px-3 text-[12px] text-idpxyz-breadcrumb bg-idpxyz-editor border-b border-idpxyz-border shrink-0 select-none">
+        <span className="hover:text-idpxyz-textBright cursor-pointer">Management</span>
+        <ChevronRight size={14} className="mx-0.5 text-idpxyz-textMuted" />
+        <span className="text-idpxyz-text">Billing</span>
       </div>
 
-      <div className="flex items-center h-[32px] border-b border-vscode-border shrink-0 px-2">
+      <div className="flex items-center h-[32px] border-b border-idpxyz-border shrink-0 px-2">
         {tabs.map((tab) => (
           <Button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
             variant="ghost"
             size="sm"
-            className={`h-full rounded-none px-3 text-[11px] border-b-2 border-r border-vscode-border/50 last:border-r-0 ${
-              activeTab === tab.id ? 'text-vscode-text border-b-vscode-accent' : 'text-vscode-textMuted border-transparent hover:text-vscode-text'
+            className={`h-full rounded-none px-3 text-[11px] border-b-2 border-r border-idpxyz-border/50 last:border-r-0 ${
+              activeTab === tab.id ? 'text-idpxyz-text border-b-idpxyz-accent' : 'text-idpxyz-textMuted border-transparent hover:text-idpxyz-text'
             }`}
           >
             {tab.label}
@@ -78,40 +78,40 @@ export default function BillingPage({ onOpenTab }: BillingPageProps) {
                 { label: 'Variance', value: `+$${(totalActual - totalQuoted).toLocaleString()}`, icon: AlertTriangle, color: totalActual > totalQuoted ? 'text-red-400' : 'text-green-400', bg: totalActual > totalQuoted ? 'bg-red-500/10' : 'bg-green-500/10' },
                 { label: 'Discrepancies', value: discrepancies, icon: CreditCard, color: 'text-yellow-400', bg: 'bg-yellow-500/10' },
               ].map((kpi) => (
-                <div key={kpi.label} className={`${kpi.bg} rounded-lg p-4 border border-vscode-border`}>
+                <div key={kpi.label} className={`${kpi.bg} rounded-lg p-4 border border-idpxyz-border`}>
                   <kpi.icon size={16} className={`${kpi.color} mb-2`} />
                   <div className={`text-[20px] font-bold ${kpi.color}`}>{kpi.value}</div>
-                  <div className="text-[12px] text-vscode-textMuted mt-0.5">{kpi.label}</div>
+                  <div className="text-[12px] text-idpxyz-textMuted mt-0.5">{kpi.label}</div>
                 </div>
               ))}
             </div>
 
             <table className="w-full text-[12px] border-collapse">
-              <thead className="sticky top-0 bg-vscode-sidebar z-10">
-                <tr className="text-vscode-textMuted text-left">
-                  <th className="px-3 py-2 font-medium border-b border-vscode-border">Invoice</th>
-                  <th className="px-3 py-2 font-medium border-b border-vscode-border">Carrier</th>
-                  <th className="px-3 py-2 font-medium border-b border-vscode-border">Shipment</th>
-                  <th className="px-3 py-2 font-medium border-b border-vscode-border">Service</th>
-                  <th className="px-3 py-2 font-medium border-b border-vscode-border text-right">Quoted</th>
-                  <th className="px-3 py-2 font-medium border-b border-vscode-border text-right">Actual</th>
-                  <th className="px-3 py-2 font-medium border-b border-vscode-border text-right">Variance</th>
-                  <th className="px-3 py-2 font-medium border-b border-vscode-border text-center">Status</th>
+              <thead className="sticky top-0 bg-idpxyz-sidebar z-10">
+                <tr className="text-idpxyz-textMuted text-left">
+                  <th className="px-3 py-2 font-medium border-b border-idpxyz-border">Invoice</th>
+                  <th className="px-3 py-2 font-medium border-b border-idpxyz-border">Carrier</th>
+                  <th className="px-3 py-2 font-medium border-b border-idpxyz-border">Shipment</th>
+                  <th className="px-3 py-2 font-medium border-b border-idpxyz-border">Service</th>
+                  <th className="px-3 py-2 font-medium border-b border-idpxyz-border text-right">Quoted</th>
+                  <th className="px-3 py-2 font-medium border-b border-idpxyz-border text-right">Actual</th>
+                  <th className="px-3 py-2 font-medium border-b border-idpxyz-border text-right">Variance</th>
+                  <th className="px-3 py-2 font-medium border-b border-idpxyz-border text-center">Status</th>
                 </tr>
               </thead>
               <tbody>
                 {costItems.map((c) => (
-                  <tr key={c.id} className="hover:bg-vscode-hover">
-                    <td className="px-3 py-2 border-b border-vscode-border text-vscode-accent font-medium">{c.id}</td>
-                    <td className="px-3 py-2 border-b border-vscode-border text-vscode-text">{c.carrier}</td>
-                    <td className="px-3 py-2 border-b border-vscode-border">
-                      <span className="text-vscode-accent cursor-pointer hover:underline" onClick={() => onOpenTab?.(`shipment-detail-${c.shipment}`, `Shipment ${c.shipment}`)}>{c.shipment}</span>
+                  <tr key={c.id} className="hover:bg-idpxyz-hover">
+                    <td className="px-3 py-2 border-b border-idpxyz-border text-idpxyz-accent font-medium">{c.id}</td>
+                    <td className="px-3 py-2 border-b border-idpxyz-border text-idpxyz-text">{c.carrier}</td>
+                    <td className="px-3 py-2 border-b border-idpxyz-border">
+                      <span className="text-idpxyz-accent cursor-pointer hover:underline" onClick={() => onOpenTab?.(`shipment-detail-${c.shipment}`, `Shipment ${c.shipment}`)}>{c.shipment}</span>
                     </td>
-                    <td className="px-3 py-2 border-b border-vscode-border text-vscode-text">{c.service}</td>
-                    <td className="px-3 py-2 border-b border-vscode-border text-right text-vscode-text">{c.quoted}</td>
-                    <td className="px-3 py-2 border-b border-vscode-border text-right text-vscode-textBright font-medium">{c.actual}</td>
-                    <td className={`px-3 py-2 border-b border-vscode-border text-right font-medium ${c.variance !== '$0' ? 'text-red-400' : 'text-vscode-textMuted'}`}>{c.variance}</td>
-                    <td className="px-3 py-2 border-b border-vscode-border text-center">
+                    <td className="px-3 py-2 border-b border-idpxyz-border text-idpxyz-text">{c.service}</td>
+                    <td className="px-3 py-2 border-b border-idpxyz-border text-right text-idpxyz-text">{c.quoted}</td>
+                    <td className="px-3 py-2 border-b border-idpxyz-border text-right text-idpxyz-textBright font-medium">{c.actual}</td>
+                    <td className={`px-3 py-2 border-b border-idpxyz-border text-right font-medium ${c.variance !== '$0' ? 'text-red-400' : 'text-idpxyz-textMuted'}`}>{c.variance}</td>
+                    <td className="px-3 py-2 border-b border-idpxyz-border text-center">
                       <span className={`inline-flex items-center gap-1 text-[10px] px-2 py-0.5 rounded font-medium ${
                         c.status === 'matched' ? 'bg-green-500/20 text-green-400' : 'bg-yellow-500/20 text-yellow-400'
                       }`}>
@@ -129,11 +129,11 @@ export default function BillingPage({ onOpenTab }: BillingPageProps) {
         {activeTab === 'settlement' && (
           <div className="space-y-2">
             {settlementExceptions.map((se) => (
-              <div key={se.id} className={`bg-vscode-sidebar rounded p-3 border ${se.status === 'resolved' ? 'border-vscode-border' : 'border-yellow-500/30'}`}>
+              <div key={se.id} className={`bg-idpxyz-sidebar rounded p-3 border ${se.status === 'resolved' ? 'border-idpxyz-border' : 'border-yellow-500/30'}`}>
                 <div className="flex items-center gap-2 mb-1.5">
-                  <span className="text-[12px] text-vscode-accent font-medium">{se.id}</span>
-                  <span className="text-[10px] px-1.5 py-0.5 rounded bg-vscode-hover text-vscode-textMuted font-medium">{se.carrier}</span>
-                  <span className="text-[12px] text-vscode-textMuted">{se.invoice}</span>
+                  <span className="text-[12px] text-idpxyz-accent font-medium">{se.id}</span>
+                  <span className="text-[10px] px-1.5 py-0.5 rounded bg-idpxyz-hover text-idpxyz-textMuted font-medium">{se.carrier}</span>
+                  <span className="text-[12px] text-idpxyz-textMuted">{se.invoice}</span>
                   <span className={`text-[12px] font-bold ${se.amount.startsWith('+') ? 'text-red-400' : 'text-green-400'}`}>{se.amount}</span>
                   <span className={`ml-auto text-[10px] px-1.5 py-0.5 rounded font-medium ${
                     se.status === 'open' ? 'bg-red-500/20 text-red-400' :
@@ -141,8 +141,8 @@ export default function BillingPage({ onOpenTab }: BillingPageProps) {
                     'bg-green-500/20 text-green-400'
                   }`}>{se.status}</span>
                 </div>
-                <div className="text-[12px] text-vscode-text mb-1">{se.reason}</div>
-                <div className="flex items-center gap-4 text-[11px] text-vscode-textMuted">
+                <div className="text-[12px] text-idpxyz-text mb-1">{se.reason}</div>
+                <div className="flex items-center gap-4 text-[11px] text-idpxyz-textMuted">
                   <span>Age: {se.age}</span>
                   <span>Assignee: {se.assignee}</span>
                 </div>

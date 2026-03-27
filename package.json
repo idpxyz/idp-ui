@@ -21,13 +21,16 @@
     "test:watch": "vitest --config packages/ui-primitives/vitest.config.ts",
     "storybook": "storybook dev -p 6006",
     "build:storybook": "storybook build -o storybook-static",
-    "create-app": "node scripts/create-app.mjs"
+    "create-app": "node scripts/create-app.mjs",
+    "generate:iso4217": "pnpm --filter @idpxyz/ui-utils run generate:iso4217"
   },
   "devDependencies": {
+    "@storybook/addon-actions": "8.6.14",
     "@storybook/addon-essentials": "^8.6.14",
     "@storybook/blocks": "^8.6.14",
     "@storybook/react": "^8.6.18",
     "@storybook/react-vite": "^8.6.18",
+    "@storybook/theming": "8.6.18",
     "@tailwindcss/postcss": "^4.2.2",
     "@tailwindcss/vite": "^4.0.0",
     "@testing-library/jest-dom": "^6.9.1",

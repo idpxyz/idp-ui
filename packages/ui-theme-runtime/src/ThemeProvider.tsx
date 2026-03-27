@@ -20,7 +20,7 @@ export function ThemeProvider({
   product?: ProductKey;
 }) {
   const [theme, setTheme] = useState<ThemeMode>(() => {
-    const saved = localStorage.getItem('vscode-theme');
+    const saved = localStorage.getItem('idpxyz-theme');
     return saved === 'light' || saved === 'dark' ? saved : 'dark';
   });
 
@@ -29,7 +29,7 @@ export function ThemeProvider({
     root.classList.remove('dark', 'light');
     root.classList.add(theme);
     applyThemeTokens(theme, product);
-    localStorage.setItem('vscode-theme', theme);
+    localStorage.setItem('idpxyz-theme', theme);
   }, [theme, product]);
 
   const toggleTheme = () => setTheme((t) => (t === 'dark' ? 'light' : 'dark'));

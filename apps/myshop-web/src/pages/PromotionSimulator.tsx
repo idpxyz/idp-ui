@@ -371,17 +371,17 @@ export default function PromotionSimulator({ onOpenTab }: Props) {
   const discountPct = subtotal > 0 ? (totalDiscount / subtotal * 100) : 0;
 
   return (
-    <div className="flex-1 flex flex-col overflow-hidden bg-vscode-editor">
+    <div className="flex-1 flex flex-col overflow-hidden bg-idpxyz-editor">
       {/* Header */}
-      <div className="flex items-center justify-between px-5 py-2.5 border-b border-vscode-border shrink-0">
+      <div className="flex items-center justify-between px-5 py-2.5 border-b border-idpxyz-border shrink-0">
         <div className="flex items-center gap-3">
-          <IconCalculator size={15} className="text-vscode-accent" />
-          <h1 className="text-[14px] font-semibold text-vscode-textBright">促销模拟器</h1>
+          <IconCalculator size={15} className="text-idpxyz-accent" />
+          <h1 className="text-[14px] font-semibold text-idpxyz-textBright">促销模拟器</h1>
           {/* Mode tabs */}
-          <div className="flex items-center bg-vscode-sidebar border border-vscode-border rounded overflow-hidden ml-2">
+          <div className="flex items-center bg-idpxyz-sidebar border border-idpxyz-border rounded overflow-hidden ml-2">
             {([['audit', '🛡️ 自动审计'], ['manual', '🛒 手动模拟']] as const).map(([m, label]) => (
               <button key={m} onClick={() => setMode(m)}
-                className={`px-3 py-1 text-[10px] font-medium transition-colors ${mode === m ? 'bg-vscode-accent/15 text-vscode-accent' : 'text-vscode-textMuted hover:bg-vscode-hover'}`}>
+                className={`px-3 py-1 text-[10px] font-medium transition-colors ${mode === m ? 'bg-idpxyz-accent/15 text-idpxyz-accent' : 'text-idpxyz-textMuted hover:bg-idpxyz-hover'}`}>
                 {label}
               </button>
             ))}
@@ -391,11 +391,11 @@ export default function PromotionSimulator({ onOpenTab }: Props) {
           )}
         </div>
         <div className="flex items-center gap-2">
-          <span className="text-[10px] text-vscode-textMuted">模拟日期</span>
+          <span className="text-[10px] text-idpxyz-textMuted">模拟日期</span>
           <input type="date" value={simDate} onChange={e => setSimDate(e.target.value)}
-            className="bg-vscode-inputBg border border-vscode-border rounded px-2 py-0.5 text-[11px] text-vscode-text outline-none focus:border-vscode-accent" />
+            className="bg-idpxyz-inputBg border border-idpxyz-border rounded px-2 py-0.5 text-[11px] text-idpxyz-text outline-none focus:border-idpxyz-accent" />
           <select value={channel} onChange={e => setChannel(e.target.value)}
-            className="bg-vscode-inputBg border border-vscode-border rounded px-2 py-0.5 text-[11px] text-vscode-text outline-none">
+            className="bg-idpxyz-inputBg border border-idpxyz-border rounded px-2 py-0.5 text-[11px] text-idpxyz-text outline-none">
             <option>官网</option><option>App</option><option>亚马逊</option><option>Shopee</option><option>eBay</option>
           </select>
         </div>
@@ -407,37 +407,37 @@ export default function PromotionSimulator({ onOpenTab }: Props) {
           {/* Left: Summary + Risk Cards */}
           <div className="flex-1 flex flex-col overflow-auto min-w-0">
             {/* Summary cards */}
-            <div className="grid grid-cols-6 gap-2.5 px-4 py-3 border-b border-vscode-border shrink-0">
-              <div className="px-3 py-2 rounded border border-vscode-border bg-vscode-sidebar">
-                <div className="text-[9px] text-vscode-textMuted mb-0.5">生效活动</div>
-                <div className="text-[16px] font-bold text-vscode-text">{audit.summaryStats.totalActive}</div>
+            <div className="grid grid-cols-6 gap-2.5 px-4 py-3 border-b border-idpxyz-border shrink-0">
+              <div className="px-3 py-2 rounded border border-idpxyz-border bg-idpxyz-sidebar">
+                <div className="text-[9px] text-idpxyz-textMuted mb-0.5">生效活动</div>
+                <div className="text-[16px] font-bold text-idpxyz-text">{audit.summaryStats.totalActive}</div>
               </div>
-              <div className="px-3 py-2 rounded border border-vscode-border bg-vscode-sidebar">
-                <div className="text-[9px] text-vscode-textMuted mb-0.5">规则冲突</div>
+              <div className="px-3 py-2 rounded border border-idpxyz-border bg-idpxyz-sidebar">
+                <div className="text-[9px] text-idpxyz-textMuted mb-0.5">规则冲突</div>
                 <div className={`text-[16px] font-bold ${audit.summaryStats.totalConflicts > 0 ? 'text-yellow-400' : 'text-green-400'}`}>{audit.summaryStats.totalConflicts}</div>
               </div>
-              <div className="px-3 py-2 rounded border border-vscode-border bg-vscode-sidebar">
-                <div className="text-[9px] text-vscode-textMuted mb-0.5">高风险项</div>
+              <div className="px-3 py-2 rounded border border-idpxyz-border bg-idpxyz-sidebar">
+                <div className="text-[9px] text-idpxyz-textMuted mb-0.5">高风险项</div>
                 <div className={`text-[16px] font-bold ${audit.summaryStats.criticalCount > 0 ? 'text-red-400' : 'text-green-400'}`}>{audit.summaryStats.criticalCount}</div>
               </div>
-              <div className="px-3 py-2 rounded border border-vscode-border bg-vscode-sidebar">
-                <div className="text-[9px] text-vscode-textMuted mb-0.5">平均折扣率</div>
+              <div className="px-3 py-2 rounded border border-idpxyz-border bg-idpxyz-sidebar">
+                <div className="text-[9px] text-idpxyz-textMuted mb-0.5">平均折扣率</div>
                 <div className={`text-[16px] font-bold ${audit.summaryStats.avgDiscountPct > 30 ? 'text-red-400' : audit.summaryStats.avgDiscountPct > 20 ? 'text-yellow-400' : 'text-green-400'}`}>{audit.summaryStats.avgDiscountPct.toFixed(1)}%</div>
               </div>
-              <div className="px-3 py-2 rounded border border-vscode-border bg-vscode-sidebar">
-                <div className="text-[9px] text-vscode-textMuted mb-0.5">总预算</div>
-                <div className="text-[16px] font-bold text-vscode-text">${(audit.summaryStats.totalBudget / 1000).toFixed(0)}k</div>
+              <div className="px-3 py-2 rounded border border-idpxyz-border bg-idpxyz-sidebar">
+                <div className="text-[9px] text-idpxyz-textMuted mb-0.5">总预算</div>
+                <div className="text-[16px] font-bold text-idpxyz-text">${(audit.summaryStats.totalBudget / 1000).toFixed(0)}k</div>
               </div>
-              <div className="px-3 py-2 rounded border border-vscode-border bg-vscode-sidebar">
-                <div className="text-[9px] text-vscode-textMuted mb-0.5">已消耗</div>
+              <div className="px-3 py-2 rounded border border-idpxyz-border bg-idpxyz-sidebar">
+                <div className="text-[9px] text-idpxyz-textMuted mb-0.5">已消耗</div>
                 <div className="text-[16px] font-bold text-[#dcdcaa]">${(audit.summaryStats.totalSpent / 1000).toFixed(0)}k</div>
-                {audit.summaryStats.totalBudget > 0 && <div className="text-[9px] text-vscode-textMuted">{((audit.summaryStats.totalSpent / audit.summaryStats.totalBudget) * 100).toFixed(0)}%</div>}
+                {audit.summaryStats.totalBudget > 0 && <div className="text-[9px] text-idpxyz-textMuted">{((audit.summaryStats.totalSpent / audit.summaryStats.totalBudget) * 100).toFixed(0)}%</div>}
               </div>
             </div>
 
             {/* Risk cards */}
-            <div className="px-4 py-3 border-b border-vscode-border">
-              <div className="text-[10px] text-vscode-breadcrumb uppercase tracking-wider mb-2 font-bold flex items-center gap-1.5">
+            <div className="px-4 py-3 border-b border-idpxyz-border">
+              <div className="text-[10px] text-idpxyz-breadcrumb uppercase tracking-wider mb-2 font-bold flex items-center gap-1.5">
                 <IconSecurityAlert size={11} className="text-red-400" /> 活动风险评估 ({audit.riskCards.length})
               </div>
               <div className="space-y-2">
@@ -446,12 +446,12 @@ export default function PromotionSimulator({ onOpenTab }: Props) {
                   const barColor = rc.riskLevel === 'critical' ? 'bg-red-400' : rc.riskLevel === 'high' ? 'bg-orange-400' : rc.riskLevel === 'medium' ? 'bg-yellow-400' : 'bg-green-400';
                   const textColor = rc.riskLevel === 'critical' ? 'text-red-400' : rc.riskLevel === 'high' ? 'text-orange-400' : rc.riskLevel === 'medium' ? 'text-yellow-400' : 'text-green-400';
                   return (
-                    <div key={rc.promo.id} className="rounded border border-vscode-border bg-vscode-sidebar overflow-hidden">
-                      <div className="px-3 py-2.5 cursor-pointer hover:bg-vscode-hover/50 transition-colors"
+                    <div key={rc.promo.id} className="rounded border border-idpxyz-border bg-idpxyz-sidebar overflow-hidden">
+                      <div className="px-3 py-2.5 cursor-pointer hover:bg-idpxyz-hover/50 transition-colors"
                         onClick={() => setExpandedCard(expandedCard === rc.promo.id ? null : rc.promo.id)}>
                         <div className="flex items-center gap-2 mb-1.5">
                           <Badge color={tc.color} bg={tc.bgColor}>{tc.label}</Badge>
-                          <span className="text-[11px] text-vscode-text flex-1 truncate font-medium">{rc.promo.name}</span>
+                          <span className="text-[11px] text-idpxyz-text flex-1 truncate font-medium">{rc.promo.name}</span>
                           <span className={`text-[10px] font-bold ${textColor}`}>{rc.riskScore}</span>
                           <span className={`text-[8px] px-1.5 py-0.5 rounded font-bold ${
                             rc.riskLevel === 'critical' ? 'bg-red-400/15 text-red-400' :
@@ -459,24 +459,24 @@ export default function PromotionSimulator({ onOpenTab }: Props) {
                             rc.riskLevel === 'medium' ? 'bg-yellow-400/15 text-yellow-400' :
                             'bg-green-400/15 text-green-400'
                           }`}>{rc.riskLevel === 'critical' ? '极高' : rc.riskLevel === 'high' ? '高' : rc.riskLevel === 'medium' ? '中' : '低'}</span>
-                          <IconChevronRight size={10} className={`text-vscode-textMuted shrink-0 transition-transform ${expandedCard === rc.promo.id ? 'rotate-90' : ''}`} />
+                          <IconChevronRight size={10} className={`text-idpxyz-textMuted shrink-0 transition-transform ${expandedCard === rc.promo.id ? 'rotate-90' : ''}`} />
                         </div>
                         {/* Risk bar */}
-                        <div className="h-[4px] rounded-full bg-vscode-border mb-1.5 overflow-hidden">
+                        <div className="h-[4px] rounded-full bg-idpxyz-border mb-1.5 overflow-hidden">
                           <div className={`h-full rounded-full transition-all ${barColor}`} style={{ width: `${rc.riskScore}%` }} />
                         </div>
                         {/* Metrics row */}
-                        <div className="flex items-center gap-3 text-[9px] text-vscode-textMuted mb-1">
-                          <span>重叠: <span className="text-vscode-text">{rc.overlapCount}</span></span>
-                          <span>预算: <span className="text-vscode-text">{rc.budgetPct.toFixed(0)}%</span></span>
-                          <span>折扣: <span className="text-vscode-text">{rc.maxDiscountPct.toFixed(0)}%</span></span>
+                        <div className="flex items-center gap-3 text-[9px] text-idpxyz-textMuted mb-1">
+                          <span>重叠: <span className="text-idpxyz-text">{rc.overlapCount}</span></span>
+                          <span>预算: <span className="text-idpxyz-text">{rc.budgetPct.toFixed(0)}%</span></span>
+                          <span>折扣: <span className="text-idpxyz-text">{rc.maxDiscountPct.toFixed(0)}%</span></span>
                           <span>{rc.promo.stackable ? '✅ 可叠加' : '🚫 不叠加'}</span>
                         </div>
                         {/* Issues */}
                         {rc.issues.length > 0 && (
                           <div className="space-y-0.5">
                             {rc.issues.map((issue, i) => (
-                              <div key={i} className="flex items-start gap-1 text-[9px] text-vscode-textMuted">
+                              <div key={i} className="flex items-start gap-1 text-[9px] text-idpxyz-textMuted">
                                 <span className="text-yellow-400 mt-px shrink-0">⚠</span>
                                 <span>{issue}</span>
                               </div>
@@ -486,8 +486,8 @@ export default function PromotionSimulator({ onOpenTab }: Props) {
                       </div>
                       {/* ── Resolver Panel ── */}
                       {expandedCard === rc.promo.id && (
-                        <div className="border-t border-vscode-border bg-vscode-editor px-3 py-2.5">
-                          <div className="text-[10px] text-vscode-accent font-bold mb-2 flex items-center gap-1.5">
+                        <div className="border-t border-idpxyz-border bg-idpxyz-editor px-3 py-2.5">
+                          <div className="text-[10px] text-idpxyz-accent font-bold mb-2 flex items-center gap-1.5">
                             <IconAutomation size={10} /> 风险求解建议
                           </div>
                           <div className="space-y-2">
@@ -501,19 +501,19 @@ export default function PromotionSimulator({ onOpenTab }: Props) {
                                   <span className={`w-[5px] h-[5px] rounded-full shrink-0 ${
                                     fix.impact === 'high' ? 'bg-red-400' : fix.impact === 'medium' ? 'bg-yellow-400' : 'bg-green-400'
                                   }`} />
-                                  <span className="text-vscode-text font-bold">{fix.action}</span>
+                                  <span className="text-idpxyz-text font-bold">{fix.action}</span>
                                   <span className={`text-[8px] px-1 py-0.5 rounded ml-auto shrink-0 ${
                                     fix.impact === 'high' ? 'bg-red-400/15 text-red-400' :
                                     fix.impact === 'medium' ? 'bg-yellow-400/15 text-yellow-400' :
                                     'bg-green-400/15 text-green-400'
                                   }`}>{fix.impact === 'high' ? '高优先' : fix.impact === 'medium' ? '中优先' : '建议'}</span>
                                 </div>
-                                <div className="text-vscode-textMuted leading-tight mb-1">{fix.detail}</div>
+                                <div className="text-idpxyz-textMuted leading-tight mb-1">{fix.detail}</div>
                                 {fix.param && (
-                                  <div className="flex items-center gap-2 mt-1.5 px-2 py-1.5 rounded bg-vscode-sidebar border border-vscode-border">
-                                    <span className="text-[9px] text-vscode-textMuted shrink-0">{fix.param}:</span>
+                                  <div className="flex items-center gap-2 mt-1.5 px-2 py-1.5 rounded bg-idpxyz-sidebar border border-idpxyz-border">
+                                    <span className="text-[9px] text-idpxyz-textMuted shrink-0">{fix.param}:</span>
                                     <span className="text-[9px] text-red-400/80 line-through">{fix.currentValue}</span>
-                                    <IconArrowRight size={8} className="text-vscode-textMuted shrink-0" />
+                                    <IconArrowRight size={8} className="text-idpxyz-textMuted shrink-0" />
                                     <span className="text-[9px] text-green-400 font-bold">{fix.suggestedValue}</span>
                                   </div>
                                 )}
@@ -530,8 +530,8 @@ export default function PromotionSimulator({ onOpenTab }: Props) {
 
             {/* Global conflicts */}
             {audit.globalConflicts.length > 0 && (
-              <div className="px-4 py-3 border-b border-vscode-border">
-                <div className="text-[10px] text-vscode-breadcrumb uppercase tracking-wider mb-2 font-bold flex items-center gap-1.5">
+              <div className="px-4 py-3 border-b border-idpxyz-border">
+                <div className="text-[10px] text-idpxyz-breadcrumb uppercase tracking-wider mb-2 font-bold flex items-center gap-1.5">
                   <IconWarning size={11} className="text-yellow-400" /> 全局冲突矩阵 ({audit.globalConflicts.length})
                 </div>
                 <div className="space-y-1.5">
@@ -539,18 +539,18 @@ export default function PromotionSimulator({ onOpenTab }: Props) {
                     <div key={i} className={`flex items-start gap-2 px-3 py-2 rounded border text-[10px] ${
                       c.severity === 'error' ? 'border-red-400/30 bg-red-400/5' :
                       c.severity === 'warning' ? 'border-yellow-400/30 bg-yellow-400/5' :
-                      'border-vscode-border bg-vscode-sidebar'
+                      'border-idpxyz-border bg-idpxyz-sidebar'
                     }`}>
                       <span className={`w-[5px] h-[5px] rounded-full mt-1 shrink-0 ${
-                        c.severity === 'error' ? 'bg-red-400' : c.severity === 'warning' ? 'bg-yellow-400' : 'bg-vscode-accent'
+                        c.severity === 'error' ? 'bg-red-400' : c.severity === 'warning' ? 'bg-yellow-400' : 'bg-idpxyz-accent'
                       }`} />
                       <div className="min-w-0">
                         <div className="flex items-center gap-1.5">
-                          <span className="text-vscode-text font-medium truncate">{c.a}</span>
-                          <span className="text-vscode-textMuted">×</span>
-                          <span className="text-vscode-text font-medium truncate">{c.b}</span>
+                          <span className="text-idpxyz-text font-medium truncate">{c.a}</span>
+                          <span className="text-idpxyz-textMuted">×</span>
+                          <span className="text-idpxyz-text font-medium truncate">{c.b}</span>
                         </div>
-                        <div className="text-vscode-textMuted">{c.reason}</div>
+                        <div className="text-idpxyz-textMuted">{c.reason}</div>
                       </div>
                     </div>
                   ))}
@@ -560,10 +560,10 @@ export default function PromotionSimulator({ onOpenTab }: Props) {
           </div>
 
           {/* Right: Worst-case + Budget health */}
-          <div className="w-[380px] border-l border-vscode-border flex flex-col overflow-auto shrink-0">
+          <div className="w-[380px] border-l border-idpxyz-border flex flex-col overflow-auto shrink-0">
             {/* Budget health */}
-            <div className="px-4 py-3 border-b border-vscode-border">
-              <div className="text-[10px] text-vscode-breadcrumb uppercase tracking-wider mb-2 font-bold flex items-center gap-1.5">
+            <div className="px-4 py-3 border-b border-idpxyz-border">
+              <div className="text-[10px] text-idpxyz-breadcrumb uppercase tracking-wider mb-2 font-bold flex items-center gap-1.5">
                 <IconDollar size={11} /> 预算健康度
               </div>
               <div className="space-y-2">
@@ -573,13 +573,13 @@ export default function PromotionSimulator({ onOpenTab }: Props) {
                   return (
                     <div key={p.id} className="text-[10px]">
                       <div className="flex items-center justify-between mb-0.5">
-                        <span className="text-vscode-text truncate flex-1">{p.name}</span>
+                        <span className="text-idpxyz-text truncate flex-1">{p.name}</span>
                         <span className={`font-bold ${pct > 90 ? 'text-red-400' : pct > 70 ? 'text-yellow-400' : 'text-green-400'}`}>{pct.toFixed(0)}%</span>
                       </div>
-                      <div className="h-[6px] rounded-full bg-vscode-border overflow-hidden">
+                      <div className="h-[6px] rounded-full bg-idpxyz-border overflow-hidden">
                         <div className={`h-full rounded-full ${pct > 90 ? 'bg-red-400' : pct > 70 ? 'bg-yellow-400' : 'bg-green-400'}`} style={{ width: `${Math.min(100, pct)}%` }} />
                       </div>
-                      <div className="flex justify-between text-[8px] text-vscode-textMuted mt-0.5">
+                      <div className="flex justify-between text-[8px] text-idpxyz-textMuted mt-0.5">
                         <span>${p.spent.toLocaleString()} 已用</span>
                         <span>${p.budget.toLocaleString()} 总额</span>
                       </div>
@@ -591,29 +591,29 @@ export default function PromotionSimulator({ onOpenTab }: Props) {
 
             {/* Worst-case simulation */}
             <div className="px-4 py-3">
-              <div className="text-[10px] text-vscode-breadcrumb uppercase tracking-wider mb-2 font-bold flex items-center gap-1.5">
+              <div className="text-[10px] text-idpxyz-breadcrumb uppercase tracking-wider mb-2 font-bold flex items-center gap-1.5">
                 <IconTrendingDown size={11} className="text-red-400" /> 最差场景模拟
-                <span className="text-vscode-textMuted font-normal">(单件商品最大折扣)</span>
+                <span className="text-idpxyz-textMuted font-normal">(单件商品最大折扣)</span>
               </div>
               <div className="space-y-1.5">
                 {audit.worstCases.filter(w => w.totalDiscount > 0).map(w => (
                   <div key={w.spu.id} className={`px-3 py-2 rounded border text-[10px] ${
                     w.discountPct > 50 ? 'border-red-400/30 bg-red-400/5' :
                     w.discountPct > 30 ? 'border-yellow-400/30 bg-yellow-400/5' :
-                    'border-vscode-border bg-vscode-sidebar'
+                    'border-idpxyz-border bg-idpxyz-sidebar'
                   }`}>
                     <div className="flex items-center gap-2 mb-1">
                       <span className="text-[13px]">{w.spu.mainImage}</span>
-                      <span className="text-vscode-text truncate flex-1">{w.spu.name}</span>
+                      <span className="text-idpxyz-text truncate flex-1">{w.spu.name}</span>
                       <span className={`font-bold ${w.discountPct > 50 ? 'text-red-400' : w.discountPct > 30 ? 'text-yellow-400' : 'text-green-400'}`}>
                         {w.discountPct.toFixed(1)}% OFF
                       </span>
                     </div>
                     <div className="flex items-center gap-2 text-[9px]">
-                      <span className="text-vscode-textMuted line-through">${w.originalPrice}</span>
-                      <IconArrowRight size={8} className="text-vscode-textMuted" />
+                      <span className="text-idpxyz-textMuted line-through">${w.originalPrice}</span>
+                      <IconArrowRight size={8} className="text-idpxyz-textMuted" />
                       <span className="text-red-400 font-bold">${w.finalPrice.toFixed(0)}</span>
-                      <span className="text-vscode-textMuted ml-auto">{w.appliedPromos.length} 促销 + {w.appliedCoupons.length} 券</span>
+                      <span className="text-idpxyz-textMuted ml-auto">{w.appliedPromos.length} 促销 + {w.appliedCoupons.length} 券</span>
                     </div>
                     {(w.appliedPromos.length + w.appliedCoupons.length) > 0 && (
                       <div className="flex flex-wrap gap-1 mt-1">
@@ -621,14 +621,14 @@ export default function PromotionSimulator({ onOpenTab }: Props) {
                           <span key={i} className="px-1 py-0.5 rounded bg-[#dcdcaa]/10 text-[8px] text-[#dcdcaa]">{n}</span>
                         ))}
                         {w.appliedCoupons.map((n, i) => (
-                          <span key={i} className="px-1 py-0.5 rounded bg-vscode-accent/10 text-[8px] text-vscode-accent">{n}</span>
+                          <span key={i} className="px-1 py-0.5 rounded bg-idpxyz-accent/10 text-[8px] text-idpxyz-accent">{n}</span>
                         ))}
                       </div>
                     )}
                   </div>
                 ))}
                 {audit.worstCases.filter(w => w.totalDiscount > 0).length === 0 && (
-                  <div className="text-[10px] text-vscode-textMuted py-4 text-center">无商品受到当前活动影响</div>
+                  <div className="text-[10px] text-idpxyz-textMuted py-4 text-center">无商品受到当前活动影响</div>
                 )}
               </div>
             </div>
@@ -641,61 +641,61 @@ export default function PromotionSimulator({ onOpenTab }: Props) {
       <div className="flex-1 flex overflow-hidden">
 
         {/* ── LEFT: Cart Builder ── */}
-        <div className="w-[320px] border-r border-vscode-border flex flex-col overflow-hidden shrink-0">
-          <div className="flex items-center justify-between px-4 h-[32px] text-[10px] uppercase tracking-wider text-vscode-breadcrumb shrink-0 border-b border-vscode-border bg-vscode-sidebar">
+        <div className="w-[320px] border-r border-idpxyz-border flex flex-col overflow-hidden shrink-0">
+          <div className="flex items-center justify-between px-4 h-[32px] text-[10px] uppercase tracking-wider text-idpxyz-breadcrumb shrink-0 border-b border-idpxyz-border bg-idpxyz-sidebar">
             <span className="font-bold">模拟购物车</span>
-            <span className="text-vscode-textMuted">{cart.length} 件商品</span>
+            <span className="text-idpxyz-textMuted">{cart.length} 件商品</span>
           </div>
 
           <div className="flex-1 overflow-auto">
             {cart.length === 0 && (
-              <div className="flex flex-col items-center justify-center py-12 text-vscode-textMuted">
+              <div className="flex flex-col items-center justify-center py-12 text-idpxyz-textMuted">
                 <IconPackage size={28} className="opacity-20 mb-2" />
                 <span className="text-[11px]">添加商品开始模拟</span>
               </div>
             )}
             {cart.map((item, idx) => (
-              <div key={item.spu.id} className="flex items-center gap-2 px-3 py-2 border-b border-vscode-border hover:bg-vscode-hover">
+              <div key={item.spu.id} className="flex items-center gap-2 px-3 py-2 border-b border-idpxyz-border hover:bg-idpxyz-hover">
                 <span className="text-[16px]">{item.spu.mainImage}</span>
                 <div className="flex-1 min-w-0">
-                  <div className="text-[11px] text-vscode-text truncate">{item.spu.name}</div>
-                  <div className="text-[9px] text-vscode-textMuted">{item.spu.brand} · {item.spu.categoryPath}</div>
+                  <div className="text-[11px] text-idpxyz-text truncate">{item.spu.name}</div>
+                  <div className="text-[9px] text-idpxyz-textMuted">{item.spu.brand} · {item.spu.categoryPath}</div>
                 </div>
                 <div className="flex items-center gap-1 shrink-0">
                   <button onClick={() => setCart(prev => prev.map((c, i) => i === idx ? { ...c, qty: Math.max(1, c.qty - 1) } : c))}
-                    className="w-[18px] h-[18px] flex items-center justify-center rounded border border-vscode-border text-[10px] text-vscode-textMuted hover:bg-vscode-hover">−</button>
-                  <span className="text-[11px] text-vscode-text w-[20px] text-center">{item.qty}</span>
+                    className="w-[18px] h-[18px] flex items-center justify-center rounded border border-idpxyz-border text-[10px] text-idpxyz-textMuted hover:bg-idpxyz-hover">−</button>
+                  <span className="text-[11px] text-idpxyz-text w-[20px] text-center">{item.qty}</span>
                   <button onClick={() => setCart(prev => prev.map((c, i) => i === idx ? { ...c, qty: c.qty + 1 } : c))}
-                    className="w-[18px] h-[18px] flex items-center justify-center rounded border border-vscode-border text-[10px] text-vscode-textMuted hover:bg-vscode-hover">+</button>
+                    className="w-[18px] h-[18px] flex items-center justify-center rounded border border-idpxyz-border text-[10px] text-idpxyz-textMuted hover:bg-idpxyz-hover">+</button>
                 </div>
-                <div className="text-[11px] text-vscode-text w-[55px] text-right">${(item.unitPrice * item.qty).toFixed(0)}</div>
-                <IconClose size={10} className="text-vscode-textMuted cursor-pointer hover:text-red-400 shrink-0" onClick={() => setCart(prev => prev.filter((_, i) => i !== idx))} />
+                <div className="text-[11px] text-idpxyz-text w-[55px] text-right">${(item.unitPrice * item.qty).toFixed(0)}</div>
+                <IconClose size={10} className="text-idpxyz-textMuted cursor-pointer hover:text-red-400 shrink-0" onClick={() => setCart(prev => prev.filter((_, i) => i !== idx))} />
               </div>
             ))}
           </div>
 
           {/* Add product */}
-          <div className="px-3 py-2 border-t border-vscode-border bg-vscode-sidebar relative">
-            <div className="flex items-center bg-vscode-inputBg border border-vscode-border rounded px-2 h-[28px] cursor-pointer"
+          <div className="px-3 py-2 border-t border-idpxyz-border bg-idpxyz-sidebar relative">
+            <div className="flex items-center bg-idpxyz-inputBg border border-idpxyz-border rounded px-2 h-[28px] cursor-pointer"
               onClick={() => setShowProductPicker(!showProductPicker)}>
-              <IconPlus size={11} className="text-vscode-accent mr-1.5" />
+              <IconPlus size={11} className="text-idpxyz-accent mr-1.5" />
               {showProductPicker ? (
                 <input autoFocus type="text" value={productSearch} onChange={e => setProductSearch(e.target.value)}
                   onClick={e => e.stopPropagation()} placeholder="搜索商品..."
-                  className="bg-transparent border-none outline-none text-[11px] text-vscode-text w-full placeholder:text-vscode-textMuted" />
+                  className="bg-transparent border-none outline-none text-[11px] text-idpxyz-text w-full placeholder:text-idpxyz-textMuted" />
               ) : (
-                <span className="text-[11px] text-vscode-textMuted">添加商品到购物车...</span>
+                <span className="text-[11px] text-idpxyz-textMuted">添加商品到购物车...</span>
               )}
             </div>
             {showProductPicker && (
-              <div className="absolute bottom-full left-3 right-3 mb-1 border border-vscode-border rounded bg-vscode-sidebar shadow-lg max-h-[250px] overflow-auto z-20">
+              <div className="absolute bottom-full left-3 right-3 mb-1 border border-idpxyz-border rounded bg-idpxyz-sidebar shadow-lg max-h-[250px] overflow-auto z-20">
                 {productResults.map(s => (
                   <div key={s.id} onClick={() => addProduct(s)}
-                    className="flex items-center gap-2 px-3 py-2 cursor-pointer text-[11px] hover:bg-vscode-hover text-vscode-text border-b border-vscode-border last:border-b-0">
+                    className="flex items-center gap-2 px-3 py-2 cursor-pointer text-[11px] hover:bg-idpxyz-hover text-idpxyz-text border-b border-idpxyz-border last:border-b-0">
                     <span className="text-[14px]">{s.mainImage}</span>
                     <div className="flex-1 min-w-0">
                       <div className="truncate">{s.name}</div>
-                      <div className="text-[9px] text-vscode-textMuted">{s.brand} · ${s.minPrice}</div>
+                      <div className="text-[9px] text-idpxyz-textMuted">{s.brand} · ${s.minPrice}</div>
                     </div>
                   </div>
                 ))}
@@ -704,19 +704,19 @@ export default function PromotionSimulator({ onOpenTab }: Props) {
           </div>
 
           {/* Coupon code */}
-          <div className="px-3 py-2 border-t border-vscode-border bg-vscode-sidebar">
+          <div className="px-3 py-2 border-t border-idpxyz-border bg-idpxyz-sidebar">
             <div className="flex items-center gap-1.5">
-              <IconTicket size={11} className="text-vscode-textMuted shrink-0" />
+              <IconTicket size={11} className="text-idpxyz-textMuted shrink-0" />
               <input type="text" value={couponCode} onChange={e => setCouponCode(e.target.value)}
                 onKeyDown={e => e.key === 'Enter' && applyCoupon()}
                 placeholder="输入优惠券码..."
-                className="bg-vscode-inputBg border border-vscode-border rounded px-2 py-1 text-[11px] text-vscode-text outline-none focus:border-vscode-accent flex-1 placeholder:text-vscode-textMuted" />
+                className="bg-idpxyz-inputBg border border-idpxyz-border rounded px-2 py-1 text-[11px] text-idpxyz-text outline-none focus:border-idpxyz-accent flex-1 placeholder:text-idpxyz-textMuted" />
               <Button variant="ghost" size="sm" onClick={applyCoupon}>兑换</Button>
             </div>
             {appliedCoupons.length > 0 && (
               <div className="flex flex-wrap gap-1 mt-1.5">
                 {appliedCoupons.map(c => (
-                  <span key={c.id} className="flex items-center gap-0.5 px-1.5 py-0.5 rounded bg-vscode-accent/10 text-[9px] text-vscode-accent">
+                  <span key={c.id} className="flex items-center gap-0.5 px-1.5 py-0.5 rounded bg-idpxyz-accent/10 text-[9px] text-idpxyz-accent">
                     <IconTicket size={8} />{c.code}
                     <IconClose size={7} className="cursor-pointer hover:text-red-400 ml-0.5" onClick={() => setAppliedCoupons(prev => prev.filter(x => x.id !== c.id))} />
                   </span>
@@ -726,54 +726,54 @@ export default function PromotionSimulator({ onOpenTab }: Props) {
           </div>
 
           {/* Subtotal */}
-          <div className="px-4 py-2 border-t border-vscode-border bg-vscode-sidebar">
+          <div className="px-4 py-2 border-t border-idpxyz-border bg-idpxyz-sidebar">
             <div className="flex justify-between text-[11px]">
-              <span className="text-vscode-textMuted">商品小计</span>
-              <span className="text-vscode-text">${subtotal.toFixed(2)}</span>
+              <span className="text-idpxyz-textMuted">商品小计</span>
+              <span className="text-idpxyz-text">${subtotal.toFixed(2)}</span>
             </div>
           </div>
         </div>
 
         {/* ── CENTER: Calculation Result ── */}
         <div className="flex-1 flex flex-col overflow-auto min-w-0">
-          <div className="flex items-center justify-between px-4 h-[32px] text-[10px] uppercase tracking-wider text-vscode-breadcrumb shrink-0 border-b border-vscode-border bg-vscode-sidebar">
+          <div className="flex items-center justify-between px-4 h-[32px] text-[10px] uppercase tracking-wider text-idpxyz-breadcrumb shrink-0 border-b border-idpxyz-border bg-idpxyz-sidebar">
             <span className="font-bold">优惠计算结果</span>
-            <span className="text-vscode-textMuted">{discounts.length} 项优惠命中</span>
+            <span className="text-idpxyz-textMuted">{discounts.length} 项优惠命中</span>
           </div>
 
           {/* Summary cards */}
-          <div className="grid grid-cols-4 gap-3 px-4 py-3 border-b border-vscode-border">
-            <div className="px-3 py-2 rounded border border-vscode-border bg-vscode-sidebar">
-              <div className="text-[9px] text-vscode-textMuted mb-1">商品原价</div>
-              <div className="text-[16px] font-bold text-vscode-text">${subtotal.toFixed(2)}</div>
+          <div className="grid grid-cols-4 gap-3 px-4 py-3 border-b border-idpxyz-border">
+            <div className="px-3 py-2 rounded border border-idpxyz-border bg-idpxyz-sidebar">
+              <div className="text-[9px] text-idpxyz-textMuted mb-1">商品原价</div>
+              <div className="text-[16px] font-bold text-idpxyz-text">${subtotal.toFixed(2)}</div>
             </div>
-            <div className="px-3 py-2 rounded border border-vscode-border bg-vscode-sidebar">
-              <div className="text-[9px] text-vscode-textMuted mb-1">总优惠</div>
+            <div className="px-3 py-2 rounded border border-idpxyz-border bg-idpxyz-sidebar">
+              <div className="text-[9px] text-idpxyz-textMuted mb-1">总优惠</div>
               <div className="text-[16px] font-bold text-red-400">−${totalDiscount.toFixed(2)}</div>
               {subtotal > 0 && <div className="text-[9px] text-red-400/70">{discountPct.toFixed(1)}% OFF</div>}
             </div>
-            <div className="px-3 py-2 rounded border border-vscode-border bg-vscode-sidebar">
-              <div className="text-[9px] text-vscode-textMuted mb-1">实付金额</div>
+            <div className="px-3 py-2 rounded border border-idpxyz-border bg-idpxyz-sidebar">
+              <div className="text-[9px] text-idpxyz-textMuted mb-1">实付金额</div>
               <div className="text-[16px] font-bold text-green-400">${finalPrice.toFixed(2)}</div>
             </div>
-            <div className="px-3 py-2 rounded border border-vscode-border bg-vscode-sidebar">
-              <div className="text-[9px] text-vscode-textMuted mb-1">优惠叠加</div>
-              <div className="text-[16px] font-bold text-vscode-text">{discounts.length} <span className="text-[10px] font-normal text-vscode-textMuted">项</span></div>
+            <div className="px-3 py-2 rounded border border-idpxyz-border bg-idpxyz-sidebar">
+              <div className="text-[9px] text-idpxyz-textMuted mb-1">优惠叠加</div>
+              <div className="text-[16px] font-bold text-idpxyz-text">{discounts.length} <span className="text-[10px] font-normal text-idpxyz-textMuted">项</span></div>
             </div>
           </div>
 
           {/* Discount breakdown */}
           {discounts.length > 0 && (
-            <div className="px-4 py-3 border-b border-vscode-border">
-              <div className="text-[10px] text-vscode-breadcrumb uppercase tracking-wider mb-2 font-bold">优惠明细</div>
+            <div className="px-4 py-3 border-b border-idpxyz-border">
+              <div className="text-[10px] text-idpxyz-breadcrumb uppercase tracking-wider mb-2 font-bold">优惠明细</div>
               <div className="space-y-1.5">
                 {discounts.map((d, i) => (
-                  <div key={i} className="flex items-center gap-2 px-3 py-2 rounded border border-vscode-border bg-vscode-sidebar">
-                    <div className={`w-[6px] h-[6px] rounded-full shrink-0 ${d.sourceType === 'promotion' ? 'bg-[#dcdcaa]' : 'bg-vscode-accent'}`} />
-                    {d.sourceType === 'promotion' ? <IconAutomation size={11} className="text-[#dcdcaa] shrink-0" /> : <IconTicket size={11} className="text-vscode-accent shrink-0" />}
+                  <div key={i} className="flex items-center gap-2 px-3 py-2 rounded border border-idpxyz-border bg-idpxyz-sidebar">
+                    <div className={`w-[6px] h-[6px] rounded-full shrink-0 ${d.sourceType === 'promotion' ? 'bg-[#dcdcaa]' : 'bg-idpxyz-accent'}`} />
+                    {d.sourceType === 'promotion' ? <IconAutomation size={11} className="text-[#dcdcaa] shrink-0" /> : <IconTicket size={11} className="text-idpxyz-accent shrink-0" />}
                     <div className="flex-1 min-w-0">
-                      <div className="text-[11px] text-vscode-text truncate">{d.label}</div>
-                      <div className="text-[9px] text-vscode-textMuted">{d.description}</div>
+                      <div className="text-[11px] text-idpxyz-text truncate">{d.label}</div>
+                      <div className="text-[9px] text-idpxyz-textMuted">{d.description}</div>
                     </div>
                     <span className="text-[12px] font-bold text-red-400 shrink-0">−${d.amount.toFixed(2)}</span>
                   </div>
@@ -784,21 +784,21 @@ export default function PromotionSimulator({ onOpenTab }: Props) {
 
           {/* Price waterfall */}
           {discounts.length > 0 && (
-            <div className="px-4 py-3 border-b border-vscode-border">
-              <div className="text-[10px] text-vscode-breadcrumb uppercase tracking-wider mb-2 font-bold">价格瀑布</div>
+            <div className="px-4 py-3 border-b border-idpxyz-border">
+              <div className="text-[10px] text-idpxyz-breadcrumb uppercase tracking-wider mb-2 font-bold">价格瀑布</div>
               <div className="flex items-center gap-1.5 flex-wrap">
-                <div className="px-2 py-1 rounded bg-vscode-sidebar border border-vscode-border text-[11px] text-vscode-text">
+                <div className="px-2 py-1 rounded bg-idpxyz-sidebar border border-idpxyz-border text-[11px] text-idpxyz-text">
                   ${subtotal.toFixed(2)}
                 </div>
                 {discounts.map((d, i) => (
                   <div key={i} className="flex items-center gap-1.5">
-                    <IconArrowRight size={10} className="text-vscode-textMuted" />
+                    <IconArrowRight size={10} className="text-idpxyz-textMuted" />
                     <div className="px-2 py-1 rounded bg-red-400/10 border border-red-400/20 text-[10px] text-red-400">
                       −${d.amount.toFixed(2)}
                     </div>
                   </div>
                 ))}
-                <IconArrowRight size={10} className="text-vscode-textMuted" />
+                <IconArrowRight size={10} className="text-idpxyz-textMuted" />
                 <div className="px-2.5 py-1 rounded bg-green-400/10 border border-green-400/30 text-[12px] font-bold text-green-400">
                   ${finalPrice.toFixed(2)}
                 </div>
@@ -807,22 +807,22 @@ export default function PromotionSimulator({ onOpenTab }: Props) {
           )}
 
           {/* Active promotions on this date */}
-          <div className="px-4 py-3 border-b border-vscode-border">
-            <div className="text-[10px] text-vscode-breadcrumb uppercase tracking-wider mb-2 font-bold">
-              当前生效促销 <span className="text-vscode-textMuted font-normal">({simDate})</span>
+          <div className="px-4 py-3 border-b border-idpxyz-border">
+            <div className="text-[10px] text-idpxyz-breadcrumb uppercase tracking-wider mb-2 font-bold">
+              当前生效促销 <span className="text-idpxyz-textMuted font-normal">({simDate})</span>
             </div>
             <div className="space-y-1">
-              {activePromos.length === 0 && <div className="text-[10px] text-vscode-textMuted py-2">该日期无生效促销</div>}
+              {activePromos.length === 0 && <div className="text-[10px] text-idpxyz-textMuted py-2">该日期无生效促销</div>}
               {activePromos.map(p => {
                 const tc = promotionTypeConfig[p.type];
                 const hit = discounts.some(d => d.source === p.id);
                 return (
-                  <div key={p.id} className={`flex items-center gap-2 px-3 py-1.5 rounded border text-[11px] ${hit ? 'border-green-400/30 bg-green-400/5' : 'border-vscode-border bg-vscode-sidebar'}`}>
+                  <div key={p.id} className={`flex items-center gap-2 px-3 py-1.5 rounded border text-[11px] ${hit ? 'border-green-400/30 bg-green-400/5' : 'border-idpxyz-border bg-idpxyz-sidebar'}`}>
                     {hit ? <IconCheck size={10} className="text-green-400 shrink-0" /> : <div className="w-[10px]" />}
                     <Badge color={tc.color} bg={tc.bgColor}>{tc.label}</Badge>
-                    <span className={`flex-1 truncate ${hit ? 'text-vscode-text' : 'text-vscode-textMuted'}`}>{p.name}</span>
+                    <span className={`flex-1 truncate ${hit ? 'text-idpxyz-text' : 'text-idpxyz-textMuted'}`}>{p.name}</span>
                     {p.stackable && <span className="text-[8px] px-1 rounded bg-yellow-400/10 text-yellow-400">可叠加</span>}
-                    <span className="text-[9px] text-vscode-textMuted shrink-0">P{p.priority}</span>
+                    <span className="text-[9px] text-idpxyz-textMuted shrink-0">P{p.priority}</span>
                   </div>
                 );
               })}
@@ -831,7 +831,7 @@ export default function PromotionSimulator({ onOpenTab }: Props) {
 
           {cart.length === 0 && (
             <div className="flex-1 flex items-center justify-center">
-              <div className="text-center text-vscode-textMuted">
+              <div className="text-center text-idpxyz-textMuted">
                 <IconCalculator size={32} className="mx-auto mb-2 opacity-20" />
                 <div className="text-[12px]">添加商品到左侧购物车</div>
                 <div className="text-[10px] mt-0.5">系统将自动计算所有适用优惠</div>
@@ -841,8 +841,8 @@ export default function PromotionSimulator({ onOpenTab }: Props) {
         </div>
 
         {/* ── RIGHT: Conflict & Risk Panel ── */}
-        <div className="w-[280px] border-l border-vscode-border flex flex-col overflow-hidden shrink-0">
-          <div className="flex items-center justify-between px-4 h-[32px] text-[10px] uppercase tracking-wider text-vscode-breadcrumb shrink-0 border-b border-vscode-border bg-vscode-sidebar">
+        <div className="w-[280px] border-l border-idpxyz-border flex flex-col overflow-hidden shrink-0">
+          <div className="flex items-center justify-between px-4 h-[32px] text-[10px] uppercase tracking-wider text-idpxyz-breadcrumb shrink-0 border-b border-idpxyz-border bg-idpxyz-sidebar">
             <span className="font-bold">冲突 & 风控</span>
             {(conflicts.length > 0 || risks.length > 0) && (
               <span className="text-[9px] px-1.5 py-0.5 rounded bg-red-400/15 text-red-400">{conflicts.length + risks.length}</span>
@@ -852,8 +852,8 @@ export default function PromotionSimulator({ onOpenTab }: Props) {
           <div className="flex-1 overflow-auto">
             {/* Risk alerts */}
             {risks.length > 0 && (
-              <div className="px-3 py-2 border-b border-vscode-border">
-                <div className="text-[10px] text-vscode-breadcrumb uppercase tracking-wider mb-1.5 font-bold flex items-center gap-1.5">
+              <div className="px-3 py-2 border-b border-idpxyz-border">
+                <div className="text-[10px] text-idpxyz-breadcrumb uppercase tracking-wider mb-1.5 font-bold flex items-center gap-1.5">
                   <IconSecurityAlert size={10} className="text-red-400" /> 风控预警
                 </div>
                 <div className="space-y-1.5">
@@ -861,18 +861,18 @@ export default function PromotionSimulator({ onOpenTab }: Props) {
                     <div key={i} className={`px-2.5 py-2 rounded border text-[10px] ${
                       r.level === 'critical' ? 'border-red-400/30 bg-red-400/8' :
                       r.level === 'warning' ? 'border-yellow-400/30 bg-yellow-400/8' :
-                      'border-vscode-border bg-vscode-sidebar'
+                      'border-idpxyz-border bg-idpxyz-sidebar'
                     }`}>
                       <div className="flex items-center gap-1.5 mb-0.5">
                         {r.level === 'critical' && <IconWarning size={10} className="text-red-400" />}
                         {r.level === 'warning' && <IconWarning size={10} className="text-yellow-400" />}
-                        {r.level === 'info' && <IconInfo size={10} className="text-vscode-accent" />}
+                        {r.level === 'info' && <IconInfo size={10} className="text-idpxyz-accent" />}
                         <span className={`font-bold ${
                           r.level === 'critical' ? 'text-red-400' :
-                          r.level === 'warning' ? 'text-yellow-400' : 'text-vscode-text'
+                          r.level === 'warning' ? 'text-yellow-400' : 'text-idpxyz-text'
                         }`}>{r.title}</span>
                       </div>
-                      <div className="text-vscode-textMuted leading-tight">{r.detail}</div>
+                      <div className="text-idpxyz-textMuted leading-tight">{r.detail}</div>
                     </div>
                   ))}
                 </div>
@@ -881,8 +881,8 @@ export default function PromotionSimulator({ onOpenTab }: Props) {
 
             {/* Conflicts */}
             {conflicts.length > 0 && (
-              <div className="px-3 py-2 border-b border-vscode-border">
-                <div className="text-[10px] text-vscode-breadcrumb uppercase tracking-wider mb-1.5 font-bold flex items-center gap-1.5">
+              <div className="px-3 py-2 border-b border-idpxyz-border">
+                <div className="text-[10px] text-idpxyz-breadcrumb uppercase tracking-wider mb-1.5 font-bold flex items-center gap-1.5">
                   <IconWarning size={10} className="text-yellow-400" /> 规则冲突 ({conflicts.length})
                 </div>
                 <div className="space-y-1.5">
@@ -890,17 +890,17 @@ export default function PromotionSimulator({ onOpenTab }: Props) {
                     <div key={i} className={`px-2.5 py-2 rounded border text-[10px] ${
                       c.severity === 'error' ? 'border-red-400/30 bg-red-400/8' :
                       c.severity === 'warning' ? 'border-yellow-400/30 bg-yellow-400/8' :
-                      'border-vscode-border bg-vscode-sidebar'
+                      'border-idpxyz-border bg-idpxyz-sidebar'
                     }`}>
                       <div className="flex items-center gap-1 mb-0.5">
                         <span className={`w-[5px] h-[5px] rounded-full shrink-0 ${
-                          c.severity === 'error' ? 'bg-red-400' : c.severity === 'warning' ? 'bg-yellow-400' : 'bg-vscode-accent'
+                          c.severity === 'error' ? 'bg-red-400' : c.severity === 'warning' ? 'bg-yellow-400' : 'bg-idpxyz-accent'
                         }`} />
-                        <span className="text-vscode-text truncate">{c.a}</span>
-                        <span className="text-vscode-textMuted">×</span>
-                        <span className="text-vscode-text truncate">{c.b}</span>
+                        <span className="text-idpxyz-text truncate">{c.a}</span>
+                        <span className="text-idpxyz-textMuted">×</span>
+                        <span className="text-idpxyz-text truncate">{c.b}</span>
                       </div>
-                      <div className="text-vscode-textMuted leading-tight pl-[9px]">{c.reason}</div>
+                      <div className="text-idpxyz-textMuted leading-tight pl-[9px]">{c.reason}</div>
                     </div>
                   ))}
                 </div>
@@ -909,34 +909,34 @@ export default function PromotionSimulator({ onOpenTab }: Props) {
 
             {/* Discount gauge */}
             {subtotal > 0 && (
-              <div className="px-3 py-3 border-b border-vscode-border">
-                <div className="text-[10px] text-vscode-breadcrumb uppercase tracking-wider mb-2 font-bold flex items-center gap-1.5">
+              <div className="px-3 py-3 border-b border-idpxyz-border">
+                <div className="text-[10px] text-idpxyz-breadcrumb uppercase tracking-wider mb-2 font-bold flex items-center gap-1.5">
                   <IconShield size={10} /> 折扣率仪表盘
                 </div>
-                <div className="relative h-[10px] rounded-full bg-vscode-border overflow-hidden mb-1.5">
+                <div className="relative h-[10px] rounded-full bg-idpxyz-border overflow-hidden mb-1.5">
                   <div className={`absolute left-0 top-0 h-full rounded-full transition-all ${
                     discountPct > 60 ? 'bg-red-400' : discountPct > 40 ? 'bg-yellow-400' : discountPct > 25 ? 'bg-[#dcdcaa]' : 'bg-green-400'
                   }`} style={{ width: `${Math.min(100, discountPct)}%` }} />
                   {/* threshold markers */}
-                  <div className="absolute top-0 h-full w-px bg-vscode-text/30" style={{ left: '25%' }} />
-                  <div className="absolute top-0 h-full w-px bg-vscode-text/30" style={{ left: '40%' }} />
-                  <div className="absolute top-0 h-full w-px bg-vscode-text/30" style={{ left: '60%' }} />
+                  <div className="absolute top-0 h-full w-px bg-idpxyz-text/30" style={{ left: '25%' }} />
+                  <div className="absolute top-0 h-full w-px bg-idpxyz-text/30" style={{ left: '40%' }} />
+                  <div className="absolute top-0 h-full w-px bg-idpxyz-text/30" style={{ left: '60%' }} />
                 </div>
-                <div className="flex justify-between text-[8px] text-vscode-textMuted">
+                <div className="flex justify-between text-[8px] text-idpxyz-textMuted">
                   <span>0%</span><span>25%</span><span>40%</span><span>60%</span><span>100%</span>
                 </div>
                 <div className="text-center mt-1.5">
                   <span className={`text-[14px] font-bold ${
                     discountPct > 60 ? 'text-red-400' : discountPct > 40 ? 'text-yellow-400' : discountPct > 25 ? 'text-[#dcdcaa]' : 'text-green-400'
                   }`}>{discountPct.toFixed(1)}%</span>
-                  <span className="text-[9px] text-vscode-textMuted ml-1">总折扣率</span>
+                  <span className="text-[9px] text-idpxyz-textMuted ml-1">总折扣率</span>
                 </div>
               </div>
             )}
 
             {/* Empty state */}
             {conflicts.length === 0 && risks.length === 0 && (
-              <div className="flex flex-col items-center justify-center py-12 text-vscode-textMuted">
+              <div className="flex flex-col items-center justify-center py-12 text-idpxyz-textMuted">
                 <IconShield size={24} className="opacity-20 mb-2" />
                 <span className="text-[11px]">暂无冲突或风险</span>
                 <span className="text-[9px] mt-0.5">添加商品后自动检测</span>

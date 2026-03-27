@@ -45,8 +45,8 @@ function NavItemRow({
       <div
         className={`group flex items-center cursor-pointer h-[30px] text-[12px] select-none rounded-sm mx-1 px-1
           ${activeFile === item.id
-            ? 'bg-vscode-activeItem text-vscode-textBright'
-            : 'text-vscode-text hover:bg-vscode-hover'}
+            ? 'bg-idpxyz-activeItem text-idpxyz-textBright'
+            : 'text-idpxyz-text hover:bg-idpxyz-hover'}
         `}
         style={{ paddingLeft }}
         onClick={() => {
@@ -55,14 +55,14 @@ function NavItemRow({
         }}
       >
         {hasChildren ? (
-          expanded ? <ChevronDown size={13} className="mr-1.5 shrink-0 text-vscode-textMuted" /> : <ChevronRight size={13} className="mr-1.5 shrink-0 text-vscode-textMuted" />
+          expanded ? <ChevronDown size={13} className="mr-1.5 shrink-0 text-idpxyz-textMuted" /> : <ChevronRight size={13} className="mr-1.5 shrink-0 text-idpxyz-textMuted" />
         ) : (
           <span className="w-[13px] mr-1.5 shrink-0" />
         )}
         <Icon
           size={14}
           strokeWidth={1.75}
-          className={`mr-2 shrink-0 ${activeFile === item.id ? 'text-vscode-textBright' : 'text-vscode-textMuted group-hover:text-vscode-text'}`}
+          className={`mr-2 shrink-0 ${activeFile === item.id ? 'text-idpxyz-textBright' : 'text-idpxyz-textMuted group-hover:text-idpxyz-text'}`}
         />
         <span className="truncate font-normal">{item.label}</span>
         {item.badge !== undefined && (
@@ -84,13 +84,13 @@ function NavItemRow({
 
 export default function Sidebar({ width, onFileClick, activeFile, navigationSections, iconMap }: SidebarProps) {
   return (
-    <div className="bg-vscode-sidebar flex flex-col select-none shrink-0 overflow-hidden" style={{ width }}>
+    <div className="bg-idpxyz-sidebar flex flex-col select-none shrink-0 overflow-hidden" style={{ width }}>
       {/* Navigation sections — logistics-style grouped nav (MY WORK, OVERVIEW, …) */}
       <div className="flex-1 overflow-y-auto overflow-x-hidden pt-1 pb-2">
         {navigationSections.map((section, sectionIndex) => (
           <div key={section.title}>
             <div
-              className={`px-3 h-[22px] flex items-center text-[11px] uppercase tracking-[0.06em] text-vscode-textMuted font-semibold ${sectionIndex === 0 ? 'mt-0' : 'mt-3'}`}
+              className={`px-3 h-[22px] flex items-center text-[11px] uppercase tracking-[0.06em] text-idpxyz-textMuted font-semibold ${sectionIndex === 0 ? 'mt-0' : 'mt-3'}`}
             >
               {section.title}
             </div>

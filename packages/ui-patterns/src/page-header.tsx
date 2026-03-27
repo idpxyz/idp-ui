@@ -12,7 +12,7 @@ function PageHeader({ bordered = true, className, children, ...props }: PageHead
     <div
       className={cn(
         'flex items-center justify-between gap-4 px-4 py-2.5',
-        bordered && 'border-b border-vscode-border',
+        bordered && 'border-b border-idpxyz-border',
         className
       )}
       {...props}
@@ -35,7 +35,7 @@ function PageHeaderContent({ className, children, ...props }: React.HTMLAttribut
 function PageHeaderTitle({ className, children, ...props }: React.HTMLAttributes<HTMLHeadingElement>) {
   return (
     <h2
-      className={cn('truncate text-[13px] font-semibold text-vscode-textBright', className)}
+      className={cn('truncate text-[13px] font-semibold text-idpxyz-textBright', className)}
       {...props}
     >
       {children}
@@ -46,7 +46,7 @@ function PageHeaderTitle({ className, children, ...props }: React.HTMLAttributes
 /* ── Description / subtitle ── */
 function PageHeaderDescription({ className, children, ...props }: React.HTMLAttributes<HTMLParagraphElement>) {
   return (
-    <p className={cn('truncate text-[11px] text-vscode-textMuted', className)} {...props}>
+    <p className={cn('truncate text-[11px] text-idpxyz-textMuted', className)} {...props}>
       {children}
     </p>
   );

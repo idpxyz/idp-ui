@@ -46,9 +46,9 @@ export default function BottomPanel({ visible, height, maximized, onClose, onMax
   const relatedExceptions = orderId ? allExceptions.filter(e => e.orderId === orderId) : allExceptions.slice(0, 5);
 
   return (
-    <div className="bg-vscode-panelBg flex flex-col shrink-0 select-none" style={{ height }}>
+    <div className="bg-idpxyz-panelBg flex flex-col shrink-0 select-none" style={{ height }}>
       {/* Panel tabs */}
-      <div className="flex items-center justify-between h-[35px] border-b border-vscode-border shrink-0">
+      <div className="flex items-center justify-between h-[35px] border-b border-idpxyz-border shrink-0">
         <div className="flex items-center h-full">
           {tabs.map((tab) => (
             <Button
@@ -58,8 +58,8 @@ export default function BottomPanel({ visible, height, maximized, onClose, onMax
               size="sm"
               className={`h-full rounded-none px-3 text-[11px] uppercase tracking-wide border-b-2
                 ${activeTab === tab.id
-                  ? 'text-vscode-text border-b-vscode-accent'
-                  : 'text-vscode-textMuted border-transparent hover:text-vscode-text'
+                  ? 'text-idpxyz-text border-b-idpxyz-accent'
+                  : 'text-idpxyz-textMuted border-transparent hover:text-idpxyz-text'
                 }`}
             >
               <tab.icon size={14} />
@@ -93,7 +93,7 @@ export default function BottomPanel({ visible, height, maximized, onClose, onMax
         ) : activeTab === 'comments' ? (
           <CommentsContent />
         ) : (
-          <div className="text-[12px] text-vscode-textMuted py-4 text-center">
+          <div className="text-[12px] text-idpxyz-textMuted py-4 text-center">
             {selectedObject ? `已选择对象：${selectedObject.payload.id}` : '请选择一个对象以查看详情'}
           </div>
         )}
@@ -105,22 +105,22 @@ export default function BottomPanel({ visible, height, maximized, onClose, onMax
 function EventsContent({ timeline, orderId }: { timeline: any[]; orderId?: string }) {
   if (timeline.length === 0) {
     return (
-      <div className="text-[12px] text-vscode-textMuted py-4 text-center">
+      <div className="text-[12px] text-idpxyz-textMuted py-4 text-center">
         {orderId ? `订单 ${orderId} 暂无事件记录` : '请选择一个订单以查看事件时间线'}
       </div>
     );
   }
-  const typeColor: Record<string, string> = { system: 'text-vscode-textMuted', human: 'text-vscode-accent', external: 'text-green-400', payment: 'text-yellow-400', shipment: 'text-blue-400' };
+  const typeColor: Record<string, string> = { system: 'text-idpxyz-textMuted', human: 'text-idpxyz-accent', external: 'text-green-400', payment: 'text-yellow-400', shipment: 'text-blue-400' };
   return (
     <div className="space-y-0">
-      <div className="text-[10px] uppercase tracking-wider text-vscode-textMuted font-semibold mb-2">
+      <div className="text-[10px] uppercase tracking-wider text-idpxyz-textMuted font-semibold mb-2">
         {orderId ? `${orderId} 事件时间线` : '事件时间线'}
       </div>
       {timeline.map((evt, i) => (
         <div key={i} className="flex items-start gap-3 py-1.5 text-[12px]">
-          <span className="text-vscode-textMuted font-mono w-[120px] shrink-0 text-[11px]">{evt.time}</span>
-          <span className={`w-[80px] shrink-0 ${typeColor[evt.type] || 'text-vscode-textMuted'}`}>{evt.actor}</span>
-          <span className="text-vscode-text flex-1">{evt.action}</span>
+          <span className="text-idpxyz-textMuted font-mono w-[120px] shrink-0 text-[11px]">{evt.time}</span>
+          <span className={`w-[80px] shrink-0 ${typeColor[evt.type] || 'text-idpxyz-textMuted'}`}>{evt.actor}</span>
+          <span className="text-idpxyz-text flex-1">{evt.action}</span>
         </div>
       ))}
     </div>
@@ -129,16 +129,16 @@ function EventsContent({ timeline, orderId }: { timeline: any[]; orderId?: strin
 
 function ExceptionsContent({ exceptions }: { exceptions: any[] }) {
   if (exceptions.length === 0) {
-    return <div className="text-[12px] text-vscode-textMuted py-4 text-center">暂无相关异常</div>;
+    return <div className="text-[12px] text-idpxyz-textMuted py-4 text-center">暂无相关异常</div>;
   }
   return (
     <div className="space-y-0">
-      <div className="text-[10px] uppercase tracking-wider text-vscode-textMuted font-semibold mb-2">相关异常</div>
+      <div className="text-[10px] uppercase tracking-wider text-idpxyz-textMuted font-semibold mb-2">相关异常</div>
       {exceptions.map((exc) => (
         <div key={exc.id} className="flex items-start gap-3 py-1.5 text-[12px]">
-          <span className="text-vscode-accent font-medium w-[80px] shrink-0">{exc.id}</span>
-          <span className="text-vscode-text w-[120px] shrink-0">{exc.orderId}</span>
-          <span className="text-vscode-text flex-1 truncate">{exc.description}</span>
+          <span className="text-idpxyz-accent font-medium w-[80px] shrink-0">{exc.id}</span>
+          <span className="text-idpxyz-text w-[120px] shrink-0">{exc.orderId}</span>
+          <span className="text-idpxyz-text flex-1 truncate">{exc.description}</span>
         </div>
       ))}
     </div>
@@ -160,9 +160,9 @@ function LogsContent() {
     <div className="font-mono text-[11px] space-y-0.5">
       {logs.map((log, i) => (
         <div key={i} className="flex gap-2">
-          <span className="text-vscode-textMuted w-[70px] shrink-0">{log.time}</span>
-          <span className={`w-[45px] shrink-0 ${levelColor[log.level] || 'text-vscode-textMuted'}`}>{log.level}</span>
-          <span className="text-vscode-text">{log.msg}</span>
+          <span className="text-idpxyz-textMuted w-[70px] shrink-0">{log.time}</span>
+          <span className={`w-[45px] shrink-0 ${levelColor[log.level] || 'text-idpxyz-textMuted'}`}>{log.level}</span>
+          <span className="text-idpxyz-text">{log.msg}</span>
         </div>
       ))}
     </div>
@@ -178,13 +178,13 @@ function CommentsContent() {
     <div className="space-y-2">
       {comments.map((c, i) => (
         <div key={i} className="flex gap-2 text-[12px]">
-          <div className="w-6 h-6 rounded-full bg-vscode-accent/20 text-vscode-accent text-[9px] font-bold flex items-center justify-center shrink-0">{c.user[0]}</div>
+          <div className="w-6 h-6 rounded-full bg-idpxyz-accent/20 text-idpxyz-accent text-[9px] font-bold flex items-center justify-center shrink-0">{c.user[0]}</div>
           <div>
             <div className="flex items-center gap-2">
-              <span className="text-vscode-accent font-medium text-[11px]">{c.user}</span>
-              <span className="text-vscode-textMuted text-[10px] font-mono">{c.time}</span>
+              <span className="text-idpxyz-accent font-medium text-[11px]">{c.user}</span>
+              <span className="text-idpxyz-textMuted text-[10px] font-mono">{c.time}</span>
             </div>
-            <div className="text-vscode-text mt-0.5">{c.text}</div>
+            <div className="text-idpxyz-text mt-0.5">{c.text}</div>
           </div>
         </div>
       ))}

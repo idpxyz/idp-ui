@@ -35,7 +35,7 @@ export default function ActivityBar({ activeItem, onItemClick }: ActivityBarProp
   const { theme, toggleTheme } = useTheme();
 
   return (
-    <div className="w-[52px] bg-vscode-activityBar flex flex-row shrink-0 select-none self-stretch py-1.5">
+    <div className="w-[52px] bg-idpxyz-activityBar flex flex-row shrink-0 select-none self-stretch py-1.5">
       <div className="flex flex-1 flex-col min-w-0 justify-between items-center">
         <div className="flex flex-col items-center w-full gap-0.5">
           {topItems.map((item) => (
@@ -46,8 +46,8 @@ export default function ActivityBar({ activeItem, onItemClick }: ActivityBarProp
               size="icon"
               className={`w-full h-11 rounded-none relative group
               ${activeItem === item.id
-                ? 'text-vscode-textBright border-l-[3px] border-vscode-accent bg-black/15'
-                : 'text-vscode-textMuted hover:text-vscode-textBright border-l-[3px] border-transparent'
+                ? 'text-idpxyz-textBright border-l-[3px] border-idpxyz-accent bg-black/15'
+                : 'text-idpxyz-textMuted hover:text-idpxyz-textBright border-l-[3px] border-transparent'
               }`}
               title={item.label}
             >
@@ -60,7 +60,7 @@ export default function ActivityBar({ activeItem, onItemClick }: ActivityBarProp
             onClick={toggleTheme}
             variant="ghost"
             size="icon"
-            className="w-full h-11 rounded-none text-vscode-textMuted hover:text-vscode-textBright border-l-[3px] border-transparent"
+            className="w-full h-11 rounded-none text-idpxyz-textMuted hover:text-idpxyz-textBright border-l-[3px] border-transparent"
             title={theme === 'dark' ? 'Switch to Light Theme' : 'Switch to Dark Theme'}
           >
             {theme === 'dark' ? <Sun size={22} strokeWidth={1.6} /> : <Moon size={22} strokeWidth={1.6} />}
@@ -71,7 +71,7 @@ export default function ActivityBar({ activeItem, onItemClick }: ActivityBarProp
               onClick={() => onItemClick(item.id)}
               variant="ghost"
               size="icon"
-              className="w-full h-11 rounded-none text-vscode-textMuted hover:text-vscode-textBright border-l-[3px] border-transparent"
+              className="w-full h-11 rounded-none text-idpxyz-textMuted hover:text-idpxyz-textBright border-l-[3px] border-transparent"
               title={item.label}
             >
               <item.icon size={22} strokeWidth={1.6} />

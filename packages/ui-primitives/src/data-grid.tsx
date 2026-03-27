@@ -77,17 +77,17 @@ function DataGrid<T extends Record<string, unknown>>({
   const totalPages = pageSize > 0 ? Math.ceil(total / pageSize) : 1;
 
   return (
-    <div className={cn('border border-vscode-border rounded-md overflow-hidden', className)}>
+    <div className={cn('border border-idpxyz-border rounded-md overflow-hidden', className)}>
       {searchable && (
-        <div className="px-3 py-2 border-b border-vscode-border bg-vscode-sidebar">
+        <div className="px-3 py-2 border-b border-idpxyz-border bg-idpxyz-sidebar">
           <div className="relative">
-            <Search size={14} className="absolute left-2 top-1/2 -translate-y-1/2 text-vscode-textMuted" />
+            <Search size={14} className="absolute left-2 top-1/2 -translate-y-1/2 text-idpxyz-textMuted" />
             <input
               type="text"
               placeholder="Search..."
               value={search}
               onChange={(e) => { setSearch(e.target.value); setPage(1); }}
-              className="w-full pl-7 pr-2 py-1 text-[12px] bg-vscode-input border border-vscode-border rounded text-vscode-text placeholder:text-vscode-textMuted focus:outline-none focus:ring-1 focus:ring-vscode-accent/40"
+              className="w-full pl-7 pr-2 py-1 text-[12px] bg-idpxyz-input border border-idpxyz-border rounded text-idpxyz-text placeholder:text-idpxyz-textMuted focus:outline-none focus:ring-1 focus:ring-idpxyz-accent/40"
             />
           </div>
         </div>
@@ -95,13 +95,13 @@ function DataGrid<T extends Record<string, unknown>>({
       <div className="overflow-x-auto">
         <table className="w-full text-[12px]">
           <thead>
-            <tr className="bg-vscode-sidebar border-b border-vscode-border">
+            <tr className="bg-idpxyz-sidebar border-b border-idpxyz-border">
               {columns.map((col) => (
                 <th
                   key={col.key}
                   className={cn(
-                    'text-left px-3 py-2 text-[11px] font-semibold text-vscode-textMuted uppercase tracking-wider',
-                    col.sortable && 'cursor-pointer select-none hover:text-vscode-text'
+                    'text-left px-3 py-2 text-[11px] font-semibold text-idpxyz-textMuted uppercase tracking-wider',
+                    col.sortable && 'cursor-pointer select-none hover:text-idpxyz-text'
                   )}
                   style={col.width ? { width: col.width } : undefined}
                   onClick={col.sortable ? () => toggleSort(col.key) : undefined}
@@ -121,7 +121,7 @@ function DataGrid<T extends Record<string, unknown>>({
           <tbody>
             {processed.length === 0 ? (
               <tr>
-                <td colSpan={columns.length} className="text-center py-8 text-vscode-textMuted">{emptyMessage}</td>
+                <td colSpan={columns.length} className="text-center py-8 text-idpxyz-textMuted">{emptyMessage}</td>
               </tr>
             ) : (
               processed.map((row) => (
@@ -129,12 +129,12 @@ function DataGrid<T extends Record<string, unknown>>({
                   key={String(row[keyField])}
                   onClick={() => onRowClick?.(row)}
                   className={cn(
-                    'border-b border-vscode-border last:border-0 transition-colors',
-                    onRowClick && 'cursor-pointer hover:bg-vscode-hover'
+                    'border-b border-idpxyz-border last:border-0 transition-colors',
+                    onRowClick && 'cursor-pointer hover:bg-idpxyz-hover'
                   )}
                 >
                   {columns.map((col) => (
-                    <td key={col.key} className="px-3 py-2 text-vscode-text">
+                    <td key={col.key} className="px-3 py-2 text-idpxyz-text">
                       {col.render ? col.render(row[col.key], row) : String(row[col.key] ?? '')}
                     </td>
                   ))}
@@ -145,12 +145,12 @@ function DataGrid<T extends Record<string, unknown>>({
         </table>
       </div>
       {pageSize > 0 && totalPages > 1 && (
-        <div className="flex items-center justify-between px-3 py-2 border-t border-vscode-border bg-vscode-sidebar text-[11px] text-vscode-textMuted">
+        <div className="flex items-center justify-between px-3 py-2 border-t border-idpxyz-border bg-idpxyz-sidebar text-[11px] text-idpxyz-textMuted">
           <span>{total} total</span>
           <div className="flex items-center gap-1">
-            <button disabled={page <= 1} onClick={() => setPage(p => p - 1)} className="px-1.5 py-0.5 rounded hover:bg-vscode-hover disabled:opacity-30">Prev</button>
-            <span className="px-2">{page}/{totalPages}</span>
-            <button disabled={page >= totalPages} onClick={() => setPage(p => p + 1)} className="px-1.5 py-0.5 rounded hover:bg-vscode-hover disabled:opacity-30">Next</button>
+            <button disabled={page <= 1} onClick={() => setPage(p => p - 1)} className="px-1.5 py-0.5 rounded hover:bg-idpxyz-hover disabled:opacity-30">Prev</button>
+            <span className="px-2 font-normal tabular-nums">{page}/{totalPages}</span>
+            <button disabled={page >= totalPages} onClick={() => setPage(p => p + 1)} className="px-1.5 py-0.5 rounded hover:bg-idpxyz-hover disabled:opacity-30">Next</button>
           </div>
         </div>
       )}

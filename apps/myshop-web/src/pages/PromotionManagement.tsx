@@ -48,7 +48,7 @@ function StatusBadge({ label, color, bgColor }: { label: string; color: string; 
 function ProgressBar({ value, max, color }: { value: number; max: number; color: string }) {
   const pct = max > 0 ? Math.min((value / max) * 100, 100) : 0;
   return (
-    <div className="w-full h-1.5 rounded-full bg-vscode-border overflow-hidden">
+    <div className="w-full h-1.5 rounded-full bg-idpxyz-border overflow-hidden">
       <div className="h-full rounded-full transition-all" style={{ width: `${pct}%`, backgroundColor: color }} />
     </div>
   );
@@ -104,24 +104,24 @@ export default function PromotionManagement({ onOpenTab, onSelectObject }: Promo
   ];
 
   return (
-    <div className="flex-1 flex flex-col overflow-hidden bg-vscode-editor">
+    <div className="flex-1 flex flex-col overflow-hidden bg-idpxyz-editor">
       {/* Header */}
-      <div className="flex items-center justify-between px-5 py-2.5 border-b border-vscode-border shrink-0">
+      <div className="flex items-center justify-between px-5 py-2.5 border-b border-idpxyz-border shrink-0">
         <div className="flex items-center gap-3">
-          <IconAutomation size={16} className="text-vscode-accent" />
-          <h1 className="text-[14px] font-semibold text-vscode-textBright">促销管理</h1>
-          <span className="text-[11px] text-vscode-textMuted">{activeCount} 进行中 · {scheduledCount} 待开始</span>
+          <IconAutomation size={16} className="text-idpxyz-accent" />
+          <h1 className="text-[14px] font-semibold text-idpxyz-textBright">促销管理</h1>
+          <span className="text-[11px] text-idpxyz-textMuted">{activeCount} 进行中 · {scheduledCount} 待开始</span>
         </div>
         <div className="flex items-center gap-1.5 flex-wrap justify-end min-w-0">
           {selected && (
             <>
-              <span className="text-[10px] text-vscode-textMuted mr-1 border-r border-vscode-border pr-2">{selected.name}</span>
+              <span className="text-[10px] text-idpxyz-textMuted mr-1 border-r border-idpxyz-border pr-2">{selected.name}</span>
               <Button variant="ghost" size="sm"><IconEdit size={12} /> 编辑</Button>
               {selected.status === 'active' && <Button variant="ghost" size="sm" className="text-yellow-400 hover:text-yellow-300"><IconPause size={12} /> 暂停</Button>}
               {selected.status === 'paused' && <Button variant="ghost" size="sm" className="text-green-400 hover:text-green-300"><IconPlay size={12} /> 恢复</Button>}
               <Button variant="ghost" size="sm"><IconCopy size={12} /> 复制</Button>
               {(selected.status === 'ended' || selected.status === 'draft') && <Button variant="ghost" size="sm" className="text-red-400 hover:text-red-300"><IconTrash size={12} /> 删除</Button>}
-              <div className="w-px h-4 bg-vscode-border mx-1" />
+              <div className="w-px h-4 bg-idpxyz-border mx-1" />
             </>
           )}
           <Button variant="ghost" size="sm"><IconDownload size={13} /> 导出</Button>
@@ -134,49 +134,49 @@ export default function PromotionManagement({ onOpenTab, onSelectObject }: Promo
         {/* Main IconList */}
         <div className="flex-1 flex flex-col overflow-hidden min-w-0">
           {/* Summary Cards */}
-          <div className="flex gap-3 px-5 py-3 border-b border-vscode-border shrink-0">
-            <div className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-vscode-sidebar border border-vscode-border">
-              <IconAutomation size={13} className="text-vscode-accent" />
+          <div className="flex gap-3 px-5 py-3 border-b border-idpxyz-border shrink-0">
+            <div className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-idpxyz-sidebar border border-idpxyz-border">
+              <IconAutomation size={13} className="text-idpxyz-accent" />
               <div className="text-[11px]">
-                <span className="text-vscode-textMuted">活动总数</span>
-                <span className="ml-1.5 text-vscode-textBright font-medium">{allPromotions.length}</span>
+                <span className="text-idpxyz-textMuted">活动总数</span>
+                <span className="ml-1.5 text-idpxyz-textBright font-medium">{allPromotions.length}</span>
               </div>
             </div>
-            <div className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-vscode-sidebar border border-vscode-border">
+            <div className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-idpxyz-sidebar border border-idpxyz-border">
               <IconTrending size={13} className="text-green-400" />
               <div className="text-[11px]">
-                <span className="text-vscode-textMuted">活动收入</span>
-                <span className="ml-1.5 text-vscode-textBright font-medium">${(totalRevenue / 1000).toFixed(0)}K</span>
+                <span className="text-idpxyz-textMuted">活动收入</span>
+                <span className="ml-1.5 text-idpxyz-textBright font-medium">${(totalRevenue / 1000).toFixed(0)}K</span>
               </div>
             </div>
-            <div className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-vscode-sidebar border border-vscode-border">
+            <div className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-idpxyz-sidebar border border-idpxyz-border">
               <IconDollar size={13} className="text-yellow-400" />
               <div className="text-[11px]">
-                <span className="text-vscode-textMuted">已消耗预算</span>
-                <span className="ml-1.5 text-vscode-textBright font-medium">${(totalSpent / 1000).toFixed(0)}K</span>
+                <span className="text-idpxyz-textMuted">已消耗预算</span>
+                <span className="ml-1.5 text-idpxyz-textBright font-medium">${(totalSpent / 1000).toFixed(0)}K</span>
               </div>
             </div>
-            <div className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-vscode-sidebar border border-vscode-border">
+            <div className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-idpxyz-sidebar border border-idpxyz-border">
               <IconOrder size={13} className="text-blue-400" />
               <div className="text-[11px]">
-                <span className="text-vscode-textMuted">促销订单</span>
-                <span className="ml-1.5 text-vscode-textBright font-medium">{allPromotions.filter(p => p.status === 'active').reduce((s, p) => s + p.orderCount, 0).toLocaleString()}</span>
+                <span className="text-idpxyz-textMuted">促销订单</span>
+                <span className="ml-1.5 text-idpxyz-textBright font-medium">{allPromotions.filter(p => p.status === 'active').reduce((s, p) => s + p.orderCount, 0).toLocaleString()}</span>
               </div>
             </div>
           </div>
 
           {/* Quick Views */}
-          <div className="flex items-center gap-1 px-5 py-2 border-b border-vscode-border shrink-0">
+          <div className="flex items-center gap-1 px-5 py-2 border-b border-idpxyz-border shrink-0">
             {quickViews.map(qv => (
               <button key={qv.filter} onClick={() => setStatusFilter(qv.filter)}
-                className={`px-2.5 py-1 rounded text-[10px] transition-colors ${statusFilter === qv.filter ? 'bg-vscode-accent/15 text-vscode-accent font-medium' : 'text-vscode-textMuted hover:bg-vscode-hover'}`}>
+                className={`px-2.5 py-1 rounded text-[10px] transition-colors ${statusFilter === qv.filter ? 'bg-idpxyz-accent/15 text-idpxyz-accent font-medium' : 'text-idpxyz-textMuted hover:bg-idpxyz-hover'}`}>
                 {qv.label} <span className="ml-0.5 opacity-70">{qv.count}</span>
               </button>
             ))}
             <div className="flex-1" />
             <div className="flex items-center gap-1.5">
               <select value={typeFilter} onChange={e => setTypeFilter(e.target.value)}
-                className="bg-vscode-inputBg border border-vscode-border rounded px-2 py-0.5 text-[10px] text-vscode-text outline-none">
+                className="bg-idpxyz-inputBg border border-idpxyz-border rounded px-2 py-0.5 text-[10px] text-idpxyz-text outline-none">
                 <option value="all">全部类型</option>
                 {(Object.entries(promotionTypeConfig) as [PromotionType, { label: string }][]).map(([k, v]) => (
                   <option key={k} value={k}>{v.label}</option>
@@ -186,33 +186,33 @@ export default function PromotionManagement({ onOpenTab, onSelectObject }: Promo
           </div>
 
           {/* IconSearch */}
-          <div className="flex items-center gap-2 px-5 py-2 border-b border-vscode-border shrink-0">
-            <div className="flex items-center bg-vscode-inputBg rounded px-2 h-[26px] border border-vscode-border flex-1 max-w-[300px]">
-              <IconSearch size={11} className="text-vscode-textMuted mr-1.5 shrink-0" />
+          <div className="flex items-center gap-2 px-5 py-2 border-b border-idpxyz-border shrink-0">
+            <div className="flex items-center bg-idpxyz-inputBg rounded px-2 h-[26px] border border-idpxyz-border flex-1 max-w-[300px]">
+              <IconSearch size={11} className="text-idpxyz-textMuted mr-1.5 shrink-0" />
               <input type="text" value={searchTerm} onChange={e => setSearchTerm(e.target.value)} placeholder="搜索活动名称、ID..."
-                className="bg-transparent border-none outline-none text-[11px] text-vscode-text w-full placeholder:text-vscode-textMuted" />
+                className="bg-transparent border-none outline-none text-[11px] text-idpxyz-text w-full placeholder:text-idpxyz-textMuted" />
             </div>
-            <span className="text-[10px] text-vscode-textMuted">{filtered.length} 条结果</span>
+            <span className="text-[10px] text-idpxyz-textMuted">{filtered.length} 条结果</span>
           </div>
 
           {/* Table */}
           <div className="flex-1 overflow-auto">
             <table className="w-full text-[11px] border-collapse">
               <thead className="sticky top-0 z-10">
-                <tr className="bg-vscode-sidebar text-vscode-textMuted">
-                  <th className="text-left px-5 py-2 font-medium border-b border-vscode-border">活动信息</th>
-                  <th className="text-left px-2 py-2 font-medium border-b border-vscode-border">类型</th>
-                  <th className="text-left px-2 py-2 font-medium border-b border-vscode-border">状态</th>
-                  <th className="text-left px-2 py-2 font-medium border-b border-vscode-border cursor-pointer hover:text-vscode-text" onClick={() => toggleSort('startAt')}>
+                <tr className="bg-idpxyz-sidebar text-idpxyz-textMuted">
+                  <th className="text-left px-5 py-2 font-medium border-b border-idpxyz-border">活动信息</th>
+                  <th className="text-left px-2 py-2 font-medium border-b border-idpxyz-border">类型</th>
+                  <th className="text-left px-2 py-2 font-medium border-b border-idpxyz-border">状态</th>
+                  <th className="text-left px-2 py-2 font-medium border-b border-idpxyz-border cursor-pointer hover:text-idpxyz-text" onClick={() => toggleSort('startAt')}>
                     <span className="flex items-center gap-1">时间 <IconArrowUpDown size={9} /></span>
                   </th>
-                  <th className="text-right px-2 py-2 font-medium border-b border-vscode-border cursor-pointer hover:text-vscode-text" onClick={() => toggleSort('usedCount')}>
+                  <th className="text-right px-2 py-2 font-medium border-b border-idpxyz-border cursor-pointer hover:text-idpxyz-text" onClick={() => toggleSort('usedCount')}>
                     <span className="flex items-center gap-1 justify-end">使用次数 <IconArrowUpDown size={9} /></span>
                   </th>
-                  <th className="text-right px-2 py-2 font-medium border-b border-vscode-border cursor-pointer hover:text-vscode-text" onClick={() => toggleSort('revenue')}>
+                  <th className="text-right px-2 py-2 font-medium border-b border-idpxyz-border cursor-pointer hover:text-idpxyz-text" onClick={() => toggleSort('revenue')}>
                     <span className="flex items-center gap-1 justify-end">收入 <IconArrowUpDown size={9} /></span>
                   </th>
-                  <th className="text-right px-2 py-2 font-medium border-b border-vscode-border">预算</th>
+                  <th className="text-right px-2 py-2 font-medium border-b border-idpxyz-border">预算</th>
                 </tr>
               </thead>
               <tbody>
@@ -223,26 +223,26 @@ export default function PromotionManagement({ onOpenTab, onSelectObject }: Promo
                   return (
                     <tr key={promo.id}
                       onClick={() => setSelectedId(promo.id)}
-                      className={`cursor-pointer transition-colors border-b border-vscode-border ${isSel ? 'bg-vscode-accent/8' : 'hover:bg-vscode-hover'}`}>
+                      className={`cursor-pointer transition-colors border-b border-idpxyz-border ${isSel ? 'bg-idpxyz-accent/8' : 'hover:bg-idpxyz-hover'}`}>
                       <td className="px-5 py-2.5">
                         <div className="flex items-center gap-2">
-                          {isSel && <IconChevronRight size={10} className="text-vscode-accent shrink-0" />}
+                          {isSel && <IconChevronRight size={10} className="text-idpxyz-accent shrink-0" />}
                           <div>
-                            <div className="text-vscode-textBright font-medium">{promo.name}</div>
-                            <div className="text-[10px] text-vscode-textMuted mt-0.5">{promo.id} · {promo.description}</div>
+                            <div className="text-idpxyz-textBright font-medium">{promo.name}</div>
+                            <div className="text-[10px] text-idpxyz-textMuted mt-0.5">{promo.id} · {promo.description}</div>
                           </div>
                         </div>
                       </td>
                       <td className="px-2 py-2.5"><StatusBadge {...ts} /></td>
                       <td className="px-2 py-2.5"><StatusBadge {...ss} /></td>
-                      <td className="px-2 py-2.5 text-vscode-textMuted whitespace-nowrap">
+                      <td className="px-2 py-2.5 text-idpxyz-textMuted whitespace-nowrap">
                         <div className="text-[10px]">{promo.startAt.split(' ')[0]}</div>
-                        <div className="text-[9px] text-vscode-textMuted/70">至 {promo.endAt.split(' ')[0]}</div>
+                        <div className="text-[9px] text-idpxyz-textMuted/70">至 {promo.endAt.split(' ')[0]}</div>
                       </td>
-                      <td className="px-2 py-2.5 text-right text-vscode-text">{promo.usedCount.toLocaleString()}</td>
-                      <td className="px-2 py-2.5 text-right text-vscode-textBright font-medium">${promo.revenue.toLocaleString()}</td>
+                      <td className="px-2 py-2.5 text-right text-idpxyz-text">{promo.usedCount.toLocaleString()}</td>
+                      <td className="px-2 py-2.5 text-right text-idpxyz-textBright font-medium">${promo.revenue.toLocaleString()}</td>
                       <td className="px-2 py-2.5 text-right">
-                        <div className="text-[10px] text-vscode-textMuted">${promo.spent.toLocaleString()} / ${promo.budget.toLocaleString()}</div>
+                        <div className="text-[10px] text-idpxyz-textMuted">${promo.spent.toLocaleString()} / ${promo.budget.toLocaleString()}</div>
                         <div className="mt-0.5 w-[60px] ml-auto">
                           <ProgressBar value={promo.spent} max={promo.budget} color={promo.spent / promo.budget > 0.9 ? '#f44747' : promo.spent / promo.budget > 0.7 ? '#dcdcaa' : '#6a9955'} />
                         </div>

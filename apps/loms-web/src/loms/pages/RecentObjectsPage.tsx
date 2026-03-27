@@ -69,14 +69,14 @@ export default function RecentObjectsPage({ onOpenTab }: RecentObjectsPageProps)
   ];
 
   return (
-    <div className="flex-1 flex flex-col overflow-hidden bg-vscode-editor">
+    <div className="flex-1 flex flex-col overflow-hidden bg-idpxyz-editor">
       {/* Header */}
-      <div className="flex items-center justify-between px-5 py-3 border-b border-vscode-border shrink-0">
+      <div className="flex items-center justify-between px-5 py-3 border-b border-idpxyz-border shrink-0">
         <div>
-          <h1 className="text-[15px] font-semibold text-vscode-textBright flex items-center gap-2">
-            <History size={16} className="text-vscode-accent" /> Recent Objects
+          <h1 className="text-[15px] font-semibold text-idpxyz-textBright flex items-center gap-2">
+            <History size={16} className="text-idpxyz-accent" /> Recent Objects
           </h1>
-          <p className="text-[11px] text-vscode-textMuted mt-0.5">Objects you've recently viewed or worked on</p>
+          <p className="text-[11px] text-idpxyz-textMuted mt-0.5">Objects you've recently viewed or worked on</p>
         </div>
         <Button variant="outline" size="sm" onClick={() => addToast({ type: 'info', title: 'History cleared', message: 'Recent objects list reset' })}>
           <X size={12} /> Clear History
@@ -84,14 +84,14 @@ export default function RecentObjectsPage({ onOpenTab }: RecentObjectsPageProps)
       </div>
 
       {/* Filter bar */}
-      <div className="flex items-center gap-3 px-5 py-2 border-b border-vscode-border shrink-0">
-        <div className="flex items-center gap-2 bg-vscode-inputBg border border-vscode-border rounded px-2 py-1 w-[220px]">
-          <Search size={12} className="text-vscode-textMuted shrink-0" />
+      <div className="flex items-center gap-3 px-5 py-2 border-b border-idpxyz-border shrink-0">
+        <div className="flex items-center gap-2 bg-idpxyz-inputBg border border-idpxyz-border rounded px-2 py-1 w-[220px]">
+          <Search size={12} className="text-idpxyz-textMuted shrink-0" />
           <input
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search recent objects..."
-            className="flex-1 bg-transparent outline-none text-[12px] text-vscode-text placeholder:text-vscode-textMuted"
+            className="flex-1 bg-transparent outline-none text-[12px] text-idpxyz-text placeholder:text-idpxyz-textMuted"
           />
         </div>
         <div className="flex items-center gap-1">
@@ -106,14 +106,14 @@ export default function RecentObjectsPage({ onOpenTab }: RecentObjectsPageProps)
             </Button>
           ))}
         </div>
-        <span className="ml-auto text-[11px] text-vscode-textMuted">{filtered.length} objects</span>
+        <span className="ml-auto text-[11px] text-idpxyz-textMuted">{filtered.length} objects</span>
       </div>
 
       {/* List */}
       <div className="flex-1 overflow-y-auto">
         <table className="w-full text-[12px] border-collapse">
-          <thead className="sticky top-0 z-10 bg-vscode-sidebar">
-            <tr className="text-vscode-textMuted text-left border-b border-vscode-border">
+          <thead className="sticky top-0 z-10 bg-idpxyz-sidebar">
+            <tr className="text-idpxyz-textMuted text-left border-b border-idpxyz-border">
               <th className="px-5 py-2 font-medium">Object</th>
               <th className="px-3 py-2 font-medium">Type</th>
               <th className="px-3 py-2 font-medium">Status</th>
@@ -129,19 +129,19 @@ export default function RecentObjectsPage({ onOpenTab }: RecentObjectsPageProps)
                 <tr
                   key={obj.id}
                   onClick={() => handleOpen(obj)}
-                  className="border-b border-vscode-border cursor-pointer hover:bg-vscode-hover transition-colors group"
+                  className="border-b border-idpxyz-border cursor-pointer hover:bg-idpxyz-hover transition-colors group"
                 >
                   <td className="px-5 py-2.5">
                     <div className="flex items-center gap-2">
-                      <Icon size={13} className="text-vscode-accent shrink-0" />
+                      <Icon size={13} className="text-idpxyz-accent shrink-0" />
                       <div>
-                        <div className="font-medium text-vscode-textBright">{obj.name}</div>
-                        <div className="text-[11px] text-vscode-textMuted truncate max-w-[320px]">{obj.subtitle}</div>
+                        <div className="font-medium text-idpxyz-textBright">{obj.name}</div>
+                        <div className="text-[11px] text-idpxyz-textMuted truncate max-w-[320px]">{obj.subtitle}</div>
                       </div>
                     </div>
                   </td>
                   <td className="px-3 py-2.5">
-                    <span className="capitalize text-vscode-textMuted">{obj.type}</span>
+                    <span className="capitalize text-idpxyz-textMuted">{obj.type}</span>
                   </td>
                   <td className="px-3 py-2.5">
                     <span className="text-[11px] px-1.5 py-0.5 rounded font-medium" style={{ color: obj.statusColor, backgroundColor: `${obj.statusColor}20` }}>
@@ -152,7 +152,7 @@ export default function RecentObjectsPage({ onOpenTab }: RecentObjectsPageProps)
                     <span className="text-[11px]" style={{ color: obj.slaColor }}>{obj.slaLabel}</span>
                   </td>
                   <td className="px-3 py-2.5">
-                    <span className="flex items-center gap-1 text-vscode-textMuted">
+                    <span className="flex items-center gap-1 text-idpxyz-textMuted">
                       <Clock size={10} />
                       {obj.lastAccessed}
                     </span>
@@ -171,7 +171,7 @@ export default function RecentObjectsPage({ onOpenTab }: RecentObjectsPageProps)
               );
             })}
             {filtered.length === 0 && (
-              <tr><td colSpan={6} className="px-5 py-12 text-center text-vscode-textMuted">No recent objects</td></tr>
+              <tr><td colSpan={6} className="px-5 py-12 text-center text-idpxyz-textMuted">No recent objects</td></tr>
             )}
           </tbody>
         </table>

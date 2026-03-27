@@ -6,7 +6,7 @@
   - `docs/idp_product_ux_ui_design_system_handbook_v_1.md`
   - `docs/idp_workspace_page_golden_standard_v_1.md`
 
-- Target project: `vscode-ui`
+- Target project: `idpxyz-ui`
 
 ## Unified P0 Checklist
 

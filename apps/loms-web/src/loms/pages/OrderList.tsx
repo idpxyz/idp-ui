@@ -59,66 +59,66 @@ export default function OrderList({ onOpenTab }: OrderListProps) {
   const paged = filtered.slice((page - 1) * pageSize, page * pageSize);
 
   return (
-    <div className="flex-1 flex flex-col overflow-hidden bg-vscode-editor">
-      <div className="flex items-center h-[22px] px-3 text-[12px] text-vscode-breadcrumb bg-vscode-editor border-b border-vscode-border shrink-0 select-none">
-        <span className="hover:text-vscode-textBright cursor-pointer">Operations</span>
-        <ChevronRight size={14} className="mx-0.5 text-vscode-textMuted" />
-        <span className="text-vscode-text">Orders</span>
+    <div className="flex-1 flex flex-col overflow-hidden bg-idpxyz-editor">
+      <div className="flex items-center h-[22px] px-3 text-[12px] text-idpxyz-breadcrumb bg-idpxyz-editor border-b border-idpxyz-border shrink-0 select-none">
+        <span className="hover:text-idpxyz-textBright cursor-pointer">Operations</span>
+        <ChevronRight size={14} className="mx-0.5 text-idpxyz-textMuted" />
+        <span className="text-idpxyz-text">Orders</span>
       </div>
 
       {/* Toolbar */}
-      <div className="flex items-center gap-3 px-3 py-2 border-b border-vscode-border shrink-0">
-        <div className="flex items-center bg-vscode-sidebar border border-vscode-border rounded px-2 py-1 gap-1.5 flex-1 max-w-[300px]">
-          <Search size={14} className="text-vscode-textMuted" />
+      <div className="flex items-center gap-3 px-3 py-2 border-b border-idpxyz-border shrink-0">
+        <div className="flex items-center bg-idpxyz-sidebar border border-idpxyz-border rounded px-2 py-1 gap-1.5 flex-1 max-w-[300px]">
+          <Search size={14} className="text-idpxyz-textMuted" />
           <input
-            className="bg-transparent text-[12px] text-vscode-text placeholder-vscode-textMuted outline-none flex-1"
+            className="bg-transparent text-[12px] text-idpxyz-text placeholder-idpxyz-textMuted outline-none flex-1"
             placeholder="Search orders..."
             value={searchTerm}
             onChange={(e) => { setSearchTerm(e.target.value); setPage(1); }}
           />
         </div>
         <select
-          className="bg-vscode-sidebar border border-vscode-border rounded px-2 py-1 text-[12px] text-vscode-text outline-none"
+          className="bg-idpxyz-sidebar border border-idpxyz-border rounded px-2 py-1 text-[12px] text-idpxyz-text outline-none"
           value={statusFilter}
           onChange={(e) => { setStatusFilter(e.target.value); setPage(1); }}
         >
           <option value="all">All Status</option>
           {Object.entries(statusConfig).map(([k, v]) => <option key={k} value={k}>{v.label}</option>)}
         </select>
-        <span className="text-[12px] text-vscode-textMuted ml-auto">{filtered.length} orders</span>
+        <span className="text-[12px] text-idpxyz-textMuted ml-auto">{filtered.length} orders</span>
       </div>
 
       {/* Table */}
       <div className="flex-1 overflow-auto">
         <table className="w-full text-[12px] border-collapse">
-          <thead className="sticky top-0 bg-vscode-sidebar z-10">
-            <tr className="text-vscode-textMuted text-left">
-              <th className="px-3 py-2 font-medium border-b border-vscode-border">Order ID</th>
-              <th className="px-3 py-2 font-medium border-b border-vscode-border">Customer</th>
-              <th className="px-3 py-2 font-medium border-b border-vscode-border text-center">Items</th>
-              <th className="px-3 py-2 font-medium border-b border-vscode-border text-right">Value</th>
-              <th className="px-3 py-2 font-medium border-b border-vscode-border text-center">Status</th>
-              <th className="px-3 py-2 font-medium border-b border-vscode-border">Created</th>
-              <th className="px-3 py-2 font-medium border-b border-vscode-border">Shipments</th>
+          <thead className="sticky top-0 bg-idpxyz-sidebar z-10">
+            <tr className="text-idpxyz-textMuted text-left">
+              <th className="px-3 py-2 font-medium border-b border-idpxyz-border">Order ID</th>
+              <th className="px-3 py-2 font-medium border-b border-idpxyz-border">Customer</th>
+              <th className="px-3 py-2 font-medium border-b border-idpxyz-border text-center">Items</th>
+              <th className="px-3 py-2 font-medium border-b border-idpxyz-border text-right">Value</th>
+              <th className="px-3 py-2 font-medium border-b border-idpxyz-border text-center">Status</th>
+              <th className="px-3 py-2 font-medium border-b border-idpxyz-border">Created</th>
+              <th className="px-3 py-2 font-medium border-b border-idpxyz-border">Shipments</th>
             </tr>
           </thead>
           <tbody>
             {paged.map((o) => {
               const sc = statusConfig[o.status];
               return (
-                <tr key={o.id} className="hover:bg-vscode-hover cursor-pointer">
-                  <td className={`px-3 ${cellPy} border-b border-vscode-border text-vscode-accent font-medium`}>{o.id}</td>
-                  <td className={`px-3 ${cellPy} border-b border-vscode-border text-vscode-text`}>{o.customerName}</td>
-                  <td className={`px-3 ${cellPy} border-b border-vscode-border text-center text-vscode-text`}>{o.items}</td>
-                  <td className={`px-3 ${cellPy} border-b border-vscode-border text-right text-vscode-textBright font-medium`}>{o.currency} {o.totalValue}</td>
-                  <td className={`px-3 ${cellPy} border-b border-vscode-border text-center`}>
+                <tr key={o.id} className="hover:bg-idpxyz-hover cursor-pointer">
+                  <td className={`px-3 ${cellPy} border-b border-idpxyz-border text-idpxyz-accent font-medium`}>{o.id}</td>
+                  <td className={`px-3 ${cellPy} border-b border-idpxyz-border text-idpxyz-text`}>{o.customerName}</td>
+                  <td className={`px-3 ${cellPy} border-b border-idpxyz-border text-center text-idpxyz-text`}>{o.items}</td>
+                  <td className={`px-3 ${cellPy} border-b border-idpxyz-border text-right text-idpxyz-textBright font-medium`}>{o.currency} {o.totalValue}</td>
+                  <td className={`px-3 ${cellPy} border-b border-idpxyz-border text-center`}>
                     <span className="inline-block px-2 py-0.5 rounded text-[10px] font-medium" style={{ color: sc.color, backgroundColor: sc.bgColor }}>{sc.label}</span>
                   </td>
-                  <td className={`px-3 ${cellPy} border-b border-vscode-border text-vscode-textMuted`}>{o.createdAt}</td>
-                  <td className={`px-3 ${cellPy} border-b border-vscode-border`}>
+                  <td className={`px-3 ${cellPy} border-b border-idpxyz-border text-idpxyz-textMuted`}>{o.createdAt}</td>
+                  <td className={`px-3 ${cellPy} border-b border-idpxyz-border`}>
                     <div className="flex items-center gap-1">
                       {o.shipmentIds.length === 0 ? (
-                        <span className="text-vscode-textMuted">â€?¡ª</span>
+                        <span className="text-idpxyz-textMuted">â€?¡ª</span>
                       ) : (
                         o.shipmentIds.map((sid) => (
                           <span
@@ -141,8 +141,8 @@ export default function OrderList({ onOpenTab }: OrderListProps) {
 
       {/* Pagination */}
       {totalPages > 1 && (
-        <div className="flex items-center justify-between px-3 py-1.5 border-t border-vscode-border shrink-0 text-[12px]">
-          <span className="text-vscode-textMuted">Page {page} of {totalPages}</span>
+        <div className="flex items-center justify-between px-3 py-1.5 border-t border-idpxyz-border shrink-0 text-[12px]">
+          <span className="text-idpxyz-textMuted">Page {page} of {totalPages}</span>
           <div className="flex items-center gap-1">
             <Button variant="ghost" size="icon" disabled={page <= 1} onClick={() => setPage(page - 1)}><ChevronLeft size={14} /></Button>
             <Button variant="ghost" size="icon" disabled={page >= totalPages} onClick={() => setPage(page + 1)}><ChevronRight size={14} /></Button>

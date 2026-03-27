@@ -33,10 +33,10 @@ const icons: Record<ToastType, React.ComponentType<{ size?: number; className?: 
 };
 
 const styles: Record<ToastType, { bar: string; icon: string; bg: string; border: string }> = {
-  success: { bar: 'bg-green-400', icon: 'text-green-400', bg: 'bg-vscode-sidebar', border: 'border-green-500/30' },
-  warning: { bar: 'bg-yellow-400', icon: 'text-yellow-400', bg: 'bg-vscode-sidebar', border: 'border-yellow-500/30' },
-  error:   { bar: 'bg-red-400',   icon: 'text-red-400',   bg: 'bg-vscode-sidebar', border: 'border-red-500/30' },
-  info:    { bar: 'bg-blue-400',  icon: 'text-blue-400',  bg: 'bg-vscode-sidebar', border: 'border-blue-500/30' },
+  success: { bar: 'bg-green-400', icon: 'text-green-400', bg: 'bg-idpxyz-sidebar', border: 'border-green-500/30' },
+  warning: { bar: 'bg-yellow-400', icon: 'text-yellow-400', bg: 'bg-idpxyz-sidebar', border: 'border-yellow-500/30' },
+  error:   { bar: 'bg-red-400',   icon: 'text-red-400',   bg: 'bg-idpxyz-sidebar', border: 'border-red-500/30' },
+  info:    { bar: 'bg-blue-400',  icon: 'text-blue-400',  bg: 'bg-idpxyz-sidebar', border: 'border-blue-500/30' },
 };
 
 function ToastItem({ toast, onRemove }: { toast: Toast; onRemove: () => void }) {
@@ -47,10 +47,10 @@ function ToastItem({ toast, onRemove }: { toast: Toast; onRemove: () => void }) 
       <div className={`absolute left-0 top-0 bottom-0 w-[3px] ${s.bar}`} />
       <Icon size={15} className={`shrink-0 mt-0.5 ${s.icon}`} />
       <div className="flex-1 min-w-0">
-        <div className="text-[12px] font-medium text-vscode-textBright leading-tight">{toast.title}</div>
-        {toast.message && <div className="text-[11px] text-vscode-textMuted mt-0.5 leading-snug">{toast.message}</div>}
+        <div className="text-[12px] font-medium text-idpxyz-textBright leading-tight">{toast.title}</div>
+        {toast.message && <div className="text-[11px] text-idpxyz-textMuted mt-0.5 leading-snug">{toast.message}</div>}
       </div>
-      <button onClick={onRemove} className="shrink-0 text-vscode-textMuted hover:text-vscode-text p-0.5 rounded hover:bg-vscode-hover mt-0.5">
+      <button onClick={onRemove} className="shrink-0 text-idpxyz-textMuted hover:text-idpxyz-text p-0.5 rounded hover:bg-idpxyz-hover mt-0.5">
         <X size={12} />
       </button>
     </div>

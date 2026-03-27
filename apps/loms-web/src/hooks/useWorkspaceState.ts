@@ -3,7 +3,7 @@ import { useResize, useSplitResize, type EditorGroupData, type Tab, type RecentO
 
 type SplitDirection = 'none' | 'horizontal' | 'vertical';
 
-const STORAGE_KEY = 'vscode-ui.workspace-state.v1';
+const STORAGE_KEY = 'idpxyz-ui.workspace-state.v1';
 
 interface PersistedState {
   groups: EditorGroupData[];
