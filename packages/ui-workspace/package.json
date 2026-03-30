@@ -9,7 +9,8 @@
   },
   "files": [
     "dist",
-    "src"
+    "src",
+    "HOSTING.md"
   ],
   "scripts": {
     "build": "tsup"

@@ -6,7 +6,7 @@ Shared UI component library for the IDP product family. Published as `@idpxyz/*`
 
 | Package | Description | Key Exports |
 |---------|-------------|-------------|
-| `@idpxyz/ui-tokens` | Design tokens (colors, spacing, typography, themes) | `coreTokens`, `semanticTokens`, `darkTheme`, `lightTheme` |
+| `@idpxyz/ui-tokens` | Design tokens (colors, spacing, typography, themes) | `foundation`, `semanticByTheme`, `darkTheme`, `lightTheme`, `density`, `layout` |
 | `@idpxyz/ui-primitives` | Base UI components | `Button`, `Input`, `Select`, `Table`, `Badge`, `Tabs`, `Tooltip` |
 | `@idpxyz/ui-patterns` | Composite patterns | `StatusBadge`, `FilterBar`, `PageHeader`, `Skeleton` |
 | `@idpxyz/ui-icons` | Domain-specific icon mappings | `domainIcons`, `statusIcons`, `systemIcons` |

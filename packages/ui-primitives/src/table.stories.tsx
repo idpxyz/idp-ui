@@ -5,6 +5,31 @@ import { Badge } from './badge';
 const meta: Meta = { title: 'Primitives/Table' };
 export default meta;
 
+export const StickyHeader: StoryObj = {
+  render: () => (
+    <div className="max-h-[220px] overflow-auto rounded border border-idpxyz-border bg-idpxyz-editor p-2">
+      <Table stickyHeader>
+        <TableHeader>
+          <TableRow>
+            <TableHead>Code</TableHead>
+            <TableHead>Name</TableHead>
+            <TableHead>Status</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {Array.from({ length: 24 }, (_, i) => (
+            <TableRow key={i}>
+              <TableCell className="font-mono">Z-{i}</TableCell>
+              <TableCell>Row {i + 1}</TableCell>
+              <TableCell>active</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </div>
+  ),
+};
+
 export const Basic: StoryObj = {
   render: () => (
     <Table>

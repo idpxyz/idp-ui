@@ -12,6 +12,11 @@ export {
   parseWorkspaceTabDragPayload,
 } from './EditorGroup';
 export {
+  WorkspaceTabPanelProvider,
+  useWorkspaceTabPanel,
+  type WorkspaceTabPanelValue,
+} from './WorkspaceTabPanelContext';
+export {
   runWorkspaceNavigationGuard,
   type WorkspaceNavigationGuard,
   type WorkspaceNavigationIntent,

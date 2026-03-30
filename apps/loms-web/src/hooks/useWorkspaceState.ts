@@ -48,11 +48,44 @@ function loadState(): PersistedState {
   }
 }
 
-export function useWorkspaceState() {
-  const groupCounter = useRef(1);
-  const nextGroupId = useCallback(() => `group-${groupCounter.current++}`, []);
+function nextGroupCounterSeed(groups: EditorGroupData[]): number {
+  let max = -1;
+  for (const g of groups) {
+    const m = /^group-(\d+)$/.exec(g.id);
+    if (m) max = Math.max(max, parseInt(m[1], 10));
+  }
+  return Math.max(1, max + 1);
+}
 
+/** Split panes stay independent — do not jump to another group that already has the same `tabId`. */
+function computeOpenTabResult(
+  prev: EditorGroupData[],
+  groupId: string,
+  tabId: string,
+  tabName: string,
+  subtitle?: string,
+): { next: EditorGroupData[]; focusGroupId: string } {
+  const target = prev.find((g) => g.id === groupId);
+  if (!target) return { next: prev, focusGroupId: groupId };
+
+  if (target.tabs.find((t) => t.id === tabId)) {
+    return {
+      next: prev.map((gr) => (gr.id === groupId ? { ...gr, activeTab: tabId } : gr)),
+      focusGroupId: groupId,
+    };
+  }
+  return {
+    next: prev.map((g) =>
+      g.id === groupId ? { ...g, tabs: [...g.tabs, { id: tabId, name: tabName, subtitle }], activeTab: tabId } : g,
+    ),
+    focusGroupId: groupId,
+  };
+}
+
+export function useWorkspaceState() {
   const initial = useMemo(() => loadState(), []);
+  const groupCounter = useRef(nextGroupCounterSeed(initial.groups));
+  const nextGroupId = useCallback(() => `group-${groupCounter.current++}`, []);
 
   const [groups, setGroups] = useState<EditorGroupData[]>(initial.groups);
   const [activeGroupId, setActiveGroupId] = useState(initial.activeGroupId);
@@ -77,11 +110,9 @@ export function useWorkspaceState() {
 
   /** After closing a split pane, `activeGroupId` may still point at a removed group — fix so sidebar / openNavTab work. */
   useEffect(() => {
-    setActiveGroupId((current) => {
-      if (groups.some((g) => g.id === current)) return current;
-      return groups[0]?.id ?? current;
-    });
-  }, [groups]);
+    if (groups.some((g) => g.id === activeGroupId)) return;
+    setActiveGroupId(groups[0]?.id ?? '');
+  }, [groups, activeGroupId]);
 
   const activeSplitResize = splitDirection === 'vertical' ? splitResizeV : splitResizeH;
   const activeGroup = groups.find(g => g.id === activeGroupId) || groups[0];
@@ -96,21 +127,20 @@ export function useWorkspaceState() {
 
   const openTab = useCallback((groupId: string, tabId: string, tabName: string, subtitle?: string) => {
     addRecentObject(tabId, tabName);
-    setGroups(prev => {
-      for (const g of prev) {
-        if (g.tabs.find(t => t.id === tabId)) {
-          setActiveGroupId(g.id);
-          return prev.map(gr => gr.id === g.id ? { ...gr, activeTab: tabId } : gr);
-        }
-      }
-      return prev.map(g => g.id === groupId ? { ...g, tabs: [...g.tabs, { id: tabId, name: tabName, subtitle }], activeTab: tabId } : g);
+    let focusGroupId = groupId;
+    setGroups((prev) => {
+      const { next, focusGroupId: focus } = computeOpenTabResult(prev, groupId, tabId, tabName, subtitle);
+      focusGroupId = focus;
+      return next;
     });
+    setActiveGroupId(focusGroupId);
   }, [addRecentObject]);
 
   const openNavTab = useCallback((navId: string, tabName: string) => {
+    const focusGroupId = activeGroupId;
     setGroups(prev => {
       if (prev.length === 0) return prev;
-      let gIdx = prev.findIndex(g => g.id === activeGroupId);
+      let gIdx = prev.findIndex(g => g.id === focusGroupId);
       if (gIdx === -1) gIdx = 0;
       const group = prev[gIdx];
       if (group.tabs.find(t => t.id === navId)) {
@@ -122,10 +152,17 @@ export function useWorkspaceState() {
       updated[gIdx] = { ...group, tabs: [...group.tabs, { id: navId, name: tabName }], activeTab: navId };
       return updated;
     });
+    setActiveGroupId(focusGroupId);
   }, [activeGroupId]);
 
   const clickTab = useCallback((groupId: string, tabId: string) => {
-    setGroups(prev => prev.map(g => g.id === groupId ? { ...g, activeTab: tabId } : g));
+    setGroups((prev) => {
+      const idx = prev.findIndex((g) => g.id === groupId);
+      if (idx === -1) return prev;
+      const next = [...prev];
+      next[idx] = { ...prev[idx], activeTab: tabId };
+      return next;
+    });
     setActiveGroupId(groupId);
   }, []);
 

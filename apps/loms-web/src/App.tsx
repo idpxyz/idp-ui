@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect, useMemo } from 'react';
+import { Fragment, useState, useCallback, useEffect, useMemo } from 'react';
 import {
   TitleBar,
   ActivityBar,
@@ -129,15 +129,19 @@ export default function App() {
                 ? { flex: '1 1 0%' }
                 : idx === 0 ? { flex: `0 0 ${ws.activeSplitResize.ratio}%` } : { flex: '1 1 0%' };
               return (
-                <div key={group.id} className="contents">
+                <Fragment key={group.id}>
                   {idx > 0 && (
                     <div
                       className={ws.splitDirection === 'vertical' ? 'resize-handle-v' : 'resize-handle-h'}
                       onMouseDown={ws.activeSplitResize.handleMouseDown}
                     />
                   )}
-                  <div style={{ ...flexStyle, overflow: 'hidden', minWidth: 0, minHeight: 0, display: 'flex', flexDirection: 'column' }}>
+                  <div
+                    style={{ ...flexStyle, overflow: 'hidden', minWidth: 0, minHeight: 0, display: 'flex', flexDirection: 'column' }}
+                    onPointerDownCapture={() => ws.setActiveGroupId(group.id)}
+                  >
                     <EditorGroup
+                      key={group.id}
                       group={group}
                       isActive={group.id === ws.activeGroupId}
                       showSplitButtons={ws.groups.length < 2}
@@ -172,7 +176,7 @@ export default function App() {
                       }
                     />
                   </div>
-                </div>
+                </Fragment>
               );
             })}
           </div>
