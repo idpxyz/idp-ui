@@ -17,7 +17,11 @@
     "typecheck": "pnpm -r exec tsc --noEmit",
     "pack:all": "pnpm -r --filter \"./packages/*\" exec pnpm pack --pack-destination ../../dist-tarballs",
     "publish:all": "pnpm -r --filter \"./packages/*\" publish --access restricted --no-git-checks",
-    "test": "vitest run --config packages/ui-primitives/vitest.config.ts",
+    "lint": "eslint packages/*/src apps/*/src --max-warnings 0",
+    "format": "prettier --write \"packages/*/src/**/*.{ts,tsx}\" \"apps/*/src/**/*.{ts,tsx}\"",
+    "format:check": "prettier --check \"packages/*/src/**/*.{ts,tsx}\" \"apps/*/src/**/*.{ts,tsx}\"",
+    "test": "pnpm -r --filter './packages/*' exec vitest run --passWithNoTests",
+    "test:primitives": "vitest run --config packages/ui-primitives/vitest.config.ts",
     "test:watch": "vitest --config packages/ui-primitives/vitest.config.ts",
     "storybook": "storybook dev -p 6006",
     "build:storybook": "storybook build -o storybook-static",
@@ -25,6 +29,7 @@
     "generate:iso4217": "pnpm --filter @idpxyz/ui-utils run generate:iso4217"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "@storybook/addon-actions": "8.6.14",
     "@storybook/addon-essentials": "^8.6.14",
     "@storybook/blocks": "^8.6.14",
@@ -37,11 +42,16 @@
     "@testing-library/react": "^16.3.2",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
+    "eslint": "^10.1.0",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.0.1",
     "jsdom": "^29.0.1",
+    "prettier": "^3.8.1",
     "storybook": "^8.6.18",
     "tailwindcss": "^4.0.0",
     "tsup": "^8.5.1",
     "typescript": "~5.6.2",
+    "typescript-eslint": "^8.57.2",
     "vitest": "^4.1.1"
   }
 }

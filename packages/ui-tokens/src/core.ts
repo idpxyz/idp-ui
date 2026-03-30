@@ -49,4 +49,21 @@ export const foundation = {
     lg: '0 10px 24px rgba(0,0,0,0.28)',
     xl: '0 14px 30px rgba(0,0,0,0.32)',
   },
+  breakpoint: {
+    sm: '640px',
+    md: '768px',
+    lg: '1024px',
+    xl: '1280px',
+    '2xl': '1536px',
+  },
+  zIndex: {
+    dropdown: 1000,
+    sticky: 1020,
+    fixed: 1030,
+    overlay: 1040,
+    modal: 1050,
+    popover: 1060,
+    tooltip: 1070,
+    toast: 1080,
+  },
 } as const;

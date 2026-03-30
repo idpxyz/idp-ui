@@ -1,12 +1,38 @@
 import * as React from 'react';
 import { cn } from '@idpxyz/ui-utils';
 
+/** Applied to each `TableHead` when `Table` has `stickyHeader`. */
+const tableHeadStickyClass =
+  'sticky top-0 z-[2] bg-idpxyz-editor shadow-[0_1px_0_0_rgba(0,0,0,0.25)]';
+
+const TableStickyHeaderContext = React.createContext(false);
+
+export type TableProps = React.HTMLAttributes<HTMLTableElement> & {
+  /**
+   * Sticky header row: each `TableHead` gets `position: sticky` with editor background.
+   * Parent scroll must not be blocked by `overflow-hidden` between the scroll container and this table.
+   * For horizontal overflow, wrap `<Table>` in `overflow-x-auto` (not on the table root).
+   */
+  stickyHeader?: boolean;
+};
+
 /* ── Table Root ── */
-const Table = React.forwardRef<HTMLTableElement, React.HTMLAttributes<HTMLTableElement>>(
-  ({ className, ...props }, ref) => (
-    <div className="w-full overflow-auto">
-      <table ref={ref} className={cn('w-full caption-bottom text-[12px]', className)} {...props} />
-    </div>
+/** Wrapper is `min-w-0` only — no overflow here so sticky headers can use the page/parent scrollport. */
+const Table = React.forwardRef<HTMLTableElement, TableProps>(
+  ({ className, stickyHeader, ...props }, ref) => (
+    <TableStickyHeaderContext.Provider value={!!stickyHeader}>
+      <div className="w-full min-w-0">
+        <table
+          ref={ref}
+          className={cn(
+            'w-full caption-bottom text-[12px]',
+            stickyHeader && 'border-separate border-spacing-0',
+            className
+          )}
+          {...props}
+        />
+      </div>
+    </TableStickyHeaderContext.Provider>
   )
 );
 Table.displayName = 'Table';
@@ -50,18 +76,28 @@ const TableRow = React.forwardRef<HTMLTableRowElement, React.HTMLAttributes<HTML
 );
 TableRow.displayName = 'TableRow';
 
+export type TableHeadProps = React.ThHTMLAttributes<HTMLTableCellElement> & {
+  /** When `Table` has `stickyHeader`, cells are sticky by default. Set `false` to opt out. */
+  sticky?: boolean;
+};
+
 /* ── Head Cell ── */
-const TableHead = React.forwardRef<HTMLTableCellElement, React.ThHTMLAttributes<HTMLTableCellElement>>(
-  ({ className, ...props }, ref) => (
-    <th
-      ref={ref}
-      className={cn(
-        'h-8 px-3 text-left align-middle text-[11px] font-medium text-idpxyz-textMuted [&:has([role=checkbox])]:pr-0',
-        className
-      )}
-      {...props}
-    />
-  )
+const TableHead = React.forwardRef<HTMLTableCellElement, TableHeadProps>(
+  ({ className, sticky, ...props }, ref) => {
+    const stickyHeaderFromTable = React.useContext(TableStickyHeaderContext);
+    const stickyActive = stickyHeaderFromTable && sticky !== false;
+    return (
+      <th
+        ref={ref}
+        className={cn(
+          'h-8 px-3 text-left align-middle text-[11px] font-medium text-idpxyz-textMuted [&:has([role=checkbox])]:pr-0',
+          stickyActive && tableHeadStickyClass,
+          className
+        )}
+        {...props}
+      />
+    );
+  }
 );
 TableHead.displayName = 'TableHead';
 

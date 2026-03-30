@@ -17,7 +17,18 @@ export {
   UnavailableState,
   SectionErrorState,
 } from './page-states';
-export { Table, TableHeader, TableBody, TableFooter, TableRow, TableHead, TableCell, TableCaption } from './table';
+export {
+  Table,
+  TableHeader,
+  TableBody,
+  TableFooter,
+  TableRow,
+  TableHead,
+  TableCell,
+  TableCaption,
+  type TableProps,
+  type TableHeadProps,
+} from './table';
 export {
   Select,
   SelectGroup,

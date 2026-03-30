@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
+import { cn } from '@idpxyz/ui-utils';
 import {
   X,
   Layers,
@@ -15,6 +16,7 @@ import {
   type WorkspaceNavigationGuard,
   type WorkspaceNavigationIntent,
 } from './navigationGuard';
+import { WorkspaceTabPanelProvider } from './WorkspaceTabPanelContext';
 
 export interface Tab {
   id: string;
@@ -215,18 +217,26 @@ export default function EditorGroup({
             ref={tabsRef}
             className="flex items-end flex-1 overflow-x-auto h-full tab-scroll-hidden"
           >
-            {group.tabs.map((tab) => (
+            {group.tabs.map((tab) => {
+              const selected = group.activeTab === tab.id;
+              /** Split panes can show the same `tab.id`; only the focused editor (`isActive`) uses the strong “active” chrome. */
+              const tabChrome = selected
+                ? isActive
+                  ? 'bg-idpxyz-tabActive text-idpxyz-textBright border-t-2 border-t-idpxyz-accent'
+                  : 'bg-idpxyz-tab text-idpxyz-textMuted border-t border-t-idpxyz-border'
+                : 'bg-idpxyz-tab text-idpxyz-textMuted hover:bg-idpxyz-hover border-t border-t-transparent hover:text-idpxyz-text';
+              return (
               <div
                 key={tab.id}
                 data-tab-id={tab.id}
-                className={`group flex items-center h-[35px] min-w-0 px-3 cursor-pointer text-[13px] border-r border-idpxyz-tabBorder shrink-0 relative
-                  ${isOverflowing ? 'max-w-[160px]' : ''}
-                  ${group.activeTab === tab.id
-                    ? 'bg-idpxyz-tabActive text-idpxyz-textBright border-t-2 border-t-idpxyz-accent'
-                    : 'bg-idpxyz-tab text-idpxyz-textMuted hover:bg-idpxyz-hover border-t border-t-transparent hover:text-idpxyz-text'
-                  }
-                  ${dragOverIdx === group.tabs.indexOf(tab) ? 'ring-1 ring-idpxyz-accent/60' : ''}
-                `}
+                className={cn(
+                  'group flex items-center h-[35px] min-w-0 px-3 cursor-pointer text-[13px] border-r border-idpxyz-tabBorder shrink-0 relative',
+                  isOverflowing && 'max-w-[160px]',
+                  tabChrome,
+                  dragOverIdx !== null && dragOverIdx === group.tabs.indexOf(tab)
+                    ? 'ring-1 ring-idpxyz-accent/60'
+                    : '',
+                )}
                 draggable
                 onDragStart={(e) => {
                   const idx = group.tabs.indexOf(tab);
@@ -272,7 +282,12 @@ export default function EditorGroup({
                 <span className="min-w-0 flex-1 truncate whitespace-nowrap mr-2">
                   {tab.name}
                   {tab.subtitle && (
-                    <span className={`text-[10px] ml-1 ${group.activeTab === tab.id ? 'text-idpxyz-text' : 'text-idpxyz-textMuted'}`}>
+                    <span
+                      className={cn(
+                        'text-[10px] ml-1',
+                        selected && isActive ? 'text-idpxyz-text' : 'text-idpxyz-textMuted',
+                      )}
+                    >
                       {tab.subtitle}
                     </span>
                   )}
@@ -287,14 +302,16 @@ export default function EditorGroup({
                   }}
                   variant="ghost"
                   size="icon"
-                  className={`h-5 w-5 shrink-0 transition-opacity ${
-                    group.activeTab === tab.id ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
-                  }`}
+                  className={cn(
+                    'h-5 w-5 shrink-0 transition-opacity',
+                    selected ? 'opacity-100' : 'opacity-0 group-hover:opacity-100',
+                  )}
                 >
                   <X size={14} />
                 </Button>
               </div>
-            ))}
+            );
+            })}
             {group.tabs.length > 0 && (
               <div
                 className={`flex-1 min-w-[20px] h-[35px] shrink-0 self-end ${
@@ -565,12 +582,28 @@ export default function EditorGroup({
                 aria-hidden={tab.id !== group.activeTab}
                 data-tab-panel={tab.id}
               >
-                {renderContent(tab.id)}
+                <WorkspaceTabPanelProvider
+                  value={{
+                    editorGroupId: group.id,
+                    tabId: tab.id,
+                    isActiveTab: tab.id === group.activeTab,
+                  }}
+                >
+                  {renderContent(tab.id)}
+                </WorkspaceTabPanelProvider>
               </div>
             ))}
           </div>
         ) : activeTabData ? (
-          renderContent(activeTabData.id)
+          <WorkspaceTabPanelProvider
+            value={{
+              editorGroupId: group.id,
+              tabId: activeTabData.id,
+              isActiveTab: true,
+            }}
+          >
+            {renderContent(activeTabData.id)}
+          </WorkspaceTabPanelProvider>
         ) : (
           emptyStateContent || (
             <div className="flex-1 flex items-center justify-center bg-idpxyz-editor text-idpxyz-textMuted">

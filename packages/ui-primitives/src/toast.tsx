@@ -1,5 +1,10 @@
 'use client';
 
+/**
+ * @deprecated Use `ToastProvider` and `useToast` from `@idpxyz/ui-theme-runtime` instead.
+ * This implementation will be removed in a future version.
+ */
+
 import * as React from 'react';
 import { cn } from '@idpxyz/ui-utils';
 import { CheckCircle2, AlertCircle, Info, AlertTriangle, X } from 'lucide-react';
