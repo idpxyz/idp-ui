@@ -1,14 +1,24 @@
 'use client';
 
 import * as React from 'react';
-import { icons as lucideIcons } from 'lucide-react';
+import * as LucideIcons from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { cn } from '@idpxyz/ui-utils';
 import { Popover, PopoverContent, PopoverTrigger } from './popover';
 import { Button } from './button';
 import { Input } from './input';
 
-const allIconNames = Object.keys(lucideIcons) as (keyof typeof lucideIcons)[];
+const EXCLUDE = new Set(['createLucideIcon', 'default', 'icons', 'Icon']);
+
+const allIconEntries: [string, LucideIcon][] = Object.entries(LucideIcons)
+  .filter(([name, comp]) =>
+    !EXCLUDE.has(name) &&
+    !name.endsWith('Icon') &&
+    !name.startsWith('Lucide') &&
+    typeof comp === 'object' &&
+    comp !== null &&
+    '$$typeof' in (comp as Record<string, unknown>),
+  ) as [string, LucideIcon][];
 
 export interface IconPickerProps {
   value?: string;
@@ -23,11 +33,11 @@ function IconPicker({ value, onChange, placeholder = 'Select icon', className }:
 
   const filtered = React.useMemo(() => {
     const q = search.trim().toLowerCase();
-    if (!q) return allIconNames.slice(0, 120);
-    return allIconNames.filter((name) => name.toLowerCase().includes(q)).slice(0, 120);
+    if (!q) return allIconEntries.slice(0, 150);
+    return allIconEntries.filter(([name]) => name.toLowerCase().includes(q)).slice(0, 150);
   }, [search]);
 
-  const SelectedIcon = value ? (lucideIcons[value as keyof typeof lucideIcons] as LucideIcon | undefined) : undefined;
+  const SelectedIcon = value ? (LucideIcons as unknown as Record<string, LucideIcon>)[value] : undefined;
 
   return (
     <div className={cn('flex items-center gap-1', className)}>
@@ -44,10 +54,10 @@ function IconPicker({ value, onChange, placeholder = 'Select icon', className }:
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
           <Button type="button" variant="ghost" size="sm" className="h-8 w-8 p-0 shrink-0">
-            {SelectedIcon ? <SelectedIcon size={16} /> : <span className="text-[12px]">🎨</span>}
+            {SelectedIcon ? <SelectedIcon size={16} /> : <LucideIcons.Palette size={16} />}
           </Button>
         </PopoverTrigger>
-        <PopoverContent className="w-[320px] p-2" align="start">
+        <PopoverContent className="w-[340px] p-2" align="start">
           <Input
             className="h-7 text-[11px] mb-2"
             value={search}
@@ -55,31 +65,27 @@ function IconPicker({ value, onChange, placeholder = 'Select icon', className }:
             placeholder="Search icons..."
             autoFocus
           />
-          <div className="grid grid-cols-8 gap-0.5 max-h-[240px] overflow-y-auto">
-            {filtered.map((name) => {
-              const Icon = lucideIcons[name] as LucideIcon;
-              if (!Icon || typeof Icon !== 'function') return null;
-              return (
-                <button
-                  key={name}
-                  type="button"
-                  onClick={() => { onChange(name); setOpen(false); }}
-                  className={cn(
-                    'flex items-center justify-center w-8 h-8 rounded hover:bg-idpxyz-hover transition-colors',
-                    value === name && 'bg-idpxyz-accent/20 ring-1 ring-idpxyz-accent',
-                  )}
-                  title={name}
-                >
-                  <Icon size={16} />
-                </button>
-              );
-            })}
+          <div className="grid grid-cols-8 gap-0.5 max-h-[260px] overflow-y-auto">
+            {filtered.map(([name, Icon]) => (
+              <button
+                key={name}
+                type="button"
+                onClick={() => { onChange(name); setOpen(false); }}
+                className={cn(
+                  'flex items-center justify-center w-9 h-9 rounded hover:bg-idpxyz-hover transition-colors',
+                  value === name && 'bg-idpxyz-accent/20 ring-1 ring-idpxyz-accent',
+                )}
+                title={name}
+              >
+                <Icon size={18} />
+              </button>
+            ))}
           </div>
           {filtered.length === 0 ? (
             <p className="text-[11px] text-idpxyz-textMuted text-center py-4">No icons found</p>
           ) : null}
           <p className="text-[9px] text-idpxyz-textMuted mt-2 text-center">
-            {filtered.length} icons · Lucide
+            {filtered.length}/{allIconEntries.length} · Lucide Icons
           </p>
         </PopoverContent>
       </Popover>
