@@ -119,3 +119,4 @@ export {
 } from './date-time-utils';
 
 export { EmojiPicker, type EmojiPickerProps } from './emoji-picker';
+export { IconPicker, type IconPickerProps } from './icon-picker';
