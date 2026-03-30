@@ -57,7 +57,7 @@ function IconPicker({ value, onChange, placeholder = 'Select icon', className }:
             {SelectedIcon ? <SelectedIcon size={16} /> : <LucideIcons.Palette size={16} />}
           </Button>
         </PopoverTrigger>
-        <PopoverContent className="!w-[340px] p-2" align="start">
+        <PopoverContent className="p-2" align="start" style={{ width: '340px', minWidth: '340px', maxWidth: '340px' }}>
           <Input
             className="h-7 text-[11px] mb-2"
             value={search}
