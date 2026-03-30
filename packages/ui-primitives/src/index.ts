@@ -117,3 +117,5 @@ export {
   setTimeOnDate,
   getTimeHHmmFromDate,
 } from './date-time-utils';
+
+export { EmojiPicker, type EmojiPickerProps } from './emoji-picker';
