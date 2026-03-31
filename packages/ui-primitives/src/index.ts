@@ -2,6 +2,7 @@ export { Button, buttonVariants, type ButtonProps } from './button';
 export { Input, type InputProps } from './input';
 export { MoneyInput, type MoneyInputProps } from './money-input';
 export { MoneyText, type MoneyTextProps } from './money-text';
+export { NumberInput, type NumberInputProps, type NumberInputMode } from './number-input';
 export { Badge, badgeVariants, type BadgeProps } from './badge';
 export {
   ConfirmDialog,
@@ -119,4 +120,12 @@ export {
 } from './date-time-utils';
 
 export { EmojiPicker, type EmojiPickerProps } from './emoji-picker';
-export { IconPicker, type IconPickerProps } from './icon-picker';
+export { IconPicker, type IconPickerProps, renderIconValue, isFlag, getFlagCode, FLAG_PREFIX } from './icon-picker';
+export {
+  JsonSchemaEditor,
+  type JsonSchemaEditorProps,
+  type SchemaField,
+  type JsonSchemaFieldType,
+  fieldsToJsonSchema,
+  jsonSchemaToFields,
+} from './json-schema-editor';

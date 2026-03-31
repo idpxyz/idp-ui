@@ -1,6 +1,6 @@
 {
   "name": "@idpxyz/ui-patterns",
-  "version": "0.1.8",
+  "version": "0.1.15",
   "type": "module",
   "main": "./src/index.ts",
   "types": "./src/index.ts",

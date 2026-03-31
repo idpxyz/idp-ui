@@ -1,6 +1,6 @@
 {
   "name": "@idpxyz/ui-workspace",
-  "version": "0.1.9",
+  "version": "0.1.16",
   "type": "module",
   "main": "./src/index.ts",
   "types": "./src/index.ts",
