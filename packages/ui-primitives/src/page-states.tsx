@@ -49,12 +49,12 @@ export function FilteredEmptyState({ onReset }: { onReset?: () => void }) {
   );
 }
 
-export function TrulyEmptyState({ onCreate }: { onCreate?: () => void }) {
+export function TrulyEmptyState({ title, description, onCreate }: { title?: string; description?: string; onCreate?: () => void }) {
   return (
     <StateShell
       icon={<DatabaseZap size={18} />}
-      title="No records yet"
-      description="There is no data available in this workspace yet."
+      title={title ?? 'No records yet'}
+      description={description ?? 'There is no data available in this workspace yet.'}
       actionLabel={onCreate ? 'Create First Record' : undefined}
       onAction={onCreate}
     />
