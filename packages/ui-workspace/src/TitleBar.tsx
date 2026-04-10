@@ -30,6 +30,19 @@ const recentTypeIcons: Record<string, React.ElementType> = {
   order: ShoppingCart,
 };
 
+export interface ScopeFilterOption {
+  id: string;
+  label: string;
+}
+
+export interface ScopeFilter {
+  key: string;
+  label: string;
+  options?: ScopeFilterOption[];
+  value?: string | null;
+  onChange?: (value: string | null) => void;
+}
+
 interface TitleBarProps {
   rightSidebarVisible: boolean;
   onToggleRightSidebar: () => void;
@@ -38,7 +51,15 @@ interface TitleBarProps {
   onOpenCommandPalette?: () => void;
   recentObjects?: RecentObject[];
   onOpenRecentObject?: (id: string, name: string) => void;
+  scopeFilters?: ScopeFilter[];
 }
+
+const DEFAULT_SCOPE_FILTERS: ScopeFilter[] = [
+  { key: 'tenant', label: 'All Tenants' },
+  { key: 'network', label: 'All Networks' },
+  { key: 'site', label: 'All Sites' },
+  { key: 'date', label: 'Today' },
+];
 
 export default function TitleBar({
   rightSidebarVisible,
@@ -48,7 +69,9 @@ export default function TitleBar({
   onOpenCommandPalette,
   recentObjects = [],
   onOpenRecentObject,
+  scopeFilters,
 }: TitleBarProps) {
+  const filters = scopeFilters ?? DEFAULT_SCOPE_FILTERS;
   const [recentOpen, setRecentOpen] = useState(false);
   const [mainMenuActive, setMainMenuActive] = useState('Operations');
   const mainMenuItems = ['Operations', 'View', 'Reports', 'Admin'] as const;
@@ -95,17 +118,27 @@ export default function TitleBar({
         </div>
         {/* Scope Switcher */}
         <div className="flex items-center gap-0.5">
-          {[
-            { label: 'All Tenants', key: 'tenant' },
-            { label: 'All Networks', key: 'network' },
-            { label: 'All Sites', key: 'site' },
-            { label: 'Today', key: 'date' },
-          ].map((scope) => (
-            <div key={scope.key} className="flex items-center gap-0.5 px-1.5 py-0.5 rounded hover:bg-idpxyz-hover cursor-pointer text-[11px] text-idpxyz-textMuted">
-              <span>{scope.label}</span>
-              <ChevronDown size={10} />
-            </div>
-          ))}
+          {filters.map((scope) =>
+            scope.options && scope.options.length > 0 && scope.onChange ? (
+              <select
+                key={scope.key}
+                className="bg-transparent border-none outline-none text-[11px] text-idpxyz-textMuted hover:text-idpxyz-text cursor-pointer px-1.5 py-0.5 rounded hover:bg-idpxyz-hover appearance-none pr-4"
+                style={{ backgroundImage: 'none' }}
+                value={scope.value ?? ''}
+                onChange={(e) => scope.onChange!(e.target.value || null)}
+              >
+                <option value="">{scope.label}</option>
+                {scope.options.map((opt) => (
+                  <option key={opt.id} value={opt.id}>{opt.label}</option>
+                ))}
+              </select>
+            ) : (
+              <div key={scope.key} className="flex items-center gap-0.5 px-1.5 py-0.5 rounded hover:bg-idpxyz-hover cursor-pointer text-[11px] text-idpxyz-textMuted">
+                <span>{scope.label}</span>
+                <ChevronDown size={10} />
+              </div>
+            ),
+          )}
         </div>
       </div>
 

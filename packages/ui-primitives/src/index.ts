@@ -56,6 +56,29 @@ export {
   DialogFooter,
 } from './dialog';
 export { Drawer, DrawerHeader, DrawerBody, DrawerFooter } from './drawer';
+export {
+  PanelShell,
+  PanelTabBar,
+  PanelTab,
+  PanelContent,
+  type PanelShellProps,
+  type PanelTabBarProps,
+  type PanelTabProps,
+} from './panel';
+export {
+  InspectorShell,
+  InspectorHeader,
+  InspectorBody,
+  InspectorSection,
+  InspectorRow,
+  InspectorActions,
+  InspectorIdentity,
+  type InspectorShellProps,
+  type InspectorHeaderProps,
+  type InspectorSectionProps,
+  type InspectorRowProps,
+  type InspectorIdentityProps,
+} from './inspector';
 export { Checkbox, RadioGroup, RadioGroupItem, Switch } from './form-controls';
 export { DropdownMenu, MenuItem, MenuSeparator, MenuLabel } from './dropdown-menu';
 export { Avatar, avatarVariants } from './avatar';
@@ -124,6 +147,7 @@ export { IconPicker, type IconPickerProps, renderIconValue, isFlag, getFlagCode,
 export {
   JsonSchemaEditor,
   type JsonSchemaEditorProps,
+  type JsonSchemaLayoutMode,
   type SchemaField,
   type JsonSchemaFieldType,
   fieldsToJsonSchema,

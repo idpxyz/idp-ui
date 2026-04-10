@@ -1,6 +1,6 @@
 {
   "name": "@idpxyz/ui-patterns",
-  "version": "0.1.15",
+  "version": "0.1.20",
   "type": "module",
   "main": "./src/index.ts",
   "types": "./src/index.ts",
@@ -15,8 +15,8 @@
     "build": "tsup"
   },
   "dependencies": {
-    "@idpxyz/ui-primitives": "workspace:*",
-    "@idpxyz/ui-utils": "workspace:*",
+    "@idpxyz/ui-primitives": "workspace:^0.1.18",
+    "@idpxyz/ui-utils": "workspace:^0.1.16",
     "class-variance-authority": "^0.7.1"
   },
   "peerDependencies": {

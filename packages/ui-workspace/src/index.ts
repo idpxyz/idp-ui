@@ -1,5 +1,5 @@
 export { default as ActivityBar } from './ActivityBar';
-export { default as TitleBar, type RecentObject } from './TitleBar';
+export { default as TitleBar, type RecentObject, type ScopeFilter, type ScopeFilterOption } from './TitleBar';
 export { default as StatusBar } from './StatusBar';
 export { default as Sidebar, type NavItem, type NavigationSection } from './Sidebar';
 export { default as CommandPalette, type CommandPaletteAction } from './CommandPalette';

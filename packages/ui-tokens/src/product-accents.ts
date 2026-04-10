@@ -5,9 +5,9 @@ export const productAccent = {
     fg: '#ffffff',
   },
   prism: {
-    accent: '#0891b2',
-    subtle: 'rgba(8,145,178,0.18)',
-    fg: '#ecfeff',
+    accent: '#007acc',
+    subtle: 'rgba(0,122,204,0.18)',
+    fg: '#ffffff',
   },
   gatekeeper: {
     accent: '#6366f1',

@@ -1,9 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
-import { IconClose, IconMaximize, IconMinimize, IconActivity, IconWarning, IconLayoutList, IconFileText, IconAutomation, IconMessage } from '@idpxyz/ui-icons';
+import { IconActivity, IconWarning, IconLayoutList, IconFileText, IconAutomation, IconMessage } from '@idpxyz/ui-icons';
 import { orderTimelines, exceptions as allExceptions, type SidebarSelection } from '../data/oms';
 import { SkeletonEventList } from '@idpxyz/ui-patterns';
-import { Button } from '@idpxyz/ui-primitives';
-import { Badge } from '@idpxyz/ui-primitives';
+import { Button, PanelShell, PanelTabBar, PanelTab, PanelContent } from '@idpxyz/ui-primitives';
 
 interface BottomPanelProps {
   visible: boolean;
@@ -25,18 +24,15 @@ export default function BottomPanel({ visible, height, maximized, onClose, onMax
     return () => { if (timerRef.current) clearTimeout(timerRef.current); };
   }, [activeTab, selectedObject]);
 
-  if (!visible) return null;
-
   const tabs = [
-    { id: 'events', label: '事件', icon: IconAutomation },
-    { id: 'logs', label: '日志', icon: IconActivity },
-    { id: 'exceptions', label: '异常', icon: IconWarning, badge: 7 },
-    { id: 'jobs', label: '任务', icon: IconLayoutList },
-    { id: 'audit', label: '审计', icon: IconFileText },
-    { id: 'comments', label: '备注', icon: IconMessage, badge: 3 },
+    { id: 'events', label: '事件', icon: <IconAutomation size={14} /> },
+    { id: 'logs', label: '日志', icon: <IconActivity size={14} /> },
+    { id: 'exceptions', label: '异常', icon: <IconWarning size={14} />, badge: 7 },
+    { id: 'jobs', label: '任务', icon: <IconLayoutList size={14} /> },
+    { id: 'audit', label: '审计', icon: <IconFileText size={14} /> },
+    { id: 'comments', label: '备注', icon: <IconMessage size={14} />, badge: 3 },
   ];
 
-  // Determine which timeline to show based on selected object
   const orderId = selectedObject?.kind === 'order'
     ? selectedObject.payload.id
     : selectedObject?.kind === 'exception'
@@ -46,42 +42,21 @@ export default function BottomPanel({ visible, height, maximized, onClose, onMax
   const relatedExceptions = orderId ? allExceptions.filter(e => e.orderId === orderId) : allExceptions.slice(0, 5);
 
   return (
-    <div className="bg-idpxyz-panelBg flex flex-col shrink-0 select-none" style={{ height }}>
-      {/* Panel tabs */}
-      <div className="flex items-center justify-between h-[35px] border-b border-idpxyz-border shrink-0">
-        <div className="flex items-center h-full">
-          {tabs.map((tab) => (
-            <Button
-              key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
-              variant="ghost"
-              size="sm"
-              className={`h-full rounded-none px-3 text-[11px] uppercase tracking-wide border-b-2
-                ${activeTab === tab.id
-                  ? 'text-idpxyz-text border-b-idpxyz-accent'
-                  : 'text-idpxyz-textMuted border-transparent hover:text-idpxyz-text'
-                }`}
-            >
-              <tab.icon size={14} />
-              {tab.label}
-              {tab.badge !== undefined && (
-                <Badge>{tab.badge}</Badge>
-              )}
-            </Button>
-          ))}
-        </div>
-        <div className="flex items-center gap-0.5 pr-2">
-          <Button onClick={onMaximize} variant="ghost" size="icon" className="h-7 w-7" title={maximized ? '还原' : '最大化'}>
-            {maximized ? <IconMinimize size={14} /> : <IconMaximize size={14} />}
-          </Button>
-          <Button onClick={onClose} variant="ghost" size="icon" className="h-7 w-7" title="关闭面板">
-            <IconClose size={14} />
-          </Button>
-        </div>
-      </div>
+    <PanelShell height={height} visible={visible}>
+      <PanelTabBar maximized={maximized} onMaximize={onMaximize} onClose={onClose}>
+        {tabs.map((tab) => (
+          <PanelTab
+            key={tab.id}
+            active={activeTab === tab.id}
+            icon={tab.icon}
+            label={tab.label}
+            badge={tab.badge}
+            onClick={() => setActiveTab(tab.id)}
+          />
+        ))}
+      </PanelTabBar>
 
-      {/* Panel content */}
-      <div className="flex-1 overflow-auto p-3">
+      <PanelContent>
         {isLoading ? (
           <SkeletonEventList />
         ) : activeTab === 'events' ? (
@@ -97,8 +72,8 @@ export default function BottomPanel({ visible, height, maximized, onClose, onMax
             {selectedObject ? `已选择对象：${selectedObject.payload.id}` : '请选择一个对象以查看详情'}
           </div>
         )}
-      </div>
-    </div>
+      </PanelContent>
+    </PanelShell>
   );
 }
 

@@ -1,9 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
-import { X, Maximize2, Minimize2, Activity, AlertTriangle, LayoutList, FileText, Zap, MessageSquare } from 'lucide-react';
+import { Activity, AlertTriangle, LayoutList, FileText, Zap, MessageSquare } from 'lucide-react';
 import { type Shipment, type Exception, trackingEvents } from '../data/loms';
 import { SkeletonEventList } from '@idpxyz/ui-patterns';
-import { Button } from '@idpxyz/ui-primitives';
-import { Badge } from '@idpxyz/ui-primitives';
+import { Button, PanelShell, PanelTabBar, PanelTab, PanelContent } from '@idpxyz/ui-primitives';
 
 interface BottomPanelProps {
   visible: boolean;
@@ -25,54 +24,31 @@ export default function BottomPanel({ visible, height, maximized, onClose, onMax
     return () => { if (timerRef.current) clearTimeout(timerRef.current); };
   }, [activeTab, selectedObject]);
 
-  if (!visible) return null;
-
   const tabs = [
-    { id: 'events', label: 'Events', icon: Zap },
-    { id: 'logs', label: 'Logs', icon: Activity },
-    { id: 'cases', label: 'Cases', icon: AlertTriangle, badge: 7 },
-    { id: 'jobs', label: 'Jobs', icon: LayoutList },
-    { id: 'audit', label: 'Audit', icon: FileText },
-    { id: 'comments', label: 'Comments', icon: MessageSquare, badge: 3 },
+    { id: 'events', label: 'Events', icon: <Zap size={14} /> },
+    { id: 'logs', label: 'Logs', icon: <Activity size={14} /> },
+    { id: 'cases', label: 'Cases', icon: <AlertTriangle size={14} />, badge: 7 },
+    { id: 'jobs', label: 'Jobs', icon: <LayoutList size={14} /> },
+    { id: 'audit', label: 'Audit', icon: <FileText size={14} /> },
+    { id: 'comments', label: 'Comments', icon: <MessageSquare size={14} />, badge: 3 },
   ];
 
   return (
-    <div className="bg-idpxyz-panelBg flex flex-col shrink-0 select-none" style={{ height }}>
-      {/* Panel tabs */}
-      <div className="flex items-center justify-between h-[35px] border-b border-idpxyz-border shrink-0">
-        <div className="flex items-center h-full">
-          {tabs.map((tab) => (
-            <Button
-              key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
-              variant="ghost"
-              size="sm"
-              className={`h-full rounded-none px-3 text-[11px] uppercase tracking-wide border-b-2
-                ${activeTab === tab.id
-                  ? 'text-idpxyz-text border-b-idpxyz-accent'
-                  : 'text-idpxyz-textMuted border-transparent hover:text-idpxyz-text'
-                }`}
-            >
-              <tab.icon size={14} />
-              {tab.label}
-              {tab.badge !== undefined && (
-                <Badge>{tab.badge}</Badge>
-              )}
-            </Button>
-          ))}
-        </div>
-        <div className="flex items-center gap-1 mr-2">
-          <Button variant="ghost" size="icon" onClick={onMaximize} title={maximized ? 'Restore' : 'Maximize'}>
-            {maximized ? <Minimize2 size={14} /> : <Maximize2 size={14} />}
-          </Button>
-          <Button variant="ghost" size="icon" onClick={onClose}>
-            <X size={14} />
-          </Button>
-        </div>
-      </div>
+    <PanelShell height={height} visible={visible}>
+      <PanelTabBar maximized={maximized} onMaximize={onMaximize} onClose={onClose}>
+        {tabs.map((tab) => (
+          <PanelTab
+            key={tab.id}
+            active={activeTab === tab.id}
+            icon={tab.icon}
+            label={tab.label}
+            badge={tab.badge}
+            onClick={() => setActiveTab(tab.id)}
+          />
+        ))}
+      </PanelTabBar>
 
-      {/* Panel content */}
-      <div className="flex-1 overflow-auto p-2 text-[12px]">
+      <PanelContent className="text-[12px]">
         {isLoading && <SkeletonEventList rows={6} />}
         {!isLoading && activeTab === 'events' && (
           <div className="space-y-0.5">
@@ -205,7 +181,7 @@ export default function BottomPanel({ visible, height, maximized, onClose, onMax
             </div>
           </div>
         )}
-      </div>
-    </div>
+      </PanelContent>
+    </PanelShell>
   );
 }

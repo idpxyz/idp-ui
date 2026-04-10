@@ -128,7 +128,7 @@ importers:
         version: 19.2.3(@types/react@19.2.14)
       '@vitejs/plugin-react':
         specifier: ^4.3.4
-        version: 4.7.0(vite@6.4.1(jiti@2.6.1)(lightningcss@1.32.0))
+        version: 4.7.0(vite@6.4.1(jiti@1.21.7)(lightningcss@1.32.0))
       autoprefixer:
         specifier: ^10.4.20
         version: 10.4.27(postcss@8.5.8)
@@ -143,7 +143,7 @@ importers:
         version: 5.6.3
       vite:
         specifier: ^6.0.5
-        version: 6.4.1(jiti@2.6.1)(lightningcss@1.32.0)
+        version: 6.4.1(jiti@1.21.7)(lightningcss@1.32.0)
 
   apps/loms-web:
     dependencies:
@@ -396,7 +396,7 @@ importers:
         version: 19.2.3(@types/react@19.2.14)
       '@vitejs/plugin-react':
         specifier: ^4.3.4
-        version: 4.7.0(vite@6.4.1(jiti@1.21.7)(lightningcss@1.32.0))
+        version: 4.7.0(vite@6.4.1(jiti@2.6.1)(lightningcss@1.32.0))
       autoprefixer:
         specifier: ^10.4.20
         version: 10.4.27(postcss@8.5.8)
@@ -411,7 +411,7 @@ importers:
         version: 5.6.3
       vite:
         specifier: ^6.0.5
-        version: 6.4.1(jiti@1.21.7)(lightningcss@1.32.0)
+        version: 6.4.1(jiti@2.6.1)(lightningcss@1.32.0)
 
   packages/ui-icons:
     dependencies:
@@ -425,10 +425,10 @@ importers:
   packages/ui-patterns:
     dependencies:
       '@idpxyz/ui-primitives':
-        specifier: workspace:*
+        specifier: workspace:^0.1.18
         version: link:../ui-primitives
       '@idpxyz/ui-utils':
-        specifier: workspace:*
+        specifier: workspace:^0.1.16
         version: link:../ui-utils
       class-variance-authority:
         specifier: ^0.7.1
@@ -449,7 +449,7 @@ importers:
         specifier: ^1.1.1
         version: 1.1.1(emoji-mart@5.6.0)(react@19.2.4)
       '@idpxyz/ui-utils':
-        specifier: workspace:*
+        specifier: workspace:^0.1.16
         version: link:../ui-utils
       '@radix-ui/react-checkbox':
         specifier: ^1.3.3
@@ -507,7 +507,7 @@ importers:
   packages/ui-theme-runtime:
     dependencies:
       '@idpxyz/ui-tokens':
-        specifier: workspace:*
+        specifier: workspace:^0.1.16
         version: link:../ui-tokens
       lucide-react:
         specifier: '>=0.400.0'
@@ -534,16 +534,16 @@ importers:
   packages/ui-workspace:
     dependencies:
       '@idpxyz/ui-patterns':
-        specifier: workspace:*
+        specifier: workspace:^0.1.16
         version: link:../ui-patterns
       '@idpxyz/ui-primitives':
-        specifier: workspace:*
+        specifier: workspace:^0.1.18
         version: link:../ui-primitives
       '@idpxyz/ui-theme-runtime':
-        specifier: workspace:*
+        specifier: workspace:^0.1.16
         version: link:../ui-theme-runtime
       '@idpxyz/ui-utils':
-        specifier: workspace:*
+        specifier: workspace:^0.1.16
         version: link:../ui-utils
       lucide-react:
         specifier: '>=0.400.0'

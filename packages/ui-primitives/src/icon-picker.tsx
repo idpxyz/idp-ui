@@ -41,8 +41,8 @@ try {
 }
 
 const allFlagEntries: [string, FlagComponent][] = countries
-  .filter((code) => FlagComponents[code])
-  .map((code) => [code, FlagComponents[code]]);
+  .filter((code): code is keyof typeof FlagComponents & string => Boolean(FlagComponents[code]))
+  .map((code) => [code, FlagComponents[code] as FlagComponent]);
 
 export const FLAG_PREFIX = 'flag:';
 
