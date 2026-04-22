@@ -105,7 +105,7 @@ export default function Sidebar({ width, onFileClick, activeFile, navigationSect
   return (
     <div className="bg-idpxyz-sidebar flex flex-col select-none shrink-0 overflow-hidden" style={{ width }}>
       {/* Navigation sections — logistics-style grouped nav (MY WORK, OVERVIEW, …) */}
-      <div className="flex-1 overflow-y-auto overflow-x-hidden pt-1 pb-2">
+      <div className="flex-1 overflow-y-auto overflow-x-hidden pt-1 pb-2 sidebar-scroll">
         {navigationSections.map((section, sectionIndex) => (
           <div key={section.title}>
             <div

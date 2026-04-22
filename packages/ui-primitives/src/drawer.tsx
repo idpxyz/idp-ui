@@ -2,6 +2,8 @@
 
 import * as React from 'react';
 import * as DialogPrimitive from '@radix-ui/react-dialog';
+
+import * as VisuallyHidden from '@radix-ui/react-visually-hidden';
 import { X } from 'lucide-react';
 import { cn } from '@idpxyz/ui-utils';
 
@@ -9,10 +11,12 @@ interface DrawerProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   side?: 'left' | 'right';
+  /** Accessible label for screen readers when no visible DialogTitle is rendered. */
+  'aria-label'?: string;
   children: React.ReactNode;
 }
 
-function Drawer({ open, onOpenChange, side = 'right', children }: DrawerProps) {
+function Drawer({ open, onOpenChange, side = 'right', 'aria-label': ariaLabel, children }: DrawerProps) {
   return (
     <DialogPrimitive.Root open={open} onOpenChange={onOpenChange}>
       <DialogPrimitive.Portal>
@@ -23,6 +27,7 @@ function Drawer({ open, onOpenChange, side = 'right', children }: DrawerProps) {
           )}
         />
         <DialogPrimitive.Content
+          aria-describedby={undefined}
           className={cn(
             'fixed z-50 flex flex-col bg-idpxyz-sidebar border-idpxyz-border shadow-xl outline-none focus:outline-none',
             'data-[state=open]:animate-in data-[state=closed]:animate-out',
@@ -31,6 +36,9 @@ function Drawer({ open, onOpenChange, side = 'right', children }: DrawerProps) {
               : 'left-0 top-0 h-full w-96 max-w-[85vw] border-r data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left'
           )}
         >
+          <VisuallyHidden.Root asChild>
+            <DialogPrimitive.Title>{ariaLabel ?? 'Panel'}</DialogPrimitive.Title>
+          </VisuallyHidden.Root>
           {children}
         </DialogPrimitive.Content>
       </DialogPrimitive.Portal>
