@@ -10,8 +10,20 @@ interface Column<T> {
   sortable?: boolean;
   filterable?: boolean;
   width?: string;
+  /**
+   * Horizontal alignment for this column's header and cells. Use `'right'` for
+   * numeric columns (qty, amount, counts) so digits line up by place value and
+   * the header sits above them. Defaults to `'left'`.
+   */
+  align?: 'left' | 'right' | 'center';
   render?: (value: unknown, row: T) => React.ReactNode;
 }
+
+const alignClass = (align: Column<unknown>['align']): string =>
+  align === 'right' ? 'text-right' : align === 'center' ? 'text-center' : 'text-left';
+
+const headerJustify = (align: Column<unknown>['align']): string =>
+  align === 'right' ? 'justify-end' : align === 'center' ? 'justify-center' : 'justify-start';
 
 interface DataGridProps<T extends Record<string, unknown>> {
   columns: Column<T>[];
@@ -100,13 +112,14 @@ function DataGrid<T extends Record<string, unknown>>({
                 <th
                   key={col.key}
                   className={cn(
-                    'text-left px-3 py-2 text-[11px] font-semibold text-idpxyz-textMuted uppercase tracking-wider',
+                    'px-3 py-2 text-[11px] font-semibold text-idpxyz-textMuted uppercase tracking-wider',
+                    alignClass(col.align),
                     col.sortable && 'cursor-pointer select-none hover:text-idpxyz-text'
                   )}
                   style={col.width ? { width: col.width } : undefined}
                   onClick={col.sortable ? () => toggleSort(col.key) : undefined}
                 >
-                  <span className="flex items-center gap-1">
+                  <span className={cn('flex items-center gap-1', headerJustify(col.align))}>
                     {col.header}
                     {col.sortable && (
                       sortKey === col.key
@@ -134,7 +147,7 @@ function DataGrid<T extends Record<string, unknown>>({
                   )}
                 >
                   {columns.map((col) => (
-                    <td key={col.key} className="px-3 py-2 text-idpxyz-text">
+                    <td key={col.key} className={cn('px-3 py-2 text-idpxyz-text', alignClass(col.align))}>
                       {col.render ? col.render(row[col.key], row) : String(row[col.key] ?? '')}
                     </td>
                   ))}
