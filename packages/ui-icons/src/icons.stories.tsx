@@ -8,7 +8,7 @@ import {
   IconEye, IconBell, IconUser, IconLock, IconStar, IconTag,
   IconClock, IconHistory, IconDatabase, IconFolder, IconBookmark,
   IconUndo, IconRedo, IconZoomIn, IconZoomOut, IconFullscreen,
-  IconShare, IconPrint, IconNotification,
+  IconShare, IconPrint, IconNotification, IconLayers,
 } from './system';
 import {
   IconShipment, IconPackage, IconReturn, IconBilling,
@@ -19,7 +19,7 @@ import {
   IconBillOfLading, IconInvoice, IconPickingList, IconPackingList,
   IconVendor, IconSupplier, IconSupplyNetwork, IconEDI,
   IconWorkflow, IconProcurement, IconCompliance, IconQualityControl,
-  IconMilestone, IconDemandForecast, IconLayers,
+  IconMilestone, IconDemandForecast,
   IconPackageOpen, IconPackageDamaged, IconReceiveGoods, IconDispatchGoods,
   IconPutaway, IconPickup, IconReplenishment, IconCycleCount,
   IconStockAdjustment, IconRacking, IconBinLocation,

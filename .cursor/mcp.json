@@ -1,0 +1,54 @@
+{
+  "mcpServers": {
+    "idp-mcp-1": {
+      "command": "node",
+      "args": [
+        "/home/tops/.cursor-server/extensions/idp.idp-dev-mcp-0.4.6/dist/mcpServer.cjs"
+      ],
+      "env": {
+        "IDP_MCP_SESSION_CHANNEL": "1"
+      },
+      "timeoutMs": 604800000
+    },
+    "idp-mcp-2": {
+      "command": "node",
+      "args": [
+        "/home/tops/.cursor-server/extensions/idp.idp-dev-mcp-0.4.6/dist/mcpServer.cjs"
+      ],
+      "env": {
+        "IDP_MCP_SESSION_CHANNEL": "2"
+      },
+      "timeoutMs": 604800000
+    },
+    "idp-mcp-3": {
+      "command": "node",
+      "args": [
+        "/home/tops/.cursor-server/extensions/idp.idp-dev-mcp-0.4.6/dist/mcpServer.cjs"
+      ],
+      "env": {
+        "IDP_MCP_SESSION_CHANNEL": "3"
+      },
+      "timeoutMs": 604800000
+    },
+    "idp-mcp-4": {
+      "command": "node",
+      "args": [
+        "/home/tops/.cursor-server/extensions/idp.idp-dev-mcp-0.4.6/dist/mcpServer.cjs"
+      ],
+      "env": {
+        "IDP_MCP_SESSION_CHANNEL": "4"
+      },
+      "timeoutMs": 604800000
+    },
+    "idp-mcp-5": {
+      "command": "node",
+      "args": [
+        "/home/tops/.cursor-server/extensions/idp.idp-dev-mcp-0.4.6/dist/mcpServer.cjs"
+      ],
+      "env": {
+        "IDP_MCP_SESSION_CHANNEL": "5"
+      },
+      "timeoutMs": 604800000
+    }
+  }
+}

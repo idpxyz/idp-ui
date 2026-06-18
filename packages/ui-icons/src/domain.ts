@@ -129,7 +129,6 @@ export {
   Milestone as IconMilestone,
   Flag as IconFlag,
   Crosshair as IconDemandForecast,
-  Layers as IconLayers,
 
   // Ledger / Settlement / Finance
   BookOpenCheck as IconLedger,

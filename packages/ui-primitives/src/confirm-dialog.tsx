@@ -119,7 +119,6 @@ export function ConfirmDialog({
   renderFooter,
 }: ConfirmDialogProps) {
   const { Icon, iconWrap, confirmVariant } = toneParts(tone);
-  const titleId = React.useId();
   const [pending, setPending] = React.useState(false);
 
   React.useEffect(() => {
@@ -167,7 +166,7 @@ export function ConfirmDialog({
             </div>
           )}
           <div className="min-w-0 flex-1">
-            <DialogTitle id={titleId} className="text-[14px] font-semibold text-idpxyz-textBright">
+            <DialogTitle className="text-[14px] font-semibold text-idpxyz-textBright">
               {title}
             </DialogTitle>
             <DialogDescription className="mt-1 text-[12px] leading-5">{message}</DialogDescription>
