@@ -1,6 +1,6 @@
 import { useState, useCallback } from "react";
 import { Truck } from "lucide-react";
-import { Sidebar } from "@idpxyz/ui-workspace";
+import { Sidebar, useResize } from "@idpxyz/ui-workspace";
 import {
   navigationSections,
   lomsSidebarIconMap,
@@ -18,6 +18,7 @@ import {
 export function Layout() {
   const [active, setActive] = useState<string>("ops-dashboard");
   const [, setSelected] = useState<Shipment | Exception | null>(null);
+  const sidebarResize = useResize({ direction: "horizontal", initialSize: 240, minSize: 170, maxSize: 500 });
 
   const onOpenTab = useCallback((tabId: string) => setActive(tabId), []);
 
@@ -32,12 +33,13 @@ export function Layout() {
 
       <div className="flex flex-1 overflow-hidden">
         <Sidebar
-          width={240}
+          width={sidebarResize.size}
           onFileClick={setActive}
           activeFile={active}
           navigationSections={navigationSections}
           iconMap={lomsSidebarIconMap}
         />
+        <div className="resize-handle-h" onMouseDown={sidebarResize.handleMouseDown} />
         <div className="flex-1 flex flex-col overflow-hidden bg-idpxyz-editor">
           <PageRouter
             tabId={active}
