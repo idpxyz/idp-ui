@@ -17,9 +17,23 @@ interface StatusBarProps {
   commandFeedback?: string | null;
   /** App chrome (e.g. language) — placed at the far right, after status actions */
   trailingSlot?: ReactNode;
+  /** Real indicators supplied by the host app — rendered on the left. */
+  leftSlot?: ReactNode;
+  /** Real indicators supplied by the host app — rendered right of the density toggle. */
+  rightSlot?: ReactNode;
+  /** The legacy hardcoded demo literals ("142 Active", "All Carriers Online",
+   *  "Ops Controller", …) were mock chrome with no data behind them. They are
+   *  OFF by default; prototype apps that want the old look can opt back in. */
+  showDemoIndicators?: boolean;
 }
 
-export default function StatusBar({ commandFeedback, trailingSlot }: StatusBarProps) {
+export default function StatusBar({
+  commandFeedback,
+  trailingSlot,
+  leftSlot,
+  rightSlot,
+  showDemoIndicators = false,
+}: StatusBarProps) {
   const { density, toggleDensity } = useDensity();
   return (
     <div className="h-[22px] bg-idpxyz-statusBar flex items-center justify-between px-2 text-white text-[12px] select-none shrink-0">
@@ -30,20 +44,25 @@ export default function StatusBar({ commandFeedback, trailingSlot }: StatusBarPr
             <span className="max-w-[320px] truncate">{commandFeedback}</span>
           </div>
         )}
-        <div className="flex items-center gap-1 cursor-pointer hover:bg-idpxyz-statusHover px-1 rounded-sm">
-          <Truck size={12} />
-          <span>142 Active</span>
-        </div>
-        <div className="flex items-center gap-1 cursor-pointer hover:bg-idpxyz-statusHover px-1 rounded-sm">
-          <AlertCircle size={12} className="text-red-400" />
-          <span>2 Breached</span>
-          <AlertTriangle size={12} className="ml-0.5 text-yellow-400" />
-          <span>2 At Risk</span>
-        </div>
-        <div className="flex items-center gap-1 cursor-pointer hover:bg-idpxyz-statusHover px-1 rounded-sm">
-          <AlertTriangle size={12} className="text-orange-400" />
-          <span>7 Open Cases</span>
-        </div>
+        {leftSlot}
+        {showDemoIndicators && (
+          <>
+            <div className="flex items-center gap-1 cursor-pointer hover:bg-idpxyz-statusHover px-1 rounded-sm">
+              <Truck size={12} />
+              <span>142 Active</span>
+            </div>
+            <div className="flex items-center gap-1 cursor-pointer hover:bg-idpxyz-statusHover px-1 rounded-sm">
+              <AlertCircle size={12} className="text-red-400" />
+              <span>2 Breached</span>
+              <AlertTriangle size={12} className="ml-0.5 text-yellow-400" />
+              <span>2 At Risk</span>
+            </div>
+            <div className="flex items-center gap-1 cursor-pointer hover:bg-idpxyz-statusHover px-1 rounded-sm">
+              <AlertTriangle size={12} className="text-orange-400" />
+              <span>7 Open Cases</span>
+            </div>
+          </>
+        )}
       </div>
       <div className="flex items-center gap-3">
         <Button
@@ -56,19 +75,24 @@ export default function StatusBar({ commandFeedback, trailingSlot }: StatusBarPr
           {density === 'compact' ? <Rows4 size={12} /> : <Rows3 size={12} />}
           <span className="capitalize">{density}</span>
         </Button>
-        <div className="flex items-center gap-1 cursor-pointer hover:bg-idpxyz-statusHover px-1 rounded-sm">
-          <Wifi size={12} className="text-green-400" />
-          <span>All Carriers Online</span>
-        </div>
-        <div className="flex items-center gap-1 cursor-pointer hover:bg-idpxyz-statusHover px-1 rounded-sm">
-          <CheckCircle size={12} className="text-green-400" />
-          <span>Sync OK</span>
-        </div>
-        <div className="flex items-center gap-1 cursor-pointer hover:bg-idpxyz-statusHover px-1 rounded-sm">
-          <Shield size={12} />
-          <span>Ops Controller</span>
-        </div>
-        <Bell size={12} className="cursor-pointer hover:bg-idpxyz-statusHover rounded-sm" />
+        {rightSlot}
+        {showDemoIndicators && (
+          <>
+            <div className="flex items-center gap-1 cursor-pointer hover:bg-idpxyz-statusHover px-1 rounded-sm">
+              <Wifi size={12} className="text-green-400" />
+              <span>All Carriers Online</span>
+            </div>
+            <div className="flex items-center gap-1 cursor-pointer hover:bg-idpxyz-statusHover px-1 rounded-sm">
+              <CheckCircle size={12} className="text-green-400" />
+              <span>Sync OK</span>
+            </div>
+            <div className="flex items-center gap-1 cursor-pointer hover:bg-idpxyz-statusHover px-1 rounded-sm">
+              <Shield size={12} />
+              <span>Ops Controller</span>
+            </div>
+            <Bell size={12} className="cursor-pointer hover:bg-idpxyz-statusHover rounded-sm" />
+          </>
+        )}
         {trailingSlot}
       </div>
     </div>
